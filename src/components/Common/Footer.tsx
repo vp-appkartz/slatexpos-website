@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,7 +9,12 @@ const Footer = () => {
           
           {/* SlateX Column */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-white mb-6">SlateX</h2>
+          <img
+                      src="/logo.png"
+                      alt="SlatexPOS Logo"
+                      className="h-8 sm:h-10 lg:h-12 mb-5 w-auto cursor-pointer"
+                      onClick={() => navigate('/')}
+                    />
             <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
               Serve up seamless service with SlateX POS—your all‑in‑one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support. Ready to wow your guests and grow your business? Let’s get started today
             </p>
@@ -36,6 +41,13 @@ const Footer = () => {
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5 text-white" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
+                aria-label="Instagram"
+              >
+                <Linkedin className="w-5 h-5 text-white" />
               </a>
             </div>
             

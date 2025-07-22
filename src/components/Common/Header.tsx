@@ -205,7 +205,8 @@ const Header: React.FC = () => {
                     <img
                       src="/logo.png"
                       alt="SlatexPOS Logo"
-                      className="h-8 sm:h-10 lg:h-12 w-auto"
+                      className="h-8 sm:h-10 lg:h-12 w-auto cursor-pointer"
+                      onClick={() => navigate('/')}
                     />
                   </div>
                 </div>

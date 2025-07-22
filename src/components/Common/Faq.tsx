@@ -115,16 +115,7 @@ const FAQSection = ({
 
               <div
                 id={`faq-answer-${index}`}
-                style={{
-                  maxHeight: expandedIndex === index ? 500 : 0,
-                  opacity: expandedIndex === index ? 1 : 0,
-                  transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1)',
-                  overflow: 'hidden',
-                  willChange: 'max-height, opacity',
-                  background: 'transparent',
-                }}
-                data-aos={expandedIndex === index ? "zoom-in" : undefined}
-                data-aos-duration="600"
+               
               >
                 {expandedIndex === index && (
                   <div className="px-6 pb-6">

@@ -1,4 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+const aosAnimations = [
+  "zoom-in-up",
+  "fade-up",
+  "flip-left",
+  "flip-right",
+  "fade-right",
+  "fade-left",
+];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +19,18 @@ const Contact = () => {
     restaurant: '',
     interest: ''
   });
+
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false, // Animation will trigger every time on scroll into view
+      offset: 60,
+      easing: "ease-in-out",
+    });
+    return () => {
+      AOS.refresh();
+    };
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -31,17 +54,31 @@ const Contact = () => {
             backgroundImage: "url('/contact-bg.png')"
           }}
         >
+          {/* Overlay for better contrast on mobile */}
+          <div className="absolute inset-0 bg-black/30 lg:bg-transparent z-0"></div>
           {/* Content Container */}
           <div className="relative z-10 grid lg:grid-cols-2 gap-8 p-8 lg:p-12 min-h-[500px]">
             
             {/* Left Content */}
-            <div className="text-white space-y-6 flex flex-col justify-center">
-              <h2 className="text-4xl lg:text-5xl font-semibold leading-tight">
+            <div
+              className="text-white space-y-6 flex flex-col justify-center"
+              data-aos="fade-right"
+              data-aos-delay="120"
+            >
+              <h2
+                className="text-4xl lg:text-5xl font-semibold leading-tight"
+                data-aos="fade-down"
+                data-aos-delay="180"
+              >
                 Let's schedule<br />
                 your free demo
               </h2>
               
-              <p className="text-white/90 text-lg leading-relaxed max-w-md">
+              <p
+                className="text-white/90 text-lg leading-relaxed max-w-md"
+                data-aos="fade-up"
+                data-aos-delay="260"
+              >
                 Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
               </p>
             </div>
@@ -54,10 +91,12 @@ const Contact = () => {
                   background: 'rgba(255,255,255,0.85)',
                   backdropFilter: 'blur(10px)'
                 }}
+                data-aos="zoom-in-up"
+                data-aos-delay="200"
               >
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {/* Name Field */}
-                  <div>
+                  <div data-aos="fade-up" data-aos-delay="250">
                     <input
                       type="text"
                       name="name"
@@ -70,7 +109,7 @@ const Contact = () => {
                   </div>
 
                   {/* Email Field */}
-                  <div>
+                  <div data-aos="fade-up" data-aos-delay="300">
                     <input
                       type="email"
                       name="email"
@@ -83,7 +122,7 @@ const Contact = () => {
                   </div>
 
                   {/* Phone Field */}
-                  <div>
+                  <div data-aos="fade-up" data-aos-delay="350">
                     <input
                       type="tel"
                       name="phone"
@@ -96,7 +135,7 @@ const Contact = () => {
                   </div>
 
                   {/* Restaurant Name Field */}
-                  <div>
+                  <div data-aos="fade-up" data-aos-delay="400">
                     <input
                       type="text"
                       name="restaurant"
@@ -109,7 +148,7 @@ const Contact = () => {
                   </div>
 
                   {/* Interest Field */}
-                  <div>
+                  <div data-aos="fade-up" data-aos-delay="450">
                     <textarea
                       name="interest"
                       placeholder="Describe your interest"
@@ -122,7 +161,7 @@ const Contact = () => {
                   </div>
 
                   {/* Submit Button */}
-                  <div className="pt-2">
+                  <div className="pt-2" data-aos="zoom-in" data-aos-delay="500">
                     <button
                       type="submit"
                       className="w-fit bg-orange-500 hover:bg-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface StatItem {
   value: string;
@@ -30,15 +32,29 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
   // Pick backgrounds based on number of stats (up to 4)
   const bgImages = boxBgImages.slice(0, Math.min(stats.length, 4));
 
+  useEffect(() => {
+    // Set once: false so animation triggers every time the element enters the viewport
+    AOS.init({
+      duration: 900,
+      once: false, // Animation will trigger every time on scroll into view
+      offset: 60,
+      easing: "ease-in-out",
+    });
+    // Optionally, refresh AOS on update
+    return () => {
+      AOS.refresh();
+    };
+  }, []);
+
   return (
-    <section className={`py-12 md:py-20 bg-[#F5F6FA] ${className}`}>
+    <section className={`py-10 sm:py-14 md:py-20 bg-[#F5F6FA] ${className}`}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-[28px] md:text-[32px] font-semibold text-[#232323] mb-2 leading-tight">
+        <div className="text-center mb-8 md:mb-12" data-aos="fade-down" data-aos-delay="100">
+          <h2 className="text-[26px] sm:text-[28px] md:text-[32px] font-semibold text-[#232323] mb-2 leading-tight">
             {title}
           </h2>
-          <p className="text-[#6B6B6B] text-base md:text-lg font-normal">
+          <p className="text-[#6B6B6B] text-base sm:text-lg md:text-xl font-normal">
             {subtitle}
           </p>
         </div>
@@ -54,37 +70,59 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
             w-full
           `}
         >
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className={`
-                relative overflow-hidden
-                rounded-[16px]
-                px-6 py-8
-                flex-1
-                min-w-[220px]
-                min-h-[160px]
-                flex flex-col justify-between
-                shadow-[0_2px_8px_0_rgba(44,62,80,0.04)]
-                bg-cover bg-center
-              `}
-              style={{
-                backgroundImage: `url('${bgImages[index % bgImages.length]}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                boxShadow: "0 2px 8px 0 rgba(44,62,80,0.04)",
-              }}
-            >
-              <div className="mb-2">
-                <span className="block text-[32px] md:text-[36px] font-semibold text-[#232323] mb-1">
-                  {stat.value}
-                </span>
-                <span className="block text-[13px] md:text-[15px] text-[#6B6B6B] font-medium leading-snug">
-                  {stat.description}
-                </span>
+          {stats.map((stat, index) => {
+            // Animate each card with a staggered delay and cool effect
+            // Use different AOS animations for variety
+            const aosAnimations = [
+              "zoom-in-up",
+              "fade-up",
+              "flip-left",
+              "flip-right"
+            ];
+            const aosType = aosAnimations[index % aosAnimations.length];
+            const aosDelay = 200 + index * 120;
+
+            return (
+              <div
+                key={index}
+                className={`
+                  relative overflow-hidden
+                  rounded-[16px]
+                  px-5 sm:px-6 py-7 sm:py-8
+                  flex-1
+                  min-w-[180px] sm:min-w-[200px] md:min-w-[220px]
+                  min-h-[140px] sm:min-h-[150px] md:min-h-[160px]
+                  flex flex-col justify-between
+                  shadow-[0_2px_12px_0_rgba(44,62,80,0.07)]
+                  bg-cover bg-center
+                  transition-transform duration-300
+                  hover:scale-[1.045] hover:shadow-xl
+                  group
+                `}
+                style={{
+                  backgroundImage: `url('${bgImages[index % bgImages.length]}')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  boxShadow: "0 2px 12px 0 rgba(44,62,80,0.07)",
+                }}
+                data-aos={aosType}
+                data-aos-delay={aosDelay}
+              >
+                <div className="mb-2 flex-1 flex flex-col justify-center items-center">
+                  <span className="block text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-[#232323] mb-1 drop-shadow  transition-colors duration-300">
+                    {stat.value}
+                  </span>
+                  <span className="block text-[13px] sm:text-[14px] md:text-[15px] text-[#6B6B6B] font-medium leading-snug text-center">
+                    {stat.description}
+                  </span>
+                </div>
+                {/* Optional: Add a subtle animated overlay for extra coolness */}
+                <div className="absolute inset-0 pointer-events-none z-0">
+                  <div className="w-full h-full bg-gradient-to-br from-white/60 via-transparent to-white/20 opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

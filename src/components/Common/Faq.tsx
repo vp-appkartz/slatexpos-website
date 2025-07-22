@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronDown } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const FAQSection = ({ 
+const FAQSection = ({
   title = "FAQs",
   subtitle = "Powerful Tools. Seamless Experience.",
   faqs = [
@@ -53,50 +55,89 @@ const FAQSection = ({
 }) => {
   const [expandedIndex, setExpandedIndex] = useState(0); // First item expanded by default
 
-  const toggleExpanded = (index) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: 'ease-in-out-cubic',
+      once: false,
+      mirror: false,
+      offset: 40,
+    });
+  }, []);
+
+  // Ensure AOS refreshes on expand/collapse for animation
+  useEffect(() => {
+    setTimeout(() => {
+      AOS.refresh();
+    }, 200);
+  }, [expandedIndex]);
+
+  const toggleExpanded = (index: number) => {
     setExpandedIndex(expandedIndex === index ? -1 : index);
   };
 
   return (
-    <section className=" bg-gray-100">
-    <div className="w-full max-w-7xl mx-auto bg-gray-100 rounded-lg p-8">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
-        <p className="text-gray-600 text-lg">{subtitle}</p>
-      </div>
+    <section className="bg-gray-100">
+      <div className="w-full max-w-7xl mx-auto bg-gray-100 rounded-lg p-8">
+        {/* Header */}
+        <div className="text-center mb-8" data-aos="fade-down">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
+          <p className="text-gray-600 text-lg">{subtitle}</p>
+        </div>
 
-      {/* FAQ Items */}
-      <div className="space-y-1">
-        {faqs.map((faq, index) => (
-          <div key={index} className="rounded-lg  overflow-hidden">
-            <button
-              onClick={() => toggleExpanded(index)}
-              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+        {/* FAQ Items */}
+        <div className="space-y-1">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="rounded-lg overflow-hidden"
+              data-aos="fade-up"
+              data-aos-delay={index * 60}
+              data-aos-anchor-placement="top-bottom"
             >
-              <span className="text-gray-900 font-medium text-base pr-4">
-                {faq.question}
-              </span>
-              <div className="flex-shrink-0">
-                {expandedIndex === index ? (
-                  <ChevronDown className="w-5 h-5 text-gray-400" />
-                ) : (
-                  <ChevronRight className="w-5 h-5 text-gray-400" />
+              <button
+                onClick={() => toggleExpanded(index)}
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                aria-expanded={expandedIndex === index}
+                aria-controls={`faq-answer-${index}`}
+              >
+                <span className="text-gray-900 font-medium text-base pr-4">
+                  {faq.question}
+                </span>
+                <div className="flex-shrink-0">
+                  {expandedIndex === index ? (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronRight className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </button>
+
+              <div
+                id={`faq-answer-${index}`}
+                style={{
+                  maxHeight: expandedIndex === index ? 500 : 0,
+                  opacity: expandedIndex === index ? 1 : 0,
+                  transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1)',
+                  overflow: 'hidden',
+                  willChange: 'max-height, opacity',
+                  background: 'transparent',
+                }}
+                data-aos={expandedIndex === index ? "zoom-in" : undefined}
+                data-aos-duration="600"
+              >
+                {expandedIndex === index && (
+                  <div className="px-6 pb-6">
+                    <div className="text-gray-600 text-sm leading-relaxed">
+                      {faq.answer}
+                    </div>
+                  </div>
                 )}
               </div>
-            </button>
-            
-            {expandedIndex === index && (
-              <div className="px-6 pb-6">
-                <div className="text-gray-600 text-sm leading-relaxed">
-                  {faq.answer}
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </section>
   );
 };

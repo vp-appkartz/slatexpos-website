@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+const aosCardAnimations = [
+  "zoom-in-up",
+  "fade-up",
+  "flip-left"
+];
+
+const aosButtonAnimations = [
+  "fade-right",
+  "fade-up",
+  "fade-left"
+];
 
 const Hardware = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false, // Animation will trigger every time on scroll into view
+      offset: 60,
+      easing: "ease-in-out",
+    });
+    return () => {
+      AOS.refresh();
+    };
+  }, []);
+
   const hardwareItems = [
     {
       id: 1,
@@ -44,7 +70,7 @@ const Hardware = () => {
         {/* Hardware Section */}
         <div>
           {/* Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
             <h2 className="text-4xl font-semibold text-gray-800 mb-4">
               Hardware
             </h2>
@@ -55,38 +81,43 @@ const Hardware = () => {
 
           {/* Hardware Items Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {hardwareItems.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-lg shadow-sm pt-16 pb-8 px-8 text-center relative overflow-visible mt-12"
-               
-              >
-                {/* Device Image - OUTSIDE the card, floating above */}
+            {hardwareItems.map((item, idx) => {
+              const aosType = aosCardAnimations[idx % aosCardAnimations.length];
+              const aosDelay = 200 + idx * 120;
+              return (
                 <div
-                  className="absolute left-1/2 -top-20 -translate-x-1/2 z-10"
-                  style={{ width: 250, height: 200 }}
+                  key={item.id}
+                  className="bg-white rounded-lg shadow-sm pt-16 pb-8 px-8 text-center relative overflow-visible mt-12"
+                  data-aos={aosType}
+                  data-aos-delay={aosDelay}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="object-contain w-full h-full drop-shadow-xl"
-                    style={{
-                      background: "transparent",
-                    }}
-                  />
+                  {/* Device Image - OUTSIDE the card, floating above */}
+                  <div
+                    className="absolute left-1/2 -top-20 -translate-x-1/2 z-10"
+                    style={{ width: 250, height: 200 }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="object-contain w-full h-full drop-shadow-xl"
+                      style={{
+                        background: "transparent",
+                      }}
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-3xl font-semibold text-left text-gray-800 mb-4 mt-20">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600 text-sm text-left leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-3xl font-semibold text-left text-gray-800 mb-4 mt-20">
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-600 text-sm text-left leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -106,7 +137,7 @@ const Hardware = () => {
           {/* Content */}
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             {/* Header */}
-            <div className="mb-12">
+            <div className="mb-12" data-aos="fade-down" data-aos-delay="100">
               <h2 className="text-5xl font-bold text-white mb-4">
                 Solutions
               </h2>
@@ -119,28 +150,40 @@ const Hardware = () => {
             <div className="space-y-6">
               {/* First Row */}
               <div className="flex flex-wrap justify-center gap-6">
-                {firstRow.map((solution) => (
-                  <button
-                    key={solution.id}
-                    className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
-                  >
-                    <span className="text-lg font-medium">{solution.title}</span>
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                ))}
+                {firstRow.map((solution, idx) => {
+                  const aosType = aosButtonAnimations[idx % aosButtonAnimations.length];
+                  const aosDelay = 200 + idx * 100;
+                  return (
+                    <button
+                      key={solution.id}
+                      className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
+                      data-aos={aosType}
+                      data-aos-delay={aosDelay}
+                    >
+                      <span className="text-lg font-medium">{solution.title}</span>
+                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Second Row */}
               <div className="flex flex-wrap justify-center gap-6">
-                {secondRow.map((solution) => (
-                  <button
-                    key={solution.id}
-                    className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
-                  >
-                    <span className="text-lg font-medium">{solution.title}</span>
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                ))}
+                {secondRow.map((solution, idx) => {
+                  const aosType = aosButtonAnimations[(idx + 1) % aosButtonAnimations.length];
+                  const aosDelay = 200 + (idx + firstRow.length) * 100;
+                  return (
+                    <button
+                      key={solution.id}
+                      className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
+                      data-aos={aosType}
+                      data-aos-delay={aosDelay}
+                    >
+                      <span className="text-lg font-medium">{solution.title}</span>
+                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

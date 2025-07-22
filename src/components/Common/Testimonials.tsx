@@ -1,4 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+const aosAnimations = [
+  "zoom-in-up",
+  "fade-up",
+  "flip-left",
+  "flip-right"
+];
 
 const Testimonial = () => {
   const testimonials = [
@@ -43,11 +52,22 @@ const Testimonial = () => {
   // By default, first card expanded. On hover, expand hovered card.
   const [expandedIndex, setExpandedIndex] = useState(0);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false, // Animation will trigger every time on scroll into view
+      offset: 60,
+      easing: "ease-in-out",
+    });
+    // Refresh on update for dynamic content
+    AOS.refresh();
+  }, []);
+
   return (
     <section className="bg-white py-16 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
             Testimonial
           </h2>
@@ -60,6 +80,8 @@ const Testimonial = () => {
         <div className="hidden md:flex gap-4 h-96 overflow-hidden">
           {testimonials.map((testimonial, index) => {
             const isExpanded = expandedIndex === index;
+            const aosType = aosAnimations[index % aosAnimations.length];
+            const aosDelay = 200 + index * 120;
             return (
               <div
                 key={testimonial.id}
@@ -69,6 +91,8 @@ const Testimonial = () => {
                 onMouseEnter={() => setExpandedIndex(index)}
                 onMouseLeave={() => setExpandedIndex(0)}
                 style={{ minWidth: isExpanded ? 320 : 256, maxWidth: isExpanded ? 500 : 256 }}
+                data-aos={aosType}
+                data-aos-delay={aosDelay}
               >
                 {/* Background Image */}
                 <img
@@ -131,42 +155,48 @@ const Testimonial = () => {
 
         {/* Mobile Version - Stack cards vertically on small screens */}
         <div className="md:hidden mt-8 space-y-4">
-          {testimonials.map((testimonial) => (
-            <div
-              key={`mobile-${testimonial.id}`}
-              className="relative rounded-lg overflow-hidden h-64"
-            >
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-full h-full object-cover"
-              />
+          {testimonials.map((testimonial, index) => {
+            const aosType = aosAnimations[index % aosAnimations.length];
+            const aosDelay = 200 + index * 120;
+            return (
+              <div
+                key={`mobile-${testimonial.id}`}
+                className="relative rounded-lg overflow-hidden h-64"
+                data-aos={aosType}
+                data-aos-delay={aosDelay}
+              >
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-full h-full object-cover"
+                />
 
-              <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-              <div className="absolute inset-0 p-6 text-white flex flex-col justify-end">
-                <p className="text-sm leading-relaxed mb-4">
-                  {testimonial.text}
-                </p>
+                <div className="absolute inset-0 p-6 text-white flex flex-col justify-end">
+                  <p className="text-sm leading-relaxed mb-4">
+                    {testimonial.text}
+                  </p>
 
-                <h3 className="text-lg font-semibold mb-1">
-                  {testimonial.name}
-                </h3>
-                <p className="text-sm text-gray-300 mb-4">
-                  {testimonial.position}
-                </p>
+                  <h3 className="text-lg font-semibold mb-1">
+                    {testimonial.name}
+                  </h3>
+                  <p className="text-sm text-gray-300 mb-4">
+                    {testimonial.position}
+                  </p>
 
-                <div className="border-t border-gray-500 pt-4">
-                  <div className="text-sm font-bold tracking-wider">
-                    {testimonial.logo}
-                  </div>
-                  <div className="text-xs text-gray-400 tracking-wide">
-                    {testimonial.logoSubtext}
+                  <div className="border-t border-gray-500 pt-4">
+                    <div className="text-sm font-bold tracking-wider">
+                      {testimonial.logo}
+                    </div>
+                    <div className="text-xs text-gray-400 tracking-wide">
+                      {testimonial.logoSubtext}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

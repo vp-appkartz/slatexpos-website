@@ -72,10 +72,6 @@ export interface CategoryStatItem {
       buttonText: "Let's Connect",
       mainImage: "/qsr-hero.png",
       mainImageAlt: "Quick-Service Restaurant POS System",
-      deviceImage: "/qsr-device.png",
-      deviceImageAlt: "QSR POS Device",
-      deviceTitle: "Quick-Service Restaurants (QSR)",
-      deviceDescription: "Fast and efficient operations",
       backgroundText: "QSR",
       backgroundImage: "/bg.png"
     },
@@ -121,7 +117,7 @@ export interface CategoryStatItem {
       ],
       stats: [],
       ctaText: "Let's Connect",
-      imageSrc: "/qsr-features.png",
+      imageSrc: "/category/qsr/qsr-about.png",
       imageAlt: "Speed & Accuracy"
     },
     keyFeatures: {
@@ -129,32 +125,32 @@ export interface CategoryStatItem {
       subheading: "Our Standout Features",
       features: [
         {
-          image: "/categories/qsr/qsr-feature-1.png",
+          image: "/category/qsr/qsr-fe-1.png",
           title: "Customizable Loyalty",
           description: "Offer rewards programs with custom reward tiers, points systems, and promotional campaigns to suit your business needs. Drive repeat customers and offers. Seamlessly track and manage loyalty points within SlateX POS."
         },
         {
-          image: "/categories/qsr/qsr-feature-2.png",
+          image: "/category/qsr/qsr-fe-2.png",
           title: "Gift Cards",
           description: "Quickly generate gift cards in various denominations based on Special offers or promotions your restaurant is running. Easy to setup and distribute gift cards for both dine-in and takeout orders."
         },
         {
-          image: "/categories/qsr/qsr-feature-3.png",
+          image: "/category/qsr/qsr-fe-3.png",
           title: "Zero Commission Online Ordering",
           description: "Save 100% on third-party commission fees and branded online ordering platform that helps you reach more customers online. Integration with delivery flies or pickup with all the order history as a single location of SlateX POS."
         },
         {
-          image: "/categories/qsr/qsr-feature-4.png",
+          image: "/category/qsr/qsr-fe-4.png",
           title: "Delivery Integration",
           description: "Receive orders from all the third-party ordering platforms like GrubHub, DoorDash, Uber Eats. Ship third-party platforms real-time. Use an advanced smart integration to process orders from third party delivery and pickup apps. Live delivery updates are sent to POS directly."
         },
         {
-          image: "/categories/qsr/qsr-feature-5.png",
+          image: "/category/qsr/qsr-fe-5.png",
           title: "Smooth Payment Processing",
           description: "Let your customers decide their preferred way to make quick payments through credit, debit and mobile register. Offer multiple payment options right from credit cards to contactless payment. Also, you can increase your profits with the lowest credit card rates & compliant credit card surcharge on top of it using SlateX POS."
         },
         {
-          image: "/categories/qsr/qsr-feature-6.png",
+          image: "/category/qsr/qsr-fe-6.png",
           title: "Advanced Reporting",
           description: "Uncover hidden profit potential with SlateX advanced insights with the reporting dashboard that comes built-in SlateX. Analyze detailed sales and performance analytics for improved decision making, boosting and inventory management, boosting your restaurant's overall efficiency."
         }
@@ -165,17 +161,17 @@ export interface CategoryStatItem {
       subheading: "Comprehensive Backend & Enterprise Reporting",
       items: [
         {
-          image: "/categories/qsr/qsr-tech-1.png",
+          image: "/category/qsr/qsr-wwo-1.png",
           title: "Restaurant POS System",
           description: "Streamlined order management, payment processing, inventory management, and reporting. Discover the easy-to-use, all-in-one SlateX restaurant POS system."
         },
         {
-          image: "/categories/qsr/qsr-tech-2.png",
+          image: "/category/qsr/qsr-wwo-2.png",
           title: "Kitchen Display System",
           description: "Boost speed, accuracy, and communication in the kitchen with our digital display system that shows real-time orders to staff for seamless tracking."
         },
         {
-          image: "/categories/qsr/qsr-tech-3.png",
+          image: "/category/qsr/qsr-wwo-3.png",
           title: "Loyalty & Promotion",
           description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, using automated loyalty reward points to customers for effortless use and increased customer retention."
         }
@@ -428,7 +424,7 @@ export interface CategoryStatItem {
       title: "Fast Casual",
       description: "Streamline your fast-casual operations with intuitive POS solutions that balance speed with quality service. Perfect for modern dining experiences that demand efficiency without compromising customer satisfaction.",
       buttonText: "Let's Connect",
-      mainImage: "/fast-casual-hero.png",
+      mainImage: "/fc-hero.png",
       mainImageAlt: "Fast Casual Restaurant POS System",
       deviceImage: "/fast-casual-device.png",
       deviceImageAlt: "Fast Casual POS Device",
@@ -479,7 +475,7 @@ export interface CategoryStatItem {
       ],
       stats: [],
       ctaText: "Let's Connect",
-      imageSrc: "/fast-casual-features.png",
+      imageSrc: "/category/fc/fc-about.png",
       imageAlt: "Order Processing"
     },
     keyFeatures: {
@@ -487,32 +483,32 @@ export interface CategoryStatItem {
       subheading: "Our Standout Features",
       features: [
         {
-          image: "/categories/fast-casual/fast-casual-feature-1.png",
+          image: "/category/fc/fc-fe-1.png",
           title: "Multi-column modifiers",
           description: "This feature allows staff and customers to easily select multiple item options like toppings, sides, or add-ons from neatly organized columns. Whether it's customizing a burger or building a salad, multi-column modifiers simplify complex orders, ensuring accuracy and speeding up the ordering process."
         },
         {
-          image: "/categories/fast-casual/fast-casual-feature-2.png",
+          image: "/category/fc/fc-fe-2.png",
           title: "In-Depth Analytics",
           description: "Our comprehensive reports offer valuable insights to fast-casual restaurants. These reports include detailed ingredient usage tracking to optimize inventory management, category-specific sales analysis to identify top-performing items and in-depth employee performance metrics to work on productivity."
         },
         {
-          image: "/categories/fast-casual/fast-casual-feature-3.png",
+          image: "/category/fc/fc-fe-3.png",
           title: "Ingredient Tracking",
           description: "SlateX restaurant POS allows you to assign the required ingredients to menu items, enabling real-time tracking within inventory management. As customers place orders, ingredient levels are automatically updated, helping you monitor stock, reduce waste, and streamline reordering."
         },
         {
-          image: "/categories/fast-casual/fast-casual-feature-4.png",
+          image: "/category/fc/fc-fe-4.png",
           title: "Organized Kitchen Display",
           description: "Even the most complex orders are easily sent to kitchen display systems in an organized, easy to read format. Multi-column modifiers ensure clear communication of orders to kitchen, reducing errors and speeding up kitchen preparation."
         },
         {
-          image: "/categories/fast-casual/fast-casual-feature-5.png",
+          image: "/category/fc/fc-fe-5.png",
           title: "Hassle free Online Ordering",
           description: "Our intuitive online ordering system for fast casual restaurants puts the customers in control. With a few simple clicks, they can effortlessly customize their meals to their exact preferences, ensuring a truly personalized ordering experience."
         },
         {
-          image: "/categories/fast-casual/fast-casual-feature-6.png",
+          image: "/category/fc/fc-fe-6.png",
           title: "On Demand Driver Integration",
           description: "Our integration with DoorDash Drive gives restaurants the ability to manage all the deliveries easily without any hassles. Orders are automatically synced, ensuring accurate and timely delivery with real time tracking. Customers can schedule future orders and restaurants can set up fees to be charged to the customers for the deliveries."
         }
@@ -523,17 +519,17 @@ export interface CategoryStatItem {
       subheading: "Comprehensive Backend & Enterprise Reporting",
       items: [
         {
-          image: "/categories/fast-casual/fast-casual-tech-1.png",
+          image: "/category/fc/fc-wwo-1.png",
           title: "Restaurant POS System",
           description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
         },
         {
-          image: "/categories/fast-casual/fast-casual-tech-2.png",
+          image: "/category/fc/fc-wwo-2.png",
           title: "Kitchen Display System",
           description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
         },
         {
-          image: "/categories/fast-casual/fast-casual-tech-3.png",
+          image: "/category/fc/fc-wwo-3.png",
           title: "Loyalty & Promotion",
           description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
         }
@@ -547,7 +543,7 @@ export interface CategoryStatItem {
       title: "Food Trucks",
       description: "Mobile food service solutions designed for on-the-go operations. Streamline your food truck business with compact, efficient POS systems that work anywhere your business takes you.",
       buttonText: "Let's Connect",
-      mainImage: "/food-trucks-hero.png",
+      mainImage: "/ft-hero.png",
       mainImageAlt: "Food Truck POS System",
       deviceImage: "/food-trucks-device.png",
       deviceImageAlt: "Food Truck POS Device",
@@ -598,7 +594,7 @@ export interface CategoryStatItem {
       ],
       stats: [],
       ctaText: "Let's Connect",
-      imageSrc: "/food-trucks-features.png",
+      imageSrc: "/category/ft/ft-about.png",
       imageAlt: "Operate from Anywhere"
     },
     keyFeatures: {
@@ -606,32 +602,32 @@ export interface CategoryStatItem {
       subheading: "Our Standout Features",
       features: [
         {
-          image: "/categories/food-trucks/food-trucks-feature-1.png",
+          image: "/category/ft/ft-fe-1.png",
           title: "Unified Ticket View",
           description: "Say goodbye to scattered orders. Our POS for food trucks brings all order tickets onto a single, organized screen, providing a clear and comprehensive view. This makes it easier for your team to manage and execute accurate fulfillment, streamlining your entire operation."
         },
         {
-          image: "/categories/food-trucks/food-trucks-feature-2.png",
+          image: "/category/ft/ft-fe-2.png",
           title: "Offline Mode",
           description: "Ensure a seamless customer experience and minimize downtime with our robust offline mode. It automatically syncs data when you're back online, ensuring your transactions remain uninterrupted."
         },
         {
-          image: "/categories/food-trucks/food-trucks-feature-3.png",
+          image: "/category/ft/ft-fe-3.png",
           title: "Integrated Online Ordering",
           description: "Drive growth and reach new customers with your own online ordering platform. Customers can place orders directly from your website or mobile app. This integration offers unparalleled convenience for customers, and provides valuable data to help you optimize your menu and marketing strategies."
         },
         {
-          image: "/categories/food-trucks/food-trucks-feature-4.png",
+          image: "/category/ft/ft-fe-4.png",
           title: "On Demand Delivery Management",
           description: "Streamline your delivery operations with our seamless integration with popular delivery platforms. Orders are automatically synced, ensuring accurate and timely deliveries. Customers can schedule future orders, and you can set up delivery fees to be charged directly to them."
         },
         {
-          image: "/categories/food-trucks/food-trucks-feature-5.png",
+          image: "/category/ft/ft-fe-5.png",
           title: "QR Payments",
           description: "Customers can simply scan a QR code displayed on your POS terminal with their smartphone, eliminating the need for cards. This payment method reduces wait times, minimizes the risk of fraud, and offers a contactless, convenient way for your customers to pay."
         },
         {
-          image: "/categories/food-trucks/food-trucks-feature-6.png",
+          image: "/category/ft/ft-fe-6.png",
           title: "Credit Surcharge Program",
           description: "Protect your profit margins by implementing a credit card surcharge program. This allows you to offset credit card payment processors onto your customers, ensuring fair pricing and transparency while still offering transparent explaining this policy, you can enhance customer trust and ultimately boost profits."
         }
@@ -642,17 +638,17 @@ export interface CategoryStatItem {
       subheading: "Comprehensive Backend & Enterprise Reporting",
       items: [
         {
-          image: "/categories/food-trucks/food-trucks-tech-1.png",
+          image: "/category/ft/ft-wwo-1.png",
           title: "Restaurant POS System",
           description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
         },
         {
-          image: "/categories/food-trucks/food-trucks-tech-2.png",
+          image: "/category/ft/ft-wwo-2.png",
           title: "Kitchen Display System",
           description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
         },
         {
-          image: "/categories/food-trucks/food-trucks-tech-3.png",
+          image: "/category/ft/ft-wwo-3.png",
           title: "Loyalty & Promotion",
           description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
         }
@@ -666,10 +662,8 @@ export interface CategoryStatItem {
       title: "Full Services Restaurant",
       description: "Comprehensive restaurant management solutions designed for full-service establishments. Enhance operational efficiency, improve customer experience, and streamline every aspect of your restaurant operations.",
       buttonText: "Let's Connect",
-      mainImage: "/full-services-hero.png",
+      mainImage: "/fsr-hero.png",
       mainImageAlt: "Full Services Restaurant POS System",
-      deviceImage: "/full-services-device.png",
-      deviceImageAlt: "Full Services Restaurant POS Device",
       deviceTitle: "Full Services",
       deviceDescription: "Complete restaurant solution",
       backgroundText: "Full",
@@ -717,7 +711,7 @@ export interface CategoryStatItem {
       ],
       stats: [],
       ctaText: "Let's Connect",
-      imageSrc: "/full-services-features.png",
+      imageSrc: "/category/fsr/fsr-about.png",
       imageAlt: "Flawless Service"
     },
     keyFeatures: {
@@ -725,32 +719,32 @@ export interface CategoryStatItem {
       subheading: "Our Standout Features",
       features: [
         {
-          image: "/categories/full-services/full-services-feature-1.png",
+          image: "/category/fsr/fsr-fe-1.png",
           title: "Real-time Inventory Tracking",
           description: "By using real time integrated inventory management track of ingredients and menu items to keep can access accurate stock levels and prevent stockouts. By automatically updating inventory levels as sales occur, restaurant can optimize purchasing, reduce food costs, and improve overall profitability."
         },
         {
-          image: "/categories/full-services/full-services-feature-2.png",
+          image: "/category/fsr/fsr-fe-2.png",
           title: "Reporting and analytics",
           description: "The power of data dashboard of SlateX helps like no one else. Our comprehensive reports offer valuable insights into restaurant sales, performance, customer behavior, and operational trends, and make data-driven decisions for continued growth and success."
         },
         {
-          image: "/categories/full-services/full-services-feature-3.png",
+          image: "/category/fsr/fsr-fe-3.png",
           title: "Customer Loyalty Management",
           description: "With access to secure and relevant customer data such as contact information and dining preferences, full service restaurants can create personalized marketing campaigns and loyalty programs to keep diners coming back for more and drive up business in top performing locations."
         },
         {
-          image: "/categories/full-services/full-services-feature-4.png",
+          image: "/category/fsr/fsr-fe-4.png",
           title: "Centralized Menu Management",
           description: "Full service restaurants can maintain a single, centralized database for all menu items, enabling them to efficiently update menus across multiple locations. For brief adjustments such as seasonal specials, the system is viewed across all locations, eliminating the need for manual updates at each location."
         },
         {
-          image: "/categories/full-services/full-services-feature-5.png",
+          image: "/category/fsr/fsr-fe-5.png",
           title: "Third Party Integrations",
           description: "Boost your revenue potential with third party online ordering solutions like Grubhub, Uber Eats, Doordash and other popular food platforms to automate systems with real customer reach. Via API directly, the system seamlessly integrates and delivers easily, on time without any hassle of managing third party apps individually."
         },
         {
-          image: "/categories/full-services/full-services-feature-6.png",
+          image: "/category/fsr/fsr-fe-6.png",
           title: "Catering / Express Catering Option",
           description: "The catering and express catering option offers the ability to accept large orders or customizable menu options at once. Express catering is a subset of our catering manage events, and to quick pre-fabricated product ideal for quick catering with heavy customer satisfaction."
         }
@@ -761,17 +755,17 @@ export interface CategoryStatItem {
       subheading: "Comprehensive Backend & Enterprise Reporting",
       items: [
         {
-          image: "/categories/full-services/full-services-tech-1.png",
+          image: "/category/fsr/fsr-wwo-1.png",
           title: "Restaurant POS System",
           description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
         },
         {
-          image: "/categories/full-services/full-services-tech-2.png",
+          image: "/category/fsr/fsr-wwo-2.png",
           title: "Kitchen Display System",
           description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
         },
         {
-          image: "/categories/full-services/full-services-tech-3.png",
+            image: "/category/fsr/fsr-wwo-3.png",
           title: "Loyalty & Promotion",
           description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
         }
@@ -781,7 +775,7 @@ export interface CategoryStatItem {
   
   // Centralized category data registry
   export const categoryRegistry: Record<string, CategoryPageData> = {
-    "quick-service-restaurants": quickServiceRestaurantData,
+    "quick-service-restaurants-qsr": quickServiceRestaurantData,
     "casual-dining": casualDiningData,
     "fine-dining": fineDiningData,
     "fast-casual": fastCasualData,

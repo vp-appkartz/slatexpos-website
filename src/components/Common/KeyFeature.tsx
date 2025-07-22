@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export interface FeatureItem {
   image: string;
@@ -14,6 +16,15 @@ export interface KeyFeaturesProps {
   gridClassName?: string;
 }
 
+const aosAnimations = [
+  "zoom-in-up",
+  "fade-up",
+  "flip-left",
+  "flip-right",
+  "fade-right",
+  "fade-left",
+];
+
 const KeyFeatures: React.FC<KeyFeaturesProps> = ({
   features,
   heading = "Key Features",
@@ -21,11 +32,23 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
   className = "",
   gridClassName = "",
 }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false, // Animation will trigger every time on scroll into view
+      offset: 60,
+      easing: "ease-in-out",
+    });
+    return () => {
+      AOS.refresh();
+    };
+  }, []);
+
   return (
     <section className={`py-20 bg-[#F0F0F9] ${className}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
           <h2 className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
             {heading}
           </h2>
@@ -36,31 +59,37 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
 
         {/* Features Grid */}
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-16 ${gridClassName}`}>
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              {/* Feature Icon */}
-              <div>
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-12 h-12 object-contain mb-5"
-                />
-              </div>
+          {features.map((feature, index) => {
+            const aosType = aosAnimations[index % aosAnimations.length];
+            const aosDelay = 200 + index * 120;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
+                data-aos={aosType}
+                data-aos-delay={aosDelay}
+              >
+                {/* Feature Icon */}
+                <div>
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-12 h-12 object-contain mb-5"
+                  />
+                </div>
 
-              {/* Feature Content */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 mx-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-800 leading-relaxed mx-2">
-                  {feature.description}
-                </p>
+                {/* Feature Content */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 mx-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-800 leading-relaxed mx-2">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Stat {
   value: string;
@@ -37,6 +39,15 @@ const defaultBulletPoints: BulletPoint[] = [
   { text: "Apple Pay & Google Pay Support" },
 ];
 
+const aosFeatureAnimations = [
+  "fade-right",
+  "fade-up",
+  "fade-left",
+  "zoom-in-up",
+  "flip-left",
+  "flip-right",
+];
+
 const IndustrySection: React.FC<IndustrySectionProps> = ({
   title,
   subtitle,
@@ -51,11 +62,28 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
 }) => {
   const points = bulletPoints && bulletPoints.length > 0 ? bulletPoints : defaultBulletPoints;
 
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false, // Animation will trigger every time on scroll into view
+      offset: 60,
+      easing: "ease-in-out",
+      mirror: true,
+    });
+    return () => {
+      AOS.refresh();
+    };
+  }, []);
+
   return (
     <section className={`relative py-20 overflow-hidden ${bgClassName}`}>
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div
+          className="text-center mb-16"
+          data-aos="fade-down"
+          data-aos-delay="100"
+        >
           <h2 className="text-2xl lg:text-3xl font-semibold mb-4">
             {title}
           </h2>
@@ -69,7 +97,11 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
           {/* Left Content */}
           <div className="space-y-8">
             {features.map((feature, idx) => (
-              <div key={idx}>
+              <div
+                key={idx}
+                data-aos={aosFeatureAnimations[idx % aosFeatureAnimations.length]}
+                data-aos-delay={150 + idx * 120}
+              >
                 <h3 className="text-2xl lg:text-3xl font-semibold mb-6">
                   {feature.heading}
                 </h3>
@@ -83,7 +115,12 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
             {stats?.length > 0 && (
               <div className="mb-8">
                 {stats.map((stat, idx) => (
-                  <div className="flex items-baseline gap-2 mb-2" key={idx}>
+                  <div
+                    className="flex items-baseline gap-2 mb-2"
+                    key={idx}
+                    data-aos="zoom-in-up"
+                    data-aos-delay={300 + idx * 100}
+                  >
                     <span className="text-5xl font-bold text-orange-500">{stat.value}</span>
                     <span className="text-lg font-medium">{stat.description}</span>
                   </div>
@@ -93,7 +130,12 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mt-8 mb-8">
               {points.map((point, idx) => (
-                <div key={idx} className="flex items-center text-base text-gray-800 font-medium">
+                <div
+                  key={idx}
+                  className="flex items-center text-base text-gray-800 font-medium"
+                  data-aos="fade-right"
+                  data-aos-delay={400 + idx * 60}
+                >
                   <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-100 mr-3">
                     <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
                       <circle cx="8" cy="8" r="8" fill="#FF6B2C" />
@@ -109,19 +151,27 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
             <button
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-200 hover:scale-105 inline-flex items-center justify-center"
               onClick={onCtaClick}
+              data-aos="zoom-in"
+              data-aos-delay="700"
             >
               {ctaText} <span className="ml-2">{'>'}</span>
             </button>
           </div>
 
           {/* Right: Main POS UI image over the soft background */}
-          <div className="relative flex items-center justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[600px]">
+          <div
+            className="relative flex items-center justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[600px]"
+            data-aos="fade-left"
+            data-aos-delay="350"
+          >
             {/* Main Foreground Image */}
-            <div className="relative z-20 flex items-center justify-center w-full h-full">
+            <div className="relative z-20 flex items-center justify-center">
               <img
                 src={imageSrc}
                 alt={imageAlt}
-                className="w-full h-auto max-w-[600px] lg:max-w-[700px] xl:max-w-[800px] object-contain"
+                className=""
+                data-aos="zoom-in-up"
+                data-aos-delay="500"
               />
             </div>
           </div>

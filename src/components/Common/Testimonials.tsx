@@ -55,12 +55,14 @@ const Testimonial = () => {
   useEffect(() => {
     AOS.init({
       duration: 900,
-      once: false, // Animation will trigger every time on scroll into view
+      once: true, // Animation will trigger only once on scroll into view
       offset: 60,
       easing: "ease-in-out",
     });
     // Refresh on update for dynamic content
-    AOS.refresh();
+    setTimeout(() => {
+      AOS.refresh();
+    }, 200);
   }, []);
 
   return (
@@ -86,11 +88,12 @@ const Testimonial = () => {
               <div
                 key={testimonial.id}
                 className={`group relative rounded-lg overflow-hidden cursor-pointer transition-all duration-700 ease-out flex-shrink-0
-                  ${isExpanded ? 'w-[500px]' : 'w-64'}
+                  ${isExpanded ? 'w-[500px] z-20' : 'w-64 z-10'}
                 `}
                 onMouseEnter={() => setExpandedIndex(index)}
                 onMouseLeave={() => setExpandedIndex(0)}
                 style={{ minWidth: isExpanded ? 320 : 256, maxWidth: isExpanded ? 500 : 256 }}
+                // Only apply AOS on initial render, not on hover/expand
                 data-aos={aosType}
                 data-aos-delay={aosDelay}
               >
@@ -99,13 +102,16 @@ const Testimonial = () => {
                   src={testimonial.image}
                   alt={testimonial.name}
                   className="w-full h-full object-cover"
+                  style={{ transition: 'transform 0.5s', transform: isExpanded ? 'scale(1.05)' : 'scale(1)' }}
                 />
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+                <div className={`absolute inset-0 transition-colors duration-500 ${isExpanded ? 'bg-black bg-opacity-80' : 'bg-black bg-opacity-60'}`}></div>
 
-                {/* Content - Always visible on small image */}
-                <div className={`absolute bottom-0 left-0 right-0 p-6 text-white transition-opacity duration-500 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                {/* Content - Always visible, fade out on expand */}
+                <div className={`absolute bottom-0 left-0 right-0 p-6 text-white transition-opacity duration-500
+                  ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}
+                `}>
                   <h3 className="text-lg font-semibold mb-1">
                     {testimonial.name}
                   </h3>
@@ -123,7 +129,7 @@ const Testimonial = () => {
                 </div>
 
                 {/* Expanded Content - Only visible when expanded */}
-                <div className={`absolute inset-0 bg-black bg-opacity-80 transition-opacity duration-700 flex flex-col justify-center p-8
+                <div className={`absolute inset-0 flex flex-col justify-center p-8 transition-opacity duration-700
                   ${isExpanded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
                 `}>
                   <p className="text-white text-base leading-relaxed mb-8">

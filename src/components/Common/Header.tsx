@@ -220,7 +220,7 @@ const Header: React.FC = () => {
                   <div className="relative dropdown-container">
                     <button 
                       onClick={() => handleDropdownClick('products')}
-                      className="text-gray-700 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 font-medium py-2 text-sm xl:text-base"
+                      className="text-gray-700 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 font-medium py-2 text-md xl:text-base"
                     >
                       <span>Products</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -233,7 +233,7 @@ const Header: React.FC = () => {
                   <div className="relative dropdown-container">
                     <button 
                       onClick={() => handleDropdownClick('categories')}
-                      className="text-gray-700 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 font-medium py-2 text-sm xl:text-base"
+                      className="text-gray-700 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 font-medium py-2 text-md xl:text-base"
                     >
                       <span>Categories</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -243,7 +243,7 @@ const Header: React.FC = () => {
                   </div>
 
                   {/* Pricing */}
-                  <button className="text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium py-2 text-sm xl:text-base" onClick={() => navigate('/pricing')}>
+                  <button className="text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium py-2 text-md xl:text-base" onClick={() => navigate('/pricing')}>
                     Pricing
                   </button>
                 </nav>

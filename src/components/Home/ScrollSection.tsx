@@ -61,7 +61,6 @@ const sections: Section[] = [
       { text: 'Bump & Recall Items', highlight: true },
       { text: 'Prep time countdown timer', highlight: true },
       { text: 'Ticket Status Digital Signage Integration', highlight: true }
-     
     ]
   },
   {
@@ -133,26 +132,25 @@ const sections: Section[] = [
 ];
 
 const BulletList: React.FC<{ points: { text: string; highlight?: boolean }[] }> = ({ points }) => {
-  // Group points into pairs
   const groupedPoints = [];
   for (let i = 0; i < points.length; i += 2) {
     groupedPoints.push(points.slice(i, i + 2));
   }
 
   return (
-    <div className="mb-5 md:mb-7 w-full">
-      <div className="flex flex-col gap-y-5">
+    <div className="mb-4 md:mb-6 w-full">
+      <div className="flex flex-col gap-y-3 md:gap-y-4">
         {groupedPoints.map((row, rowIdx) => (
-          <div key={rowIdx} className="flex flex-row items-center gap-x-5">
+          <div key={rowIdx} className="flex flex-col sm:flex-row items-start sm:items-center gap-x-4 gap-y-2 sm:gap-y-0">
             {row.map((point, pointIdx) => (
               <div
                 key={pointIdx}
                 className="flex items-center flex-shrink-0"
               >
-                <span className="flex-shrink-0 rounded-full bg-orange-500 w-5 h-5 flex items-center justify-center mr-2">
-                  <Check className="w-4 h-4 text-white" strokeWidth={2.2} />
+                <span className="flex-shrink-0 rounded-full bg-orange-500 w-4 h-4 md:w-5 md:h-5 flex items-center justify-center mr-2">
+                  <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={2.2} />
                 </span>
-                <span className="text-gray-700 font-semibold text-[15px] leading-tight whitespace-nowrap">
+                <span className="text-gray-700 font-semibold text-xs md:text-sm lg:text-base leading-tight">
                   {point.text}
                 </span>
               </div>
@@ -173,26 +171,24 @@ const ScrollSection: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the entry with the highest intersection ratio that meets our threshold
         const visibleEntry = entries
-          .filter(entry => entry.intersectionRatio >= 0.6) // Only consider sections that are more than 60% visible
+          .filter(entry => entry.intersectionRatio >= 0.5)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
         if (visibleEntry && visibleEntry.target.id !== activeSection) {
           setIsTransitioning(true);
           
-          // Faster transition
           setTimeout(() => {
             setActiveSection(visibleEntry.target.id);
             setTimeout(() => {
               setIsTransitioning(false);
-            }, 150); // Reduced from 300ms
-          }, 50); // Reduced from 100ms
+            }, 200);
+          }, 100);
         }
       },
       {
-        threshold: [0.6, 0.7, 0.8, 0.9, 1.0], // Only trigger when section is mostly visible
-        rootMargin: '-10% 0px -10% 0px' // Reduced margin for better centering
+        threshold: [0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        rootMargin: '-20% 0px -20% 0px'
       }
     );
 
@@ -203,120 +199,147 @@ const ScrollSection: React.FC = () => {
     return () => observer.disconnect();
   }, [activeSection]);
 
-  const currentSection = sections.find(section => section.id === activeSection) || sections[0];
-
   const POSImage = ({ sectionId }: { sectionId: string }) => {
-    const getImageData = () => {
-      switch (sectionId) {
+    const [currentImage, setCurrentImage] = useState(sectionId);
+    const [nextImage, setNextImage] = useState('');
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [isImageTransitioning, setIsImageTransitioning] = useState(false);
+
+    const getImageData = (id: string) => {
+      switch (id) {
         case '1':
           return {
             src: '/home-about-1.png',
             alt: 'Casual Dining POS System',
-           
           };
         case '2':
           return {
-            src:  '/home-about-2.png',
+            src: '/home-about-2.png',
             alt: 'Quick Service POS Terminal',
-          
           };
         case '3':
           return {
             src: '/home-about-3.png',
             alt: 'Fast Casual POS Interface',
-          
           };
         case '4':
           return {
-            src:  '/home-about-4.png',
+            src: '/home-about-4.png',
             alt: 'Cafe POS System',
-           
           };
         case '5':
           return {
-            src:  '/home-about-5.png',
+            src: '/home-about-5.png',
             alt: 'Fine Dining POS Suite',
-          
           };
         default:
           return {
             src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80',
             alt: 'Restaurant POS System',
-            rotation: 'rotate-0'
           };
       }
     };
 
-    const { src, alt } = getImageData();
+    // Preload next image when sectionId changes
+    useEffect(() => {
+      if (sectionId !== currentImage) {
+        setNextImage(sectionId);
+        setImageLoaded(false);
+        
+        const img = new Image();
+        const nextImageData = getImageData(sectionId);
+        img.src = nextImageData.src;
+        
+        img.onload = () => {
+          setImageLoaded(true);
+          setIsImageTransitioning(true);
+          
+          // Start transition after image is preloaded
+          setTimeout(() => {
+            setCurrentImage(sectionId);
+            setTimeout(() => {
+              setIsImageTransitioning(false);
+              setNextImage('');
+            }, 300);
+          }, 100);
+        };
+        
+        img.onerror = () => {
+          setImageLoaded(true);
+          setCurrentImage(sectionId);
+          setIsImageTransitioning(false);
+          setNextImage('');
+        };
+      }
+    }, [sectionId, currentImage]);
+
+    const currentImageData = getImageData(currentImage);
+    const nextImageData = nextImage ? getImageData(nextImage) : null;
 
     return (
-      <div className="relative w-full flex justify-center items-center">
-        <div className={`transform transition-all duration-500 ease-out ${
-          !isTransitioning ? 'scale-100 opacity-100 translate-y-0' : 'scale-98 opacity-80 translate-y-1'
-        }`}>
-          <div className="relative overflow-hidden rounded-xl">
+      <div className="relative w-full h-full flex justify-center items-center">
+        <div 
+          className="relative overflow-hidden"
+          style={{
+            width: 'clamp(280px, 90vw, 1200px)',
+            height: 'clamp(500px, 80vh, 700px)',
+            maxWidth: '100%'
+          }}
+        >
+          {/* Current Image */}
+          <img
+            src={currentImageData.src}
+            alt={currentImageData.alt}
+            className={`w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 ${
+              isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+            }`}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const parent = target.parentElement;
+              if (parent) {
+                parent.className += ' bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center';
+                parent.innerHTML = '<div class="text-white text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">POS System</div></div>';
+              }
+            }}
+          />
+          
+          {/* Next Image (for smooth transition) */}
+          {nextImageData && imageLoaded && (
             <img
-              src={src}
-              alt={alt}
-              className="w-[1000px] h-[500px] object-cover shadow-2xl transition-all duration-500 ease-out"
-              loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const parent = target.parentElement;
-                if (parent) {
-                  parent.className += ' bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center shadow-2xl';
-                  parent.innerHTML = '<div class="text-white text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">POS System</div></div>';
-                }
-              }}
+              src={nextImageData.src}
+              alt={nextImageData.alt}
+              className={`w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 ${
+                isImageTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}
             />
-          </div>
+          )}
         </div>
       </div>
     );
   };
 
-  const getBackgroundShape = (sectionId: string) => {
-    switch (sectionId) {
-      case '1':
-        return 'bg-gray-500';
-      case '2':
-        return 'bg-green-500';
-      case '3':
-        return 'bg-orange-500';
-      case '4':
-        return 'bg-amber-600';
-      case '5':
-        return 'bg-purple-600';
-      default:
-        return 'bg-gray-500';
-    }
-  };
-
-  const currentBgColor = getBackgroundShape(activeSection);
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
       {/* Hero Section */}
-      <section className="bg-gray-50 pt-6 pb-2 md:pt-10 md:pb-2 relative">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 text-center">
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight max-w-4xl mx-auto">
-           What We Do
+      <section className="pt-4 pb-2 md:pt-8 md:pb-4 lg:pt-10 lg:pb-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+          <h1 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight max-w-4xl mx-auto">
+            What We Do
           </h1>
-          <p className="text-black text-medium text-sm mb-2">Tailored for Every Table, Terminal, and Territory in Canada</p>
+          <p className="text-black text-xs md:text-sm lg:text-base mb-2 mt-2">
+            Tailored for Every Table, Terminal, and Territory in Canada
+          </p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="flex flex-col lg:flex-row">
-        {/* Left Scrollable Content */}
+      {/* Main Content - Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-8 min-h-screen">
+        {/* Left Content - 3 columns out of 7 on large screens */}
         <div 
           ref={containerRef}
-          className="w-full lg:w-25/100 overflow-y-auto bg-gray-50 order-2 lg:order-1"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none'
-          }}
+          className="col-span-1 lg:col-span-4 overflow-y-auto  order-2 lg:order-1"
+         
         >
           <style>{`
             div::-webkit-scrollbar {
@@ -330,23 +353,21 @@ const ScrollSection: React.FC = () => {
                 key={section.id}
                 id={section.id}
                 ref={(el) => (sectionRefs.current[section.id] = el)}
-                className="min-h-screen flex items-center justify-center px-4 md:px-8 lg:px-12"
+                className="min-h-screen text-left flex items-center justify-start px-4 md:px-6 lg:px-8 xl:px-12"
               >
-                <div className="max-w-md w-full">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-3 md:mb-4 leading-relaxed" style={{lineHeight: '1.5'}}>
+                <div className="max-w-sm md:max-w-md lg:max-w-lg w-full">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{lineHeight: '1.3'}}>
                     {section.subtitle}
                   </h2>
-                  
-                  <p className="text-sm md:text-base text-black mb-4 md:mb-6 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-black mb-3 md:mb-4 lg:mb-6 leading-relaxed">
                     {section.description}
                   </p>
 
-                  {/* Pixel-perfect bullet points */}
                   {section.bulletPoints && (
                     <BulletList points={section.bulletPoints} />
                   )}
 
-                  <button className="bg-orange-500 text-white px-4 md:px-5 py-2 md:py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 text-sm md:text-base shadow-md mt-2">
+                  <button className="bg-orange-500 text-white px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-md lg:rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200 text-xs md:text-sm lg:text-base shadow-md">
                     {section.buttonText}
                   </button>
                 </div>
@@ -355,15 +376,10 @@ const ScrollSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Fixed Content - Mobile: Top, Desktop: Right */}
-        <div className="w-full lg:w-75/100 h-[50vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center relative overflow-hidden bg-gray-50 order-1 lg:order-2">
-          {/* Content */}
-          <div className="relative z-10 w-full px-4 md:px-6 lg:px-8 flex items-center justify-center">
-            <div className={`transform transition-all duration-500 ease-out w-full max-w-lg ${
-              !isTransitioning ? 'scale-100 opacity-100' : 'scale-99 opacity-90'
-            }`}>
-              <POSImage sectionId={activeSection} />
-            </div>
+        {/* Right Image Section - 4 columns out of 7 on large screens */}
+        <div className="col-span-1 lg:col-span-4 h-[40vh] md:h-[50vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center bg-gray-50 order-1 lg:order-2 px-4 md:px-6 lg:px-8">
+          <div className="w-full h-full flex items-center justify-center">
+            <POSImage sectionId={activeSection} />
           </div>
         </div>
       </div>

@@ -1,116 +1,115 @@
 import React, { useState, useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-const aosAnimations = [
-  "zoom-in-up",
-  "fade-up",
-  "flip-left",
-  "flip-right"
-];
 
 const Testimonial = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Adam Smith",
-      position: "CEO, Published",
+      name: "Sarah Johnson",
+      position: "Marketing Director, TechFlow Solutions",
       image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      text: "SlateXpos transformed our trade show presence completely. The booth design was stunning and attracted more visitors than we ever expected. Their attention to detail and professional execution exceeded our expectations.",
+      logo: "TECHFLOW",
+      logoSubtext: "SOLUTIONS"
     },
     {
       id: 2,
-      name: "Adam Smith",
-      position: "CEO, Published",
+      name: "Michael Chen",
+      position: "CEO, Global Innovations",
       image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      text: "Working with SlateXpos was a game-changer for our business. Their creative approach and seamless execution helped us stand out at the expo. We saw a 300% increase in qualified leads compared to previous events.",
+      logo: "GLOBAL",
+      logoSubtext: "INNOVATIONS"
     },
     {
       id: 3,
-      name: "Adam Smith",
-      position: "CEO, Published",
+      name: "Emily Rodriguez",
+      position: "Brand Manager, Creative Studios",
       image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      text: "The team at SlateXpos understood our vision perfectly. From concept to execution, every element was crafted with precision. Our brand has never looked better at trade shows.",
+      logo: "CREATIVE",
+      logoSubtext: "STUDIOS"
     },
     {
       id: 4,
-      name: "Adam Smith",
-      position: "CEO, Published",
+      name: "David Thompson",
+      position: "Sales Director, NextGen Corp",
       image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      text: "SlateXpos delivered beyond our expectations. Their innovative booth design created an immersive experience that perfectly showcased our products. The ROI was exceptional.",
+      logo: "NEXTGEN",
+      logoSubtext: "CORP"
     }
   ];
 
-  // By default, first card expanded. On hover, expand hovered card.
   const [expandedIndex, setExpandedIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    AOS.init({
-      duration: 900,
-      once: true, // Animation will trigger only once on scroll into view
-      offset: 60,
-      easing: "ease-in-out",
-    });
-    // Refresh on update for dynamic content
-    setTimeout(() => {
-      AOS.refresh();
-    }, 200);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const section = document.querySelector('.testimonial-section');
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="bg-white py-16 px-4 overflow-hidden">
+    <section className="testimonial-section bg-white py-16 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Testimonial
+            Client Testimonials
           </h2>
           <p className="text-lg text-gray-600">
-            Proof in Every Plate, Hear from Our Customers
+            Discover Why Industry Leaders Choose SlateXpos
           </p>
         </div>
 
-        {/* Testimonial Cards */}
-        <div className="hidden md:flex gap-4 h-96 overflow-hidden">
+        {/* Desktop Testimonial Cards */}
+        <div className="hidden md:flex gap-4 h-96">
           {testimonials.map((testimonial, index) => {
             const isExpanded = expandedIndex === index;
-            const aosType = aosAnimations[index % aosAnimations.length];
-            const aosDelay = 200 + index * 120;
+            const delay = index * 200;
+            
             return (
               <div
                 key={testimonial.id}
                 className={`group relative rounded-lg overflow-hidden cursor-pointer transition-all duration-700 ease-out flex-shrink-0
-                  ${isExpanded ? 'w-[500px] z-20' : 'w-64 z-10'}
+                  ${isExpanded ? 'w-[500px]' : 'w-64'}
+                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
                 `}
+                style={{ 
+                  transitionDelay: isVisible ? `${delay}ms` : '0ms',
+                  minWidth: isExpanded ? '320px' : '256px',
+                  maxWidth: isExpanded ? '500px' : '256px'
+                }}
                 onMouseEnter={() => setExpandedIndex(index)}
                 onMouseLeave={() => setExpandedIndex(0)}
-                style={{ minWidth: isExpanded ? 320 : 256, maxWidth: isExpanded ? 500 : 256 }}
-                // Only apply AOS on initial render, not on hover/expand
-                data-aos={aosType}
-                data-aos-delay={aosDelay}
               >
                 {/* Background Image */}
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
                   className="w-full h-full object-cover"
-                  style={{ transition: 'transform 0.5s', transform: isExpanded ? 'scale(1.05)' : 'scale(1)' }}
                 />
 
                 {/* Dark Overlay */}
-                <div className={`absolute inset-0 transition-colors duration-500 ${isExpanded ? 'bg-black bg-opacity-80' : 'bg-black bg-opacity-60'}`}></div>
+                <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-                {/* Content - Always visible, fade out on expand */}
-                <div className={`absolute bottom-0 left-0 right-0 p-6 text-white transition-opacity duration-500
-                  ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}
+                {/* Collapsed Content - Always visible when not expanded */}
+                <div className={`absolute bottom-0 left-0 right-0 p-6 text-white transition-opacity duration-300
+                  ${isExpanded ? 'opacity-0' : 'opacity-100'}
                 `}>
                   <h3 className="text-lg font-semibold mb-1">
                     {testimonial.name}
@@ -129,11 +128,11 @@ const Testimonial = () => {
                 </div>
 
                 {/* Expanded Content - Only visible when expanded */}
-                <div className={`absolute inset-0 flex flex-col justify-center p-8 transition-opacity duration-700
-                  ${isExpanded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+                <div className={`absolute inset-0 flex flex-col justify-center p-8 transition-opacity duration-300
+                  ${isExpanded ? 'opacity-100' : 'opacity-0'}
                 `}>
                   <p className="text-white text-base leading-relaxed mb-8">
-                    {testimonial.text}
+                    "{testimonial.text}"
                   </p>
                   <div className="mb-6">
                     <h3 className="text-xl font-semibold text-white mb-1">
@@ -159,17 +158,18 @@ const Testimonial = () => {
           })}
         </div>
 
-        {/* Mobile Version - Stack cards vertically on small screens */}
+        {/* Mobile Version */}
         <div className="md:hidden mt-8 space-y-4">
           {testimonials.map((testimonial, index) => {
-            const aosType = aosAnimations[index % aosAnimations.length];
-            const aosDelay = 200 + index * 120;
+            const delay = index * 150;
+            
             return (
               <div
                 key={`mobile-${testimonial.id}`}
-                className="relative rounded-lg overflow-hidden h-64"
-                data-aos={aosType}
-                data-aos-delay={aosDelay}
+                className={`relative rounded-lg overflow-hidden h-64 transition-all duration-1000
+                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+                `}
+                style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
               >
                 <img
                   src={testimonial.image}
@@ -181,7 +181,7 @@ const Testimonial = () => {
 
                 <div className="absolute inset-0 p-6 text-white flex flex-col justify-end">
                   <p className="text-sm leading-relaxed mb-4">
-                    {testimonial.text}
+                    "{testimonial.text}"
                   </p>
 
                   <h3 className="text-lg font-semibold mb-1">

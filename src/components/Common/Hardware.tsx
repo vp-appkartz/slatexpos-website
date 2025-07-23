@@ -71,7 +71,7 @@ const Hardware = () => {
         <div>
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
-            <h2 className="text-4xl font-semibold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
               Hardware
             </h2>
             <p className="text-lg text-gray-600">

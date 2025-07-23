@@ -103,7 +103,7 @@ const sections: Section[] = [
       { text: 'Detailed customer analytics report', highlight: false },
       { text: 'Point or Reward based', highlight: false },
       { text: 'Menu item reward options', highlight: true },
-      { text: 'Instore/Online/Kiosk integration', highlight: false },
+      { text: 'Inststore/Online/Kiosk integration', highlight: false },
       { text: 'Customer portal', highlight: true },
       { text: 'Integrated marketing campaigns', highlight: false },
       { text: 'Personalized communication', highlight: true },
@@ -279,18 +279,14 @@ const ScrollSection: React.FC = () => {
     return (
       <div className="relative w-full h-full flex justify-center items-center">
         <div 
-          className="relative overflow-hidden"
-          style={{
-            width: 'clamp(280px, 90vw, 1200px)',
-            height: 'clamp(500px, 80vh, 700px)',
-            maxWidth: '100%'
-          }}
+          className="relative overflow-hidden w-[700px] h-[700px] "
+          
         >
           {/* Current Image */}
           <img
             src={currentImageData.src}
             alt={currentImageData.alt}
-            className={`w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 ${
+            className={`w-full h-full object-contain transition-all duration-500 ease-in-out ${
               isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
             }`}
             onError={(e) => {
@@ -298,7 +294,7 @@ const ScrollSection: React.FC = () => {
               target.style.display = 'none';
               const parent = target.parentElement;
               if (parent) {
-                parent.className += ' bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center';
+                parent.className += '  flex items-center justify-center';
                 parent.innerHTML = '<div class="text-white text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">POS System</div></div>';
               }
             }}
@@ -309,7 +305,7 @@ const ScrollSection: React.FC = () => {
             <img
               src={nextImageData.src}
               alt={nextImageData.alt}
-              className={`w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 ${
+              className={`w-full h-full object-fill transition-all duration-500 ease-in-out absolute inset-0 ${
                 isImageTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
             />
@@ -377,7 +373,7 @@ const ScrollSection: React.FC = () => {
         </div>
 
         {/* Right Image Section - 4 columns out of 7 on large screens */}
-        <div className="col-span-1 lg:col-span-4 h-[40vh] md:h-[50vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center bg-gray-50 order-1 lg:order-2 px-4 md:px-6 lg:px-8">
+        <div className="col-span-1 lg:col-span-4 h-[50vh] md:h-[50vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center order-1 lg:order-2 px-4 md:px-6 lg:px-8">
           <div className="w-full h-full flex items-center justify-center">
             <POSImage sectionId={activeSection} />
           </div>

@@ -54,7 +54,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         }}
       >
         <section
-          className={`min-h-screen flex items-center py-8 sm:py-12 lg:py-0 ${className}`}
+          className={` flex items-center py-8 sm:py-12 lg:py-0 ${className}`}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 relative z-10">
@@ -90,36 +90,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 data-aos-delay="200"
               >
                 {/* Main image */}
-                <div className="w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] xl:max-w-[635px] h-[240px] sm:h-[320px] lg:h-[400px] xl:h-[496px] rounded-2xl overflow-hidden z-30 opacity-100 flex items-center shadow-2xl"
+                <div className="w-full rounded-2xl overflow-hidden z-30 opacity-100 flex items-center "
                   data-aos="zoom-in-up"
                   data-aos-delay="350"
                 >
                   <img
                     src={mainImage}
                     alt={mainImageAlt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 {/* Optionally, you can add a floating device image for extra animation */}
-                {deviceImage && (
-                  <div
-                    className="absolute bottom-[-30px] right-[-20px] sm:bottom-[-40px] sm:right-[-30px] lg:bottom-[-60px] lg:right-[-40px] xl:bottom-[-80px] xl:right-[-60px] w-[80px] sm:w-[120px] lg:w-[160px] xl:w-[200px] drop-shadow-xl"
-                    data-aos="fade-up"
-                    data-aos-delay="600"
-                  >
-                    <img
-                      src={deviceImage}
-                      alt={deviceImageAlt}
-                      className="w-full h-auto rounded-xl border-4 border-white"
-                    />
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-[-32px] w-max text-center">
-                      <div className="bg-white/80 px-2 py-1 rounded-lg shadow text-xs font-semibold text-gray-700">
-                        {deviceTitle}
-                      </div>
-                      <div className="text-[10px] text-gray-500 mt-1">{deviceDescription}</div>
-                    </div>
-                  </div>
-                )}
+                
               
               </div>
             </div>

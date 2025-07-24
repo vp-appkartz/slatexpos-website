@@ -190,29 +190,30 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header with responsive spacing */}
-      <div className="bg-gray-50">
-        <div className={`transition-all duration-300 ${
+      <div className="">
+        <div className={`transition-all duration-300 mt-2 mb-5 ${
           isScrolled ? 'fixed top-0 left-0 right-0 z-50 pt-2 sm:pt-3 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'pt-4 sm:pt-6 px-4 sm:px-6 lg:px-8 xl:px-[150px]'
         }`}>
-          <header className={`bg-white p-2 sm:p-3 border border-gray-200 transition-all duration-300 ${
+          <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 ${
             isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
           }`}>
             <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
               <div className="flex items-center h-12 sm:h-14 lg:h-16">
                 {/* Logo - Left side */}
-                <div className="flex items-center flex-shrink-0">
-                  <div className="flex items-center justify-center -ml-2 sm:-ml-5">
+                <div className="flex items-center">
+                  <div className="flex items-center justify-center -ml-3 sm:-ml-5">
                     <img
-                      src="/logo.png"
+                      src="/slatex-logo.png"
                       alt="SlatexPOS Logo"
-                      className="h-8 sm:h-10 lg:h-12 w-auto cursor-pointer"
+                      className="h-20 object-contain sm:h-10 lg:h-20 w-auto cursor-pointer"
                       onClick={() => navigate('/')}
                     />
                   </div>
                 </div>
 
                 {/* Space between logo and menu */}
-                <div className="w-2 sm:w-5"></div>
+                <div className="w-20 sm:w-5"></div>
+                <div className="w-20 sm:w-5"></div>
 
                 {/* Navigation - Desktop only */}
                 <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1">
@@ -220,7 +221,7 @@ const Header: React.FC = () => {
                   <div className="relative dropdown-container">
                     <button 
                       onClick={() => handleDropdownClick('products')}
-                      className="text-gray-700 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 font-medium py-2 text-md xl:text-base"
+                      className="text-black text-lg  transition-colors duration-200 flex items-center space-x-1 font-medium py-2 "
                     >
                       <span>Products</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -233,7 +234,7 @@ const Header: React.FC = () => {
                   <div className="relative dropdown-container">
                     <button 
                       onClick={() => handleDropdownClick('categories')}
-                      className="text-gray-700 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-1 font-medium py-2 text-md xl:text-base"
+                      className="text-black text-lg  transition-colors duration-200 flex items-center space-x-1 font-medium py-2 "
                     >
                       <span>Categories</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -242,17 +243,25 @@ const Header: React.FC = () => {
                     </button>
                   </div>
 
+                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2">
+                    Hardware
+                  </button>
+
                   {/* Pricing */}
-                  <button className="text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium py-2 text-md xl:text-base" onClick={() => navigate('/pricing')}>
+                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2" onClick={() => navigate('/pricing')}>
                     Pricing
+                  </button>
+
+                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2">
+                    Blogs
                   </button>
                 </nav>
 
                 {/* Right Side Actions */}
                 <div className="flex items-center space-x-2 sm:space-x-4 ml-auto">
                   {/* Get a Demo Button - Hidden on mobile */}
-                  <button className="hidden sm:block relative group bg-white text-orange-500 px-4 lg:px-6 py-2 rounded-full border border-orange-500 transition-all duration-300 font-medium overflow-hidden hover:text-white text-sm lg:text-base">
-                    <div className="absolute inset-0 bg-orange-500 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
+                  <button className="hidden sm:block relative group bg-white text-primary-300 px-4 lg:px-4 py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-2xl">
+                    <div className="absolute inset-0 bg-primary-300 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
                     <span className="relative z-10">Get a Demo</span>
                   </button>
 
@@ -296,7 +305,7 @@ const Header: React.FC = () => {
                         <div className="ml-4 mt-2 space-y-2">
                           {productSections.map((section, sectionIndex) => (
                             <div key={sectionIndex} className="border-l-2 border-orange-200 pl-4 py-2">
-                              <h4 className="text-orange-500 font-semibold text-xs uppercase tracking-wide mb-2">
+                              <h4 className="text-primary-300 font-semibold text-xs uppercase tracking-wide mb-2">
                                 {section.title}
                               </h4>
                               {section.items.map((item, itemIndex) => (
@@ -357,10 +366,10 @@ const Header: React.FC = () => {
                                 />
                               </div>
                               <div>
-                                <h5 className="font-medium text-gray-900 text-sm">
+                                <h5 className="font-semibold text-black text-sm">
                                   {item.title}
                                 </h5>
-                                <p className="text-xs text-gray-600 mt-1">
+                                <p className="text-xs text-black mt-1">
                                   {item.description}
                                 </p>
                               </div>
@@ -377,8 +386,8 @@ const Header: React.FC = () => {
                     
                     {/* Mobile Get Demo Button */}
                     <div className="px-4 py-3">
-                      <button className="relative group bg-white text-orange-500 px-6 py-3 rounded-full border border-orange-500 transition-all duration-300 font-medium w-full overflow-hidden hover:text-white">
-                        <div className="absolute inset-0 bg-orange-500 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
+                      <button className="relative group bg-white text-primary-300 px-6 py-3 rounded-full border border-primary-300 transition-all duration-300 font-medium w-full overflow-hidden hover:text-white">
+                        <div className="absolute inset-0 bg-primary-300 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
                         <span className="relative z-10">Get a Demo</span>
                       </button>
                     </div>
@@ -391,12 +400,12 @@ const Header: React.FC = () => {
 
         {/* Desktop Products Mega Menu - FIXED: Larger icons */}
         {activeDropdown === 'products' && (
-          <div className={`fixed top-8 left-0 right-0 z-40 bg-black bg-opacity-20 min-h-screen ${
-            isScrolled ? 'pt-16 sm:pt-20' : 'pt-20 sm:pt-24'
+          <div className={`fixed top-[85px] left-0 right-0 p-10 z-40  min-h-screen ${
+            isScrolled ? 'pt-18 sm:pt-20' : 'pt-20 sm:pt-24'
           }`} onClick={() => setActiveDropdown(null)}>
             <div className="px-4 sm:px-6">
               <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-200 max-w-7xl mx-auto" onClick={(e) => e.stopPropagation()}>
-                <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div className="px-4 sm:px-6 lg:px-10 py-8 sm:py-8">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* Product Sections - 2 columns, Let's Talk in 3rd */}
                     {/* Column 1: Restaurant Operations */}
@@ -406,7 +415,7 @@ const Header: React.FC = () => {
                         if (!section) return null;
                         return (
                           <>
-                            <h3 className="text-orange-500 font-semibold text-sm uppercase tracking-wide mb-4">
+                            <h3 className="text-primary-300 font-semibold text-sm uppercase tracking-wide mb-4">
                               {section.title}
                             </h3>
                             <div className="space-y-4">
@@ -424,10 +433,10 @@ const Header: React.FC = () => {
                                     />
                                   </div>
                                   <div>
-                                    <h4 className="font-medium text-sm text-gray-900 group-hover:text-orange-500 transition-colors duration-200">
+                                    <h4 className="font-semibold text-sm text-gray-black group-hover:text-primary-300 transition-colors duration-200">
                                       {item.title}
                                     </h4>
-                                    <p className="text-xs text-gray-600 mt-1">
+                                    <p className="text-xs text-black mt-1">
                                       {item.description}
                                     </p>
                                   </div>
@@ -447,7 +456,7 @@ const Header: React.FC = () => {
                           <>
                             {customerSection && (
                               <>
-                                <h3 className="text-orange-500 font-semibold text-sm uppercase tracking-wide mb-4">
+                                <h3 className="text-primary-300 font-semibold text-sm uppercase tracking-wide mb-4">
                                   {customerSection.title}
                                 </h3>
                                 <div className="space-y-4 mb-8">
@@ -465,10 +474,10 @@ const Header: React.FC = () => {
                                         />
                                       </div>
                                       <div>
-                                        <h4 className="font-medium text-sm text-gray-900 group-hover:text-orange-500 transition-colors duration-200">
+                                        <h4 className="font-semibold text-sm text-black group-hover:text-primary-300 transition-colors duration-200">
                                           {item.title}
                                         </h4>
-                                        <p className="text-xs text-gray-600 mt-1">
+                                        <p className="text-xs text-black mt-1">
                                           {item.description}
                                         </p>
                                       </div>
@@ -479,7 +488,7 @@ const Header: React.FC = () => {
                             )}
                             {marketingSection && (
                               <>
-                                <h3 className="text-orange-500 font-semibold text-sm uppercase tracking-wide mb-4">
+                                <h3 className="text-primary-300 font-semibold text-sm uppercase tracking-wide mb-4">
                                   {marketingSection.title}
                                 </h3>
                                 <div className="space-y-4">
@@ -497,10 +506,10 @@ const Header: React.FC = () => {
                                         />
                                       </div>
                                       <div>
-                                        <h4 className="font-medium text-sm text-gray-900 group-hover:text-orange-500 transition-colors duration-200">
+                                        <h4 className="font-semibold text-sm text-black group-hover:text-primary-300 transition-colors duration-200">
                                           {item.title}
                                         </h4>
-                                        <p className="text-xs text-gray-600 mt-1">
+                                        <p className="text-xs text-black mt-1">
                                           {item.description}
                                         </p>
                                       </div>
@@ -516,13 +525,13 @@ const Header: React.FC = () => {
                     {/* Column 3: Let's Talk */}
                     <div className="bg-orange-50 text-sm rounded-lg p-4 sm:p-6 h-fit">
                       <div className="flex items-center space-x-2 mb-4">
-                        <Phone className="w-5 h-5 text-orange-500" />
+                        <Phone className="w-5 h-5 text-primary-300" />
                         <h3 className="font-semibold text-gray-900">Let's Talk</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-6">
                         Have questions or need assistance? We're just a message away.
                       </p>
-                      <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-3 rounded-lg transition-all duration-200 font-medium w-full flex items-center justify-center space-x-2">
+                      <button className="bg-primary-300 hover:bg-orange-600 text-white px-4 sm:px-6 py-3 rounded-lg transition-all duration-200 font-medium w-full flex items-center justify-center space-x-2">
                         <span>Get a Free Consultant</span>
                         <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
                       </button>
@@ -536,7 +545,7 @@ const Header: React.FC = () => {
 
         {/* Desktop Categories Mega Menu - FIXED: Larger icons */}
         {activeDropdown === 'categories' && (
-          <div className={`fixed top-8 left-0 right-0 z-40 bg-black bg-opacity-20 min-h-screen ${
+          <div className={`fixed top-[85px] left-0 right-0 z-40  ${
             isScrolled ? 'pt-16 sm:pt-20' : 'pt-20 sm:pt-24'
           }`} onClick={() => setActiveDropdown(null)}>
             <div className="px-4 sm:px-6">
@@ -560,10 +569,10 @@ const Header: React.FC = () => {
                               />
                             </div>
                             <div>
-                              <h4 className="font-medium text-sm text-gray-900 group-hover:text-orange-500 transition-colors duration-200">
+                              <h4 className="font-semibold text-sm text-black group-hover:text-primary-300 transition-colors duration-200">
                                 {item.title}
                               </h4>
-                              <p className="text-xs text-gray-600 mt-1">
+                              <p className="text-xs text-black mt-1">
                                 {item.description}
                               </p>
                             </div>
@@ -575,13 +584,13 @@ const Header: React.FC = () => {
                     {/* Let's Talk Section */}
                     <div className="bg-orange-50 text-sm rounded-lg p-4 sm:p-6 h-fit">
                       <div className="flex items-center space-x-2 mb-4">
-                        <Phone className="w-5 h-5 text-orange-500" />
+                        <Phone className="w-5 h-5 text-primary-300" />
                         <h3 className="font-semibold text-gray-900">Let's Talk</h3>
                       </div>
                       <p className="text-sm text-gray-600 mb-6">
                         Have questions or need assistance? We're just a message away.
                       </p>
-                      <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-3 rounded-lg transition-all duration-200 font-medium w-full flex items-center justify-center space-x-2">
+                      <button className="bg-primary-300 hover:bg-orange-600 text-white px-4 sm:px-6 py-3 rounded-lg transition-all duration-200 font-medium w-full flex items-center justify-center space-x-2">
                         <span>Get a Free Consultant</span>
                         <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
                       </button>

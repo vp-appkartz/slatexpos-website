@@ -47,7 +47,7 @@ const Contact = () => {
 
   return (
     <section className="py-16 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div
           className="relative rounded-3xl overflow-hidden min-h-[500px] bg-cover bg-center"
           style={{
@@ -75,12 +75,13 @@ const Contact = () => {
               </h2>
               
               <p
-                className="text-white/90 text-lg leading-relaxed max-w-md"
-                data-aos="fade-up"
-                data-aos-delay="260"
-              >
-                Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
-              </p>
+  className="text-white/90 text-lg leading-relaxed max-w-md"
+  data-aos="fade-up"
+  data-aos-delay="260"
+>
+  Discover how our platform can streamline your restaurant’s operations, boost customer engagement, and increase efficiency—all tailored to your business needs. Book your free demo today and see the difference for yourself.
+</p>
+
             </div>
 
             {/* Right Content - Form with white glassy background */}
@@ -103,7 +104,7 @@ const Contact = () => {
                       placeholder="Name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200 shadow-sm"
+                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200 shadow-sm"
                       required
                     />
                   </div>
@@ -116,7 +117,7 @@ const Contact = () => {
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200 shadow-sm"
+                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200 shadow-sm"
                       required
                     />
                   </div>
@@ -129,7 +130,7 @@ const Contact = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200 shadow-sm"
+                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200 shadow-sm"
                       required
                     />
                   </div>
@@ -142,7 +143,7 @@ const Contact = () => {
                       placeholder="Restaurant Name"
                       value={formData.restaurant}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200 shadow-sm"
+                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200 shadow-sm"
                       required
                     />
                   </div>
@@ -155,7 +156,7 @@ const Contact = () => {
                       value={formData.interest}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200 resize-none shadow-sm"
+                      className="w-full px-4 py-3 bg-white/80 border-0 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all duration-200 resize-none shadow-sm"
                       required
                     />
                   </div>
@@ -164,7 +165,7 @@ const Contact = () => {
                   <div className="pt-2" data-aos="zoom-in" data-aos-delay="500">
                     <button
                       type="submit"
-                      className="w-fit bg-orange-500 hover:bg-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+                      className="w-fit bg-primary-300 hover:bg-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
                     >
                       Get a Demo
                     </button>

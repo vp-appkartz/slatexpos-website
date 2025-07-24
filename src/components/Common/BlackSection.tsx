@@ -77,7 +77,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             </p>
             {buttonText && (
               <button
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
+                className="bg-primary-300 text-lg hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
                 onClick={onButtonClick}
                 data-aos="zoom-in"
                 data-aos-delay="340"
@@ -116,7 +116,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
                   data-aos={aosType}
                   data-aos-delay={aosDelay}
                 >
-                  <Check className="w-5 h-5 text-orange-500 mr-3 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-primary-300 mr-3 flex-shrink-0" />
                   <span className="text-lg font-medium">{indicator}</span>
                 </div>
               );

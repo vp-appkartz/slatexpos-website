@@ -18,7 +18,7 @@ function App() {
     <Router>
       {/* ScrollToTop must be inside Router but outside Routes */}
       <ScrollToTop />
-      <div className="min-h-screen bg-white">
+      <div className="">
         <Header />
         <Routes>
           <Route path="/" element={

@@ -71,10 +71,10 @@ const Hardware = () => {
         <div>
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-5xl font-bold text-gray-800 mb-4">
               Hardware
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-2xl  text-gray-800 font-medium">
               Powerful Tools. Seamless Experience.
             </p>
           </div>
@@ -94,7 +94,7 @@ const Hardware = () => {
                   {/* Device Image - OUTSIDE the card, floating above */}
                   <div
                     className="absolute left-1/2 -top-20 -translate-x-1/2 z-10"
-                    style={{ width: 250, height: 200 }}
+                    style={{ width: 280, height: 230 }}
                   >
                     <img
                       src={item.image}
@@ -107,12 +107,12 @@ const Hardware = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-3xl font-semibold text-left text-gray-800 mb-4 mt-20">
+                  <h3 className="text-4xl font-bold text-left text-gray-800 mb-4 mt-[100px]">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 text-sm text-left leading-relaxed">
+                  <p className="text-gray-800 text-lg font-medium text-left leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ const Hardware = () => {
         </div>
 
         {/* Solutions Section */}
-        <div className="relative py-20 px-8 rounded-2xl overflow-hidden">
+        <div className="relative py-20 px-8 rounded-3xl overflow-hidden">
           {/* Background Image with Overlay */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"

@@ -71,7 +71,7 @@ const sections: Section[] = [
     description: "Increase your sales and expand your reach with the commission-free online ordering solution of SlateX POS. From easy menu customization to timely order fulfillment, we empower restaurants to serve customers anytime, anywhere.",
     stat: '',
     statDescription: '',
-    bgColor: 'bg-orange-500',
+    bgColor: 'bg-primary-300',
     bgGradient: 'from-orange-400 to-red-500',
     buttonText: "Let's Connect",
     bulletPoints: [
@@ -95,7 +95,7 @@ const sections: Section[] = [
     description: 'Enhance customer retention and encourage repeat visits with personalized incentives and rewards using SlateX POS. Help customers unlock exclusive perks, fostering loyalty and satisfaction with every transaction.',
     stat: '',
     statDescription: '',
-    bgColor: 'bg-orange-500',
+    bgColor: 'bg-primary-300',
     bgGradient: 'from-orange-400 to-orange-600',
     buttonText: "Let's Connect",
     bulletPoints: [
@@ -117,7 +117,7 @@ const sections: Section[] = [
     description: 'SlateX POS offers fast, secure, and flexible payment options making it easy for both the customers and the restaurants to manage payments and transactions accurately without any errors.',
     stat: '',
     statDescription: '',
-    bgColor: 'bg-orange-500',
+    bgColor: 'bg-primary-300',
     bgGradient: 'from-orange-400 to-orange-600',
     buttonText: "Let's Connect",
     bulletPoints: [
@@ -147,7 +147,7 @@ const BulletList: React.FC<{ points: { text: string; highlight?: boolean }[] }> 
                 key={pointIdx}
                 className="flex items-center flex-shrink-0"
               >
-                <span className="flex-shrink-0 rounded-full bg-orange-500 w-4 h-4 md:w-5 md:h-5 flex items-center justify-center mr-2">
+                <span className="flex-shrink-0 rounded-full bg-primary-300 w-4 h-4 md:w-5 md:h-5 flex items-center justify-center mr-2">
                   <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={2.2} />
                 </span>
                 <span className="text-gray-700 font-semibold text-xs md:text-sm lg:text-base leading-tight">
@@ -277,11 +277,8 @@ const ScrollSection: React.FC = () => {
     const nextImageData = nextImage ? getImageData(nextImage) : null;
 
     return (
-      <div className="relative w-full h-full flex justify-center items-center">
-        <div 
-          className="relative overflow-hidden w-[700px] h-[700px] "
-          
-        >
+      <div className="w-full h-full">
+        <div className="relative overflow-hidden w-full h-full">
           {/* Current Image */}
           <img
             src={currentImageData.src}
@@ -294,7 +291,7 @@ const ScrollSection: React.FC = () => {
               target.style.display = 'none';
               const parent = target.parentElement;
               if (parent) {
-                parent.className += '  flex items-center justify-center';
+                parent.className += ' flex items-center justify-center';
                 parent.innerHTML = '<div class="text-white text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">POS System</div></div>';
               }
             }}
@@ -305,7 +302,7 @@ const ScrollSection: React.FC = () => {
             <img
               src={nextImageData.src}
               alt={nextImageData.alt}
-              className={`w-full h-full object-fill transition-all duration-500 ease-in-out absolute inset-0 ${
+              className={`w-full h-full object-contain transition-all duration-500 ease-in-out absolute inset-0 ${
                 isImageTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
             />
@@ -316,26 +313,25 @@ const ScrollSection: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-      {/* Hero Section */}
-      <section className="pt-4 pb-2 md:pt-8 md:pb-4 lg:pt-10 lg:pb-6">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-          <h1 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight max-w-4xl mx-auto">
+    <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      {/* Hero Section - Reduced spacing */}
+      <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
+        <div className="text-center">
+          <h1 className="text-2lg md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
             What We Do
           </h1>
-          <p className="text-black text-xs md:text-sm lg:text-base mb-2 mt-2">
+          <p className="text-black text-md font-medium  md:text-sm lg:text-base mt-1 md:mt-2">
             Tailored for Every Table, Terminal, and Territory in Canada
           </p>
         </div>
       </section>
 
       {/* Main Content - Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-8 min-h-screen">
-        {/* Left Content - 3 columns out of 7 on large screens */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        {/* Left Content */}
         <div 
           ref={containerRef}
-          className="col-span-1 lg:col-span-4 overflow-y-auto  order-2 lg:order-1"
-         
+          className="overflow-y-auto order-2 lg:order-1"
         >
           <style>{`
             div::-webkit-scrollbar {
@@ -349,13 +345,13 @@ const ScrollSection: React.FC = () => {
                 key={section.id}
                 id={section.id}
                 ref={(el) => (sectionRefs.current[section.id] = el)}
-                className="min-h-screen text-left flex items-center justify-start px-4 md:px-6 lg:px-8 xl:px-12"
+                className="min-h-screen text-left flex items-center justify-start px-2 md:px-4 lg:px-6"
               >
                 <div className="max-w-sm md:max-w-md lg:max-w-lg w-full">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{lineHeight: '1.3'}}>
+                  <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-4xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{lineHeight: '1.3'}}>
                     {section.subtitle}
                   </h2>
-                  <p className="text-xs md:text-sm lg:text-base text-black mb-3 md:mb-4 lg:mb-6 leading-relaxed">
+                  <p className="text-lg font-normal text-black mb-3 md:mb-4 lg:mb-6 ">
                     {section.description}
                   </p>
 
@@ -363,7 +359,7 @@ const ScrollSection: React.FC = () => {
                     <BulletList points={section.bulletPoints} />
                   )}
 
-                  <button className="bg-orange-500 text-white px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-md lg:rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200 text-xs md:text-sm lg:text-base shadow-md">
+                  <button className="bg-primary-300 text-white px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-md lg:rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200 text-xs md:text-sm lg:text-base shadow-md">
                     {section.buttonText}
                   </button>
                 </div>
@@ -372,11 +368,9 @@ const ScrollSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Image Section - 4 columns out of 7 on large screens */}
-        <div className="col-span-1 lg:col-span-4 h-[50vh] md:h-[50vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center order-1 lg:order-2 px-4 md:px-6 lg:px-8">
-          <div className="w-full h-full flex items-center justify-center">
-            <POSImage sectionId={activeSection} />
-          </div>
+        {/* Right Image Section - Now takes full width of its column */}
+        <div className="h-[50vh] md:h-[50vh] lg:h-screen lg:sticky lg:top-0 order-1 lg:order-2">
+          <POSImage sectionId={activeSection} />
         </div>
       </div>
     </div>

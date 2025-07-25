@@ -16,6 +16,9 @@ export default {
           500: '#B74E3A',  // darker
         },
       },
+      backgroundImage: {
+        'header-gradient': 'linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 50%, #E5E7EB 75%, #DDD6FE 100%)',
+      }
     },
   },
   plugins: [],

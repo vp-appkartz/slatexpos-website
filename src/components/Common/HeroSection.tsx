@@ -54,7 +54,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         }}
       >
         <section
-          className={` flex items-center py-8 sm:py-12 lg:py-0 ${className}`}
+          className={` flex items-center mt-[140px] py-8 sm:py-12 lg:py-0 ${className}`}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 relative z-10">
@@ -64,10 +64,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 data-aos="fade-right"
                 data-aos-delay="100"
               >
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[48px] font-semibold text-gray-800 leading-tight lg:leading-[100%] tracking-[0.02em]">
+              <h1
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-[48px] font-bold text-gray-800 max-w-xs"
+                style={{ lineHeight: "1.3" }}
+                >
                   {title}
                 </h1>
-                <p className="font-medium text-base sm:text-lg lg:text-xl xl:text-[20px] text-gray-600 leading-relaxed lg:leading-8 tracking-[0.04em] max-w-lg mt-4 sm:mt-6"
+                <p className="font-semibold text-base sm:text-lg lg:text-xl xl:text-[20px] text-gray-600 leading-relaxed lg:leading-8 tracking-[0.04em] max-w-lg mt-4 sm:mt-6"
                   data-aos="fade-up"
                   data-aos-delay="250"
                 >
@@ -75,7 +78,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 </p>
                 <button
                   onClick={buttonAction}
-                  className="bg-orange-500 hover:bg-orange-600 w-fit mt-4 sm:mt-5 text-white font-bold text-sm leading-[100%] tracking-[0.04em] px-6 sm:px-8 lg:px-[40px] py-3 sm:py-4 lg:py-[20px] rounded-[10px] transition-all duration-300 shadow-lg"
+                  className="bg-primary-300 hover:bg-orange-600 w-fit mt-4 sm:mt-5 text-white font-bold text-sm leading-[100%] tracking-[0.04em] px-6 sm:px-8 lg:px-[40px] py-3 sm:py-4 lg:py-[20px] rounded-[10px] transition-all duration-300 shadow-lg"
                   data-aos="zoom-in"
                   data-aos-delay="400"
                 >

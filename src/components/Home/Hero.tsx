@@ -3,7 +3,7 @@ import LogoSlider from "../Common/LogoSlider";
 const Hero = () => {
   return (
     <div
-      className="min-h-screen relative overflow-hidden"
+      className="min-h-screen relative overflow-hidden mt-20"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",
@@ -11,8 +11,10 @@ const Hero = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
+      {/* Extended background to cover header area */}
+     
       {/* Hero Section */}
-      <section className="pt-20 pb-12 relative">
+      <section className="pt-20 pb-12 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Heading */}
           <div className="text-center mb-8">
@@ -112,7 +114,9 @@ const Hero = () => {
       </section>
 
       {/* Client Logo Slider Section */}
-      <LogoSlider />
+      <div className="relative z-10">
+        <LogoSlider />
+      </div>
     </div>
   );
 };

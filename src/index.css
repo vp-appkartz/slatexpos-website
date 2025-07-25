@@ -5,7 +5,57 @@
 
 body {
   font-family: 'Gilroy', sans-serif;
+ 
 }
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth header transitions */
+.header-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Remove any background from header when over hero */
+.header-transparent {
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Smooth sticky header behavior */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent layout shift during header state changes */
+.sticky-header.scrolled {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Seamless header-hero integration */
+.header-hero-seamless {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.header-hero-seamless .header-container {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
 
 @layer utilities {
   .animate-fadeIn {
@@ -190,6 +240,9 @@ html {
     transform: scale(1);
   }
 }
+
+
+
 
 .animate-slideInRight {
   animation: slideInRight 0.6s ease-out;
@@ -470,4 +523,52 @@ body {
   body {
     @apply font-gilroy;
   }
+}
+
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth header transitions */
+.header-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Remove any background from header when over hero */
+.header-transparent {
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Smooth sticky header behavior */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent layout shift during header state changes */
+.sticky-header.scrolled {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Seamless header-hero integration */
+.header-hero-seamless {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.header-hero-seamless .header-container {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  margin-bottom: 0 !important;
 }

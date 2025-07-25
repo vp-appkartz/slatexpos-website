@@ -47,14 +47,14 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
   }, []);
 
   return (
-    <section className={`py-10 sm:py-14 md:py-20 bg-[#F5F6FA] ${className}`}>
+    <section className={`py-8 sm:py-14 md:py-15 bg-gray-100  ${className}`}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12" data-aos="fade-down" data-aos-delay="100">
-          <h2 className="text-[26px] sm:text-[28px] md:text-[32px] font-semibold text-[#232323] mb-2 leading-tight">
+          <h2 className="text-4xl font-bold text-gray-800 mb-2 leading-tight">
             {title}
           </h2>
-          <p className="text-[#6B6B6B] text-base sm:text-lg md:text-xl font-normal">
+          <p className="text-gray-800 text-base sm:text-lg md:text-xl font-medium">
             {subtitle}
           </p>
         </div>
@@ -108,11 +108,11 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
                 data-aos={aosType}
                 data-aos-delay={aosDelay}
               >
-                <div className="mb-2 flex-1 flex flex-col justify-center items-center">
-                  <span className="block text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-[#232323] mb-1 drop-shadow  transition-colors duration-300">
+                <div className="mb-2 flex-1 flex flex-col justify-center items-start">
+                  <span className="block text-5xl text-left font-bold text-gray-900 mb-1 drop-shadow  transition-colors duration-300">
                     {stat.value}
                   </span>
-                  <span className="block text-[13px] sm:text-[14px] md:text-[15px] text-[#6B6B6B] font-medium leading-snug text-center">
+                  <span className="block text-lg text-gray-800 max-w-[170px] mt-4 font-medium">
                     {stat.description}
                   </span>
                 </div>

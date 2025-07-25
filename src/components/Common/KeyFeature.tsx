@@ -45,14 +45,14 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
   }, []);
 
   return (
-    <section className={`py-20 bg-[#F0F0F9] ${className}`}>
+    <section className={`py-10 bg-[#F0F0F9] ${className}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
+          <h2 className="text-2lg md:text-3xl mt-10 lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
             {heading}
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-gray-800 text-lg font-medium md:text-lg lg:text-2xl mt-1 md:mt-2">
             {subheading}
           </p>
         </div>
@@ -74,13 +74,13 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
                   <img
                     src={feature.image}
                     alt={feature.title}
-                    className="w-12 h-12 object-contain mb-5"
+                    className="w-14 h-14 object-contain mb-5"
                   />
                 </div>
 
                 {/* Feature Content */}
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 mx-2">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-3 mx-2 max-w-[180px]">
                     {feature.title}
                   </h3>
                   <p className="text-gray-800 leading-relaxed mx-2">

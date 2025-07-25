@@ -277,14 +277,14 @@ const ScrollSection: React.FC = () => {
     const nextImageData = nextImage ? getImageData(nextImage) : null;
 
     return (
-      <div className="w-full h-full">
-        <div className="relative overflow-hidden w-full h-full">
+      <div className=" flex items-center justify-center mt-[110px] ">
+        <div className="relative overflow-hidden w-full h-full ">
           {/* Current Image */}
           <img
             src={currentImageData.src}
             alt={currentImageData.alt}
             className={`w-full h-full object-contain transition-all duration-500 ease-in-out ${
-              isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+              isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-110'
             }`}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
@@ -303,7 +303,7 @@ const ScrollSection: React.FC = () => {
               src={nextImageData.src}
               alt={nextImageData.alt}
               className={`w-full h-full object-contain transition-all duration-500 ease-in-out absolute inset-0 ${
-                isImageTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                isImageTransitioning ? 'opacity-100 scale-110' : 'opacity-0 scale-95'
               }`}
             />
           )}
@@ -313,21 +313,21 @@ const ScrollSection: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <div className="mx-[70px] mx-auto px-4 md:px-6 lg:px-8 ">
       {/* Hero Section - Reduced spacing */}
       <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
         <div className="text-center">
-          <h1 className="text-2lg md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
+          <h1 className="text-2lg md:text-3xl mt-10 lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
             What We Do
           </h1>
-          <p className="text-black text-md font-medium  md:text-sm lg:text-base mt-1 md:mt-2">
+          <p className="text-gray-800 text-lg font-medium  md:text-lg lg:text-lg mt-1 md:mt-2">
             Tailored for Every Table, Terminal, and Territory in Canada
           </p>
         </div>
       </section>
 
       {/* Main Content - Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 ">
         {/* Left Content */}
         <div 
           ref={containerRef}

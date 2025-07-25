@@ -190,12 +190,14 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header with responsive spacing */}
-      <div className="">
-        <div className={`transition-all duration-300 mt-2 mb-5 ${
-          isScrolled ? 'fixed top-0 left-0 right-0 z-50 pt-2 sm:pt-3 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'pt-4 sm:pt-6 px-4 sm:px-6 lg:px-8 xl:px-[150px]'
+       <div className="bg-[url('/nav-bg.png')] bg-fill bg-no-repeat">
+        <div className={`transition-all duration-300 ${
+-          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-4 sm:px-6 lg:px-8 xl:px-[150px]'
++          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-4 sm:px-6 lg:px-8 xl:px-[150px] mb-0'
         }`}>
           <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 ${
-            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
+-            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
++            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-t-xl sm:rounded-t-2xl bg-white opacity-100'
           }`}>
             <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
               <div className="flex items-center h-12 sm:h-14 lg:h-16">
@@ -236,7 +238,7 @@ const Header: React.FC = () => {
                       onClick={() => handleDropdownClick('categories')}
                       className="text-black text-lg  transition-colors duration-200 flex items-center space-x-1 font-medium py-2 "
                     >
-                      <span>Categories</span>
+                      <span>Industries</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
                         activeDropdown === 'categories' ? 'rotate-180' : ''
                       }`} />

@@ -1,56 +1,111 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  // Product links from @file_context_1
+  const productLinks = [
+    { name: "Restaurant POS System", slug: "restaurant-pos-system" },
+    { name: "Kitchen Display", slug: "kitchen-display" },
+    { name: "Payment Processing", slug: "payment-processing" },
+    { name: "Reporting App", slug: "reporting-app" },
+    { name: "Web Ordering", slug: "web-ordering" },
+    { name: "Branded Mobile App", slug: "mobile-ordering" },
+    { name: "Loyalty & Promotion", slug: "loyalty-promotion" },
+    { name: "Gift Card", slug: "gift-card" },
+  ];
+
+  // Industry links from @file_context_1
+  const industryLinks = [
+    { name: "Quick-Service Restaurants (QSR)", slug: "quick-service-restaurants-qsr" },
+    { name: "Casual Dining", slug: "casual-dining" },
+    { name: "Full Services Restaurant", slug: "full-services-restaurant" },
+    { name: "Fast Casual Restaurant", slug: "fast-casual-restaurant" },
+    { name: "Food Trucks", slug: "food-trucks" },
+    { name: "Pizzeria", slug: "pizzeria" },
+    { name: "Café & Bakery", slug: "cafe-bakery" },
+    { name: "Bars & Pubs", slug: "bars-pubs" },
+  ];
+
+  // Company links (assumed, as not all are in @file_context_1)
+  const companyLinks = [
+    { name: "About us", path: "/about" },
+    { name: "Hardware", path: "/hardware" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Blog", path: "/blog" },
+    { name: "Career", path: "/career" },
+    { name: "Licenses", path: "/licenses" },
+  ];
+
+  // Social links
+  const socialLinks = [
+    {
+      icon: <Facebook className="w-5 h-5 text-white" />,
+      href: "https://www.facebook.com/slatexpos",
+      label: "Facebook",
+    },
+    {
+      icon: <Twitter className="w-5 h-5 text-white" />,
+      href: "https://twitter.com/slatexpos",
+      label: "Twitter",
+    },
+    {
+      icon: <Instagram className="w-5 h-5 text-white" />,
+      href: "https://www.instagram.com/slatexpos/",
+      label: "Instagram",
+    },
+    {
+      icon: <Linkedin className="w-5 h-5 text-white" />,
+      href: "https://www.linkedin.com/company/slatexpos",
+      label: "LinkedIn",
+    },
+  ];
+
+  // Helper for industry slugs (from header logic)
+  const getIndustryUrl = (title: string) => {
+    return (
+      "/categories/" +
+      title
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[()]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+    );
+  };
+
   return (
     <footer className="bg-black text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
-          
           {/* SlateX Column */}
           <div className="lg:col-span-2">
-          <img
-                      src="/logo.png"
-                      alt="SlatexPOS Logo"
-                      className="h-8 sm:h-10 lg:h-12 mb-5 w-auto cursor-pointer"
-                      onClick={() => navigate('/')}
-                    />
+            <img
+              src="/logo.png"
+              alt="SlatexPOS Logo"
+              className="h-8 sm:h-10 lg:h-12 mb-5 w-auto cursor-pointer"
+              onClick={() => navigate('/')}
+            />
             <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
               Serve up seamless service with SlateX POS—your all‑in‑one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support. Ready to wow your guests and grow your business? Let’s get started today
             </p>
-            
             {/* Social Icons */}
             <div className="flex space-x-4 mb-8">
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5 text-white" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5 text-white" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5 text-white" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
-                aria-label="Instagram"
-              >
-                <Linkedin className="w-5 h-5 text-white" />
-              </a>
+              {socialLinks.map((item, idx) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
+                  aria-label={item.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.icon}
+                </a>
+              ))}
             </div>
-            
             {/* Copyright */}
             <p className="text-gray-500 text-sm">
               © 2025 Slatex, Inc. All rights reserved.
@@ -61,46 +116,16 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-xl font-semibold text-white mb-6">Products</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Restaurants POS System
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Kitchen Display
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Payment Processing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Reporting App
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Web Ordering
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Branded Mobile App
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Loyalty & Promotion
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Gift Card
-                </a>
-              </li>
+              {productLinks.map((product) => (
+                <li key={product.slug}>
+                  <a
+                    href={`/products/${product.slug}`}
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    {product.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -108,46 +133,16 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-xl font-semibold text-white mb-6">Industries</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Quick-Service Restaurants (QSR)
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Casual Dining
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Full Services Restaurant
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Fast Casual Restaurant
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Food Trucks
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Pizzeria
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Café & Bakery
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Bars & Pubs
-                </a>
-              </li>
+              {industryLinks.map((industry) => (
+                <li key={industry.name}>
+                  <a
+                    href={getIndustryUrl(industry.name)}
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    {industry.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -155,36 +150,16 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-xl font-semibold text-white mb-6">Company</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  About us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Hardware
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Career
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                  Licenses
-                </a>
-              </li>
+              {companyLinks.map((company) => (
+                <li key={company.name}>
+                  <a
+                    href={company.path}
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    {company.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

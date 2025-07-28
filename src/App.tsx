@@ -13,6 +13,8 @@ import DynamicProductPage from './components/pages/Products';
 import DynamicCategoryPage from './components/pages/Category';
 import ScrollToTop from './components/Common/ScrollToTop';
 import HardwarePage from './components/pages/Hardware';
+import BlogList from './components/pages/BlogList';
+import BlogDetails from './components/pages/BlogDetails';
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/products/:slug" element={<DynamicProductPage />} />
           <Route path="/categories/:slug" element={<DynamicCategoryPage />} />
           <Route path ="/hardware" element= {<HardwarePage />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogDetails />} />
         </Routes>
         <Footer />
       </div>

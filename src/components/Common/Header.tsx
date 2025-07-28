@@ -6,12 +6,14 @@ import {
   Phone
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import DemoModal from './DemoModal';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -245,7 +247,7 @@ const Header: React.FC = () => {
                     </button>
                   </div>
 
-                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2">
+                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2" onClick={() => navigate('/hardware')}>
                     Hardware
                   </button>
 
@@ -254,7 +256,7 @@ const Header: React.FC = () => {
                     Pricing
                   </button>
 
-                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2">
+                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2" onClick={() => navigate('/blog')}>
                     Blogs
                   </button>
                 </nav>
@@ -262,7 +264,10 @@ const Header: React.FC = () => {
                 {/* Right Side Actions */}
                 <div className="flex items-center space-x-2 sm:space-x-4 ml-auto">
                   {/* Get a Demo Button - Hidden on mobile */}
-                  <button className="hidden sm:block relative group bg-white text-primary-300 px-4 lg:px-4 py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-2xl">
+                  <button
+                    className="hidden sm:block relative group bg-white text-primary-300 px-4 lg:px-4 py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-2xl"
+                    onClick={() => setIsDemoModalOpen(true)}
+                  >
                     <div className="absolute inset-0 bg-primary-300 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
                     <span className="relative z-10">Get a Demo</span>
                   </button>
@@ -388,7 +393,10 @@ const Header: React.FC = () => {
                     
                     {/* Mobile Get Demo Button */}
                     <div className="px-4 py-3">
-                      <button className="relative group bg-white text-primary-300 px-6 py-3 rounded-full border border-primary-300 transition-all duration-300 font-medium w-full overflow-hidden hover:text-white">
+                      <button
+                        className="relative group bg-white text-primary-300 px-6 py-3 rounded-full border border-primary-300 transition-all duration-300 font-medium w-full overflow-hidden hover:text-white"
+                        onClick={() => setIsDemoModalOpen(true)}
+                      >
                         <div className="absolute inset-0 bg-primary-300 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
                         <span className="relative z-10">Get a Demo</span>
                       </button>
@@ -604,6 +612,7 @@ const Header: React.FC = () => {
           </div>
         )}
       </div>
+      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </>
   );
 };

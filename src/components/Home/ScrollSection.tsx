@@ -13,9 +13,18 @@ interface Section {
   bgGradient: string;
   buttonText: string;
   bulletPoints?: { text: string; highlight?: boolean }[];
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-const sections: Section[] = [
+interface ScrollSectionProps {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  sections?: Section[];
+  onButtonClick?: (sectionId: string) => void;
+}
+
+const defaultSections: Section[] = [
   {
     id: '1',
     icon: <Utensils className="w-4 h-4" />,
@@ -27,6 +36,8 @@ const sections: Section[] = [
     bgColor: 'bg-gray-500',
     bgGradient: 'from-gray-400 to-gray-600',
     buttonText: "Let's Connect",
+    imageSrc: '/home-about-1.png',
+    imageAlt: 'Casual Dining POS System',
     bulletPoints: [
       { text: 'Easy Ticket Management', highlight: true },
       { text: 'Pizza Matrix (½ & ¼)', highlight: false },
@@ -53,6 +64,8 @@ const sections: Section[] = [
     bgColor: 'bg-green-500',
     bgGradient: 'from-green-400 to-green-600',
     buttonText: 'Let\'s Connect',
+    imageSrc: '/home-about-2.png',
+    imageAlt: 'Quick Service POS Terminal',
     bulletPoints: [
       { text: 'Aggregate all orders', highlight: true },
       { text: 'Multiple views', highlight: true },
@@ -74,6 +87,8 @@ const sections: Section[] = [
     bgColor: 'bg-primary-300',
     bgGradient: 'from-orange-400 to-red-500',
     buttonText: "Let's Connect",
+    imageSrc: '/home-about-3.png',
+    imageAlt: 'Fast Casual POS Interface',
     bulletPoints: [
       { text: 'Commission Free', highlight: true },
       { text: 'Future ordering options', highlight: true },
@@ -98,6 +113,8 @@ const sections: Section[] = [
     bgColor: 'bg-primary-300',
     bgGradient: 'from-orange-400 to-orange-600',
     buttonText: "Let's Connect",
+    imageSrc: '/home-about-4.png',
+    imageAlt: 'Cafe POS System',
     bulletPoints: [
       { text: 'Easy & Quick implementation', highlight: true },
       { text: 'Detailed customer analytics report', highlight: false },
@@ -120,6 +137,8 @@ const sections: Section[] = [
     bgColor: 'bg-primary-300',
     bgGradient: 'from-orange-400 to-orange-600',
     buttonText: "Let's Connect",
+    imageSrc: '/home-about-5.png',
+    imageAlt: 'Fine Dining POS Suite',
     bulletPoints: [
       { text: 'Customized and transparent rates', highlight: true },
       { text: 'Compliant Surcharge Program', highlight: true },
@@ -162,8 +181,13 @@ const BulletList: React.FC<{ points: { text: string; highlight?: boolean }[] }> 
   );
 };
 
-const ScrollSection: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('1');
+const ScrollSection: React.FC<ScrollSectionProps> = ({
+  heroTitle = "What We Do",
+  heroSubtitle = "Tailored for Every Table, Terminal, and Territory in Canada",
+  sections = defaultSections,
+  onButtonClick
+}) => {
+  const [activeSection, setActiveSection] = useState(sections[0]?.id || '1');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const containerRef = useRef<HTMLDivElement>(null);
@@ -206,38 +230,19 @@ const ScrollSection: React.FC = () => {
     const [isImageTransitioning, setIsImageTransitioning] = useState(false);
 
     const getImageData = (id: string) => {
-      switch (id) {
-        case '1':
-          return {
-            src: '/home-about-1.png',
-            alt: 'Casual Dining POS System',
-          };
-        case '2':
-          return {
-            src: '/home-about-2.png',
-            alt: 'Quick Service POS Terminal',
-          };
-        case '3':
-          return {
-            src: '/home-about-3.png',
-            alt: 'Fast Casual POS Interface',
-          };
-        case '4':
-          return {
-            src: '/home-about-4.png',
-            alt: 'Cafe POS System',
-          };
-        case '5':
-          return {
-            src: '/home-about-5.png',
-            alt: 'Fine Dining POS Suite',
-          };
-        default:
-          return {
-            src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80',
-            alt: 'Restaurant POS System',
-          };
+      const section = sections.find(s => s.id === id);
+      if (section && section.imageSrc) {
+        return {
+          src: section.imageSrc,
+          alt: section.imageAlt || section.title,
+        };
       }
+      
+      // Fallback image
+      return {
+        src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80',
+        alt: 'Default Image',
+      };
     };
 
     // Preload next image when sectionId changes
@@ -292,7 +297,7 @@ const ScrollSection: React.FC = () => {
               const parent = target.parentElement;
               if (parent) {
                 parent.className += ' flex items-center justify-center';
-                parent.innerHTML = '<div class="text-white text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">POS System</div></div>';
+                parent.innerHTML = '<div class="text-white text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">Default Image</div></div>';
               }
             }}
           />
@@ -312,16 +317,22 @@ const ScrollSection: React.FC = () => {
     );
   };
 
+  const handleButtonClick = (sectionId: string) => {
+    if (onButtonClick) {
+      onButtonClick(sectionId);
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
       {/* Hero Section - Reduced spacing */}
       <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
         <div className="text-center">
           <h1 className="text-2lg md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
-            What We Do
+            {heroTitle}
           </h1>
-          <p className="text-black text-md font-medium  md:text-sm lg:text-base mt-1 md:mt-2">
-            Tailored for Every Table, Terminal, and Territory in Canada
+          <p className="text-black text-md font-medium md:text-sm lg:text-base mt-1 md:mt-2">
+            {heroSubtitle}
           </p>
         </div>
       </section>
@@ -355,11 +366,14 @@ const ScrollSection: React.FC = () => {
                     {section.description}
                   </p>
 
-                  {section.bulletPoints && (
+                  {section.bulletPoints && section.bulletPoints.length > 0 && (
                     <BulletList points={section.bulletPoints} />
                   )}
 
-                  <button className="bg-primary-300 text-white px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-md lg:rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200 text-xs md:text-sm lg:text-base shadow-md">
+                  <button 
+                    onClick={() => handleButtonClick(section.id)}
+                    className="bg-primary-300 text-white px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-md lg:rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200 text-xs md:text-sm lg:text-base shadow-md"
+                  >
                     {section.buttonText}
                   </button>
                 </div>

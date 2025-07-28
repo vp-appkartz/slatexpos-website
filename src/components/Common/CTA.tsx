@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const aosAnimations = [
   "zoom-in-up",
@@ -13,11 +13,11 @@ const aosAnimations = [
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    restaurant: '',
-    interest: ''
+    name: "",
+    email: "",
+    phone: "",
+    restaurant: "",
+    interest: "",
   });
 
   useEffect(() => {
@@ -32,17 +32,19 @@ const Contact = () => {
     };
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
   return (
@@ -51,14 +53,13 @@ const Contact = () => {
         <div
           className="relative rounded-3xl overflow-hidden min-h-[500px] bg-cover bg-center"
           style={{
-            backgroundImage: "url('/contact-bg.png')"
+            backgroundImage: "url('/contact-bg.png')",
           }}
         >
           {/* Overlay for better contrast on mobile */}
           <div className="absolute inset-0 bg-black/30 lg:bg-transparent z-0"></div>
           {/* Content Container */}
           <div className="relative z-10 grid lg:grid-cols-2 gap-8 p-8 lg:p-12 min-h-[500px]">
-            
             {/* Left Content */}
             <div
               className="text-white space-y-6 flex flex-col justify-center"
@@ -70,27 +71,34 @@ const Contact = () => {
                 data-aos="fade-down"
                 data-aos-delay="180"
               >
-                Let's schedule<br />
+                Let's schedule
+                <br />
                 your free demo
               </h2>
-              
-              <p
-  className="text-white/90 text-lg leading-relaxed max-w-md"
-  data-aos="fade-up"
-  data-aos-delay="260"
->
-  Discover how our platform can streamline your restaurant’s operations, boost customer engagement, and increase efficiency—all tailored to your business needs. Book your free demo today and see the difference for yourself.
-</p>
 
+              <p
+                className="text-white/90 text-lg leading-relaxed max-w-md"
+                data-aos="fade-up"
+                data-aos-delay="260"
+              >
+                Discover why top restaurants trust SlateX POS to run their
+                business smoothly and efficiently. With powerful features like
+                real-time order syncing, customizable menus, and seamless
+                payment integration, our system is built to make your life
+                easier. Book your free demo today and see how SlateX POS can
+                help you save time, reduce errors, and grow your profits — all
+                with a solution tailored to your restaurant's unique needs. Let
+                us show you the difference in just one call!
+              </p>
             </div>
 
             {/* Right Content - Form with white glassy background */}
             <div className="flex items-center justify-center">
-              <div 
+              <div
                 className="w-full max-w-md rounded-2xl p-8 shadow-2xl"
                 style={{
-                  background: 'rgba(255,255,255,0.85)',
-                  backdropFilter: 'blur(10px)'
+                  background: "rgba(255,255,255,0.85)",
+                  backdropFilter: "blur(10px)",
                 }}
                 data-aos="zoom-in-up"
                 data-aos-delay="200"

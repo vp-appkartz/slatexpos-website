@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Footer = () => {
   const navigate = useNavigate();
 
-  // Product links from @file_context_1
+ 
   const productLinks = [
     { name: "Restaurant POS System", slug: "restaurant-pos-system" },
     { name: "Kitchen Display", slug: "kitchen-display" },
@@ -17,7 +17,6 @@ const Footer = () => {
     { name: "Gift Card", slug: "gift-card" },
   ];
 
-  // Industry links from @file_context_1
   const industryLinks = [
     { name: "Quick-Service Restaurants (QSR)", slug: "quick-service-restaurants-qsr" },
     { name: "Casual Dining", slug: "casual-dining" },
@@ -29,7 +28,7 @@ const Footer = () => {
     { name: "Bars & Pubs", slug: "bars-pubs" },
   ];
 
-  // Company links (assumed, as not all are in @file_context_1)
+
   const companyLinks = [
     { name: "About us", path: "/about" },
     { name: "Hardware", path: "/hardware" },
@@ -39,7 +38,7 @@ const Footer = () => {
     { name: "Licenses", path: "/licenses" },
   ];
 
-  // Social links
+  
   const socialLinks = [
     {
       icon: <Facebook className="w-5 h-5 text-white" />,
@@ -63,7 +62,7 @@ const Footer = () => {
     },
   ];
 
-  // Helper for industry slugs (from header logic)
+
   const getIndustryUrl = (title: string) => {
     return (
       "/categories/" +

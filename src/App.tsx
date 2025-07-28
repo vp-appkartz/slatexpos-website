@@ -12,6 +12,7 @@ import Pricing from './components/pages/Pricing';
 import DynamicProductPage from './components/pages/Products';
 import DynamicCategoryPage from './components/pages/Category';
 import ScrollToTop from './components/Common/ScrollToTop';
+import HardwarePage from './components/pages/Hardware';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/products/:slug" element={<DynamicProductPage />} />
           <Route path="/categories/:slug" element={<DynamicCategoryPage />} />
+          <Route path ="/hardware" element= {<HardwarePage />} />
         </Routes>
         <Footer />
       </div>

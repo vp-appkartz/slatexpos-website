@@ -5,39 +5,39 @@ const Testimonial = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Adam Smith",
-      position: "CEO, Published",
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      name: "Tushar Mistry",
+      position: "Bombay Street Tadka",
+      image: "https://images.pexels.com/photos/1707828/pexels-photo-1707828.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      text: "SlateX POS has completely transformed how we manage our restaurant operations. From real-time KOT printing to handling modifiers and multi-device sync, everything just works flawlessly. It’s fast, reliable, and tailor-made for busy Indian kitchens like ours.",
+      logo: "Bombay Street Tadka",
+      logoSubtext: ""
     },
     {
       id: 2,
-      name: "Adam Smith",
-      position: "CEO, Published",
-      image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      name: "Ankit Patel",
+      position: "Flavors Of Gujarat",
+      image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      text: "We were looking for a system that understands the complexity of Gujarati menus and fast-paced service – and SlateX POS delivered! It’s easy to train staff on, and the reporting tools give us full control of our day-to-day operations.",
+      logo: "Flavors Of Gujarat",
+      logoSubtext: ""
     },
     {
       id: 3,
-      name: "Adam Smith",
-      position: "CEO, Published",
-      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      name: "Gurbir Singh",
+      position: "Royal Sweets & Restaurant",
+      image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      text: "Managing dine-in, takeout, and sweets counters together used to be stressful. With SlateX POS, we’ve streamlined everything under one roof. The intuitive interface, kitchen display integration, and smooth payment processing make a huge difference.",
+      logo: "Royal Sweets & Restaurant",
+      logoSubtext: ""
     },
     {
       id: 4,
-      name: "Adam Smith",
-      position: "CEO, Published",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a,",
-      logo: "PUBLISHED",
-      logoSubtext: "ON MAIN"
+      name: "Riaz Khan",
+      position: "Chutney Restaurant",
+      image: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      text: "What I love most about SlateX POS is the customization. From invoice design to tax settings, everything is flexible to match how we work. Support is responsive, and the system never lags – even during our busiest hours!",
+      logo: "Chutney Restaurant",
+      logoSubtext: ""
     }
   ];
 

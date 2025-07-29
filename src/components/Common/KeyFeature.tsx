@@ -59,7 +59,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
 
         {/* Features Grid */}
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-16 ${gridClassName}`}>
-          {features.map((feature, index) => {
+          {features?.map((feature, index) => {
             const aosType = aosAnimations[index % aosAnimations.length];
             const aosDelay = 200 + index * 120;
             return (

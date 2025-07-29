@@ -810,24 +810,62 @@ export interface CategoryStatItem {
         }
       ]
     },
-    industrySection: {
-      title: "Features",
-      subtitle: "Comprehensive mobile food solutions",
-      features: [
+    scrollSection: {
+      heroTitle: "QSR Solutions at Every Step",
+      heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+      sections: [
         {
-          heading: "Optimize Your Operations from anywhere",
-          description: "Our mobile POS system is designed specifically for food trucks and mobile vendors, ensuring smooth operations wherever you go.",
+          id: '1',
+          icon: 'Globe',
+          title: 'Optimize Your Operations from anywhere',
+          subtitle: 'Operate from Anywhere',
+          description: '',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/ft/ft-about-1.png',
+          imageAlt: 'Remote Operations Management',
           bulletPoints: [
-            "Offline Availability",
-            "Fast Order Processing",
-            "Monitor Operations Remotely"
+            { text: 'Offline Availability', highlight: true },
+            { text: 'Fast Order Processing', highlight: true },
+            { text: 'Monitor Operations Remotely', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'TrendingUp',
+          title: 'Wide Your Reach and Grow Revenue',
+          subtitle: 'Revenue Growth',
+          description: 'SlateX food truck POS helps streamline operations, expand customer base, and increase revenue.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/ft/ft-about-2.png',
+          imageAlt: 'Revenue Expansion Tools',
+          bulletPoints: [
+            { text: 'Customer Centric Online Ordering', highlight: true },
+            { text: 'Offer contactless payment options', highlight: true },
+            { text: 'Leverage customer data for targeted marketing', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'LayoutDashboard',
+          title: 'Simplify Management',
+          subtitle: 'Simplify Management',
+          description: '',
+          bgColor: 'bg-pink-500',
+          bgGradient: 'from-pink-400 to-pink-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/ft/ft-about-3.png',
+          imageAlt: 'Management Dashboard',
+          bulletPoints: [
+            { text: 'Controlled dashboard for easy oversight', highlight: true },
+            { text: 'Enhanced Customer Experience', highlight: true },
+            { text: 'Scalability to accommodate growth', highlight: true }
           ]
         }
-      ],
-      stats: [],
-      ctaText: "Let's Connect",
-      imageSrc: "/category/ft/ft-about.png",
-      imageAlt: "Operate from Anywhere"
+      ]
     },
     keyFeatures: {
       heading: "Key Benefits",
@@ -1103,24 +1141,63 @@ export interface CategoryStatItem {
         }
       ]
     },
-    industrySection: {
-      title: "Features",
-      subtitle: "Comprehensive pizzeria solutions",
-      features: [
+    scrollSection: {
+      heroTitle: "QSR Solutions at Every Step",
+      heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+      sections: [
         {
-          heading: "Pizza-Specific Order Management",
-          description: "Our POS system is specifically designed for pizzerias, handling complex pizza customizations, multiple sizes, and specialty combinations with ease.",
+          id: '1',
+          icon: 'Zap',
+          title: 'Provide fast, error-free order fulfillment',
+          subtitle: 'Fulfill Your Order',
+          description: '',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/pizza/pizza-about-1.png',
+          imageAlt: 'Fast Order Fulfillment',
           bulletPoints: [
-            "Visual pizza builder interface",
-            "Size and crust management",
-            "Advanced topping combinations tracking"
+            { text: '% and % pizza matrix', highlight: true },
+            { text: 'Effortless customization', highlight: true },
+            { text: 'Real-time delivery management', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'UserCircle',
+          title: 'Personalize the Customer Experience',
+          subtitle: 'Personalize Experience',
+          description: 'Deliver personalized experiences to your pizza customers by tailoring menus, recommendations, and loyalty based on their preferences.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/pizza/pizza-about-2.png',
+          imageAlt: 'Personalized Customer Experience',
+          bulletPoints: [
+            { text: 'Customer-centric online ordering', highlight: true },
+            { text: 'Customer Analytics', highlight: true },
+            { text: 'Itemized Discount', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'CreditCard',
+          title: 'Increase your ticket size with effortless payments',
+          subtitle: 'Effortless Payments',
+          description: '',
+          bgColor: 'bg-pink-500',
+          bgGradient: 'from-pink-400 to-pink-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/pizza/pizza-about-3.png',
+          imageAlt: 'Payment Processing Solutions',
+          bulletPoints: [
+            { text: 'QR Payments', highlight: true },
+            { text: 'Coupons & Discounts', highlight: true },
+            { text: 'Multiple Payment Options', highlight: true },
+            { text: 'Integrated Loyalty Programs', highlight: true }
           ]
         }
-      ],
-      stats: [],
-      ctaText: "Let's Connect",
-      imageSrc: "/category/pizzeria/pizzeria-about.png",
-      imageAlt: "Pizza Order Management"
+      ]
     },
     keyFeatures: {
       heading: "Key Benefits",
@@ -1222,24 +1299,62 @@ export interface CategoryStatItem {
         }
       ]
     },
-    industrySection: {
-      title: "Features",
-      subtitle: "Comprehensive café and bakery solutions",
-      features: [
+    scrollSection: {
+      heroTitle: "QSR Solutions at Every Step",
+      heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+      sections: [
         {
-          heading: "Optimized for Coffee & Bakery Operations",
-          description: "Our POS system is specifically designed for cafés and bakeries, handling complex coffee customizations, fresh bakery inventory, and peak-hour rushes with precision.",
+          id: '1',
+          icon: 'Zap',
+          title: 'Efficient Counter Service',
+          subtitle: 'Efficient Service',
+          description: '',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/cafe/cafe-about-1.png',
+          imageAlt: 'Bakery Counter Service',
           bulletPoints: [
-            "Coffee customization management",
-            "Fresh bakery item tracking",
-            "Peak hour optimization tools"
+            { text: 'Quick Order Entry', highlight: true },
+            { text: 'Customer Order Display Screens', highlight: true },
+            { text: 'Stock Countdown and Control', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'CreditCard',
+          title: 'Quick and Secure Payments',
+          subtitle: 'Secure Payments',
+          description: 'With SlateX bakery POS system, say goodbye to transaction hassles. Our quick and secure payment solutions elevate cafe and bakery operations, leaving customers smiling.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/cafe/cafe-about-2.png',
+          imageAlt: 'Secure Payment Processing',
+          bulletPoints: [
+            { text: 'Split checks', highlight: true },
+            { text: 'Offer Customized Gift Cards', highlight: true },
+            { text: 'QR Payments', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'Heart',
+          title: 'Customer Engagement and Loyalty',
+          subtitle: 'Customer Engagement',
+          description: '',
+          bgColor: 'bg-pink-500',
+          bgGradient: 'from-pink-400 to-pink-600',
+          buttonText: "Let's Connect",
+            imageSrc: '/category/cafe/cafe-about-3.png',
+          imageAlt: 'Customer Loyalty Programs',
+          bulletPoints: [
+            { text: 'Customized Loyalty Program', highlight: true },
+            { text: 'Offer Quick Checkouts', highlight: true },
+            { text: 'Promotions and Upsells', highlight: true }
           ]
         }
-      ],
-      stats: [],
-      ctaText: "Let's Connect",
-      imageSrc: "/category/cafe-bakery/cafe-about.png",
-      imageAlt: "Coffee & Bakery Operations"
+      ]
     },
     keyFeatures: {
       heading: "Key Benefits",

@@ -42,6 +42,25 @@ export interface StatItem {
       subtitle?: string;
       stats: StatItem[];
     };
+    scrollSection?: {
+      heroTitle?: string;
+      heroSubtitle?: string;
+      sections: {
+        id: string;
+        icon: string; // Icon name as string
+        title: string;
+        subtitle: string;
+        description: string;
+        stat: string;
+        statDescription: string;
+        bgColor: string;
+        bgGradient: string;
+        buttonText: string;
+        bulletPoints?: { text: string; highlight?: boolean }[];
+        imageSrc?: string;
+        imageAlt?: string;
+      }[];
+    };
     industrySection: {
       title: string;
       subtitle: string;
@@ -108,19 +127,89 @@ export interface StatItem {
         }
       ]
     },
-    industrySection: {
-      title: "Features",
-      subtitle: "Comprehensive restaurant management solutions",
-      features: [
+    scrollSection: {
+      heroTitle: "Restaurant POS System Features",
+      heroSubtitle: "Comprehensive solutions for streamlined restaurant management",
+      sections: [
         {
-          heading: "Reliable & Simplified Restaurant POS System",
-          description: "Experience seamless operations and streamlined workflows with our restaurant POS system. Simplify your daily tasks, enhance customer service, and boost productivity with intelligent POS software features designed for efficiency and ease of use."
+          id: '1',
+          icon: 'ShieldCheck',
+          title: 'Reliable & Simplified Restaurant POS System',
+          subtitle: 'Reliable & Simplified Restaurant POS System',
+          description: 'Experience seamless operations and unparalleled reliability with our restaurant POS system. Simplify your restaurant workflow and empower your staff with intuitive restaurant POS software features designed for efficiency and ease of use.',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/products/rps/rps-about-1.png',
+          imageAlt: 'Reliable POS System',
+          bulletPoints: [
+            { text: 'Customer Display', highlight: true },
+            { text: 'Works Offline', highlight: true },
+            { text: 'Easy & Smooth Operations', highlight: true },
+            { text: 'Third Party Order Integration', highlight: true },
+            { text: 'Accessible from Anywhere', highlight: true },
+            { text: 'Reliable Support', highlight: true },
+            { text: 'Employee Management', highlight: true },
+            { text: 'Accurate Reports', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'ClipboardList',
+          title: 'Centralized Restaurant Menu Management',
+          subtitle: 'Centralized Restaurant Menu Management',
+          description: 'Simplify operations and keep your offerings up to date with a user-friendly SlateX Restaurant POS system. You can easily create or modify your restaurant menu anytime, anywhere across single or multiple locations, streamlining menu and inventory management.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/products/rps/rps-about-2.png',
+          imageAlt: 'Centralized Menu Management',
+          bulletPoints: [
+            { text: 'Cloud-Centric', highlight: true },
+            { text: 'Multi-location Menu Update', highlight: true },
+            { text: 'Single Menu - works everywhere', highlight: true },
+            { text: 'Item Mapping', highlight: true },
+            { text: 'Effortless Stock Control', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'Sliders',
+          title: 'Manage Complex Modifiers',
+          subtitle: 'Manage Complex Modifiers',
+          description: 'Simplify operations and speed up service with easy to manage intricate modifiers of SlateX restaurant POS that enables seamless ordering. These modifiers are easy to map, reducing order time by at least 50% than other leading Restaurant POS Systems and streamlining the entire process.',
+          bgColor: 'bg-pink-500',
+          bgGradient: 'from-pink-400 to-pink-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/products/rps/rps-about-3.png',
+          imageAlt: 'Complex Modifier Management',
+          bulletPoints: [
+            { text: 'Streamlined Modifier Selection', highlight: true },
+            { text: 'Modifier Dependencies', highlight: true },
+            { text: 'Eliminate Time and Errors', highlight: true },
+            { text: 'Quick Order Turnaround', highlight: true },
+            { text: 'Upselling Opportunities', highlight: true }
+          ]
+        },
+        {
+          id: '4',
+          icon: 'Lock',
+          title: 'Enhanced Security Features',
+          subtitle: 'Enhanced Security Features',
+          description: 'With the advanced security features of SlateX restaurant POS, you maintain full control over your restaurant operations. SlateX restaurant management software allows you to effectively manage orders and oversee employees while regulating access and enhancing security measures, ensuring your data and operations are always protected.',
+          bgColor: 'bg-teal-500',
+          bgGradient: 'from-teal-400 to-teal-600',
+          buttonText: "Let's Connect",
+            imageSrc: '/products/rps/rps-about-4.png',
+          imageAlt: 'POS Security Features',
+          bulletPoints: [
+            { text: 'Secured Login and Access', highlight: true },
+            { text: 'Security Policies', highlight: true },
+            { text: 'Manager Functions', highlight: true },
+            { text: 'Menu & Discount', highlight: true }
+          ]
         }
-      ],
-      stats: [],
-      ctaText: "Let's Connect",
-      imageSrc: "/rps-fe.png",
-      imageAlt: "Restaurant POS Features"
+      ]
     },
     keyFeatures: {
       heading: "Key Benefits",
@@ -270,20 +359,52 @@ export interface StatItem {
         }
       ]
     },
-    industrySection: {
-      title: "Features",
-      subtitle: "Comprehensive kitchen management solutions",
-      features: [
+    scrollSection: {
+      heroTitle: "Restaurant POS System Features",
+      heroSubtitle: "Comprehensive solutions for streamlined restaurant management",
+      sections: [
         {
-          heading: "Optimal Order Handling",
-          description: "Enhance kitchen efficiency with our display system, managing orders and materials efficiently using various types. Reduce order fulfillment time and improve customer satisfaction."
+          id: '1',
+          icon: 'LayoutGrid',
+          title: 'Optimal Order Handing',
+          subtitle: 'Optimal Order Handing',
+          description: 'Maximize kitchen efficiency with the kitchen display system of SlateX restaurant POS. Prioritize and organize orders effortlessly using color-coded tickets. Reduce your times, boost accuracy, and elevate customer satisfaction.',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/products/kd/kd-about-1.png',
+          imageAlt: 'Kitchen Display System for Order Handling',
+          bulletPoints: [
+            { text: 'Restaurant Grade Hardware Fully Integrated', highlight: true },
+            { text: 'Color Coded Status', highlight: true },
+            { text: 'Multiple Columns Arrangement', highlight: true },
+            { text: 'Advanced Item Routing', highlight: true },
+            { text: 'Order Countdown Timers', highlight: true },
+            { text: 'Item Delay Report', highlight: true },
+            { text: 'Recall Served Tickets', highlight: true },
+            { text: 'Order Status Integration', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'Monitor',
+          title: 'Intuitive Kitchen Display System',
+          subtitle: 'Intuitive Kitchen Display System',
+          description: 'SlateX restaurant POS system with kitchen display helps to bridge the gap between front and back of house. Group items by order, send orders to the correct prep stations, and instantly alert kitchen staff. Ensure accurate, timely food delivery and boost customer satisfaction.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/products/kd/kd-about-2.png',
+          imageAlt: 'Intuitive Kitchen Display System',
+          bulletPoints: [
+            { text: 'All Tickets on One Screen', highlight: true },
+            { text: 'Color Coded Orders', highlight: true },
+            { text: 'All-in-One Integrated', highlight: true },
+            { text: 'Countdown Timer', highlight: true }
+          ]
         }
-      ],
-      stats: [
-      ],
-      ctaText: "Let's Connect",
-      imageSrc: "/kd-fe.png",
-      imageAlt: "Kitchen Display System Features"
+       
+      ]
     },
     keyFeatures: {
       heading: "Key Benefits",
@@ -403,39 +524,65 @@ export interface StatItem {
       imageSrc: "/payment-fe.png",
       imageAlt: "Payment processing features"
     },
+    scrollSection: {
+      heroTitle: "Secure Payments to Drive Your Business Forward",
+      heroSubtitle: "Fast, reliable, and transparent payment processing for your business",
+      sections: [
+        {
+          id: '1',
+          icon: 'CreditCard',
+          title: 'Secure Payment',
+          subtitle: 'Secure Payment to Drive Your Business Forward',
+          description: 'Centralized and transparent rates. Fast and secure transactions. Robust payment encryption. Diverse payment options.',
+          stat: '',
+          statDescription: '',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/products/payment/payment-about-1.png',
+          imageAlt: 'Secure Payment',
+          bulletPoints: [
+            { text: 'Centralized and transparent rates', highlight: true },
+            { text: 'Fast and Secure Transactions', highlight: true },
+            { text: 'Robust Payment Encryption', highlight: true },
+            { text: 'Diverse Payment Options', highlight: true }
+          ]
+        }
+      ]
+    },
     keyFeatures: {
       heading: "Key Benefits",
       subheading: "Our Standout Features",
       features: [
         {
-          image: "/products/payment/payment-fe-1.png",
-          title: "Compliant Surcharge Program",
-          description: "Pass credit card fees to customers compliantly, increasing restaurant revenue without additional costs."
+          image: "/products/kd/kd-fe-1.png",
+          title: "Item Delay Analysis Report",
+          description: "Get real-time insights into delayed orders, identifying bottlenecks and optimizing kitchen workflows for improved efficiency."
         },
         {
-          image: "/products/payment/payment-fe-2.png",
-          title: "Comprehensive Payment Reports",
-          description: "Gain business intelligence with detailed analytics to transform payment data into growth opportunities."
+          image: "/products/kd/kd-fe-2.png",
+          title: "Advanced Item/Order Routing",
+          description: "Direct specific food orders to appropriate kitchen stations based on preparation type (fried, grilled, baked)."
         },
         {
-          image: "/products/payment/payment-fe-3.png",
-          title: "Affordable Rates",
-          description: "Maximize profit margins with competitive processing rates, investing more in your business."
+          image: "/products/kd/kd-fe-3.png",
+          title: "Digital Ordering Integration",
+          description: "Display order status on digital signage to improve service efficiency and communication between kitchen and front-of-house."
         },
         {
-          image: "/products/payment/payment-fe-4.png",
-          title: "Efficient Dispute Resolution",
-          description: "Resolve payment disputes swiftly with streamlined processes, minimizing financial losses."
+          image: "/products/kd/kd-fe-4.png",
+          title: "Never Lose A Ticket",
+          description: "Eco-friendly digital order tickets that enhance team communication and ensure order accuracy."
         },
         {
-          image: "/products/payment/payment-fe-5.png",
-          title: "Robust Fraud Prevention",
-          description: "Protect your business with integrated fraud prevention measures safeguarding transactions."
+          image: "/products/kd/kd-fe-5.png",
+          title: "Display Orders by Prep Time",
+          description: "Optimize operations by displaying ticket times according to item preparation and collection times."
         },
         {
-          image: "/products/payment/payment-fe-6.png",
-          title: "Fully Encrypted Transactions",
-          description: "Ensure secure and confidential payment processing with end-to-end encryption."
+          image: "/products/kd/kd-fe-6.png",
+          title: "Recall Tickets",
+          description: "Easily recall served or bumped tickets with quick corrections that don't disrupt workflow."
         }
       ]
     },

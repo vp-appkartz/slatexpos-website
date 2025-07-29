@@ -256,9 +256,9 @@ const Header: React.FC = () => {
                     Pricing
                   </button>
 
-                  <button className="text-black text-lg transition-colors duration-200 font-medium py-2" onClick={() => navigate('/blog')}>
+                  {/* <button className="text-black text-lg transition-colors duration-200 font-medium py-2" onClick={() => navigate('/blog')}>
                     Blogs
-                  </button>
+                  </button> */}
                 </nav>
 
                 {/* Right Side Actions */}

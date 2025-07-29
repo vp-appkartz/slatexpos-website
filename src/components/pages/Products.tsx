@@ -13,7 +13,28 @@ import Testimonial from '../Common/Testimonials';
 import Contact from '../Common/CTA';
 import { getProductData } from '../../Data/productData';
 import FAQSection from '../Common/Faq';
+import ScrollSection from '../Home/ScrollSection';
+import { Zap, Monitor, CreditCard, BarChart3, Users, Utensils, Clock, Coffee, ChefHat, Globe, TrendingUp, LayoutDashboard, Heart } from 'lucide-react';
 
+// Icon mapping helper for product scroll section
+const getIcon = (iconName: string) => {
+  const iconMap: { [key: string]: React.ReactNode } = {
+    'Zap': <Zap className="w-4 h-4" />,
+    'Monitor': <Monitor className="w-4 h-4" />,
+    'CreditCard': <CreditCard className="w-4 h-4" />,
+    'BarChart3': <BarChart3 className="w-4 h-4" />,
+    'Users': <Users className="w-4 h-4" />,
+    'Utensils': <Utensils className="w-4 h-4" />,
+    'Clock': <Clock className="w-4 h-4" />,
+    'Coffee': <Coffee className="w-4 h-4" />,
+    'ChefHat': <ChefHat className="w-4 h-4" />,
+    'Globe': <Globe className="w-4 h-4" />,
+    'TrendingUp': <TrendingUp className="w-4 h-4" />,
+    'LayoutDashboard': <LayoutDashboard className="w-4 h-4" />,
+    'Heart': <Heart className="w-4 h-4" />,
+  };
+  return iconMap[iconName] || <Utensils className="w-4 h-4" />;
+};
 
 const DynamicProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -22,7 +43,6 @@ const DynamicProductPage: React.FC = () => {
     const el = document.scrollingElement || document.documentElement;
     el.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
-  
   
   if (!slug) {
     return <Navigate to="/" replace />;
@@ -47,6 +67,22 @@ const DynamicProductPage: React.FC = () => {
     );
   }
 
+  // Transform product scroll section data to ScrollSection component format
+  const transformScrollSectionData = () => {
+    if (!productData.scrollSection) return undefined;
+
+    return {
+      heroTitle: productData.scrollSection.heroTitle,
+      heroSubtitle: productData.scrollSection.heroSubtitle,
+      sections: productData.scrollSection.sections.map(section => ({
+        ...section,
+        icon: getIcon(section.icon)
+      }))
+    };
+  };
+
+  const scrollSectionData = transformScrollSectionData();
+
   return (
     <>
       <HeroSection
@@ -68,21 +104,26 @@ const DynamicProductPage: React.FC = () => {
         subtitle={productData.numberSpeaks.subtitle}
         stats={productData.numberSpeaks.stats}
       />
-      
-      <IndustrySection
-        title={productData.industrySection.title}
-        subtitle={productData.industrySection.subtitle}
-        features={productData.industrySection.features}
-        stats={productData.industrySection.stats}
-        ctaText={productData.industrySection.ctaText}
-        imageSrc={productData.industrySection.imageSrc}
-        imageAlt={productData.industrySection.imageAlt}
-      />
+
+      {/* Conditionally render ScrollSection only if product has scroll section data */}
+      {scrollSectionData ? (
+        <ScrollSection 
+          heroTitle={scrollSectionData.heroTitle}
+          heroSubtitle={scrollSectionData.heroSubtitle}
+          sections={scrollSectionData.sections}
+          onButtonClick={(sectionId) => {
+            // Add your custom button click logic here if needed
+            console.log(`Button clicked for section: ${sectionId}`);
+          }}
+        />
+      ) : (
+        <ScrollSection />
+      )}
       
       <KeyFeatures
-        heading={productData.keyFeatures.heading}
-        subheading={productData.keyFeatures.subheading}
-        features={productData.keyFeatures.features}
+        heading={productData?.keyFeatures?.heading}
+        subheading={productData?.keyFeatures?.subheading}
+        features={productData?.keyFeatures?.features}
       />
       {productData.blackCardSection && (
         <BlackCardSection
@@ -90,17 +131,15 @@ const DynamicProductPage: React.FC = () => {
           subheading={productData.blackCardSection.subheading}
           items={productData.blackCardSection.items}
         />
-
-
       )}
-     
       
       <Hardware />
       <BlackSection />
       <Testimonial />
       <Contact />
       <FAQSection
-      faqs={productData.faqSection.faqs} />
+        faqs={productData.faqSection.faqs} 
+      />
     </>
   );
 };

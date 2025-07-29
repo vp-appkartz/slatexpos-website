@@ -36,6 +36,26 @@ export interface CategoryStatItem {
       subtitle?: string;
       stats: CategoryStatItem[];
     };
+    // Add this new field
+    scrollSection?: {
+      heroTitle?: string;
+      heroSubtitle?: string;
+      sections: {
+        id: string;
+        icon: string; // Icon name as string
+        title: string;
+        subtitle: string;
+        description: string;
+        stat: string;
+        statDescription: string;
+        bgColor: string;
+        bgGradient: string;
+        buttonText: string;
+        bulletPoints?: { text: string; highlight?: boolean }[];
+        imageSrc?: string;
+        imageAlt?: string;
+      }[];
+    };
     industrySection: {
       title: string;
       subtitle: string;
@@ -63,6 +83,7 @@ export interface CategoryStatItem {
       items: CategoryBlackCardItem[];
     };
   }
+  
   
   export const quickServiceRestaurantData: CategoryPageData = {
     slug: "quick-service-restaurants",
@@ -101,6 +122,97 @@ export interface CategoryStatItem {
         }
       ]
     },
+    // Add ScrollSection content for QSR
+    scrollSection: {
+      heroTitle: "Features",
+      heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+      sections: [
+        {
+          id: '1',
+          icon: 'Zap',
+          title: 'Reliable & Simplified Restaurant POS System',
+          subtitle: 'Reliable & Simplified',
+          description:
+            'Experience seamless operations and unparalleled reliability with our restaurant POS system. Offer your staff intuitive workflows, lightning-fast order entry, and multi-location management with robust features designed for efficiency.',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/qsr/qsr-about-1.png',
+          imageAlt: 'Reliable & Simplified POS',
+          bulletPoints: [
+            { text: 'Customer Display', highlight: true },
+            { text: 'Accessible from Anywhere', highlight: true },
+            { text: 'Works Offline', highlight: true },
+            { text: 'Reliable Support', highlight: true },
+            { text: 'Quick Payments', highlight: true },
+            { text: 'Easy & Smooth Operations', highlight: true },
+            { text: 'Employee Management', highlight: true },
+            { text: 'Third Party Order Integration', highlight: true },
+            { text: 'Accurate Reports', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'Monitor',
+          title: 'Centralized Restaurant Menu Management',
+          subtitle: 'Centralized Menu',
+          description:
+            'Simplify operations and keep your offerings up to date with a user-friendly SlateX Restaurant POS system. Easily create or modify your restaurant menu across single or multiple locations, streamlining menu and inventory management.',
+          bgColor: 'bg-gray-900',
+          bgGradient: 'from-gray-800 to-gray-900',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/qsr/qsr-about-2.png',
+          imageAlt: 'Centralized Menu Management',
+          bulletPoints: [
+            { text: 'Cloud-Centric', highlight: true },
+            { text: 'Multi-location Menu Update', highlight: true },
+            { text: 'Single Menu – works everywhere', highlight: true },
+            { text: 'Item Mapping', highlight: true },
+            { text: 'Effortless Stock Control', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'Settings',
+          title: 'Manage Complex Modifiers',
+          subtitle: 'Advanced Modifier Tools',
+          description:
+            'Simplify operations and speed up service with easy-to-manage intricate modifiers of SlateX POS. These features reduce order time by over 50% vs. competitors by streamlining selection and reducing errors.',
+          bgColor: 'bg-blue-500',
+          bgGradient: 'from-blue-400 to-blue-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/qsr/qsr-about-3.png',
+          imageAlt: 'Manage Modifiers',
+          bulletPoints: [
+            { text: 'Streamlined Modifier Selection', highlight: true },
+            { text: 'Modifier Dependencies', highlight: true },
+            { text: 'Eliminate Time and Errors', highlight: true },
+            { text: 'Quick Order Turnaround', highlight: true },
+            { text: 'Upselling Opportunities', highlight: true }
+          ]
+        },
+        {
+          id: '4',
+          icon: 'ShieldCheck',
+          title: 'Enhanced Security Features',
+          subtitle: 'Security & Access Control',
+          description:
+            'Take full control of restaurant operations with advanced security from SlateX POS. Secure logins, access policies, and managerial tools ensure your data and team are protected at every step.',
+          bgColor: 'bg-red-500',
+          bgGradient: 'from-red-400 to-red-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/qsr/qsr-about-4.png',
+          imageAlt: 'Security Features',
+          bulletPoints: [
+            { text: 'Secured Login and Access', highlight: true },
+            { text: 'Security Policies', highlight: true },
+            { text: 'Manager Functions', highlight: true },
+            { text: 'Menu & Discount', highlight: true }
+          ]
+        }
+      ]
+    },
+    
     industrySection: {
       title: "Features",
       subtitle: "Comprehensive quick-service solutions",
@@ -131,7 +243,7 @@ export interface CategoryStatItem {
         },
         {
           image: "/category/qsr/qsr-fe-2.png",
-          title: "Gift Cards",
+          title: "Gift Cards", 
           description: "Quickly generate gift cards in various denominations based on Special offers or promotions your restaurant is running. Easy to setup and distribute gift cards for both dine-in and takeout orders."
         },
         {
@@ -220,6 +332,69 @@ export interface CategoryStatItem {
         }
       ]
     },
+    scrollSection: {
+      heroTitle: "QSR Solutions at Every Step",
+      heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+      sections: [
+        {
+          id: '1',
+          icon: 'Smile',
+          title: 'Improve your Customer Service',
+          subtitle: 'Better Experience',
+          description:
+            'Deliver top-tier service with features like order status updates, QR payments, and split check options. Drive satisfaction and faster service with modern POS tools.',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/cd/cd-about-1.png', // Replace with actual path
+          imageAlt: 'Customer Service Experience',
+          bulletPoints: [
+            { text: 'Split Checks', highlight: true },
+            { text: 'Order Status Notifications', highlight: true },
+            { text: 'Upsell and Cross-sell', highlight: true },
+            { text: 'QR payments for quicker checkout', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'Users',
+          title: 'Efficient Employee Management',
+          subtitle: 'Staff Management',
+          description:
+            'Streamline employee workflows with performance tracking, payroll tools, and policy control. Boost productivity and simplify team operations effortlessly.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/cd/cd-about-2.png', // Replace with actual path
+          imageAlt: 'Employee Management',
+          bulletPoints: [
+            { text: 'Run Payroll Reports', highlight: true },
+            { text: 'Employee Cashout', highlight: true },
+            { text: 'Employee Policies', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'Workflow',
+          title: 'Simplified Operations and Workflows',
+          subtitle: 'Streamlined Flow',
+          description:
+            'Increase sales and speed up service with centralized control and efficient order processing. Manage multiple locations with a single streamlined solution.',
+          bgColor: 'bg-pink-500',
+          bgGradient: 'from-pink-400 to-pink-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/cd/cd-about-3.png', // Replace with actual path
+          imageAlt: 'Simplified Operations',
+          bulletPoints: [
+            { text: 'Faster order taking and processing', highlight: true },
+            { text: 'Increase sales in more ways', highlight: true },
+            { text: 'Centralized management of multiple locations', highlight: true }
+          ]
+        }
+      ]
+    },
+    
+
     industrySection: {
       title: "Features",
       subtitle: "Comprehensive casual dining solutions",
@@ -419,23 +594,23 @@ export interface CategoryStatItem {
   };
 
   export const fastCasualData: CategoryPageData = {
-    slug: "fast-casual",
+    slug: "fast-casual-restaurant",
     heroSection: {
       title: "Fast Casual",
-      description: "Streamline your fast-casual operations with intuitive POS solutions that balance speed with quality service. Perfect for modern dining experiences that demand efficiency without compromising customer satisfaction.",
+      description: "Transform your fast-casual dining experience with intelligent POS solutions that balance speed with quality service. Designed for modern restaurants that prioritize fresh ingredients, customization, and efficient operations without compromising on customer satisfaction.",
       buttonText: "Let's Connect",
       mainImage: "/fc-hero.png",
       mainImageAlt: "Fast Casual Restaurant POS System",
       deviceImage: "/fast-casual-device.png",
       deviceImageAlt: "Fast Casual POS Device",
       deviceTitle: "Fast Casual",
-      deviceDescription: "Efficient service solution",
+      deviceDescription: "Modern dining solution",
       backgroundText: "Casual",
       backgroundImage: "/bg.png"
     },
     numberSpeaks: {
       title: "Number Speaks",
-      subtitle: "Proven results for fast-casual operations",
+      subtitle: "Measurable impact on fast-casual operations",
       stats: [
         {
           value: "25-30%",
@@ -456,6 +631,63 @@ export interface CategoryStatItem {
           value: "22-25%",
           description: "Boost in sales and profitability",
           bgColor: "bg-green-100"
+        }
+      ]
+    },
+    scrollSection: {
+      heroTitle: "QSR Solutions at Every Step",
+      heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+      sections: [
+        {
+          id: '1',
+          icon: 'Workflow',
+          title: 'Efficient Order Processing',
+          subtitle: 'Order Processing',
+          description: '',
+          bgColor: 'bg-orange-500',
+          bgGradient: 'from-orange-400 to-orange-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/fc/fc-about-1.png',
+          imageAlt: 'Order Processing System',
+          bulletPoints: [
+            { text: 'Mode to Order Customizations', highlight: true },
+            { text: 'Personalized Ingredient Selection', highlight: true },
+            { text: 'All tickets at one place', highlight: true }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'ClipboardList',
+          title: 'Complex Menu Management',
+          subtitle: 'Menu Management',
+          description: 'Experience the ease of managing complex menus with SlateX Restaurant POS, a powerful tool for fast casual restaurants.',
+          bgColor: 'bg-purple-500',
+          bgGradient: 'from-purple-400 to-purple-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/fc/fc-about-2.png',
+          imageAlt: 'Menu Management System',
+          bulletPoints: [
+            { text: 'Tiered Item Pricing', highlight: true },
+            { text: 'Track Customer Preferences', highlight: true },
+            { text: 'Real time Inventory Tracking', highlight: true }
+          ]
+        },
+        {
+          id: '3',
+          icon: 'Smile',
+          title: 'Exceptional Customer Experience',
+          subtitle: 'Customer Experience',
+          description: '',
+          bgColor: 'bg-pink-500',
+          bgGradient: 'from-pink-400 to-pink-600',
+          buttonText: "Let's Connect",
+          imageSrc: '/category/fc/fc-about-3.png',
+          imageAlt: 'Customer Experience',
+          bulletPoints: [
+            { text: 'Order Accuracy', highlight: true },
+            { text: 'Online Ordering with branded app', highlight: true },
+            { text: 'Personalized Loyalty', highlight: true }
+          ]
         }
       ]
     },
@@ -495,17 +727,17 @@ export interface CategoryStatItem {
         {
           image: "/category/fc/fc-fe-3.png",
           title: "Ingredient Tracking",
-          description: "SlateX restaurant POS allows you to assign the required ingredients to menu items, enabling real-time tracking within inventory management. As customers place orders, ingredient levels are automatically updated, helping you monitor stock, reduce waste, and streamline reordering."
+          description: "SlateX restaurant POS allows you to assign the required ingredients to menu items, enabling real-time tracking within inventory management. As customers place orders, ingredient levels are automatically updated, helping you monitor stock, reduce waste, and streamline reordering processes."
         },
         {
           image: "/category/fc/fc-fe-4.png",
           title: "Organized Kitchen Display",
-          description: "Even the most complex orders are easily sent to kitchen display systems in an organized, easy to read format. Multi-column modifiers ensure clear communication of orders to kitchen, reducing errors and speeding up kitchen preparation."
+          description: "Even the most complex orders are easily sent to kitchen display systems in an organized, easy to read format. Multi-column modifiers ensure clear communication of orders to kitchen, reducing errors and speeding up kitchen preparation with precision timing."
         },
         {
           image: "/category/fc/fc-fe-5.png",
           title: "Hassle free Online Ordering",
-          description: "Our intuitive online ordering system for fast casual restaurants puts the customers in control. With a few simple clicks, they can effortlessly customize their meals to their exact preferences, ensuring a truly personalized ordering experience."
+          description: "Our intuitive online ordering system for fast casual restaurants puts the customers in control. With a few simple clicks, they can effortlessly customize their meals to their exact preferences, ensuring a truly personalized and convenient ordering experience."
         },
         {
           image: "/category/fc/fc-fe-6.png",
@@ -531,7 +763,7 @@ export interface CategoryStatItem {
         {
           image: "/category/fc/fc-wwo-3.png",
           title: "Loyalty & Promotion",
-          description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
+          description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
         }
       ]
     }
@@ -695,6 +927,63 @@ export interface CategoryStatItem {
         }
       ]
     },
+    scrollSection: {
+  heroTitle: "QSR Solutions at Every Step",
+  heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in quick-service environments",
+  sections: [
+    {
+      id: '1',
+      icon: 'Smile',
+      title: 'Ensure flawless service',
+      subtitle: 'Flawless Service',
+      description: '',
+      bgColor: 'bg-orange-500',
+      bgGradient: 'from-orange-400 to-orange-600',
+      buttonText: "Let's Connect",
+      imageSrc: '/category/fsr/fsr-about-1.png',
+      imageAlt: 'Customer Service Experience',
+      bulletPoints: [
+        { text: 'Simplified Table Management', highlight: true },
+        { text: 'Organized Order Processing', highlight: true },
+        { text: 'Flawless Kitchen Communication', highlight: true }
+      ]
+    },
+    {
+      id: '2',
+      icon: 'Users',
+      title: 'Customer Relationship Management',
+      subtitle: 'Customer Relationship Management',
+      description: 'The super-efficient and data-driven tools of SlateX restaurant POS are designed to empower you build lasting customer relationships.',
+      bgColor: 'bg-purple-500',
+      bgGradient: 'from-purple-400 to-purple-600',
+      buttonText: "Let's Connect",
+      imageSrc: '/category/fsr/fsr-about-2.png',
+      imageAlt: 'Employee Management',
+      bulletPoints: [
+        { text: 'Centralized Gift Cards', highlight: true },
+        { text: 'Contactless Payments', highlight: true },
+        { text: 'Own your Customer data', highlight: true }
+      ]
+    },
+    {
+      id: '3',
+      icon: 'Workflow',
+      title: 'Master Your Menu',
+      subtitle: 'Improve Services',
+      description: '',
+      bgColor: 'bg-pink-500',
+      bgGradient: 'from-pink-400 to-pink-600',
+      buttonText: "Let's Connect",
+      imageSrc: '/category/fsr/fsr-about-3.png',
+      imageAlt: 'Simplified Operations',
+      bulletPoints: [
+        { text: 'Item wise stock tracking', highlight: true },
+        { text: 'Analyze menu performance', highlight: true },
+        { text: 'Manage complex orders', highlight: true }
+      ]
+    }
+  ]
+},
     industrySection: {
       title: "Features",
       subtitle: "Comprehensive full-service solutions",
@@ -772,16 +1061,255 @@ export interface CategoryStatItem {
       ]
     }
   };
+
+  export const pizzeriaData: CategoryPageData = {
+    slug: "pizzeria",
+    heroSection: {
+      title: "Pizzeria",
+      description: "Streamline your pizzeria operations with specialized POS solutions designed for pizza restaurants. From custom toppings to delivery management, enhance efficiency and customer satisfaction.",
+      buttonText: "Let's Connect",
+      mainImage: "/category/pizza/pizza-hero.png",
+      mainImageAlt: "Pizzeria POS System",
+      deviceImage: "/pizzeria-device.png",
+      deviceImageAlt: "Pizzeria POS Device",
+      deviceTitle: "Pizzeria",
+      deviceDescription: "Specialized pizza solution",
+      backgroundText: "Pizza",
+      backgroundImage: "/bg.png"
+    },
+    numberSpeaks: {
+      title: "Number Speaks",
+      subtitle: "Proven results for pizzeria operations",
+      stats: [
+        {
+          value: "18-20%",
+          description: "Increase in average order size",
+          bgColor: "bg-purple-100"
+        },
+        {
+          value: "20-25%",
+          description: "Reduction in order errors",
+          bgColor: "bg-cyan-100"
+        },
+        {
+          value: "15-20%",
+          description: "Save on food waste",
+          bgColor: "bg-yellow-100"
+        },
+        {
+          value: "35-40%",
+          description: "Improve customer repeat ratio",
+          bgColor: "bg-green-100"
+        }
+      ]
+    },
+    industrySection: {
+      title: "Features",
+      subtitle: "Comprehensive pizzeria solutions",
+      features: [
+        {
+          heading: "Pizza-Specific Order Management",
+          description: "Our POS system is specifically designed for pizzerias, handling complex pizza customizations, multiple sizes, and specialty combinations with ease.",
+          bulletPoints: [
+            "Visual pizza builder interface",
+            "Size and crust management",
+            "Advanced topping combinations tracking"
+          ]
+        }
+      ],
+      stats: [],
+      ctaText: "Let's Connect",
+      imageSrc: "/category/pizzeria/pizzeria-about.png",
+      imageAlt: "Pizza Order Management"
+    },
+    keyFeatures: {
+      heading: "Key Benefits",
+      subheading: "Our Standout Features",
+      features: [
+        {
+          image: "/category/pizza/pizza-fe-1.png",
+          title: "½ and ½ pizza matrix",
+          description: "Allow customers to customize their pizzas with unique half-and-half combinations, providing a personalized dining experience. This feature caters to picky eaters and those who can't decide on just one topping combination."
+        },
+        {
+          image: "/category/pizza/pizza-fe-2.png",
+          title: "Multi-column Modifiers",
+          description: "Allow your staff to handle complex pizza orders with multiple toppings, sizes, and crust types effortlessly with multi-column modifiers in SlateX. Reduce errors and deliver the right orders every time."
+        },
+        {
+          image: "/category/pizza/pizza-fe-3.png",
+          title: "Recipe Management",
+          description: "Maintain a digital repository of all your pizza recipes, track ingredient and measurements item wise. Track the cost and stock levels of each ingredient used in your recipes to optimize pricing and manage inventory."
+        },
+        {
+          image: "/category/pizza/pizza-fe-4.png",
+          title: "Single Menu for all platforms",
+          description: "Making manual updates to the menu at multiple ordering platforms can be a time-consuming process. The master menu feature of SlateX POS helps you manage your menus for all online platforms quickly and easily. Update your menu once, and the changes will be instantly reflected everywhere."
+        },
+        {
+          image: "/category/pizza/pizza-fe-5.png",
+          title: "Split billing by seat",
+          description: "This feature allows customers to easily pay for their individual orders without the hassle and saves valuable time from manual calculations. Just click on split by seat for the order and each customer gets their payable amount and have a convenient payment experience."
+        },
+        {
+          image: "/category/pizza/pizza-fe-6.png",
+          title: "Itemized Discounts",
+          description: "With this feature, your pizzeria can promote specific menu items like combo deals or new pizza varieties to get more orders on them. This discount can also be used for the customers enrolled in the loyalty program to encourage repeat business."
+        }
+      ]
+    },
+    blackCardSection: {
+      heading: "SlateX Restaurant POS Tech Stack",
+      subheading: "Comprehensive Backend & Enterprise Reporting",
+      items: [
+        {
+          image: "/category/pizza/pizza-wwo-1.png",
+          title: "Restaurant POS System", 
+          description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
+        },
+        {
+          image: "/category/pizza/pizza-wwo-2.png",
+          title: "Kitchen Display System",
+          description: "Boost speed, accuracy, and communication in the kitchen with our display system that shows real-time orders to staff for seamless tracking."
+        },
+        {
+          image: "/category/pizza/pizza-wwo-3.png",
+          title: "Loyalty & Promotion",
+          description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
+        }
+      ]
+    }
+  };
+
+  export const cafeBakeryData: CategoryPageData = {
+    slug: "caf-and-bakery",
+    heroSection: {
+      title: "Café & Bakery",
+      description: "Elevate your café and bakery operations with specialized POS solutions designed for artisanal establishments. From complex coffee orders to fresh bakery items, streamline your workflow and enhance customer experience.",
+      buttonText: "Let's Connect",
+      mainImage: "/category/cafe/cafe-hero.png",
+      mainImageAlt: "Café & Bakery POS System",
+      deviceImage: "/cafe-bakery-device.png",
+      deviceImageAlt: "Café & Bakery POS Device",
+      deviceTitle: "Cafés & Bakeries",
+      deviceDescription: "Artisanal service solution",
+      backgroundText: "Café",
+      backgroundImage: "/bg.png"
+    },
+    numberSpeaks: {
+      title: "Number Speaks",
+      subtitle: "Proven results for café and bakery operations",
+      stats: [
+        {
+          value: "20-25%",
+          description: "Improved peak hour performance",
+          bgColor: "bg-purple-100"
+        },
+        {
+          value: "30-35%",
+          description: "Better customer retention",
+          bgColor: "bg-cyan-100"
+        },
+        {
+          value: "25-28%",
+          description: "Increase in sales growth",
+          bgColor: "bg-yellow-100"
+        },
+        {
+          value: "25-30%",
+          description: "Improve customer repeat ratio",
+          bgColor: "bg-green-100"
+        }
+      ]
+    },
+    industrySection: {
+      title: "Features",
+      subtitle: "Comprehensive café and bakery solutions",
+      features: [
+        {
+          heading: "Optimized for Coffee & Bakery Operations",
+          description: "Our POS system is specifically designed for cafés and bakeries, handling complex coffee customizations, fresh bakery inventory, and peak-hour rushes with precision.",
+          bulletPoints: [
+            "Coffee customization management",
+            "Fresh bakery item tracking",
+            "Peak hour optimization tools"
+          ]
+        }
+      ],
+      stats: [],
+      ctaText: "Let's Connect",
+      imageSrc: "/category/cafe-bakery/cafe-about.png",
+      imageAlt: "Coffee & Bakery Operations"
+    },
+    keyFeatures: {
+      heading: "Key Benefits",
+      subheading: "Our Standout Features",
+      features: [
+        {
+          image: "/category/cafe/cafe-fe-1.png",
+          title: "Track Customer preferences & analytics",
+          description: "Gain detailed insights of orders accompanied with coffee or integrated makes order taking a breeze for your staff. Personalize customer journey and experience. With the POS order history and customer reports, you can learn about repeat customers and loyalty program members, so that you can evaluate insights for customer strategies."
+        },
+        {
+            image: "/category/cafe/cafe-fe-2.png",
+          title: "Integrated deliveries & third party orders",
+          description: "SlateX seamlessly integrates with popular delivery platforms like GrubHub, DoorDash, UberEats, Postmates, and many more, making it easier for your customers to order their favorite cafe or bakery treats from the comfort of their homes. This integration not only expands your customer reach but also streamlines the delivery process, saving time and effort."
+        },
+        {
+          image: "/category/cafe/cafe-fe-3.png",
+          title: "Central Kitchen Management",
+          description: "SlateX cafe POS system streamlines operations by enabling the efficient coordination and management of products across multiple locations from a central kitchen or store. This centralized approach minimizes food waste, and improves coordination between the kitchen and multiple locations, leading to better inventory control and smoother operations."
+        },
+        {
+          image: "/category/cafe/cafe-fe-4.png",
+          title: "Complex Order Customization",
+          description: "You can easily modify items by selecting options from multiple columns, such as milk, toppings, syrups, and sizes. For example, Let's say you're ordering a latte with oat milk coffee, the POS will display choices for milk type, sweeteners, and size options, making the ordering process and reducing the chance of error."
+        },
+        {
+            image: "/category/cafe/cafe-fe-5.png",
+          title: "Offline Mode",
+          description: "Offline mode allows the system to continue processing orders, payments, and inventory updates even when there's no internet connection for several consecutive hours. Once the connection is restored, all transaction data is automatically synced with the cloud. This ensures that cafés and bakeries can keep serving customers regardless of connectivity issues."
+        },
+        {
+          image: "/category/cafe/cafe-fe-6.png",
+          title: "Multi-location Support",
+          description: "This feature allows business owners to oversee operations across various locations, including centralized menu management, staff scheduling, and inventory tracking. Real-time reporting provides insights for each location while maintaining consistency in branding and product quality making on a broader scale."
+        }
+      ]
+    },
+    blackCardSection: {
+      heading: "SlateX Restaurant POS Tech Stack",
+      subheading: "Comprehensive Backend & Enterprise Reporting",
+      items: [
+        {
+          image: "/category/cafe/cafe-wwo-1.png",
+          title: "Restaurant POS System",
+          description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
+        },
+        {
+          image: "/category/cafe/cafe-wwo-2.png",
+          title: "Kitchen Display System",
+          description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
+        },
+        {
+          image: "/category/cafe/cafe-wwo-3.png",
+          title: "Loyalty & Promotion",
+          description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
+        }
+      ]
+    }
+  };
   
   // Centralized category data registry
   export const categoryRegistry: Record<string, CategoryPageData> = {
     "quick-service-restaurants-qsr": quickServiceRestaurantData,
     "casual-dining": casualDiningData,
     "fine-dining": fineDiningData,
-    "fast-casual": fastCasualData,
+    "fast-casual-restaurant": fastCasualData,
     "food-trucks": foodTrucksData,
     "full-services-restaurant": fullServicesRestaurantData,
-    // Add more categories here as you create them
+    "pizzeria": pizzeriaData,
+    "caf-and-bakery": cafeBakeryData
   };
   
   // Helper function to get category data by slug

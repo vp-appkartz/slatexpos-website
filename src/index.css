@@ -5,12 +5,13 @@
 
 body {
   font-family: 'Gilroy', sans-serif;
- 
+  overflow-x: hidden;
 }
 
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Ensure smooth header transitions */

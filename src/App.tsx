@@ -21,7 +21,7 @@ function App() {
     <Router>
       {/* ScrollToTop must be inside Router but outside Routes */}
       <ScrollToTop />
-      <div className="">
+      <div className="overflow-x-hidden">
         <Header />
         <Routes>
           <Route path="/" element={

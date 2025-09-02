@@ -122,7 +122,7 @@ const ComparePlanComponent = () => {
   };
 
   return (
-    <div className="w-full bg-gray-50 min-h-screen">
+    <div className="w-full bg-gray-50 min-h-screen mt-16 sm:mt-20 lg:mt-[140px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8 lg:mb-12">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2 lg:mb-4">

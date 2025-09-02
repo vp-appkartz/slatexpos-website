@@ -64,18 +64,18 @@ const plans = [
 const PricingComponent = () => {
   return (
     <div
-      className="max-w-6xl mx-auto p-8 min-h-screen"
+      className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 min-h-screen mt-16 sm:mt-20 lg:mt-[140px]"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
     >
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-light text-gray-900 mb-4">
+      <div className="text-center mb-8 sm:mb-12 pt-4 sm:pt-0">
+        <h1 className="text-3xl sm:text-4xl font-light text-gray-900 mb-3 sm:mb-4">
           <span className="text-gray-700 font-semibold">Flexible Pricing</span> for Every Restaurant Size
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-base sm:text-lg text-gray-600">
           Whether you're just starting or scaling, we have a plan for you.
         </p>
       </div>

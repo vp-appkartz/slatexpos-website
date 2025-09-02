@@ -3,7 +3,7 @@ import LogoSlider from "../Common/LogoSlider";
 const Hero = () => {
   return (
     <div
-      className="min-h-screen relative overflow-hidden mt-20"
+      className="relative overflow-hidden mt-20"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",
@@ -11,26 +11,25 @@ const Hero = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Extended background to cover header area */}
-     
       {/* Hero Section */}
-      <section className="pt-20 pb-12 relative z-10">
+      <section className="pt-10 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Heading */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl lg:text-5xl font-light text-gray-800 leading-tight mb-6">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 leading-tight mb-4 sm:mb-6 px-2">
               Run Your Restaurant <span className="font-bold text-gray-700">More Efficiently</span> Smarter
             </h1>
 
             {/* CTA Button */}
             <button
-              className="bg-primary-300 text-lg text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="bg-primary-300 text-base sm:text-lg text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               Let's Connect
             </button>
           </div>
 
-          <div className="relative mt-16">
+          {/* Desktop Layout - Hidden on mobile and tablet */}
+          <div className="relative mt-16 hidden xl:block">
             <div className="flex justify-center items-center relative">
               {/* Center Image */}
               <div className="relative z-10">
@@ -110,11 +109,41 @@ const Hero = () => {
               </div>
             </div>
           </div>
+
+          {/* Mobile & Tablet Layout */}
+          <div className="mt-6 sm:mt-10 xl:hidden">
+            {/* Mobile: Only girl image centered */}
+            <div className="block sm:hidden">
+              <div className="flex justify-center px-4">
+                {/* Center girl image only */}
+                <div className="w-full max-w-sm">
+                  <img 
+                    src="/hero-home-center.png" 
+                    alt="Restaurant Staff" 
+                    className="w-full h-auto object-cover rounded-lg shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Tablet: Show main image prominently */}
+            <div className="hidden sm:block xl:hidden">
+              <div className="flex justify-center">
+                <div className="w-full max-w-md lg:max-w-lg">
+                  <img 
+                    src="/hero-home-center.png" 
+                    alt="Restaurant Staff" 
+                    className="w-full h-auto object-cover rounded-lg shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Client Logo Slider Section */}
-      <div className="relative z-10">
+      <div className="relative z-10 mt-6 sm:mt-8 pb-8">
         <LogoSlider />
       </div>
     </div>

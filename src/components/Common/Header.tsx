@@ -192,35 +192,31 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header with responsive spacing */}
-       <div className="bg-[url('/nav-bg.png')] bg-fill bg-no-repeat">
+       <div className="bg-[url('/nav-bg.png')] bg-fill bg-no-repeat overflow-x-hidden">
         <div className={`transition-all duration-300 ${
 -          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-4 sm:px-6 lg:px-8 xl:px-[150px]'
-+          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-4 sm:px-6 lg:px-8 xl:px-[150px] mb-0'
++          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-2 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-2 sm:px-6 lg:px-8 xl:px-[150px] mb-0'
         }`}>
-          <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 ${
+          <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 w-full ${
 -            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
 +            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-t-xl sm:rounded-t-2xl bg-white opacity-100'
           }`}>
-            <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-              <div className="flex items-center h-12 sm:h-14 lg:h-16">
+            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
+              <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
                 {/* Logo - Left side */}
-                <div className="flex items-center">
-                  <div className="flex items-center justify-center -ml-3 sm:-ml-5">
+                <div className="flex items-center flex-shrink-0">
+                  <div className="flex items-center justify-center">
                     <img
                       src="/slatex-logo.png"
                       alt="SlatexPOS Logo"
-                      className="h-20 object-contain sm:h-10 lg:h-20 w-auto cursor-pointer"
+                      className="h-8 object-contain sm:h-10 lg:h-20 w-auto cursor-pointer"
                       onClick={() => navigate('/')}
                     />
                   </div>
                 </div>
 
-                {/* Space between logo and menu */}
-                <div className="w-20 sm:w-5"></div>
-                <div className="w-20 sm:w-5"></div>
-
                 {/* Navigation - Desktop only */}
-                <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1">
+                <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-center">
                   {/* Products Dropdown */}
                   <div className="relative dropdown-container">
                     <button 
@@ -262,10 +258,10 @@ const Header: React.FC = () => {
                 </nav>
 
                 {/* Right Side Actions */}
-                <div className="flex items-center space-x-2 sm:space-x-4 ml-auto">
+                <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
                   {/* Get a Demo Button - Hidden on mobile */}
                   <button
-                    className="hidden sm:block relative group bg-white text-primary-300 px-4 lg:px-4 py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-2xl"
+                    className="hidden sm:block relative group bg-white text-primary-300 px-3 sm:px-4 lg:px-4 py-2 sm:py-3 lg:py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-2xl"
                     onClick={() => setIsDemoModalOpen(true)}
                   >
                     <div className="absolute inset-0 bg-primary-300 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"></div>
@@ -275,7 +271,7 @@ const Header: React.FC = () => {
                   {/* Mobile menu button */}
                   <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                    className="lg:hidden p-1.5 sm:p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
                   >
                     <div className="relative w-5 h-5 sm:w-6 sm:h-6">
                       <Menu className={`w-5 h-5 sm:w-6 sm:h-6 absolute transition-all duration-300 ${

@@ -18,106 +18,6 @@ const blogCategories = [
   { name: "Customer Experience", slug: "customer-experience" },
 ];
 
-// Fallback static blog posts (your original design)
-const staticBlogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Boosting Profit Margins: The Strategic Role of POS Systems in Quick Service Restaurants",
-    excerpt: "Discover how modern POS systems can streamline operations, reduce costs, and increase profits for QSRs.",
-    content: "Discover how modern POS systems can streamline operations, reduce costs, and increase profits for QSRs through advanced analytics and automation.",
-    category: "QSR",
-    author: "Admin",
-    date: "July 5, 2023",
-    imageUrl: "/blog.png",
-    featured: true,
-    published: true,
-    createdAt: new Date("2023-07-05"),
-    updatedAt: new Date("2023-07-05"),
-    tags: ["POS", "QSR", "Technology"],
-    slug: "boosting-profit-margins-pos-systems-qsr"
-  },
-  {
-    id: "2",
-    title: "The Future of Restaurant Technology: AI-Powered POS Systems",
-    excerpt: "Explore how artificial intelligence is revolutionizing restaurant operations through intelligent POS systems.",
-    content: "Artificial Intelligence is transforming the restaurant industry, and POS systems are at the forefront of this technological revolution.",
-    category: "Technology",
-    author: "Admin",
-    date: "July 4, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-04"),
-    updatedAt: new Date("2023-07-04"),
-    tags: ["AI", "Technology", "POS"],
-    slug: "future-restaurant-technology-ai-pos"
-  },
-  {
-    id: "3",
-    title: "Maximizing Customer Satisfaction Through Digital Ordering",
-    excerpt: "Learn how digital ordering platforms enhance customer experience while increasing operational efficiency.",
-    content: "Digital ordering has become a cornerstone of modern restaurant operations, fundamentally changing how customers interact with food service businesses.",
-    category: "Customer Experience",
-    author: "Admin",
-    date: "July 3, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-03"),
-    updatedAt: new Date("2023-07-03"),
-    tags: ["Digital Ordering", "Customer Experience"],
-    slug: "maximizing-customer-satisfaction-digital-ordering"
-  },
-  {
-    id: "4",
-    title: "Pizza Restaurant POS: Streamlining Operations for Better Service",
-    excerpt: "Optimize your pizzeria operations with specialized POS features designed for pizza restaurants.",
-    content: "Pizza restaurants have unique operational needs that require specialized POS system features to maximize efficiency and customer satisfaction.",
-    category: "Pizzeria",
-    author: "Admin",
-    date: "July 2, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-02"),
-    updatedAt: new Date("2023-07-02"),
-    tags: ["Pizza", "POS", "Operations"],
-    slug: "pizza-restaurant-pos-streamlining-operations"
-  },
-  {
-    id: "5",
-    title: "Cafe & Bakery Management: Essential POS Features",
-    excerpt: "Discover the key POS features that help cafes and bakeries manage inventory, orders, and customer relationships.",
-    content: "Cafes and bakeries require specialized point-of-sale solutions that can handle their unique inventory management and customer service needs.",
-    category: "Cafe n Bakery",
-    author: "Admin",
-    date: "July 1, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-01"),
-    updatedAt: new Date("2023-07-01"),
-    tags: ["Cafe", "Bakery", "Management"],
-    slug: "cafe-bakery-management-pos-features"
-  },
-  {
-    id: "6",
-    title: "Web Ordering Integration: Seamless Online-to-Kitchen Workflow",
-    excerpt: "Learn how to integrate web ordering systems with your POS for a seamless operation from order to delivery.",
-    content: "Web ordering integration has become essential for restaurants looking to expand their reach and provide customers with convenient ordering options.",
-    category: "Web Ordering",
-    author: "Admin",
-    date: "June 30, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-06-30"),
-    updatedAt: new Date("2023-06-30"),
-    tags: ["Web Ordering", "Integration", "Workflow"],
-    slug: "web-ordering-integration-seamless-workflow"
-  }
-];
-
 const BlogSection = () => {
   const [selectedSort, setSelectedSort] = useState("Newest");
   const [search, setSearch] = useState("");
@@ -136,56 +36,20 @@ const BlogSection = () => {
   }, [blogs, search, selectedSort]);
 
   const fetchBlogs = async () => {
-    setLoading(true);
-    
     try {
-      // Try to fetch from Firebase first
-      let blogData: BlogPost[] = [];
-      
-      // Import the getAllBlogs function to get both published and draft blogs for debugging
-      const { getAllBlogs } = await import('../../services/blogService');
+      setLoading(true);
+      let blogData: BlogPost[];
       
       if (selectedCategory === "All") {
-        // Get all blogs (including drafts) for debugging
-        const allBlogs = await getAllBlogs();
-        console.log('All blogs (including drafts):', allBlogs);
-        
-        // Filter to only published blogs
-        blogData = allBlogs.filter(blog => blog.published);
-        console.log('Published blogs only:', blogData);
+        blogData = await getPublishedBlogs();
       } else {
         blogData = await getBlogsByCategory(selectedCategory);
       }
       
-      console.log('Firebase blogs fetched:', blogData.length, blogData);
-      
-      // If Firebase returns data, use it
-      if (blogData.length > 0) {
-        console.log('Using Firebase blog data');
-        setBlogs(blogData);
-        setLoading(false);
-        return;
-      }
-      
-      // If no Firebase data, use static fallback data
-      console.log('No Firebase data found, using static fallback blog data');
-      if (selectedCategory === "All") {
-        blogData = staticBlogPosts;
-      } else {
-        blogData = staticBlogPosts.filter(blog => blog.category === selectedCategory);
-      }
-      
       setBlogs(blogData);
-    } catch (firebaseError) {
-      console.error('Firebase fetch failed:', firebaseError);
-      
-      // Fallback to static data
-      console.log('Firebase error, using static fallback blog data');
-      const fallbackData = selectedCategory === "All" 
-        ? staticBlogPosts 
-        : staticBlogPosts.filter(blog => blog.category === selectedCategory);
-      
-      setBlogs(fallbackData);
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+      setBlogs([]);
     } finally {
       setLoading(false);
     }
@@ -254,37 +118,29 @@ const BlogSection = () => {
 
         <div className="max-w-[1200px] mx-auto px-2 sm:px-4 py-8">
           {/* Top Bar: Sort and Results */}
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-          {/* Sort */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-700">Sort by:</span>
-            <div className="relative">
-              <select
-                value={selectedSort}
-                onChange={(e) => setSelectedSort(e.target.value)}
-                className="appearance-none bg-transparent border-none text-[15px] font-semibold pr-6 pl-1 py-1 focus:outline-none cursor-pointer"
-                style={{ minWidth: 80 }}
-              >
-                <option value="Newest">Newest</option>
-                <option value="Oldest">Oldest</option>
-                <option value="Popular">Popular</option>
-              </select>
-              <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-black pointer-events-none" />
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            {/* Sort */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700">Sort by:</span>
+              <div className="relative">
+                <select
+                  value={selectedSort}
+                  onChange={(e) => setSelectedSort(e.target.value)}
+                  className="appearance-none bg-transparent border-none text-[15px] font-semibold pr-6 pl-1 py-1 focus:outline-none cursor-pointer"
+                  style={{ minWidth: 80 }}
+                >
+                  <option value="Newest">Newest</option>
+                  <option value="Oldest">Oldest</option>
+                  <option value="Popular">Popular</option>
+                </select>
+                <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-black pointer-events-none" />
+              </div>
             </div>
-            
-            {/* Refresh Button */}
-            <button
-              onClick={() => fetchBlogs()}
-              className="ml-4 px-3 py-1 bg-primary-300 hover:bg-primary-400 text-white text-sm font-medium rounded-md transition-colors duration-200"
-            >
-              Refresh
-            </button>
+            {/* Results count */}
+            <div className="text-right text-[15px] text-gray-700">
+              Showing {filteredBlogs.length} of {blogs.length} posts
+            </div>
           </div>
-          {/* Results count */}
-          <div className="text-right text-[15px] text-gray-700">
-            Showing {filteredBlogs.length} of {blogs.length} posts
-          </div>
-        </div>
 
           {/* Main Content: Grid + Sidebar */}
           <div className="flex flex-col lg:flex-row gap-8">
@@ -343,7 +199,7 @@ const BlogSection = () => {
                             navigate(`/blog/${post.slug}`);
                           }}
                         >
-                          Get Started
+                          Read More
                         </button>
                       </div>
                     </div>
@@ -445,3 +301,5 @@ const BlogSection = () => {
 };
 
 export default BlogSection;
+
+

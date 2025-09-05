@@ -20,61 +20,20 @@ const BlogDetails = () => {
     }
   }, [slug]);
 
-  // Static fallback blog data
-  const staticBlogDetails = {
-    id: "1",
-    title: "Boosting Profit Margins: The Strategic Role of POS Systems in Quick Service Restaurants",
-    excerpt: "Discover how modern POS systems can streamline operations, reduce costs, and increase profits for QSRs.",
-    content: `In today's competitive quick service restaurant (QSR) landscape, maximizing profit margins is crucial for sustained success. Point of Sale (POS) systems have evolved far beyond simple transaction processing to become powerful business intelligence tools that can significantly impact your bottom line.
-
-Modern POS systems offer comprehensive analytics that help restaurant owners understand their business better. From tracking peak hours to identifying best-selling items, these insights enable data-driven decisions that directly impact profitability.
-
-Labor costs typically represent 25-35% of a QSR's total expenses. Smart POS systems help optimize labor scheduling by analyzing historical sales data and predicting busy periods. This ensures you have the right number of staff at the right times, reducing both labor costs and customer wait times.
-
-Inventory management is another critical area where POS systems excel. Real-time inventory tracking helps prevent overstocking and reduces waste, while automated reordering ensures you never run out of popular items. This level of control can reduce food costs by 3-5%.
-
-Customer data collection through POS systems enables targeted marketing campaigns and loyalty programs. By understanding customer preferences and ordering patterns, restaurants can create personalized offers that drive repeat business and increase average order values.
-
-Integration capabilities of modern POS systems allow seamless connection with other business tools like accounting software, online ordering platforms, and delivery services. This reduces manual work and potential errors while providing a unified view of your business operations.
-
-The return on investment for a quality POS system typically pays for itself within 12-18 months through improved efficiency, reduced waste, and increased sales. For QSRs looking to stay competitive and profitable, investing in the right POS technology is no longer optional—it's essential.`,
-    category: "QSR",
-    author: "Admin",
-    date: "July 5, 2023",
-    imageUrl: "/blog.png",
-    featured: true,
-    published: true,
-    createdAt: new Date("2023-07-05"),
-    updatedAt: new Date("2023-07-05"),
-    tags: ["POS", "QSR", "Technology"],
-    slug: "boosting-profit-margins-pos-systems-qsr"
-  };
-
   const fetchBlog = async () => {
     try {
       setLoading(true);
       setError(null);
+      const blogData = await getBlogBySlug(slug!);
       
-      // Try Firebase first
-      let blogData = null;
-      try {
-        blogData = await getBlogBySlug(slug!);
-        console.log('Firebase blog fetched:', blogData?.title || 'not found');
-      } catch (firebaseError) {
-        console.warn('Firebase fetch failed:', firebaseError);
+      if (blogData) {
+        setBlog(blogData);
+      } else {
+        setError('Blog post not found');
       }
-      
-      // If no Firebase data, use static fallback
-      if (!blogData) {
-        console.log('Using static fallback blog data');
-        blogData = staticBlogDetails;
-      }
-      
-      setBlog(blogData);
     } catch (error) {
       console.error('Error fetching blog:', error);
-      // Final fallback to static data
-      setBlog(staticBlogDetails);
+      setError('Failed to load blog post');
     } finally {
       setLoading(false);
     }
@@ -305,3 +264,5 @@ The return on investment for a quality POS system typically pays for itself with
 };
 
 export default BlogDetails;
+
+

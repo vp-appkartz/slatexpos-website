@@ -71,12 +71,12 @@ const Hardware = () => {
         <div>
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
               Hardware
             </h2>
-            <p className="text-2xl  text-gray-800 font-medium">
-              Powerful Tools. Seamless Experience.
-            </p>
+              <p className="text-lg md:text-2xl text-gray-800 font-medium">
+                Powerful Tools. Seamless Experience.
+              </p>
           </div>
 
           {/* Hardware Items Grid */}
@@ -107,12 +107,12 @@ const Hardware = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-4xl font-bold text-left text-gray-800 mb-4 mt-[100px]">
+                  <h3 className="text-2xl md:text-4xl font-bold text-left text-gray-800 mb-4 mt-[100px]">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-800 text-lg font-medium text-left leading-relaxed">
+                  <p className="text-gray-800 text-base md:text-lg font-medium text-left leading-relaxed">
                     {item.description}
                   </p>
                 </div>

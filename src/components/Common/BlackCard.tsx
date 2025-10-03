@@ -54,7 +54,10 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
 
         {/* Results Grid */}
         <div
-          className={`grid gap-6 ${gridCols} ${justifyClass} ${gridClassName}`}
+          className={`
+            grid gap-6 ${gridCols} ${justifyClass} ${gridClassName}
+            sm:justify-center
+          `}
           style={
             items.length < 4
               ? {
@@ -66,7 +69,14 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
           {items.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 border-2 border-gray-700 transition-colors duration-300 flex flex-col items-start text-left"
+              className="
+                bg-gray-800 rounded-xl p-6 hover:bg-gray-700 border-2 border-gray-700 
+                transition-colors duration-300 flex flex-col items-start text-left
+                mx-auto
+                w-full
+                sm:w-[90%]
+                md:w-auto
+                "
               style={{ maxWidth: "320px", width: "100%" }}
             >
               {/* Result Icon */}

@@ -117,7 +117,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
                   data-aos-delay={aosDelay}
                 >
                   <Check className="w-5 h-5 text-primary-300 mr-3 flex-shrink-0" />
-                  <span className="text-lg font-medium">{indicator}</span>
+                  <span className="text-base lg:text-lg font-medium">{indicator}</span>
                 </div>
               );
             })}

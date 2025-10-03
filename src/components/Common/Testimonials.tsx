@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 
 const Testimonial = () => {
   const testimonials = [
@@ -44,26 +43,23 @@ const Testimonial = () => {
   // By default, first card expanded. On hover, expand hovered card.
   const [expandedIndex, setExpandedIndex] = useState(0);
 
-  
-
   return (
     <section className="bg-white py-16 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 `}>
-          <h2 className="text-5xl font-bold text-gray-800 mb-4">
+        <div className={`text-center mb-16 transition-all duration-1000`}>
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
             Testimonials
           </h2>
-          <p className="text-2xl font-medium text-gray-600">
+          <p className="text-lg md:text-2xl font-medium text-gray-600">
             Proof in every plate, Hear from our customers
           </p>
         </div>
 
-        {/* Testimonial Cards */}
+        {/* Testimonial Cards for Desktop */}
         <div className="hidden md:flex gap-4 h-96 overflow-hidden">
           {testimonials.map((testimonial, index) => {
             const isExpanded = expandedIndex === index;
-       
             return (
               <div
                 key={testimonial.id}
@@ -73,7 +69,6 @@ const Testimonial = () => {
                 onMouseEnter={() => setExpandedIndex(index)}
                 onMouseLeave={() => setExpandedIndex(0)}
                 style={{ minWidth: isExpanded ? 320 : 256, maxWidth: isExpanded ? 500 : 256 }}
-               
               >
                 {/* Background Image */}
                 <img
@@ -137,13 +132,10 @@ const Testimonial = () => {
         {/* Mobile Version - Stack cards vertically on small screens */}
         <div className="md:hidden mt-8 space-y-4">
           {testimonials.map((testimonial, index) => {
-           
-            const aosDelay = 200 + index * 120;
             return (
               <div
                 key={`mobile-${testimonial.id}`}
                 className="relative rounded-lg overflow-hidden h-64"
-               
               >
                 <img
                   src={testimonial.image}
@@ -153,23 +145,28 @@ const Testimonial = () => {
 
                 <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-                <div className="absolute inset-0 p-6 text-white flex flex-col justify-end">
-                  <p className="text-sm leading-relaxed mb-4">
+                {/* Responsive padding for mobile: px-3 for very small, px-4 for normal, px-6 for md */}
+                <div className="absolute inset-0 flex flex-col justify-end text-white
+                  px-3 py-4
+                  sm:px-4 sm:py-6
+                  md:px-6 md:py-6
+                ">
+                  <p className="text-sm leading-relaxed mb-3 sm:mb-4">
                     {testimonial.text}
                   </p>
 
-                  <h3 className="text-lg font-semibold mb-1">
+                  <h3 className="text-base sm:text-lg font-semibold mb-1">
                     {testimonial.name}
                   </h3>
-                  <p className="text-sm text-gray-300 mb-4">
+                  <p className="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4">
                     {testimonial.position}
                   </p>
 
-                  <div className="border-t border-gray-500 pt-4">
-                    <div className="text-sm font-bold tracking-wider">
+                  <div className="border-t border-gray-500 pt-3 sm:pt-4">
+                    <div className="text-xs sm:text-sm font-bold tracking-wider">
                       {testimonial.logo}
                     </div>
-                    <div className="text-xs text-gray-400 tracking-wide">
+                    <div className="text-[10px] sm:text-xs text-gray-400 tracking-wide">
                       {testimonial.logoSubtext}
                     </div>
                   </div>

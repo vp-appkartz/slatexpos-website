@@ -157,19 +157,19 @@ const BulletList: React.FC<{ points: { text: string; highlight?: boolean }[] }> 
   }
 
   return (
-    <div className="mb-4 md:mb-6 w-full">
-      <div className="flex flex-col gap-y-3 md:gap-y-4">
+    <div className="mb-6 md:mb-6 w-full">
+      <div className="flex flex-col gap-y-4 md:gap-y-4">
         {groupedPoints.map((row, rowIdx) => (
-          <div key={rowIdx} className="flex flex-col sm:flex-row items-start sm:items-center gap-x-4 gap-y-2 sm:gap-y-0">
+          <div key={rowIdx} className="flex flex-col sm:flex-row items-start sm:items-center gap-x-4 gap-y-3 sm:gap-y-0">
             {row.map((point, pointIdx) => (
               <div
                 key={pointIdx}
                 className="flex items-center flex-shrink-0"
               >
-                <span className="flex-shrink-0 rounded-full bg-primary-300 w-4 h-4 md:w-5 md:h-5 flex items-center justify-center mr-2">
-                  <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={2.2} />
+                <span className="flex-shrink-0 rounded-full bg-primary-300 w-7 h-7 md:w-5 md:h-5 flex items-center justify-center mr-3">
+                  <Check className="w-5 h-5 md:w-4 md:h-4 text-white" strokeWidth={2.5} />
                 </span>
-                <span className="text-gray-700 font-semibold text-xs md:text-sm lg:text-base leading-tight">
+                <span className="text-gray-700 font-semibold text-lg sm:text-xl md:text-sm lg:text-base leading-snug">
                   {point.text}
                 </span>
               </div>
@@ -328,10 +328,10 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
       {/* Hero Section - Reduced spacing */}
       <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
         <div className="text-center">
-          <h1 className="text-3xl mt-4 md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl mt-4 md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
             {heroTitle}
           </h1>
-          <p className="text-black text-sm font-medium md:text-sm lg:text-base mt-1 md:mt-2">
+          <p className="text-black text-lg sm:text-xl font-medium md:text-sm lg:text-base mt-2 md:mt-2">
             {heroSubtitle}
           </p>
         </div>
@@ -371,12 +371,12 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
               </div>
               
               {/* Content for mobile */}
-              <div className="flex-1 flex items-center justify-center px-4">
+              <div className="flex-1 flex items-center justify-center px-4 pb-12">
                 <div className="max-w-sm w-full text-left">
-                  <h2 className="text-xl font-bold text-gray-700 mb-3 tracking-wide" style={{lineHeight: '1.3'}}>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-700 mb-5 tracking-wide" style={{lineHeight: '1.3'}}>
                     {section.subtitle}
                   </h2>
-                  <p className="text-base font-normal text-black mb-4">
+                  <p className="text-xl sm:text-2xl font-normal text-black mb-6">
                     {section.description}
                   </p>
 
@@ -386,7 +386,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
 
                   <button 
                     onClick={() => handleButtonClick(section.id)}
-                    className="bg-primary-300 text-white px-4 py-2.5 rounded-md font-medium hover:bg-orange-600 transition-colors duration-200 text-sm shadow-md"
+                    className="bg-primary-300 text-white px-6 py-3.5 rounded-md font-medium hover:bg-orange-600 transition-colors duration-200 text-lg shadow-md mt-8"
                   >
                     {section.buttonText}
                   </button>

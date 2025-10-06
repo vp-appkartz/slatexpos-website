@@ -406,10 +406,10 @@ const Header: React.FC = () => {
 
         {/* Desktop Products Mega Menu - FIXED: Larger icons */}
         {activeDropdown === 'products' && (
-          <div className={`fixed top-[85px] left-0 right-0 p-10 z-40  min-h-screen ${
-            isScrolled ? 'pt-18 sm:pt-20' : 'pt-20 sm:pt-24'
+          <div className={`fixed left-0 right-0 z-40 ${
+            isScrolled ? 'top-[70px]' : 'top-[108px]'
           }`} onClick={() => setActiveDropdown(null)}>
-            <div className="px-4 sm:px-6">
+            <div className="px-4 sm:px-6 lg:px-8 xl:px-[150px] pt-2">
               <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-200 max-w-7xl mx-auto" onClick={(e) => e.stopPropagation()}>
                 <div className="px-4 sm:px-6 lg:px-10 py-8 sm:py-8">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -551,10 +551,10 @@ const Header: React.FC = () => {
 
         {/* Desktop Categories Mega Menu - FIXED: Larger icons */}
         {activeDropdown === 'categories' && (
-          <div className={`fixed top-[85px] left-0 right-0 z-40  ${
-            isScrolled ? 'pt-16 sm:pt-20' : 'pt-20 sm:pt-24'
+          <div className={`fixed left-0 right-0 z-40 ${
+            isScrolled ? 'top-[70px]' : 'top-[108px]'
           }`} onClick={() => setActiveDropdown(null)}>
-            <div className="px-4 sm:px-6">
+            <div className="px-4 sm:px-6 lg:px-8 xl:px-[150px] pt-2">
               <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-200 max-w-7xl mx-auto" onClick={(e) => e.stopPropagation()}>
                 <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                   <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">

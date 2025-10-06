@@ -382,8 +382,25 @@ const Header: React.FC = () => {
                       )}
                     </div>
 
+                    {/* Hardware */}
+                    <button 
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        navigate('/hardware');
+                      }}
+                      className="text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg text-left w-full"
+                    >
+                      <span className="font-medium">Hardware</span>
+                    </button>
+
                     {/* Pricing */}
-                    <button className="text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg text-left w-full">
+                    <button 
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        navigate('/pricing');
+                      }}
+                      className="text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg text-left w-full"
+                    >
                       <span className="font-medium">Pricing</span>
                     </button>
                     

@@ -15,6 +15,7 @@ import ScrollToTop from './components/Common/ScrollToTop';
 import HardwarePage from './components/pages/Hardware';
 import BlogList from './components/pages/BlogList';
 import BlogDetails from './components/pages/BlogDetails';
+import NotFound from './components/pages/NotFound';
 
 // Admin imports
 import { AuthProvider } from './contexts/AuthContext';
@@ -92,6 +93,9 @@ function App() {
                 </AdminLayout>
               </ProtectedRoute>
             } />
+            
+            {/* 404 Page - Must be last */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </div>

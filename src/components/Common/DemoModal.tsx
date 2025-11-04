@@ -136,7 +136,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               Schedule your 15-minute demo now
             </h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <div className="flex space-x-3">
+              <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0">
                 <input
                   type="text"
                   name="firstName"
@@ -158,7 +158,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                   autoComplete="family-name"
                 />
               </div>
-              <div className="flex space-x-3">
+              <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0">
                 <input
                   type="email"
                   name="email"

@@ -13,6 +13,7 @@ import Contact from '../Common/CTA';
 import { getCategoryData } from '../../Data/categoryData';
 import FAQSection from '../Common/Faq';
 import ScrollSection from '../Home/ScrollSection';
+import SEO from '../Common/SEO';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -32,13 +33,13 @@ const getIcon = (iconName: string) => {
 
 const DynamicCategoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  
+
   if (!slug) {
     return <Navigate to="/" replace />;
   }
-  
+
   const categoryData = getCategoryData(slug);
-  
+
   if (!categoryData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -74,6 +75,11 @@ const DynamicCategoryPage: React.FC = () => {
 
   return (
     <>
+      <SEO
+        title={categoryData.meta?.title || categoryData.heroSection.title}
+        description={categoryData.meta?.description || categoryData.heroSection.description}
+        keywords={categoryData.meta?.keywords}
+      />
       <HeroSection
         title={categoryData.heroSection.title}
         description={categoryData.heroSection.description}
@@ -87,16 +93,16 @@ const DynamicCategoryPage: React.FC = () => {
         backgroundText={categoryData.heroSection.backgroundText}
         backgroundImage={categoryData.heroSection.backgroundImage}
       />
-      
+
       <NumberSpeaks
         title={categoryData.numberSpeaks.title}
         subtitle={categoryData.numberSpeaks.subtitle}
         stats={categoryData.numberSpeaks.stats}
       />
-     
+
       {/* Conditionally render ScrollSection only if category has scroll section data */}
       {scrollSectionData ? (
-        <ScrollSection 
+        <ScrollSection
           heroTitle={scrollSectionData.heroTitle}
           heroSubtitle={scrollSectionData.heroSubtitle}
           sections={scrollSectionData.sections}
@@ -108,13 +114,13 @@ const DynamicCategoryPage: React.FC = () => {
       ) : (
         <ScrollSection />
       )}
-     
+
       <KeyFeatures
         heading={categoryData.keyFeatures.heading}
         subheading={categoryData.keyFeatures.subheading}
         features={categoryData.keyFeatures.features}
       />
-     
+
       {categoryData.blackCardSection && (
         <BlackCardSection
           heading={categoryData.blackCardSection.heading}
@@ -122,7 +128,7 @@ const DynamicCategoryPage: React.FC = () => {
           items={categoryData.blackCardSection.items}
         />
       )}
-     
+
       <Hardware />
       <BlackSection />
       <Testimonial />

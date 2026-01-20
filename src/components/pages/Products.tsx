@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import HeroSection from '../Common/HeroSection';
 import NumberSpeaks from '../Common/StatData';
-import IndustrySection from '../Common/Features';
 import KeyFeatures from '../Common/KeyFeature';
 import BlackCardSection from '../Common/BlackCard';
 import Hardware from '../Common/Hardware';
@@ -13,7 +12,9 @@ import Testimonial from '../Common/Testimonials';
 import Contact from '../Common/CTA';
 import { getProductData } from '../../Data/productData';
 import FAQSection from '../Common/Faq';
+
 import ScrollSection from '../Home/ScrollSection';
+import SEO from '../Common/SEO';
 import { Zap, Monitor, CreditCard, BarChart3, Users, Utensils, Clock, Coffee, ChefHat, Globe, TrendingUp, LayoutDashboard, Heart } from 'lucide-react';
 
 // Icon mapping helper for product scroll section
@@ -43,7 +44,7 @@ const DynamicProductPage: React.FC = () => {
     const el = document.scrollingElement || document.documentElement;
     el.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
-  
+
   if (!slug) {
     return <Navigate to="/" replace />;
   }
@@ -56,8 +57,8 @@ const DynamicProductPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Product Not Found</h1>
           <p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
-          <a 
-            href="/" 
+          <a
+            href="/"
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors"
           >
             Back to Home
@@ -85,6 +86,11 @@ const DynamicProductPage: React.FC = () => {
 
   return (
     <>
+      <SEO
+        title={productData.meta?.title || productData.heroSection.title}
+        description={productData.meta?.description || productData.heroSection.description}
+        keywords={productData.meta?.keywords}
+      />
       <HeroSection
         title={productData.heroSection.title}
         description={productData.heroSection.description}
@@ -98,7 +104,7 @@ const DynamicProductPage: React.FC = () => {
         backgroundText={productData.heroSection.backgroundText}
         backgroundImage={productData.heroSection.backgroundImage}
       />
-      
+
       <NumberSpeaks
         title={productData.numberSpeaks.title}
         subtitle={productData.numberSpeaks.subtitle}
@@ -107,7 +113,7 @@ const DynamicProductPage: React.FC = () => {
 
       {/* Conditionally render ScrollSection only if product has scroll section data */}
       {scrollSectionData ? (
-        <ScrollSection 
+        <ScrollSection
           heroTitle={scrollSectionData.heroTitle}
           heroSubtitle={scrollSectionData.heroSubtitle}
           sections={scrollSectionData.sections}
@@ -119,11 +125,12 @@ const DynamicProductPage: React.FC = () => {
       ) : (
         <ScrollSection />
       )}
-      
+
       <KeyFeatures
         heading={productData?.keyFeatures?.heading}
         subheading={productData?.keyFeatures?.subheading}
         features={productData?.keyFeatures?.features}
+        maxW={productData?.keyFeatures?.maxW}
       />
       {productData.blackCardSection && (
         <BlackCardSection
@@ -132,13 +139,13 @@ const DynamicProductPage: React.FC = () => {
           items={productData.blackCardSection.items}
         />
       )}
-      
+
       <Hardware />
       <BlackSection />
       <Testimonial />
       <Contact />
       <FAQSection
-        faqs={productData.faqSection.faqs} 
+        faqs={productData.faqSection.faqs}
       />
     </>
   );

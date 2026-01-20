@@ -14,6 +14,7 @@ export interface KeyFeaturesProps {
   subheading?: string;
   className?: string;
   gridClassName?: string;
+  maxW?: string;
 }
 
 const aosAnimations = [
@@ -31,6 +32,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
   subheading = "Powerful Tools. Seamless Experience.",
   className = "",
   gridClassName = "",
+  maxW = "180px",
 }) => {
   // Only enable AOS on md and up, disable on mobile for better responsiveness
   useEffect(() => {
@@ -77,9 +79,9 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
             const aosProps =
               typeof window !== "undefined" && window.innerWidth >= 768
                 ? {
-                    "data-aos": aosType,
-                    "data-aos-delay": aosDelay,
-                  }
+                  "data-aos": aosType,
+                  "data-aos-delay": aosDelay,
+                }
                 : {};
             return (
               <div
@@ -98,7 +100,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
 
                 {/* Feature Content */}
                 <div className="flex-1 flex flex-col items-center text-center">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 sm:mb-3 max-w-[180px]">
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 sm:mb-3 max-w-[${maxW}]`}>
                     {feature.title}
                   </h3>
                   <p className="text-gray-800 text-sm sm:text-base leading-relaxed">

@@ -13,40 +13,46 @@ import FAQSection from "../Common/Faq";
 import { hardwareData } from "../../Data/hardwareData";
 import ScrollSection from "../Home/ScrollSection";
 import { Monitor, Smartphone, Tablet } from "lucide-react";
+import SEO from "../Common/SEO";
 
 const HardwarePage: React.FC = () => {
 
-    const transformedSections = hardwareData.productSections.map((product, index) => {
-        // Assign icons based on product type
-        let icon;
-        if (product.title.includes('Station')) {
-          icon = <Monitor className="w-4 h-4" />;
-        } else if (product.title.includes('Tab')) {
-          icon = <Tablet className="w-4 h-4" />;
-        } else if (product.title.includes('Go')) {
-          icon = <Smartphone className="w-4 h-4" />;
-        } else {
-          icon = <Monitor className="w-4 h-4" />;
-        }
-    
-        return {
-          id: (index + 1).toString(),
-          icon: icon,
-          title: product.title,
-          subtitle: product.title,
-          description: product.description,
-          stat: '',
-          statDescription: '',
-          bgColor: 'bg-gray-500',
-          bgGradient: 'from-gray-400 to-gray-600',
-          buttonText: product.buttonText,
-          imageSrc: product.image,
-          imageAlt: product.imageAlt || product.title,
-          bulletPoints: [] // Hardware products don't have bullet points
-        };
-      });
+  const transformedSections = hardwareData.productSections.map((product, index) => {
+    // Assign icons based on product type
+    let icon;
+    if (product.title.includes('Station')) {
+      icon = <Monitor className="w-4 h-4" />;
+    } else if (product.title.includes('Tab')) {
+      icon = <Tablet className="w-4 h-4" />;
+    } else if (product.title.includes('Go')) {
+      icon = <Smartphone className="w-4 h-4" />;
+    } else {
+      icon = <Monitor className="w-4 h-4" />;
+    }
+
+    return {
+      id: (index + 1).toString(),
+      icon: icon,
+      title: product.title,
+      subtitle: product.title,
+      description: product.description,
+      stat: '',
+      statDescription: '',
+      bgColor: 'bg-gray-500',
+      bgGradient: 'from-gray-400 to-gray-600',
+      buttonText: product.buttonText,
+      imageSrc: product.image,
+      imageAlt: product.imageAlt || product.title,
+      bulletPoints: [] // Hardware products don't have bullet points
+    };
+  });
   return (
     <>
+      <SEO
+        title="POS Hardware Systems | SlateX"
+        description="Explore our range of durable and sleek POS hardware including terminals, tablets, and handhelds."
+        keywords="POS hardware, payment terminals, card readers, POS tablets"
+      />
       <HeroSection
         title={hardwareData.heroSection.title}
         description={hardwareData.heroSection.description}
@@ -60,7 +66,7 @@ const HardwarePage: React.FC = () => {
         backgroundImage={hardwareData.heroSection.backgroundImage}
       />
 
-<ScrollSection
+      <ScrollSection
         heroTitle={hardwareData.featuresIntro?.title}
         heroSubtitle={hardwareData.featuresIntro?.subtitle}
         sections={transformedSections}

@@ -5,15 +5,21 @@ import Hardware from '../Common/Hardware'
 import FreeTrial from '../Common/BlackSection'
 import Contact from '../Common/CTA'
 import Testimonials from '../Common/Testimonials';
+import SEO from '../Common/SEO';
 
 function Pricing() {
   return (
     <>
-    <PricingComponent />
-    <ComparePlanComponent />
-    <Hardware />
-    <Testimonials />
-    <Contact />
+      <SEO
+        title="Pricing Plans"
+        description="Choose the perfect SlateX POS plan for your business. Transparent pricing with no hidden fees."
+        keywords="POS pricing, restaurant POS cost, retail POS price"
+      />
+      <PricingComponent />
+      <ComparePlanComponent />
+      <Hardware />
+      <Testimonials />
+      <Contact />
     </>
   )
 }

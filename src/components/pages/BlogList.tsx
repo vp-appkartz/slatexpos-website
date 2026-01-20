@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, Calendar, User, Search, Check } from "lucide-react";
 import Contact from "../Common/CTA";
+import SEO from "../Common/SEO";
 import { useNavigate } from "react-router-dom";
 import { getPublishedBlogs, getBlogsByCategory } from "../../services/blogService";
 import { BlogPost } from "../../types/blog";
@@ -137,28 +138,28 @@ const BlogSection = () => {
 
   const fetchBlogs = async () => {
     setLoading(true);
-    
+
     try {
       // Try to fetch from Firebase first
       let blogData: BlogPost[] = [];
-      
+
       // Import the getAllBlogs function to get both published and draft blogs for debugging
       const { getAllBlogs } = await import('../../services/blogService');
-      
+
       if (selectedCategory === "All") {
         // Get all blogs (including drafts) for debugging
         const allBlogs = await getAllBlogs();
         console.log('All blogs (including drafts):', allBlogs);
-        
+
         // Filter to only published blogs
         blogData = allBlogs.filter(blog => blog.published);
         console.log('Published blogs only:', blogData);
       } else {
         blogData = await getBlogsByCategory(selectedCategory);
       }
-      
+
       console.log('Firebase blogs fetched:', blogData.length, blogData);
-      
+
       // If Firebase returns data, use it
       if (blogData.length > 0) {
         console.log('Using Firebase blog data');
@@ -166,7 +167,7 @@ const BlogSection = () => {
         setLoading(false);
         return;
       }
-      
+
       // If no Firebase data, use static fallback data
       console.log('No Firebase data found, using static fallback blog data');
       if (selectedCategory === "All") {
@@ -174,17 +175,17 @@ const BlogSection = () => {
       } else {
         blogData = staticBlogPosts.filter(blog => blog.category === selectedCategory);
       }
-      
+
       setBlogs(blogData);
     } catch (firebaseError) {
       console.error('Firebase fetch failed:', firebaseError);
-      
+
       // Fallback to static data
       console.log('Firebase error, using static fallback blog data');
-      const fallbackData = selectedCategory === "All" 
-        ? staticBlogPosts 
+      const fallbackData = selectedCategory === "All"
+        ? staticBlogPosts
         : staticBlogPosts.filter(blog => blog.category === selectedCategory);
-      
+
       setBlogs(fallbackData);
     } finally {
       setLoading(false);
@@ -233,6 +234,11 @@ const BlogSection = () => {
 
   return (
     <>
+      <SEO
+        title="POS Insights & Blog | SlateX"
+        description="Stay updated with the latest trends, tips, and insights in the restaurant and retail POS industry."
+        keywords="POS blog, restaurant technology, retail trends, SlateX blog"
+      />
       <div className="w-full min-h-screen bg-white">
         {/* Hero Section */}
         <div
@@ -254,37 +260,37 @@ const BlogSection = () => {
 
         <div className="max-w-[1200px] mx-auto px-2 sm:px-4 py-8">
           {/* Top Bar: Sort and Results */}
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-          {/* Sort */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-700">Sort by:</span>
-            <div className="relative">
-              <select
-                value={selectedSort}
-                onChange={(e) => setSelectedSort(e.target.value)}
-                className="appearance-none bg-transparent border-none text-[15px] font-semibold pr-6 pl-1 py-1 focus:outline-none cursor-pointer"
-                style={{ minWidth: 80 }}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            {/* Sort */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700">Sort by:</span>
+              <div className="relative">
+                <select
+                  value={selectedSort}
+                  onChange={(e) => setSelectedSort(e.target.value)}
+                  className="appearance-none bg-transparent border-none text-[15px] font-semibold pr-6 pl-1 py-1 focus:outline-none cursor-pointer"
+                  style={{ minWidth: 80 }}
+                >
+                  <option value="Newest">Newest</option>
+                  <option value="Oldest">Oldest</option>
+                  <option value="Popular">Popular</option>
+                </select>
+                <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-black pointer-events-none" />
+              </div>
+
+              {/* Refresh Button */}
+              <button
+                onClick={() => fetchBlogs()}
+                className="ml-4 px-3 py-1 bg-primary-300 hover:bg-primary-400 text-white text-sm font-medium rounded-md transition-colors duration-200"
               >
-                <option value="Newest">Newest</option>
-                <option value="Oldest">Oldest</option>
-                <option value="Popular">Popular</option>
-              </select>
-              <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-black pointer-events-none" />
+                Refresh
+              </button>
             </div>
-            
-            {/* Refresh Button */}
-            <button
-              onClick={() => fetchBlogs()}
-              className="ml-4 px-3 py-1 bg-primary-300 hover:bg-primary-400 text-white text-sm font-medium rounded-md transition-colors duration-200"
-            >
-              Refresh
-            </button>
+            {/* Results count */}
+            <div className="text-right text-[15px] text-gray-700">
+              Showing {filteredBlogs.length} of {blogs.length} posts
+            </div>
           </div>
-          {/* Results count */}
-          <div className="text-right text-[15px] text-gray-700">
-            Showing {filteredBlogs.length} of {blogs.length} posts
-          </div>
-        </div>
 
           {/* Main Content: Grid + Sidebar */}
           <div className="flex flex-col lg:flex-row gap-8">
@@ -336,7 +342,7 @@ const BlogSection = () => {
                           {post.excerpt}
                         </p>
                         {/* Button */}
-                        <button 
+                        <button
                           className="mt-3 bg-primary-300 px-4 py-2 hover:bg-primary-500 text-white text-md font-semibold rounded-lg transition-all duration-150"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -356,8 +362,8 @@ const BlogSection = () => {
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 mb-2">No posts found</h3>
                   <p className="text-gray-600">
-                    {search 
-                      ? 'Try adjusting your search criteria' 
+                    {search
+                      ? 'Try adjusting your search criteria'
                       : 'No blog posts available in this category'
                     }
                   </p>
@@ -394,7 +400,7 @@ const BlogSection = () => {
                     />
                   </div>
                 </div>
-                
+
                 {/* Categories */}
                 <div>
                   <ul className="space-y-6">
@@ -402,9 +408,8 @@ const BlogSection = () => {
                       <li key={cat.name}>
                         <button
                           onClick={() => setSelectedCategory(cat.name)}
-                          className={`flex items-center gap-4 w-full text-left text-[18px] font-medium hover:text-[#333] focus:outline-none transition-colors duration-200 ${
-                            selectedCategory === cat.name ? 'text-primary-300' : 'text-[#333]'
-                          }`}
+                          className={`flex items-center gap-4 w-full text-left text-[18px] font-medium hover:text-[#333] focus:outline-none transition-colors duration-200 ${selectedCategory === cat.name ? 'text-primary-300' : 'text-[#333]'
+                            }`}
                           style={{
                             fontFamily: "inherit",
                             fontWeight: 500,

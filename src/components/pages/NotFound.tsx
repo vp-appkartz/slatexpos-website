@@ -1,12 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, ArrowLeft, Search } from 'lucide-react';
+import SEO from "../Common/SEO";
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50 flex items-center justify-center px-4 py-16">
+      <SEO
+        title="Page Not Found | SlateX POS"
+        description="The page you are looking for does not exist."
+      />
       <div className="max-w-3xl w-full text-center">
         {/* 404 Number */}
         <div className="mb-8 mt-20" >
@@ -42,7 +47,7 @@ const NotFound: React.FC = () => {
             <Home className="w-5 h-5" />
             <span>Back to Home</span>
           </button>
-          
+
           <button
             onClick={() => navigate(-1)}
             className="group relative bg-white text-primary-300 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-primary-300 transition-all duration-300 hover:bg-primary-300 hover:text-white shadow-lg hover:shadow-xl flex items-center space-x-2 w-full sm:w-auto"

@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Contact from "../Common/CTA";
 import { getBlogBySlug } from "../../services/blogService";
 import { BlogPost } from "../../types/blog";
+import SEO from "../Common/SEO";
 
 const BlogDetails = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -54,7 +55,7 @@ The return on investment for a quality POS system typically pays for itself with
     try {
       setLoading(true);
       setError(null);
-      
+
       // Try Firebase first
       let blogData = null;
       try {
@@ -63,13 +64,13 @@ The return on investment for a quality POS system typically pays for itself with
       } catch (firebaseError) {
         console.warn('Firebase fetch failed:', firebaseError);
       }
-      
+
       // If no Firebase data, use static fallback
       if (!blogData) {
         console.log('Using static fallback blog data');
         blogData = staticBlogDetails;
       }
-      
+
       setBlog(blogData);
     } catch (error) {
       console.error('Error fetching blog:', error);
@@ -99,10 +100,10 @@ The return on investment for a quality POS system typically pays for itself with
 
   const generateTableOfContents = (content: string) => {
     // Extract headings from content (assuming they start with # or are in <h> tags)
-    const headings = content.split('\n').filter(line => 
+    const headings = content.split('\n').filter(line =>
       line.startsWith('#') || line.toLowerCase().includes('<h')
     );
-    
+
     if (headings.length === 0) {
       return [
         "Introduction",
@@ -112,8 +113,8 @@ The return on investment for a quality POS system typically pays for itself with
         "Conclusion"
       ];
     }
-    
-    return headings.map(heading => 
+
+    return headings.map(heading =>
       heading.replace(/^#+\s*/, '').replace(/<\/?h[1-6][^>]*>/gi, '')
     ).slice(0, 5);
   };
@@ -147,6 +148,12 @@ The return on investment for a quality POS system typically pays for itself with
 
   return (
     <div className="w-full min-h-screen bg-white">
+      <SEO
+        title={blog.title}
+        description={blog.excerpt || blog.title}
+        keywords={blog.tags.join(', ')}
+        canonical={window.location.href}
+      />
       {/* Hero Section with gradient background */}
       <div className="w-full relative mt-[250px]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 -mt-32 relative z-10">
@@ -275,19 +282,19 @@ The return on investment for a quality POS system typically pays for itself with
               <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-gray-800 font-bold text-lg mb-4">Share blog on</h3>
                 <div className="flex gap-3">
-                  <button 
+                  <button
                     onClick={() => window.open(`https://facebook.com/sharer/sharer.php?u=${window.location.href}`, '_blank')}
                     className="w-10 h-10 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors duration-200"
                   >
                     <Facebook className="w-5 h-5" />
                   </button>
-                  <button 
+                  <button
                     onClick={() => window.open(`https://twitter.com/intent/tweet?url=${window.location.href}&text=${blog.title}`, '_blank')}
                     className="w-10 h-10 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors duration-200"
                   >
                     <Twitter className="w-5 h-5" />
                   </button>
-                  <button 
+                  <button
                     onClick={() => window.open(`https://linkedin.com/sharing/share-offsite/?url=${window.location.href}`, '_blank')}
                     className="w-10 h-10 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors duration-200"
                   >

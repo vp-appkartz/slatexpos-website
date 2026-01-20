@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Footer = () => {
   const navigate = useNavigate();
 
- 
+
   const productLinks = [
     { name: "Restaurant POS System", slug: "restaurant-pos-system" },
     { name: "Kitchen Display", slug: "kitchen-display" },
@@ -37,7 +37,7 @@ const Footer = () => {
     { name: "Licenses", path: "/licenses" },
   ];
 
-  
+
   const socialLinks = [
     {
       icon: <Facebook className="w-5 h-5 text-white" />,
@@ -106,7 +106,7 @@ const Footer = () => {
             </div>
             {/* Copyright */}
             <p className="text-gray-500 text-sm">
-              © 2025 Slatex, Inc. All rights reserved.
+              © {new Date().getFullYear()} Slatex, Inc. All rights reserved.
             </p>
           </div>
 

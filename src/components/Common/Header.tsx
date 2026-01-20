@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Menu, 
-  X, 
+import {
+  Menu,
+  X,
   ChevronDown,
   Phone
 } from 'lucide-react';
@@ -192,15 +192,13 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header with responsive spacing */}
-       <div className="bg-[url('/nav-bg.png')] bg-fill bg-no-repeat overflow-x-hidden">
-        <div className={`transition-all duration-300 ${
--          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-4 sm:px-6 lg:px-8 xl:px-[150px]'
-+          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-2 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-2 sm:px-6 lg:px-8 xl:px-[150px] mb-0'
-        }`}>
-          <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 w-full ${
--            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
-+            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-t-xl sm:rounded-t-2xl bg-white opacity-100'
+      <div className="bg-[url('/nav-bg.png')] bg-fill bg-no-repeat overflow-x-hidden">
+        <div className={`transition-all duration-300 ${-          isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-4 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-4 sm:px-6 lg:px-8 xl:px-[150px]'
+          + isScrolled ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-2 sm:px-6 lg:px-8 xl:px-[150px]' : 'py-2 sm:py-4 px-2 sm:px-6 lg:px-8 xl:px-[150px] mb-0'
           }`}>
+          <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 w-full ${-            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
+            + isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-t-xl sm:rounded-t-2xl bg-white opacity-100'
+            }`}>
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
               <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
                 {/* Logo - Left side */}
@@ -219,27 +217,25 @@ const Header: React.FC = () => {
                 <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-center">
                   {/* Products Dropdown */}
                   <div className="relative dropdown-container">
-                    <button 
+                    <button
                       onClick={() => handleDropdownClick('products')}
                       className="text-black text-lg  transition-colors duration-200 flex items-center space-x-1 font-medium py-2 "
                     >
                       <span>Products</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === 'products' ? 'rotate-180' : ''
-                      }`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'products' ? 'rotate-180' : ''
+                        }`} />
                     </button>
                   </div>
 
                   {/* Categories Dropdown */}
                   <div className="relative dropdown-container">
-                    <button 
+                    <button
                       onClick={() => handleDropdownClick('categories')}
                       className="text-black text-lg  transition-colors duration-200 flex items-center space-x-1 font-medium py-2 "
                     >
                       <span>Industries</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === 'categories' ? 'rotate-180' : ''
-                      }`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'categories' ? 'rotate-180' : ''
+                        }`} />
                     </button>
                   </div>
 
@@ -274,35 +270,31 @@ const Header: React.FC = () => {
                     className="lg:hidden p-1.5 sm:p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
                   >
                     <div className="relative w-5 h-5 sm:w-6 sm:h-6">
-                      <Menu className={`w-5 h-5 sm:w-6 sm:h-6 absolute transition-all duration-300 ${
-                        isMenuOpen ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
-                      }`} />
-                      <X className={`w-5 h-5 sm:w-6 sm:h-6 absolute transition-all duration-300 ${
-                        isMenuOpen ? 'rotate-0 opacity-100' : '-rotate-180 opacity-0'
-                      }`} />
+                      <Menu className={`w-5 h-5 sm:w-6 sm:h-6 absolute transition-all duration-300 ${isMenuOpen ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
+                        }`} />
+                      <X className={`w-5 h-5 sm:w-6 sm:h-6 absolute transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-100' : '-rotate-180 opacity-0'
+                        }`} />
                     </div>
                   </button>
                 </div>
               </div>
 
               {/* Mobile Navigation - FIXED: Prevent scroll from closing dropdowns */}
-              <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-                isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-              }`}>
+              <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                }`}>
                 <div className="py-4 border-t border-gray-200 max-h-96 overflow-y-auto">
                   <div className="flex flex-col space-y-1">
                     {/* Products Mobile Dropdown */}
                     <div>
-                      <button 
+                      <button
                         onClick={() => handleMobileDropdown('products')}
                         className="text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 flex items-center justify-between py-3 px-4 rounded-lg text-left w-full"
                       >
                         <span className="font-medium">Products</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-                          mobileDropdown === 'products' ? 'rotate-180' : ''
-                        }`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === 'products' ? 'rotate-180' : ''
+                          }`} />
                       </button>
-                      
+
                       {/* Mobile Products Submenu - FIXED: Larger icons */}
                       {mobileDropdown === 'products' && (
                         <div className="ml-4 mt-2 space-y-2">
@@ -342,16 +334,15 @@ const Header: React.FC = () => {
 
                     {/* Categories Mobile Dropdown */}
                     <div>
-                      <button 
+                      <button
                         onClick={() => handleMobileDropdown('categories')}
                         className="text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 flex items-center justify-between py-3 px-4 rounded-lg text-left w-full"
                       >
                         <span className="font-medium">Categories</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-                          mobileDropdown === 'categories' ? 'rotate-180' : ''
-                        }`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === 'categories' ? 'rotate-180' : ''
+                          }`} />
                       </button>
-                      
+
                       {/* Mobile Categories Submenu - FIXED: Larger icons */}
                       {mobileDropdown === 'categories' && (
                         <div className="ml-4 mt-2 space-y-2">
@@ -383,7 +374,7 @@ const Header: React.FC = () => {
                     </div>
 
                     {/* Hardware */}
-                    <button 
+                    <button
                       onClick={() => {
                         setIsMenuOpen(false);
                         navigate('/hardware');
@@ -394,7 +385,7 @@ const Header: React.FC = () => {
                     </button>
 
                     {/* Pricing */}
-                    <button 
+                    <button
                       onClick={() => {
                         setIsMenuOpen(false);
                         navigate('/pricing');
@@ -403,7 +394,7 @@ const Header: React.FC = () => {
                     >
                       <span className="font-medium">Pricing</span>
                     </button>
-                    
+
                     {/* Mobile Get Demo Button */}
                     <div className="px-4 py-3">
                       <button
@@ -457,7 +448,7 @@ const Header: React.FC = () => {
                                     <h4 className="font-semibold text-sm text-gray-black group-hover:text-primary-300 transition-colors duration-200">
                                       {item.title}
                                     </h4>
-                                    <p className="text-xs text-black mt-1">
+                                    <p className="text-sm text-black mt-1">
                                       {item.description}
                                     </p>
                                   </div>
@@ -498,7 +489,7 @@ const Header: React.FC = () => {
                                         <h4 className="font-semibold text-sm text-black group-hover:text-primary-300 transition-colors duration-200">
                                           {item.title}
                                         </h4>
-                                        <p className="text-xs text-black mt-1">
+                                        <p className="text-sm text-black mt-1">
                                           {item.description}
                                         </p>
                                       </div>
@@ -530,7 +521,7 @@ const Header: React.FC = () => {
                                         <h4 className="font-semibold text-sm text-black group-hover:text-primary-300 transition-colors duration-200">
                                           {item.title}
                                         </h4>
-                                        <p className="text-xs text-black mt-1">
+                                        <p className="text-sm text-black mt-1">
                                           {item.description}
                                         </p>
                                       </div>
@@ -591,7 +582,7 @@ const Header: React.FC = () => {
                               <h4 className="font-semibold text-sm text-black group-hover:text-primary-300 transition-colors duration-200">
                                 {item.title}
                               </h4>
-                              <p className="text-xs text-black mt-1">
+                              <p className="text-sm text-black mt-1">
                                 {item.description}
                               </p>
                             </div>

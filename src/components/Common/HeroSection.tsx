@@ -41,10 +41,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768); // md breakpoint
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     // Only initialize AOS on larger screens to prevent mobile horizontal scrollbar issues
     if (!isMobile) {
       AOS.init({
@@ -54,7 +54,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         easing: "ease-in-out",
       });
     }
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, [isMobile]);
 
@@ -84,7 +84,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 >
                   {title}
                 </h1>
-                <p 
+                <p
                   className="font-semibold text-sm sm:text-base lg:text-lg xl:text-[20px] text-gray-600 leading-relaxed lg:leading-8 tracking-[0.04em] max-w-lg mt-2 sm:mt-3 lg:mt-4"
                   {...(!isMobile && { "data-aos": "fade-up", "data-aos-delay": "250" })}
                 >
@@ -92,7 +92,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 </p>
                 <button
                   onClick={buttonAction}
-                  className="bg-primary-300 hover:bg-orange-600 w-fit mt-3 sm:mt-4 lg:mt-5 text-white font-bold text-sm leading-[100%] tracking-[0.04em] px-6 sm:px-8 lg:px-[40px] py-2.5 sm:py-3 lg:py-[20px] rounded-[10px] transition-all duration-300 shadow-lg"
+                  className="bg-primary-300 hover:bg-orange-600 w-fit mt-3 sm:mt-4 lg:mt-5 text-white font-bold text-lg leading-[100%] tracking-[0.04em] px-6 sm:px-8 lg:px-[40px] py-2.5 sm:py-3 lg:py-[20px] rounded-[10px] transition-all duration-300 shadow-lg"
                   {...(!isMobile && { "data-aos": "zoom-in", "data-aos-delay": "400" })}
                 >
                   {buttonText}
@@ -105,7 +105,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 {...(!isMobile && { "data-aos": "fade-left", "data-aos-delay": "200" })}
               >
                 {/* Main image */}
-                <div 
+                <div
                   className="w-full rounded-2xl overflow-hidden z-30 opacity-100 flex items-center"
                   {...(!isMobile && { "data-aos": "zoom-in-up", "data-aos-delay": "350" })}
                 >

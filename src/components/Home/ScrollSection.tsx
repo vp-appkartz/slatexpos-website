@@ -7,8 +7,8 @@ interface Section {
   title: string;
   subtitle: string;
   description: string;
-  stat: string;
-  statDescription: string;
+  stat?: string;
+  statDescription?: string;
   bgColor: string;
   bgGradient: string;
   buttonText: string;
@@ -201,7 +201,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
 
         if (visibleEntry && visibleEntry.target.id !== activeSection) {
           setIsTransitioning(true);
-          
+
           setTimeout(() => {
             setActiveSection(visibleEntry.target.id);
             setTimeout(() => {
@@ -237,7 +237,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
           alt: section.imageAlt || section.title,
         };
       }
-      
+
       // Fallback image
       return {
         src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80',
@@ -250,15 +250,15 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
       if (sectionId !== currentImage) {
         setNextImage(sectionId);
         setImageLoaded(false);
-        
+
         const img = new Image();
         const nextImageData = getImageData(sectionId);
         img.src = nextImageData.src;
-        
+
         img.onload = () => {
           setImageLoaded(true);
           setIsImageTransitioning(true);
-          
+
           // Start transition after image is preloaded
           setTimeout(() => {
             setCurrentImage(sectionId);
@@ -268,7 +268,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
             }, 300);
           }, 100);
         };
-        
+
         img.onerror = () => {
           setImageLoaded(true);
           setCurrentImage(sectionId);
@@ -288,9 +288,8 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
           <img
             src={currentImageData.src}
             alt={currentImageData.alt}
-            className={`w-full h-full object-contain transition-all duration-500 ease-in-out ${
-              isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
-            }`}
+            className={`w-full h-full object-contain transition-all duration-500 ease-in-out ${isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+              }`}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
@@ -301,15 +300,14 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
               }
             }}
           />
-          
+
           {/* Next Image (for smooth transition) */}
           {nextImageData && imageLoaded && (
             <img
               src={nextImageData.src}
               alt={nextImageData.alt}
-              className={`w-full h-full object-contain transition-all duration-500 ease-in-out absolute inset-0 ${
-                isImageTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
+              className={`w-full h-full object-contain transition-all duration-500 ease-in-out absolute inset-0 ${isImageTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
             />
           )}
         </div>
@@ -369,11 +367,11 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                   </div>
                 </div>
               </div>
-              
+
               {/* Content for mobile */}
               <div className="flex-1 flex items-center justify-center px-4 pb-12">
                 <div className="max-w-sm w-full text-left">
-                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-700 mb-5 tracking-wide" style={{lineHeight: '1.3'}}>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-700 mb-5 tracking-wide" style={{ lineHeight: '1.3' }}>
                     {section.subtitle}
                   </h2>
                   <p className="text-xl sm:text-2xl font-normal text-black mb-6">
@@ -384,7 +382,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                     <BulletList points={section.bulletPoints} />
                   )}
 
-                  <button 
+                  <button
                     onClick={() => handleButtonClick(section.id)}
                     className="bg-primary-300 text-white px-6 py-3.5 rounded-md font-medium hover:bg-orange-600 transition-colors duration-200 text-lg shadow-md mt-8"
                   >
@@ -398,7 +396,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
 
         {/* Desktop Layout - Grid with sticky image */}
         <div className="hidden lg:block">
-          <div 
+          <div
             ref={containerRef}
             className="overflow-y-auto order-2 lg:order-1"
           >
@@ -407,7 +405,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                 display: none;
               }
             `}</style>
-            
+
             <div className="space-y-0">
               {sections.map((section, index) => (
                 <div
@@ -417,7 +415,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                   className="min-h-screen text-left flex items-center justify-start px-2 md:px-4 lg:px-6"
                 >
                   <div className="max-w-sm md:max-w-md lg:max-w-lg w-full">
-                    <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-4xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{lineHeight: '1.3'}}>
+                    <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-4xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{ lineHeight: '1.3' }}>
                       {section.subtitle}
                     </h2>
                     <p className="text-lg font-normal text-black mb-3 md:mb-4 lg:mb-6 ">
@@ -428,7 +426,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                       <BulletList points={section.bulletPoints} />
                     )}
 
-                    <button 
+                    <button
                       onClick={() => handleButtonClick(section.id)}
                       className="bg-primary-300 text-white px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-md lg:rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200 text-xs md:text-sm lg:text-base shadow-md"
                     >

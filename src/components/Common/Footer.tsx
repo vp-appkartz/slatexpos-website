@@ -105,6 +105,7 @@ const Footer = () => {
               ))}
             </div>
             {/* Copyright */}
+            
             <p className="text-gray-500 text-sm">
               © {new Date().getFullYear()} Slatex, Inc. All rights reserved.
             </p>

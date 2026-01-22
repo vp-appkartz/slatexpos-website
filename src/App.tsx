@@ -23,6 +23,7 @@ import AdminLogin from './components/admin/Login';
 import AdminLayout from './components/admin/AdminLayout';
 import Dashboard from './components/admin/Dashboard';
 import AdminBlogList from './components/admin/BlogList';
+import HeroEditor from './components/admin/HeroEditor';
 import BlogForm from './components/admin/BlogForm';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import SEO from './components/Common/SEO';
@@ -71,6 +72,13 @@ const AppContent = () => {
           <ProtectedRoute>
             <AdminLayout>
               <Dashboard />
+            </AdminLayout>
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/hero" element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <HeroEditor />
             </AdminLayout>
           </ProtectedRoute>
         } />

@@ -199,16 +199,20 @@ const Header: React.FC = () => {
           <header className={`bg-black p-2 sm:p-5 shadow-xl transition-all duration-300 w-full ${-            isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-xl sm:rounded-2xl bg-white opacity-100'
             + isScrolled ? 'rounded-xl sm:rounded-2xl bg-white opacity-95' : 'rounded-t-xl sm:rounded-t-2xl bg-white opacity-100'
             }`}>
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
+            <div className="w-full">
               <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
                 {/* Logo - Left side */}
                 <div className="flex items-center flex-shrink-0">
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
                     <img
-                      src="/slatex-logo.png"
+                      src="/logo/slatex_icon.png"
+                      alt="SlatexPOS Icon"
+                      className="h-8 object-contain sm:h-10 lg:h-10 w-auto"
+                    />
+                    <img
+                      src="/logo/slatex_logo.png"
                       alt="SlatexPOS Logo"
-                      className="h-8 object-contain sm:h-10 lg:h-20 w-auto cursor-pointer"
-                      onClick={() => navigate('/')}
+                      className="h-5 object-contain sm:h-6 lg:h-8 w-auto mb-1"
                     />
                   </div>
                 </div>

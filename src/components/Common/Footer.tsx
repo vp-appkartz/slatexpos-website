@@ -81,7 +81,7 @@ const Footer = () => {
           {/* SlateX Column */}
           <div className="lg:col-span-2">
             <img
-              src="/logo.png"
+              src="/logo/footer_logo.png"
               alt="SlatexPOS Logo"
               className="h-8 sm:h-10 lg:h-12 mb-5 w-auto cursor-pointer"
               onClick={() => navigate('/')}
@@ -105,7 +105,7 @@ const Footer = () => {
               ))}
             </div>
             {/* Copyright */}
-            
+
             <p className="text-gray-500 text-sm">
               © {new Date().getFullYear()} Slatex, Inc. All rights reserved.
             </p>

@@ -205,11 +205,6 @@ const Header: React.FC = () => {
                 <div className="flex items-center flex-shrink-0">
                   <div className="flex items-center justify-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
                     <img
-                      src="/logo/slatex_icon.png"
-                      alt="SlatexPOS Icon"
-                      className="h-8 object-contain sm:h-10 lg:h-10 w-auto"
-                    />
-                    <img
                       src="/logo/slatex_logo.png"
                       alt="SlatexPOS Logo"
                       className="h-5 object-contain sm:h-6 lg:h-8 w-auto mb-1"

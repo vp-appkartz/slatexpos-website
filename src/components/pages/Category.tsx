@@ -3,7 +3,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { Zap, Monitor, CreditCard, BarChart3, Users, Utensils, Clock, Coffee, ChefHat } from 'lucide-react';
 import HeroSection from '../Common/HeroSection';
 import NumberSpeaks from '../Common/StatData';
-import IndustrySection from '../Common/Features';
+
 import KeyFeatures from '../Common/KeyFeature';
 import BlackCardSection from '../Common/BlackCard';
 import Hardware from '../Common/Hardware';
@@ -83,15 +83,15 @@ const DynamicCategoryPage: React.FC = () => {
       <HeroSection
         title={categoryData.heroSection.title}
         description={categoryData.heroSection.description}
-        buttonText={categoryData.heroSection.buttonText}
+        buttonText={categoryData.heroSection.buttonText || "Let's Connect"}
         mainImage={categoryData.heroSection.mainImage}
-        mainImageAlt={categoryData.heroSection.mainImageAlt}
-        deviceImage={categoryData.heroSection.deviceImage}
-        deviceImageAlt={categoryData.heroSection.deviceImageAlt}
-        deviceTitle={categoryData.heroSection.deviceTitle}
-        deviceDescription={categoryData.heroSection.deviceDescription}
-        backgroundText={categoryData.heroSection.backgroundText}
-        backgroundImage={categoryData.heroSection.backgroundImage}
+        mainImageAlt={categoryData.heroSection.mainImageAlt || "Hero Image"}
+        deviceImage={categoryData.heroSection.deviceImage || ""}
+        deviceImageAlt={categoryData.heroSection.deviceImageAlt || ""}
+        deviceTitle={categoryData.heroSection.deviceTitle || ""}
+        deviceDescription={categoryData.heroSection.deviceDescription || ""}
+        backgroundText={categoryData.heroSection.backgroundText || ""}
+        backgroundImage={categoryData.heroSection.backgroundImage || ""}
       />
 
       <NumberSpeaks
@@ -115,11 +115,13 @@ const DynamicCategoryPage: React.FC = () => {
         <ScrollSection />
       )}
 
-      <KeyFeatures
-        heading={categoryData.keyFeatures.heading}
-        subheading={categoryData.keyFeatures.subheading}
-        features={categoryData.keyFeatures.features}
-      />
+      {categoryData.keyFeatures && (
+        <KeyFeatures
+          heading={categoryData.keyFeatures.heading}
+          subheading={categoryData.keyFeatures.subheading}
+          features={categoryData.keyFeatures.features}
+        />
+      )}
 
       {categoryData.blackCardSection && (
         <BlackCardSection
@@ -129,11 +131,33 @@ const DynamicCategoryPage: React.FC = () => {
         />
       )}
 
-      <Hardware />
-      <BlackSection />
-      <Testimonial />
-      <Contact />
-      <FAQSection />
+      <Hardware
+        title={categoryData.hardwareSection?.title}
+        subtitle={categoryData.hardwareSection?.subtitle}
+        items={categoryData.hardwareSection?.items}
+      />
+
+      <BlackSection
+        title={categoryData.promoSection?.title}
+        description={categoryData.promoSection?.description}
+        buttonText={categoryData.promoSection?.buttonText}
+        imageSrc={categoryData.promoSection?.imageSrc}
+        imageAlt={categoryData.promoSection?.imageAlt}
+        trustIndicators={categoryData.promoSection?.trustIndicators}
+      />
+
+      <Testimonial
+        title={categoryData.testimonialSection?.title}
+        subtitle={categoryData.testimonialSection?.subtitle}
+        items={categoryData.testimonialSection?.items}
+      />
+
+      <Contact
+        title={categoryData.ctaSection?.title}
+        description={categoryData.ctaSection?.description}
+        image={categoryData.ctaSection?.image}
+      />
+      <FAQSection faqs={categoryData.faqSection?.faqs} />
     </>
   );
 };

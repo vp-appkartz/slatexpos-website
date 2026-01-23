@@ -15,7 +15,18 @@ const aosButtonAnimations = [
   "fade-left"
 ];
 
-const Hardware = () => {
+interface HardwareProps {
+  title?: string;
+  subtitle?: string;
+  items?: {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+  }[];
+}
+
+const Hardware: React.FC<HardwareProps> = (props) => {
   useEffect(() => {
     AOS.init({
       duration: 900,
@@ -64,6 +75,8 @@ const Hardware = () => {
   const firstRow = solutionButtons.filter((btn) => btn.row === 1);
   const secondRow = solutionButtons.filter((btn) => btn.row === 2);
 
+  const displayItems = props.items || hardwareItems;
+
   return (
     <section className="bg-gray-100 py-20 px-4">
       <div className="max-w-7xl mx-auto space-y-20">
@@ -72,16 +85,16 @@ const Hardware = () => {
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-              Hardware
+              {props.title || "Hardware"}
             </h2>
-              <p className="text-lg md:text-2xl text-gray-800 font-medium">
-                Powerful Tools. Seamless Experience.
-              </p>
+            <p className="text-lg md:text-2xl text-gray-800 font-medium">
+              {props.subtitle || "Powerful Tools. Seamless Experience."}
+            </p>
           </div>
 
           {/* Hardware Items Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {hardwareItems.map((item, idx) => {
+            {displayItems.map((item, idx) => {
               const aosType = aosCardAnimations[idx % aosCardAnimations.length];
               const aosDelay = 200 + idx * 120;
               return (

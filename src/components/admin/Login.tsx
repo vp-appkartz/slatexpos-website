@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  
+
   const navigate = useNavigate();
   const { isAdmin } = useAuth();
 
@@ -31,7 +31,7 @@ const AdminLogin = () => {
     try {
       const user = await signIn(email, password);
       console.log('Login successful:', user.email);
-      
+
       // All authenticated users are admin users
       console.log('User authenticated, redirecting to dashboard');
       navigate('/admin/dashboard');
@@ -49,11 +49,11 @@ const AdminLogin = () => {
         {/* Header */}
         <div className="text-center">
           <img
-            className="mx-auto h-16 w-auto"
-            src="/logo.png"
+            className="mx-auto h-8 lg:h-10 w-auto object-contain"
+            src="/logo/slatex_logo.png"
             alt="SlateX POS"
           />
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <h2 className="mt-10 text-3xl font-bold text-gray-900">
             Admin Panel
           </h2>
           <p className="mt-2 text-sm text-gray-600">

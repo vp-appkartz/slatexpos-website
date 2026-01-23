@@ -11,7 +11,17 @@ const aosAnimations = [
   "fade-left",
 ];
 
-const Contact = () => {
+interface ContactProps {
+  title?: string | React.ReactNode;
+  description?: string;
+  image?: string;
+}
+
+const Contact: React.FC<ContactProps> = ({
+  title,
+  description,
+  image
+}) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -114,7 +124,7 @@ const Contact = () => {
         <div
           className="relative rounded-3xl overflow-hidden min-h-[500px] bg-cover bg-center"
           style={{
-            backgroundImage: "url('/contact-bg.png')",
+            backgroundImage: `url('${image || '/contact-bg.png'}')`,
           }}
         >
           {/* Overlay for better contrast on mobile */}
@@ -132,9 +142,13 @@ const Contact = () => {
                 data-aos="fade-down"
                 data-aos-delay="180"
               >
-                Let's schedule
-                <br />
-                your free demo
+                {title || (
+                  <>
+                    Let's schedule
+                    <br />
+                    your free demo
+                  </>
+                )}
               </h2>
 
               <p
@@ -142,14 +156,7 @@ const Contact = () => {
                 data-aos="fade-up"
                 data-aos-delay="260"
               >
-                Discover why top restaurants trust SlateX POS to run their
-                business smoothly and efficiently. With powerful features like
-                real-time order syncing, customizable menus, and seamless
-                payment integration, our system is built to make your life
-                easier. Book your free demo today and see how SlateX POS can
-                help you save time, reduce errors, and grow your profits — all
-                with a solution tailored to your restaurant's unique needs. Let
-                us show you the difference in just one call!
+                {description || "Discover why top restaurants trust SlateX POS to run their business smoothly and efficiently. With powerful features like real-time order syncing, customizable menus, and seamless payment integration, our system is built to make your life easier. Book your free demo today and see how SlateX POS can help you save time, reduce errors, and grow your profits — all with a solution tailored to your restaurant's unique needs. Let us show you the difference in just one call!"}
               </p>
             </div>
 

@@ -94,12 +94,12 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">Scroll Sections</h2>
-                    {isEditing && (
+                    {/* {isEditing && (
                         <button onClick={onAddSection} className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-gray rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm font-medium">
                             <Plus className="w-4 h-4" />
                             Add Section
                         </button>
-                    )}
+                    )} */}
                 </div>
 
                 {data.sections.map((section) => (
@@ -119,14 +119,14 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                {isEditing && (
+                                {/* {isEditing && (
                                     <button
                                         onClick={(e) => { e.stopPropagation(); onRemoveSection(section.id); }}
                                         className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
                                     >
                                         <Trash2 className="w-4 h-4" />
                                     </button>
-                                )}
+                                )} */}
                                 {expandedSection === section.id ? <ChevronDown className="w-5 h-5 text-gray-400" /> : <ChevronRight className="w-5 h-5 text-gray-400" />}
                             </div>
                         </div>

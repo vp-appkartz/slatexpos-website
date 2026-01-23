@@ -1,7 +1,29 @@
 import React, { useState } from 'react';
 
-const Testimonial = () => {
-  const testimonials = [
+export interface TestimonialItem {
+  id: number;
+  name: string;
+  position: string;
+  image: string;
+  text: string;
+  logo: string;
+  logoSubtext: string;
+}
+
+export interface TestimonialsData {
+  title?: string;
+  subtitle?: string;
+  items?: TestimonialItem[];
+}
+
+interface TestimonialProps extends TestimonialsData { }
+
+const Testimonial: React.FC<TestimonialProps> = ({
+  title = "Testimonials",
+  subtitle = "Proof in every plate, Hear from our customers",
+  items
+}) => {
+  const defaultTestimonials = [
     {
       id: 1,
       name: "Tushar Mistry",
@@ -40,6 +62,8 @@ const Testimonial = () => {
     }
   ];
 
+  const testimonials = items || defaultTestimonials;
+
   // By default, first card expanded. On hover, expand hovered card.
   const [expandedIndex, setExpandedIndex] = useState(0);
 
@@ -49,10 +73,10 @@ const Testimonial = () => {
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000`}>
           <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-            Testimonials
+            {title}
           </h2>
           <p className="text-lg md:text-2xl font-medium text-gray-600">
-            Proof in every plate, Hear from our customers
+            {subtitle}
           </p>
         </div>
 

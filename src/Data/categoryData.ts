@@ -100,9 +100,146 @@ export interface Meta {
   image?: string;
 }
 
+export interface HardwareItem {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+}
+
+export interface TestimonialItem {
+  id: number;
+  name: string;
+  position: string;
+  image: string;
+  text: string;
+  logo: string;
+  logoSubtext: string;
+}
+
+export interface CTAData {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+export interface PromoSectionData {
+  title: string;
+  description: string;
+  buttonText: string;
+  imageSrc: string;
+  imageAlt: string;
+  trustIndicators: string[];
+}
+
+export interface HeroSectionData {
+  title: string;
+  description: string;
+  buttonText?: string;
+  mainImage: string;
+  mainImageAlt?: string;
+  deviceImage?: string;
+  deviceImageAlt?: string;
+  deviceTitle?: string;
+  deviceDescription?: string;
+  backgroundText?: string;
+  backgroundImage?: string;
+}
+
+export interface NumberSpeaksData {
+  title?: string;
+  subtitle?: string;
+  stats: CategoryStatItem[];
+}
+
+export interface ScrollSectionData {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  sections: {
+    id: string;
+    icon: string; // Icon name as string
+    title: string;
+    subtitle: string;
+    description: string;
+    stat?: string;
+    statDescription?: string;
+    bgColor: string;
+    bgGradient: string;
+    buttonText: string;
+    bulletPoints?: { text: string; highlight?: boolean }[];
+    imageSrc?: string;
+    imageAlt?: string;
+  }[];
+}
+
+export interface KeyFeaturesData {
+  heading?: string;
+  subheading?: string;
+  features: CategoryFeatureItem[];
+}
+
+export interface BlackCardSectionData {
+  heading?: string;
+  subheading?: string;
+  items: CategoryBlackCardItem[];
+}
+
+export interface HardwareSectionData {
+  title?: string;
+  subtitle?: string;
+  items: HardwareItem[];
+}
+
+export interface TestimonialSectionData {
+  title?: string;
+  subtitle?: string;
+  items: TestimonialItem[];
+}
+
+export interface CTASectionData {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+export interface FAQSectionData {
+  faqs: FAQItem[];
+}
+
+export interface CategoryPageData {
+  slug: string;
+  heroSection: HeroSectionData;
+  numberSpeaks: NumberSpeaksData;
+  scrollSection?: ScrollSectionData;
+  industrySection?: {
+    title: string;
+    subtitle: string;
+    features: {
+      heading: string;
+      description: string;
+      bulletPoints?: string[];
+    }[];
+    stats?: {
+      value: string;
+      description: string;
+    }[];
+    ctaText: string;
+    imageSrc: string;
+    imageAlt?: string;
+  };
+  keyFeatures?: KeyFeaturesData;
+  blackCardSection?: BlackCardSectionData;
+  hardwareSection?: HardwareSectionData;
+  promoSection?: PromoSectionData;
+  testimonialSection?: TestimonialSectionData;
+  ctaSection?: CTASectionData;
+  faqSection?: FAQSectionData;
+  meta?: Meta;
+}
+
 
 export const quickServiceRestaurantData: CategoryPageData = {
-  slug: "quick-service-restaurants",
+  slug: "quick-service-restaurants-qsr",
   meta: {
     title: "Quick Service Restaurant POS",
     description: "Streamline operations with fast, efficient POS solutions designed specifically for quick-service establishments.",
@@ -491,7 +628,8 @@ export const casualDiningData: CategoryPageData = {
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, using automated loyalty reward points to customers for effortless use and increased customer retention."
       }
     ]
-  }
+  },
+
 };
 
 // Additional categories can be added here (Fine Dining, Fast Casual, etc.)
@@ -611,7 +749,8 @@ export const fineDiningData: CategoryPageData = {
         description: "Comprehensive guest relationship management with detailed profiles, preference tracking, and personalized service capabilities for memorable dining experiences."
       }
     ]
-  }
+  },
+
 };
 
 export const fastCasualData: CategoryPageData = {
@@ -787,7 +926,8 @@ export const fastCasualData: CategoryPageData = {
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
       }
     ]
-  }
+  },
+
 };
 
 export const foodTrucksData: CategoryPageData = {
@@ -944,7 +1084,8 @@ export const foodTrucksData: CategoryPageData = {
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
       }
     ]
-  }
+  },
+
 };
 
 export const fullServicesRestaurantData: CategoryPageData = {
@@ -1118,7 +1259,8 @@ export const fullServicesRestaurantData: CategoryPageData = {
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
       }
     ]
-  }
+  },
+
 };
 
 export const pizzeriaData: CategoryPageData = {

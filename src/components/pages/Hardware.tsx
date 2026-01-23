@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import React from "react";
 import HeroSection from "../Common/HeroSection";
-import NumberSpeaks from "../Common/StatData";
-import IndustrySection from "../Common/Features";
 import KeyFeatures from "../Common/KeyFeature";
-import BlackCardSection from "../Common/BlackCard";
 import Hardware from "../Common/Hardware";
 import BlackSection from "../Common/BlackSection";
 import Testimonial from "../Common/Testimonials";
 import Contact from "../Common/CTA";
 import FAQSection from "../Common/Faq";
-import { hardwareData } from "../../Data/hardwareData";
+import { useHardwarePage } from "../../contexts/HardwarePageContext";
 import ScrollSection from "../Home/ScrollSection";
 import { Monitor, Smartphone, Tablet } from "lucide-react";
 import SEO from "../Common/SEO";
 
 const HardwarePage: React.FC = () => {
+  const { data } = useHardwarePage();
 
-  const transformedSections = hardwareData.productSections.map((product, index) => {
+  const transformedSections = data.productSections.map((product, index) => {
     // Assign icons based on product type
     let icon;
     if (product.title.includes('Station')) {
@@ -31,19 +28,19 @@ const HardwarePage: React.FC = () => {
     }
 
     return {
-      id: (index + 1).toString(),
+      id: product.id || (index + 1).toString(),
       icon: icon,
       title: product.title,
-      subtitle: product.title,
+      subtitle: product.subtitle || product.title,
       description: product.description,
       stat: '',
       statDescription: '',
-      bgColor: 'bg-gray-500',
-      bgGradient: 'from-gray-400 to-gray-600',
+      bgColor: product.bgColor || 'bg-gray-500',
+      bgGradient: product.bgGradient || 'from-gray-400 to-gray-600',
       buttonText: product.buttonText,
       imageSrc: product.image,
       imageAlt: product.imageAlt || product.title,
-      bulletPoints: [] // Hardware products don't have bullet points
+      bulletPoints: product.bulletPoints || []
     };
   });
   return (
@@ -54,21 +51,22 @@ const HardwarePage: React.FC = () => {
         keywords="POS hardware, payment terminals, card readers, POS tablets"
       />
       <HeroSection
-        title={hardwareData.heroSection.title}
-        description={hardwareData.heroSection.description}
-        buttonText={hardwareData.heroSection.buttonText}
-        mainImage={hardwareData.heroSection.mainImage}
-        mainImageAlt={hardwareData.heroSection.mainImageAlt}
-        deviceImageAlt={hardwareData.heroSection.deviceImageAlt}
-        deviceTitle={hardwareData.heroSection.deviceTitle}
-        deviceDescription={hardwareData.heroSection.deviceDescription}
-        backgroundText={hardwareData.heroSection.backgroundText}
-        backgroundImage={hardwareData.heroSection.backgroundImage}
+        title={data.heroSection.title}
+        description={data.heroSection.description}
+        buttonText={data.heroSection.buttonText}
+        mainImage={data.heroSection.mainImage}
+        mainImageAlt={data.heroSection.mainImageAlt}
+        deviceImage={data.heroSection.deviceImage || ''}
+        deviceImageAlt={data.heroSection.deviceImageAlt}
+        deviceTitle={data.heroSection.deviceTitle}
+        deviceDescription={data.heroSection.deviceDescription}
+        backgroundText={data.heroSection.backgroundText}
+        backgroundImage={data.heroSection.backgroundImage}
       />
 
       <ScrollSection
-        heroTitle={hardwareData.featuresIntro?.title}
-        heroSubtitle={hardwareData.featuresIntro?.subtitle}
+        heroTitle={data.featuresIntro?.title}
+        heroSubtitle={data.featuresIntro?.subtitle}
         sections={transformedSections}
         onButtonClick={(sectionId) => {
           console.log(`Hardware section ${sectionId} button clicked`);
@@ -77,24 +75,34 @@ const HardwarePage: React.FC = () => {
       />
 
       <KeyFeatures
-        heading={hardwareData.keyFeatures.heading}
-        subheading={hardwareData.keyFeatures.subheading}
-        features={hardwareData.keyFeatures.features}
+        heading={data.keyFeatures.heading}
+        subheading={data.keyFeatures.subheading}
+        features={data.keyFeatures.features}
       />
 
-      <Hardware />
+      <Hardware
+        title={data.hardwareShowcase?.title}
+        subtitle={data.hardwareShowcase?.subtitle}
+        items={data.hardwareShowcase?.items}
+      />
+
       <BlackSection
         title={
-          <span style={{ lineHeight: 1.3 }}>
-            Compact&nbsp;Restaurant<br />POS Hardware
-          </span>
+          data.blackSection.title
         }
-        description="The SlateX POS Compact is an all-in-one POS system with a terminal and customer display, designed for efficiency in space-limited environments. Perfect for restaurants, it enables faster order processing and smooth customer interactions, helping to keep lines moving."
-        trustIndicators={[]}
+        description={data.blackSection.description}
+        trustIndicators={data.blackSection.trustIndicators}
+        buttonText={data.blackSection.buttonText}
+        imageSrc={data.blackSection.imageSrc}
       />
-      <Testimonial />
+
+      <Testimonial
+        items={data.testimonials?.items}
+        title={data.testimonials?.title}
+        subtitle={data.testimonials?.subtitle}
+      />
       <Contact />
-      <FAQSection faqs={hardwareData.faqSection.faqs} />
+      <FAQSection faqs={data.faqSection.faqs} />
     </>
   );
 };

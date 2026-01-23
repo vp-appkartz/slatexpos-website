@@ -150,17 +150,21 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                 {/* Sidebar Header */}
                 <div className={`flex items-center h-20 border-b border-gray-100 bg-white transition-all duration-300 ${sidebarCollapsed ? 'flex-col justify-center py-2' : 'flex-row justify-between px-6'}`}>
                     {!sidebarCollapsed && (
-                        <div className="flex items-center gap-3">
-                            {/* <div className="w-8 h-8 bg-gradient-to-tr from-primary-600 to-primary-400 rounded-lg flex items-center justify-center shadow-lg shadow-primary-500/30">
-                                <span className="text-white font-bold text-xl">S</span>
-                            </div> */}
-                            <span className="font-bold text-xl text-gray-800 tracking-tight">SlateX</span>
+                        <div className="flex items-center flex-shrink-0">
+                            <div className="flex items-center justify-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+                                <img
+                                    src="/logo/slatex_logo.png"
+                                    alt="SlatexPOS Logo"
+                                    className="h-6 object-contain sm:h-4 lg:h-6 w-auto mb-1"
+                                />
+                            </div>
                         </div>
                     )}
                     {sidebarCollapsed && (
-                        <div className="w-8 h-8 bg-gradient-to-tr from-primary-600 to-primary-400 rounded-lg flex items-center justify-center shadow-lg shadow-primary-500/30 mb-1">
-                            <span className="text-white font-bold text-lg">S</span>
-                        </div>
+                        <img
+                            src="/logo/slatex_icon.png"
+                            alt="SlatexPOS Logo"
+                            className="h-6 object-contain sm:h-4 lg:h-6 w-auto mb-1" />
                     )}
 
                     {/* Mobile close button */}
@@ -236,13 +240,13 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                                 className={`
                   w-full flex items-center rounded-xl transition-all duration-200 group relative
                   ${sidebarCollapsed ? 'justify-center py-3 px-1' : 'justify-between px-4 py-3.5'}
-                  ${isActiveGroup('/products')
+                  ${isActiveGroup('/admin/products')
                                         ? 'bg-primary-50/50'
                                         : 'hover:bg-gray-50'
                                     }
                 `}
                             >
-                                {renderMenuItem(Package, 'Products', isActiveGroup('/products'), true, productsOpen)}
+                                {renderMenuItem(Package, 'Products', isActiveGroup('/admin/products'), true, productsOpen)}
                             </button>
 
                             {/* Nested Product Groups */}
@@ -274,14 +278,14 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                                                             <li key={slug}>
                                                                 <button
                                                                     onClick={() => {
-                                                                        navigate(`/products/${slug}`);
+                                                                        navigate(`/admin/products/${slug}`);
                                                                         setSidebarOpen(false);
                                                                     }}
                                                                     className={`
                                        w-full flex items-center px-3 py-1.5 text-sm rounded-md transition-colors leading-5
-                                       ${isCurrentPath(`/products/${slug}`)
-                                                                            ? 'text-primary-600 font-medium bg-primary-50'
-                                                                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                                       ${isCurrentPath(`/admin/products/${slug}`)
+                                                                            ? 'text-gray-600 font-medium bg-primary-600 shadow-sm'
+                                                                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                                                                         }
                                      `}
                                                                 >
@@ -328,12 +332,12 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                                         <li key={category.slug}>
                                             <button
                                                 onClick={() => {
-                                                    navigate(`/categories/${category.slug}`);
+                                                    navigate(`/admin/categories/${category.slug}`);
                                                     setSidebarOpen(false);
                                                 }}
                                                 className={`
                           w-full flex items-center px-3 py-1.5 text-sm rounded-md transition-colors leading-5
-                          ${isCurrentPath(`/categories/${category.slug}`)
+                          ${isCurrentPath(`/admin/categories/${category.slug}`)
                                                         ? 'text-primary-600 font-medium bg-primary-50'
                                                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                                                     }
@@ -351,42 +355,21 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                         <li>
                             <button
                                 onClick={() => {
-                                    navigate('/hardware');
+                                    navigate('/admin/hardware');
                                     setSidebarOpen(false);
                                 }}
                                 className={`
                          w-full flex items-center rounded-xl transition-all duration-200 group relative
                         ${sidebarCollapsed ? 'justify-center py-3 px-1' : 'justify-between px-4 py-3.5'}
-                        ${isCurrentPath('/hardware')
+                        ${isCurrentPath('/admin/hardware')
                                         ? 'bg-primary-50/50'
                                         : 'hover:bg-gray-50'
                                     }
                     `}
                             >
-                                {renderMenuItem(Monitor, 'Hardware', isCurrentPath('/hardware'))}
+                                {renderMenuItem(Monitor, 'Hardware', isCurrentPath('/admin/hardware'))}
                             </button>
                         </li>
-
-                        {/* Pricing */}
-                        <li>
-                            <button
-                                onClick={() => {
-                                    navigate('/pricing');
-                                    setSidebarOpen(false);
-                                }}
-                                className={`
-                        w-full flex items-center rounded-xl transition-all duration-200 group relative
-                        ${sidebarCollapsed ? 'justify-center py-3 px-1' : 'justify-between px-4 py-3.5'}
-                        ${isCurrentPath('/pricing')
-                                        ? 'bg-primary-50/50'
-                                        : 'hover:bg-gray-50'
-                                    }
-                    `}
-                            >
-                                {renderMenuItem(DollarSign, 'Pricing', isCurrentPath('/pricing'))}
-                            </button>
-                        </li>
-
                         {/* Blog Posts */}
                         <li>
                             <button
@@ -407,6 +390,25 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                             </button>
                         </li>
 
+                        {/* Pricing */}
+                        <li>
+                            <button
+                                onClick={() => {
+                                    navigate('/admin/pricing');
+                                    setSidebarOpen(false);
+                                }}
+                                className={`
+                    w-full flex items-center rounded-xl transition-all duration-200 group relative
+                    ${sidebarCollapsed ? 'justify-center py-3 px-1' : 'justify-between px-4 py-3.5'}
+                    ${isCurrentPath('/admin/pricing')
+                                        ? 'bg-primary-50/50'
+                                        : 'hover:bg-gray-50'
+                                    }
+                `}
+                            >
+                                {renderMenuItem(DollarSign, 'Pricing', isCurrentPath('/admin/pricing'))}
+                            </button>
+                        </li>
                         {/* Settings */}
                         <li>
                             <button

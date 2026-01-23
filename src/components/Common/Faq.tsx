@@ -3,7 +3,18 @@ import { ChevronRight, ChevronDown } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const FAQSection = ({
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FAQSectionProps {
+  title?: string;
+  subtitle?: string;
+  faqs?: FAQItem[];
+}
+
+const FAQSection: React.FC<FAQSectionProps> = ({
   title = "FAQs",
   subtitle = "Powerful Tools. Seamless Experience.",
   faqs = [
@@ -115,7 +126,7 @@ const FAQSection = ({
 
               <div
                 id={`faq-answer-${index}`}
-               
+
               >
                 {expandedIndex === index && (
                   <div className="px-6 pb-6">

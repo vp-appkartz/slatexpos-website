@@ -35,7 +35,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             >
               <Menu className="w-6 h-6" />
             </button>
-            <img src="/logo.png" alt="SlateX POS" className="h-8 w-auto" />
+            <img src="/logo/slatex_logo.png" alt="SlateX POS" className="h-6 w-auto" />
 
             {/* Mobile user avatar */}
             <div className="w-8 h-8 bg-primary-300 rounded-full flex items-center justify-center">

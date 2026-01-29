@@ -235,6 +235,7 @@ export interface CategoryPageData {
   ctaSection?: CTASectionData;
   faqSection?: FAQSectionData;
   meta?: Meta;
+  updatedAt?: any;
 }
 
 

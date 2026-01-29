@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Utensils, Clock, Zap, Coffee, ChefHat, CheckCircle, Circle, Check } from 'lucide-react';
+import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 interface Section {
   id: string;
@@ -181,12 +182,54 @@ const BulletList: React.FC<{ points: { text: string; highlight?: boolean }[] }> 
   );
 };
 
+const getIcon = (iconName: string): React.ReactNode => {
+  const icons: { [key: string]: React.ReactNode } = {
+    Utensils: <Utensils className="w-4 h-4" />,
+    Clock: <Clock className="w-4 h-4" />,
+    Zap: <Zap className="w-4 h-4" />,
+    Coffee: <Coffee className="w-4 h-4" />,
+    ChefHat: <ChefHat className="w-4 h-4" />,
+    CheckCircle: <CheckCircle className="w-4 h-4" />,
+    Circle: <Circle className="w-4 h-4" />,
+    Check: <Check className="w-4 h-4" />,
+  };
+  return icons[iconName] || <Check className="w-4 h-4" />;
+};
+
 const ScrollSection: React.FC<ScrollSectionProps> = ({
   heroTitle = "What We Do",
   heroSubtitle = "Tailored for Every Table, Terminal, and Territory in Canada",
   sections = defaultSections,
   onButtonClick
 }) => {
+  const [dataSections, setDataSections] = useState<Section[]>(sections);
+  const [dataTitle, setDataTitle] = useState(heroTitle);
+  const [dataSubtitle, setDataSubtitle] = useState(heroSubtitle);
+
+  useEffect(() => {
+    setDataSections(sections);
+    setDataTitle(heroTitle || "What We Do");
+    setDataSubtitle(heroSubtitle || "Tailored for Every Table, Terminal, and Territory in Canada");
+  }, [sections, heroTitle, heroSubtitle]);
+
+  useEffect(() => {
+    // Only subscribe to global data if we are using the default sections (meaning no custom sections provided)
+    if (sections !== defaultSections) return;
+
+    const unsubscribe = subscribeToHeroPageData((data) => {
+      if (data && data.scroll) {
+        setDataTitle(data.scroll.heroTitle);
+        setDataSubtitle(data.scroll.heroSubtitle);
+        setDataSections(data.scroll.sections.map((s: any) => ({
+          ...s,
+          icon: getIcon(s.icon),
+        })));
+      }
+    });
+
+    return () => unsubscribe();
+  }, [sections]);
+
   const [activeSection, setActiveSection] = useState(sections[0]?.id || '1');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -221,7 +264,14 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
     });
 
     return () => observer.disconnect();
-  }, [activeSection]);
+  }, [activeSection, dataSections]);
+
+  // Sync activeSection if needed when data changes
+  useEffect(() => {
+    if (dataSections.length > 0 && !dataSections.some(s => s.id === activeSection)) {
+      setActiveSection(dataSections[0].id);
+    }
+  }, [dataSections]);
 
   const POSImage = ({ sectionId }: { sectionId: string }) => {
     const [currentImage, setCurrentImage] = useState(sectionId);
@@ -230,7 +280,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
     const [isImageTransitioning, setIsImageTransitioning] = useState(false);
 
     const getImageData = (id: string) => {
-      const section = sections.find(s => s.id === id);
+      const section = dataSections.find(s => s.id === id);
       if (section && section.imageSrc) {
         return {
           src: section.imageSrc,
@@ -327,66 +377,91 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
       <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl mt-4 md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
-            {heroTitle}
+            {dataTitle}
           </h1>
           <p className="text-black text-lg sm:text-xl font-medium md:text-sm lg:text-base mt-2 md:mt-2">
-            {heroSubtitle}
+            {dataSubtitle}
           </p>
         </div>
       </section>
 
       {/* Main Content - Different layouts for mobile vs desktop */}
       <div className="lg:grid lg:grid-cols-2 lg:gap-0">
-        {/* Mobile Layout - Sections with images */}
-        <div className="lg:hidden">
-          {sections.map((section, index) => (
+        {/* Mobile Layout - Modern App-Style Design */}
+        <div className="lg:hidden bg-white">
+          {dataSections.map((section, index) => (
             <div
               key={section.id}
               id={section.id}
               ref={(el) => (sectionRefs.current[section.id] = el)}
-              className="min-h-screen flex flex-col"
+              className="min-h-screen relative flex flex-col overflow-hidden"
             >
-              {/* Image for mobile */}
-              <div className="h-[40vh] mb-4">
-                <div className="w-full h-full">
-                  <div className="relative overflow-hidden w-full h-full">
-                    <img
-                      src={section.imageSrc || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80'}
-                      alt={section.imageAlt || section.title}
-                      className="w-full h-full object-contain"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const parent = target.parentElement;
-                        if (parent) {
-                          parent.className += ' flex items-center justify-center';
-                          parent.innerHTML = '<div class="text-gray-600 text-center"><div class="text-2xl mb-2">📱</div><div class="font-medium">Default Image</div></div>';
-                        }
-                      }}
-                    />
-                  </div>
+              {/* Top Gradient Section with Floating Elements */}
+              {/* <div className={`absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br ${section.bgGradient} rounded-b-[40px] shadow-lg z-0`}> */}
+              {/* Decorative Pattern Overlay */}
+              {/* <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div> */}
+
+              {/* Section Index Badge */}
+              {/* <div className="absolute top-6 right-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-inner z-20">
+                  <span className="text-white font-bold text-xl">{index + 1}</span>
+                </div> */}
+
+              {/* Floating Icon Bubble */}
+              {/* <div className="absolute top-6 left-6 w-12 h-12 bg-white text-primary-500 rounded-2xl flex items-center justify-center shadow-lg z-20 transform -rotate-6">
+                  {React.cloneElement(section.icon as React.ReactElement, { className: "w-6 h-6" })}
+                </div> */}
+              {/* </div> */}
+
+              {/* Main Visual - Floating Image */}
+              <div className="relative z-10 w-full h-[35vh] mt-20 px-8 flex items-center justify-center">
+                <div className="relative w-full h-full filter  transition-transform duration-500 hover:scale-105">
+                  <img
+                    src={section.imageSrc || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80'}
+                    alt={section.imageAlt || section.title}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.className += ' flex items-center justify-center bg-white/10 rounded-3xl backdrop-blur-sm border border-white/20';
+                        parent.innerHTML = '<div class="text-white text-center"><div class="text-4xl mb-2">📱</div><div class="font-medium opacity-90">Preview Image</div></div>';
+                      }
+                    }}
+                  />
                 </div>
               </div>
 
-              {/* Content for mobile */}
-              <div className="flex-1 flex items-center justify-center px-4 pb-12">
-                <div className="max-w-sm w-full text-left">
-                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-700 mb-5 tracking-wide" style={{ lineHeight: '1.3' }}>
+              {/* Content Card - Bottom Sheet Style */}
+              <div className="flex-1 z-10 -mt-6 mx-0 bg-white rounded-t-[32px] px-6 pt-8 pb-10 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] flex flex-col items-center">
+                {/* Drag Handle Indicator */}
+                <div className="w-12 h-1.5 bg-gray-200 rounded-full mb-8"></div>
+
+                <div className="w-full max-w-sm">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4 leading-tight text-center">
                     {section.subtitle}
                   </h2>
-                  <p className="text-xl sm:text-2xl font-normal text-black mb-6">
+
+                  <p className="text-gray-600 mb-8 text-center leading-relaxed font-medium">
                     {section.description}
                   </p>
 
-                  {section.bulletPoints && section.bulletPoints.length > 0 && (
-                    <BulletList points={section.bulletPoints} />
-                  )}
+                  {/* Bullet Points Container */}
+                  <div className="w-full bg-gray-50 rounded-2xl p-2 mb-8 border border-gray-100">
+                    {section.bulletPoints && section.bulletPoints.length > 0 && (
+                      <BulletList points={section.bulletPoints} />
+                    )}
+                  </div>
 
                   <button
                     onClick={() => handleButtonClick(section.id)}
-                    className="bg-primary-300 text-white px-6 py-3.5 rounded-md font-medium hover:bg-orange-600 transition-colors duration-200 text-lg shadow-md mt-8"
+                    className="w-full group relative overflow-hidden bg-gray-900 text-white px-6 py-4 rounded-xl font-bold text-lg shadow-xl shadow-gray-900/10 hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 active:scale-95"
                   >
-                    {section.buttonText}
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {section.buttonText}
+                      <Zap className="w-4 h-4 text-primary-400 group-hover:text-yellow-400 transition-colors" fill="currentColor" />
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               </div>
@@ -407,7 +482,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
             `}</style>
 
             <div className="space-y-0">
-              {sections.map((section, index) => (
+              {dataSections.map((section, index) => (
                 <div
                   key={section.id}
                   id={section.id}

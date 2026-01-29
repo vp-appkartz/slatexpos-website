@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { 
-  Save, 
-  Eye, 
-  Upload, 
-  X, 
-  ArrowLeft, 
-  Image as ImageIcon 
+import {
+  Save,
+  Eye,
+  Upload,
+  X,
+  ArrowLeft,
+  Image as ImageIcon
 } from 'lucide-react';
-import { 
-  createBlog, 
-  updateBlog, 
-  getBlogById, 
-  uploadBlogImage 
+import {
+  createBlog,
+  updateBlog,
+  getBlogById,
+  uploadBlogImage
 } from '../../services/blogService';
 import { CreateBlogPost } from '../../types/blog';
 
@@ -85,7 +85,7 @@ const BlogForm = () => {
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
@@ -150,9 +150,9 @@ const BlogForm = () => {
     if (!formData.content.trim()) {
       newErrors.content = 'Content is required';
     }
-    if (!formData.imageUrl) {
-      newErrors.image = 'Image is required';
-    }
+    // if (!formData.imageUrl) {
+    //   newErrors.image = 'Image is required';
+    // }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -164,13 +164,13 @@ const BlogForm = () => {
     setLoading(true);
     try {
       const blogData = { ...formData, published: publish };
-      
+
       if (isEdit) {
         await updateBlog(id!, blogData);
       } else {
         await createBlog(blogData);
       }
-      
+
       navigate('/admin/blogs');
     } catch (error) {
       console.error('Error saving blog:', error);
@@ -209,7 +209,7 @@ const BlogForm = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-2 lg:gap-3">
             <button
               onClick={() => handleSubmit(false)}
@@ -237,7 +237,7 @@ const BlogForm = () => {
           {/* Basic Info */}
           <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-            
+
             <div className="space-y-4">
               {/* Title */}
               <div>
@@ -250,9 +250,8 @@ const BlogForm = () => {
                   name="title"
                   value={formData.title}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-0 focus:border-gray-300 ${
-                    errors.title ? 'border-red-300' : 'border-gray-200'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-0 focus:border-gray-300 ${errors.title ? 'border-red-300' : 'border-gray-200'
+                    }`}
                   placeholder="Enter blog title..."
                 />
                 {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
@@ -269,9 +268,8 @@ const BlogForm = () => {
                   value={formData.excerpt}
                   onChange={handleInputChange}
                   rows={3}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-0 focus:border-gray-300 resize-none ${
-                    errors.excerpt ? 'border-red-300' : 'border-gray-200'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-0 focus:border-gray-300 resize-none ${errors.excerpt ? 'border-red-300' : 'border-gray-200'
+                    }`}
                   placeholder="Write a brief excerpt..."
                 />
                 {errors.excerpt && <p className="text-red-600 text-sm mt-1">{errors.excerpt}</p>}
@@ -288,9 +286,8 @@ const BlogForm = () => {
                   value={formData.content}
                   onChange={handleInputChange}
                   rows={20}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-0 focus:border-gray-300 resize-y min-h-[400px] ${
-                    errors.content ? 'border-red-300' : 'border-gray-200'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-0 focus:border-gray-300 resize-y min-h-[400px] ${errors.content ? 'border-red-300' : 'border-gray-200'
+                    }`}
                   placeholder="Write your blog content here... You can use line breaks to separate paragraphs."
                 />
                 {errors.content && <p className="text-red-600 text-sm mt-1">{errors.content}</p>}
@@ -302,7 +299,7 @@ const BlogForm = () => {
           {/* Image Upload */}
           <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Featured Image</h2>
-            
+
             {formData.imageUrl ? (
               <div className="relative group">
                 <img
@@ -330,7 +327,7 @@ const BlogForm = () => {
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Upload Featured Image</h3>
                 <p className="text-gray-600 mb-4">PNG, JPG, GIF up to 5MB</p>
-                <label 
+                <label
                   htmlFor="image-upload"
                   className="inline-flex items-center gap-2 bg-primary-300 hover:bg-primary-400 text-white font-semibold px-6 py-3 rounded-lg cursor-pointer transition-colors duration-200 disabled:opacity-50"
                 >
@@ -363,7 +360,7 @@ const BlogForm = () => {
           {/* Settings */}
           <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
             <h2 className="text-base font-semibold text-gray-900 mb-3">Settings</h2>
-            
+
             <div className="space-y-3">
               {/* Category */}
               <div>
@@ -421,7 +418,7 @@ const BlogForm = () => {
           {/* Tags */}
           <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
             <h2 className="text-base font-semibold text-gray-900 mb-3">Tags</h2>
-            
+
             <div className="space-y-3">
               <div className="flex gap-2">
                 <label htmlFor="tag-input" className="sr-only">Add tag</label>
@@ -447,7 +444,7 @@ const BlogForm = () => {
                   Add
                 </button>
               </div>
-              
+
               <div className="flex flex-wrap gap-2">
                 {formData.tags.map((tag) => (
                   <span

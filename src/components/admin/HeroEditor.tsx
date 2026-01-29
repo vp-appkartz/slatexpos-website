@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import {
     Save,
     LayoutTemplate,
@@ -6,7 +7,8 @@ import {
     Edit2,
     X,
     Layers,
-    Monitor
+    Monitor,
+    Menu // Added Menu icon if needed for mobile, but primarily using layout adjustments
 } from 'lucide-react';
 import HeroContentEditor from './hero/HeroContentEditor';
 import ScrollContentEditor from './hero/ScrollContentEditor';
@@ -16,6 +18,13 @@ import BlackSectionContentEditor, { BlackSectionData } from './hero/BlackSection
 import TestimonialsContentEditor from './hero/TestimonialsContentEditor';
 import { TestimonialsData } from '../Common/Testimonials';
 import CTAContentEditor, { CTAData } from './hero/CTAContentEditor';
+import {
+    getHeroPageData,
+    saveHeroPageData,
+    HeroData,
+    ScrollSectionData,
+    HeroPageContent
+} from '../../services/firestoreService';
 
 // --- Types ---
 interface Section {
@@ -31,8 +40,8 @@ interface Section {
     imageSrc: string;
 }
 
-// --- Initial Data ---
-const INITIAL_HERO_DATA = {
+// --- Initial Data (Fallbacks) ---
+const INITIAL_HERO_DATA: HeroData = {
     heading: 'Run Your Restaurant',
     highlightedText: 'More Efficiently',
     suffixText: 'Smarter',
@@ -57,13 +66,13 @@ const INITIAL_HERO_DATA = {
     ]
 };
 
-const INITIAL_SCROLL_DATA = {
+const INITIAL_SCROLL_DATA: ScrollSectionData = {
     heroTitle: "What We Do",
     heroSubtitle: "Tailored for Every Table, Terminal, and Territory in Canada",
     sections: [
         {
             id: '1',
-            icon: 'Utensils',
+            icon: "Utensils",
             title: 'Comprehensive All-In-One POS System',
             subtitle: 'Comprehensive All-In-One POS System',
             description: 'An easy to use and reliable cloud-based Android POS solution designed to empower restaurants in their growth journey.',
@@ -76,25 +85,100 @@ const INITIAL_SCROLL_DATA = {
                 { text: 'Pizza Matrix (½ & ¼)', highlight: false },
                 { text: 'Control Complex Modifiers', highlight: true },
                 { text: 'Binnacle Security', highlight: false },
+                { text: 'Accurate & easy insights', highlight: true },
+                { text: 'Employee Management', highlight: false },
+                { text: 'Tip Reconciliation', highlight: true },
+                { text: 'Third Party Order Integration', highlight: false },
+                { text: 'Timecard and Payroll', highlight: true },
+                { text: 'CRM & Loyalty', highlight: false },
+                { text: 'Versatile item and menu management', highlight: true },
+                { text: 'Comprehensive Management', highlight: false },
             ]
         },
         {
             id: '2',
-            icon: 'Clock',
+            icon: "Clock",
             title: 'Streamline kitchen operations with precision',
             subtitle: 'Streamline kitchen operations with precision',
-            description: 'A comprehensive Kitchen Display System streamlining restaurant operations from order management to food preparation.',
+            description: 'A comprehensive Kitchen Display System streamlining restaurant operations from order management to food preparation. Ensure seamless communication and enhanced efficiency in your kitchen allowing your staff to focus on preparing and serving delicious food.',
             bgColor: 'bg-green-500',
             bgGradient: 'from-green-400 to-green-600',
-            buttonText: "Let's Connect",
+            buttonText: 'Let\'s Connect',
             imageSrc: '/home-about-2.png',
             bulletPoints: [
                 { text: 'Aggregate all orders', highlight: true },
                 { text: 'Multiple views', highlight: true },
                 { text: 'Color Coded Orders', highlight: true },
+                { text: 'Kitchen productivity reports', highlight: true },
+                { text: 'Bump & Recall Items', highlight: true },
+                { text: 'Prep time countdown timer', highlight: true },
+                { text: 'Ticket Status Digital Signage Integration', highlight: true }
+            ]
+        },
+        {
+            id: '3',
+            icon: "Zap",
+            title: 'Boost your profit with zero-commission online ordering!',
+            subtitle: 'Boost your profit with zero-commission online ordering!',
+            description: "Increase your sales and expand your reach with the commission-free online ordering solution of SlateX POS. From easy menu customization to timely order fulfillment, we empower restaurants to serve customers anytime, anywhere.",
+            bgColor: 'bg-primary-300',
+            bgGradient: 'from-orange-400 to-red-500',
+            buttonText: "Let's Connect",
+            imageSrc: '/home-about-3.png',
+            bulletPoints: [
+                { text: 'Commission Free', highlight: true },
+                { text: 'Future ordering options', highlight: true },
+                { text: 'Multiple color branding option', highlight: false },
+                { text: 'Multi store listing', highlight: true },
+                { text: 'Loyalty Program Integration', highlight: false },
+                { text: 'Offers/Coupons Management', highlight: false },
+                { text: 'Integration with POS/Kitchen', highlight: false },
+                { text: 'Guest Alerts Email/SMS', highlight: true },
+                { text: 'Third party analytics integration', highlight: false },
+                { text: 'Catering/Express Catering options', highlight: false },
+            ]
+        },
+        {
+            id: '4',
+            icon: "Check",
+            title: 'Tailored loyalty program all restaurants desire and customers crave',
+            subtitle: 'Tailored loyalty program all restaurants desire and customers crave',
+            description: 'Enhance customer retention and encourage repeat visits with personalized incentives and rewards using SlateX POS. Help customers unlock exclusive perks, fostering loyalty and satisfaction with every transaction.',
+            bgColor: 'bg-primary-300',
+            bgGradient: 'from-orange-400 to-orange-600',
+            buttonText: "Let's Connect",
+            imageSrc: '/home-about-4.png',
+            bulletPoints: [
+                { text: 'Easy & Quick implementation', highlight: true },
+                { text: 'Detailed customer analytics report', highlight: false },
+                { text: 'Point or Reward based', highlight: false },
+                { text: 'Menu item reward options', highlight: true },
+                { text: 'Inststore/Online/Kiosk integration', highlight: false },
+                { text: 'Customer portal', highlight: true },
+                { text: 'Integrated marketing campaigns', highlight: false },
+                { text: 'Personalized communication', highlight: true },
+            ]
+        },
+        {
+            id: '5',
+            icon: "Check",
+            title: 'Let customers pay effortlessly with Payment Processing of SlateX POS',
+            subtitle: 'Let customers pay effortlessly with Payment Processing of SlateX POS',
+            description: 'SlateX POS offers fast, secure, and flexible payment options making it easy for both the customers and the restaurants to manage payments and transactions accurately without any errors.',
+            bgColor: 'bg-primary-300',
+            bgGradient: 'from-orange-400 to-orange-600',
+            buttonText: "Let's Connect",
+            imageSrc: '/home-about-5.png',
+            bulletPoints: [
+                { text: 'Customized and transparent rates', highlight: true },
+                { text: 'Compliant Surcharge Program', highlight: true },
+                { text: 'Fast and Secure Transactions', highlight: true },
+                { text: 'Comprehensive Payment Reports', highlight: true },
+                { text: 'Diverse Payment Options', highlight: true },
+                { text: 'Tip Management', highlight: true },
             ]
         }
-    ] as Section[]
+    ]
 };
 
 const INITIAL_HARDWARE_DATA: HardwareData = {
@@ -192,14 +276,49 @@ const INITIAL_CTA_DATA: CTAData = {
 
 const HeroEditor = () => {
     const [activeTab, setActiveTab] = useState<'hero' | 'scroll' | 'hardware' | 'blackSection' | 'testimonials' | 'cta'>('hero');
-    const [heroData, setHeroData] = useState(INITIAL_HERO_DATA);
-    const [scrollData, setScrollData] = useState(INITIAL_SCROLL_DATA);
-    const [hardwareData, setHardwareData] = useState(INITIAL_HARDWARE_DATA);
-    const [blackSectionData, setBlackSectionData] = useState(INITIAL_BLACK_SECTION_DATA);
-    const [testimonialsData, setTestimonialsData] = useState(INITIAL_TESTIMONIALS_DATA);
-    const [ctaData, setCtaData] = useState(INITIAL_CTA_DATA);
+    const [heroData, setHeroData] = useState<HeroData>(INITIAL_HERO_DATA);
+    const [scrollData, setScrollData] = useState<ScrollSectionData>(INITIAL_SCROLL_DATA);
+    const [hardwareData, setHardwareData] = useState<HardwareData>(INITIAL_HARDWARE_DATA);
+    const [blackSectionData, setBlackSectionData] = useState<BlackSectionData>(INITIAL_BLACK_SECTION_DATA);
+    const [testimonialsData, setTestimonialsData] = useState<TestimonialsData>(INITIAL_TESTIMONIALS_DATA);
+    const [ctaData, setCtaData] = useState<CTAData>(INITIAL_CTA_DATA);
     const [isSaving, setIsSaving] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            const data = await getHeroPageData();
+            console.log(data);
+            if (data) {
+                setHeroData(data.hero);
+
+                // Merge remote data with initial data to ensure all default sections exist
+                if (data.scroll && data.scroll.sections) {
+                    const existingIds = new Set(data.scroll.sections.map((s: any) => s.id));
+                    const missingSections = INITIAL_SCROLL_DATA.sections.filter(s => !existingIds.has(s.id));
+
+                    const mergedSections = [...data.scroll.sections, ...missingSections].sort((a, b) =>
+                        parseInt(a.id) - parseInt(b.id)
+                    );
+
+                    setScrollData({
+                        ...data.scroll,
+                        sections: mergedSections
+                    });
+                } else {
+                    setScrollData(data.scroll);
+                }
+                setHardwareData(data.hardware);
+                setBlackSectionData(data.blackSection);
+                setTestimonialsData(data.testimonials);
+                setCtaData(data.cta);
+            }
+            setIsLoading(false);
+        };
+        fetchData();
+    }, []);
 
     // --- Hero Handlers ---
     const handleHeroTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -401,15 +520,16 @@ const HeroEditor = () => {
     const handleTestimonialItemChange = (id: number, field: any, value: any) => {
         setTestimonialsData(prev => ({
             ...prev,
-            items: prev.items.map(item => item.id === id ? { ...item, [field]: value } : item)
+            items: (prev.items || []).map(item => item.id === id ? { ...item, [field]: value } : item)
         }));
     };
 
     const addTestimonialItem = () => {
-        const newId = Math.max(...testimonialsData.items.map(i => i.id), 0) + 1;
+        const currentItems = testimonialsData.items || [];
+        const newId = currentItems.length > 0 ? Math.max(...currentItems.map(i => i.id)) + 1 : 1;
         setTestimonialsData(prev => ({
             ...prev,
-            items: [...prev.items, {
+            items: [...(prev.items || []), {
                 id: newId,
                 name: "New Customer",
                 position: "Restaurant Name",
@@ -424,7 +544,7 @@ const HeroEditor = () => {
     const removeTestimonialItem = (id: number) => {
         setTestimonialsData(prev => ({
             ...prev,
-            items: prev.items.filter(item => item.id !== id)
+            items: (prev.items || []).filter(item => item.id !== id)
         }));
     };
 
@@ -443,32 +563,44 @@ const HeroEditor = () => {
 
 
     // --- Common Handlers ---
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSaving(true);
-        setTimeout(() => {
-            setIsSaving(false);
+        try {
+            const fullData: HeroPageContent = {
+                hero: heroData,
+                scroll: scrollData,
+                hardware: hardwareData,
+                blackSection: blackSectionData,
+                testimonials: testimonialsData,
+                cta: ctaData
+            };
+            await saveHeroPageData(fullData);
+            toast.success('Changes saved successfully!');
             setIsEditing(false);
-            alert('Changes saved successfully! (Mock)');
-        }, 1000);
+        } catch (error) {
+            console.error("Error saving data:", error);
+            toast.error('Failed to save changes.');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const toggleEdit = () => setIsEditing(!isEditing);
+    // Modified cancelEdit to just turn off editing mode, could optionally re-fetch data
     const cancelEdit = () => {
         setIsEditing(false);
-        setHeroData(INITIAL_HERO_DATA);
-        setScrollData(INITIAL_SCROLL_DATA);
-        setHardwareData(INITIAL_HARDWARE_DATA);
-        setHardwareData(INITIAL_HARDWARE_DATA);
-        setBlackSectionData(INITIAL_BLACK_SECTION_DATA);
-        setBlackSectionData(INITIAL_BLACK_SECTION_DATA);
-        setTestimonialsData(INITIAL_TESTIMONIALS_DATA);
-        setCtaData(INITIAL_CTA_DATA);
+        // Optionally revert data to initial or last fetched state. 
+        // For simplicity, we just exit edit mode, assuming user didn't want to save.
+        // A robust solution would re-fetch or use a ref to store original loaded data.
     };
 
+    if (isLoading) {
+        return <div className="p-8 text-center">Loading Content...</div>;
+    }
 
     return (
-        <div className="p-6 max-w-7xl mx-auto space-y-8">
+        <div className="p-4 sm:p-6 max-w-7xl mx-auto space-y-6 sm:space-y-8">
             {/* Header with Actions */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -476,11 +608,11 @@ const HeroEditor = () => {
                     <p className="text-gray-500 mt-1">Manage homepage Hero, Scroll, and Hardware sections.</p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 self-start sm:self-center">
                     {!isEditing ? (
                         <button
                             onClick={toggleEdit}
-                            className="flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-gray-900 text-white font-medium hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-gray-900/10"
+                            className="flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-gray-900 text-white font-medium hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-gray-900/10 w-full sm:w-auto"
                         >
                             <Edit2 className="w-5 h-5" />
                             <span>Edit Content</span>
@@ -490,7 +622,7 @@ const HeroEditor = () => {
                             <button
                                 onClick={cancelEdit}
                                 disabled={isSaving}
-                                className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-gray-600 font-medium hover:bg-gray-100 transition-all duration-200"
+                                className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-gray-600 font-medium hover:bg-gray-100 transition-all duration-200 w-full sm:w-auto"
                             >
                                 <X className="w-5 h-5" />
                                 <span>Cancel</span>
@@ -498,7 +630,7 @@ const HeroEditor = () => {
                             <button
                                 onClick={handleSubmit}
                                 disabled={isSaving}
-                                className={`flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl text-gray font-medium shadow-lg shadow-primary-500/20 transition-all duration-200
+                                className={`flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl text-gray font-medium shadow-lg shadow-primary-500/20 transition-all duration-200 w-full sm:w-auto
                                     ${isSaving ? 'bg-primary-400 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-700 hover:shadow-primary-500/30 hover:-translate-y-0.5'}`}
                             >
                                 {isSaving ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
@@ -510,49 +642,51 @@ const HeroEditor = () => {
             </div>
 
             {/* Tabs */}
-            <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl w-fit">
-                <button
-                    onClick={() => setActiveTab('hero')}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'hero' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    <LayoutTemplate className="w-4 h-4" />
-                    <span>Hero Section</span>
-                </button>
-                <button
-                    onClick={() => setActiveTab('scroll')}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'scroll' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    <Layers className="w-4 h-4" />
-                    <span>Scroll Section</span>
-                </button>
-                <button
-                    onClick={() => setActiveTab('hardware')}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'hardware' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    <Monitor className="w-4 h-4" />
-                    <span>Hardware</span>
-                </button>
-                <button
-                    onClick={() => setActiveTab('blackSection')}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'blackSection' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    <LayoutTemplate className="w-4 h-4" />
-                    <span>Black Section</span>
-                </button>
-                <button
-                    onClick={() => setActiveTab('testimonials')}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'testimonials' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    <LayoutTemplate className="w-4 h-4" />
-                    <span>Testimonials</span>
-                </button>
-                <button
-                    onClick={() => setActiveTab('cta')}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'cta' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    <LayoutTemplate className="w-4 h-4" />
-                    <span>Contact</span>
-                </button>
+            <div className="w-full overflow-x-auto pb-2 -mb-2">
+                <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl w-max min-w-full sm:min-w-0 sm:w-fit">
+                    <button
+                        onClick={() => setActiveTab('hero')}
+                        className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === 'hero' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <LayoutTemplate className="w-4 h-4" />
+                        <span>Hero Section</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('scroll')}
+                        className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === 'scroll' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <Layers className="w-4 h-4" />
+                        <span>Scroll Section</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('hardware')}
+                        className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === 'hardware' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <Monitor className="w-4 h-4" />
+                        <span>Hardware</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('blackSection')}
+                        className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === 'blackSection' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <LayoutTemplate className="w-4 h-4" />
+                        <span>Black Section</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('testimonials')}
+                        className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === 'testimonials' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <LayoutTemplate className="w-4 h-4" />
+                        <span>Testimonials</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('cta')}
+                        className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === 'cta' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <LayoutTemplate className="w-4 h-4" />
+                        <span>Contact</span>
+                    </button>
+                </div>
             </div>
 
             {/* Tab: Hero Content */}

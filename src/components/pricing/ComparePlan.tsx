@@ -3,7 +3,7 @@ import { usePricing } from '../../contexts/PricingContext';
 import { ComparisonFeature } from '../../Data/pricingData';
 
 const ComparePlanComponent = () => {
-    const { plans, compareFeatures } = usePricing();
+    const { plans, compareFeatures, compareSection } = usePricing();
 
     const renderFeatureValue = (feature: ComparisonFeature, planId: string) => {
         // @ts-ignore - Dynamic access based on plan ID
@@ -37,10 +37,10 @@ const ComparePlanComponent = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="text-center mb-8 lg:mb-12">
                     <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2 lg:mb-4">
-                        Plans
+                        {compareSection.title}
                     </h1>
                     <p className="text-base lg:text-lg text-gray-600">
-                        Choose the perfect plan for your restaurant
+                        {compareSection.subtitle}
                     </p>
                 </div>
 

@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 export interface BlackSectionProps {
   title?: string;
@@ -46,6 +47,15 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   trustIndicators = defaultProps.trustIndicators,
   className = ""
 }) => {
+  const [data, setData] = useState({
+    title,
+    description,
+    buttonText,
+    imageSrc,
+    imageAlt,
+    trustIndicators
+  });
+
   useEffect(() => {
     AOS.init({
       duration: 900,
@@ -53,8 +63,25 @@ const BlackSection: React.FC<BlackSectionProps> = ({
       offset: 60,
       easing: "ease-in-out",
     });
+
+    const unsubscribe = subscribeToHeroPageData((heroData) => {
+      if (heroData && heroData.blackSection) {
+        setData({
+          title: heroData.blackSection.title || defaultProps.title,
+          description: heroData.blackSection.description || defaultProps.description,
+          buttonText: heroData.blackSection.buttonText || defaultProps.buttonText,
+          imageSrc: heroData.blackSection.imageSrc || defaultProps.imageSrc,
+          imageAlt: heroData.blackSection.imageAlt || defaultProps.imageAlt,
+          trustIndicators: heroData.blackSection.trustIndicators && heroData.blackSection.trustIndicators.length > 0
+            ? heroData.blackSection.trustIndicators
+            : defaultProps.trustIndicators
+        });
+      }
+    });
+
     return () => {
       AOS.refresh();
+      unsubscribe();
     };
   }, []);
 
@@ -70,19 +97,19 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             data-aos-delay="120"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-down" data-aos-delay="180">
-              {title}
+              {data.title}
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-md" data-aos="fade-up" data-aos-delay="260">
-              {description}
+              {data.description}
             </p>
-            {buttonText && (
+            {data.buttonText && (
               <button
                 className="bg-primary-300 text-lg hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
                 onClick={onButtonClick}
                 data-aos="zoom-in"
                 data-aos-delay="340"
               >
-                {buttonText}
+                {data.buttonText}
               </button>
             )}
           </div>
@@ -95,8 +122,8 @@ const BlackSection: React.FC<BlackSectionProps> = ({
           >
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src={imageSrc}
-                alt={imageAlt}
+                src={data.imageSrc}
+                alt={data.imageAlt}
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -104,9 +131,9 @@ const BlackSection: React.FC<BlackSectionProps> = ({
         </div>
 
         {/* Trust Indicators */}
-        {trustIndicators && trustIndicators.length > 0 && (
+        {data.trustIndicators && data.trustIndicators.length > 0 && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {trustIndicators.map((indicator, index) => {
+            {data.trustIndicators.map((indicator, index) => {
               const aosType = aosAnimations[index % aosAnimations.length];
               const aosDelay = 200 + index * 120;
               return (

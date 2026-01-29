@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { usePricing } from '../../../contexts/PricingContext';
-import { Save, Plus, Trash2, RefreshCw, Type, CheckSquare, AlignLeft, GripVertical } from 'lucide-react';
-import { ComparisonFeature } from '../../../data/pricingData';
+import { Save, Plus, Trash2, RefreshCw, Type, CheckSquare, AlignLeft, GripVertical, AlertTriangle } from 'lucide-react';
+import { saveDraft } from '../../../services/firestoreService';
+import { ComparisonFeature } from '../../../Data/pricingData';
+import { toast } from 'react-hot-toast';
 
 const PricingEditor = () => {
-    const { plans, compareFeatures, updatePlan, updateFeature, addFeature, removeFeature } = usePricing();
+    const { plans, compareFeatures, updatePlan, updateFeature, addFeature, removeFeature, hasDraft } = usePricing();
     const [activeTab, setActiveTab] = useState<'plans' | 'comparison'>('plans');
 
     // Comparison feature local state for new item with dynamic keys
@@ -15,12 +17,22 @@ const PricingEditor = () => {
     });
 
     const [isEditing, setIsEditing] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
-    const handleSave = () => {
-        // Since state is managed by context and updates locally immediately,
-        // this is just a visual confirmation for the user.
-        setIsEditing(false);
-        alert('Changes saved successfully!');
+    const handleSave = async () => {
+        setIsSaving(true);
+        try {
+            // Save as Draft
+            // Target Collection: 'content', DocId: 'pricing_page'
+            await saveDraft('content', 'pricing_page', { plans, compareFeatures }, 'pricing', 'Pricing Page');
+            setIsEditing(false);
+            toast.success('Changes saved as Draft! Go to Settings > Content Approvals to publish.');
+        } catch (error) {
+            console.error(error);
+            toast.error('Failed to save changes.');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const getCellValue = (feature: ComparisonFeature, planId: string): string | boolean => {
@@ -34,7 +46,15 @@ const PricingEditor = () => {
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Pricing Editor</h1>
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Pricing Editor</h1>
+                        {hasDraft && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                <AlertTriangle className="w-3 h-3" />
+                                Draft Mode
+                            </span>
+                        )}
+                    </div>
                     <p className="text-gray-500 mt-1">Manage your pricing plans and comparison tables</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -49,10 +69,12 @@ const PricingEditor = () => {
                     ) : (
                         <button
                             onClick={handleSave}
-                            className="flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-primary-600 text-gray font-medium hover:bg-primary-700 transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary-500/30 active:scale-95"
+                            disabled={isSaving}
+                            className={`flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-gray font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary-500/30 active:scale-95
+                                ${isSaving ? 'bg-primary-400 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-700'}`}
                         >
-                            <Save className="w-4 h-4" />
-                            <span>Save Changes</span>
+                            {isSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                            <span>{isSaving ? 'Saving...' : 'Save Changes'}</span>
                         </button>
                     )}
 

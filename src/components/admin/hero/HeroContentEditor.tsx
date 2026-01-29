@@ -122,7 +122,7 @@ const HeroContentEditor: React.FC<HeroContentEditorProps> = ({
                         )}
                     </div>
                     <div className="p-6">
-                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {data.logos.map((logo, idx) => (
                                 <div key={idx} className="relative group p-3 rounded-xl border border-gray-100 bg-gray-50/50 flex flex-col gap-2">
                                     <div className="h-12 flex items-center justify-center bg-white rounded-lg border border-gray-200"><img src={logo.src} className="max-h-8 max-w-full" alt={logo.alt} /></div>

@@ -4,13 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA3yBNNKozthaMYx81M0sZ70-hKtulhchI",
-  authDomain: "ncodeio-clickup.firebaseapp.com",
-  databaseURL: "https://ncodeio-clickup-default-rtdb.firebaseio.com",
-  projectId: "ncodeio-clickup",
-  storageBucket: "ncodeio-clickup.firebasestorage.app",
-  messagingSenderId: "929461242342",
-  appId: "1:929461242342:web:137785e68f230a1b586e27"
+  apiKey: "AIzaSyBt7wBA0Xaz1DcHfH8u7bsuBUYyM50YzdM",
+  authDomain: "slatexposweb.firebaseapp.com",
+  projectId: "slatexposweb",
+  storageBucket: "slatexposweb.firebasestorage.app",
+  messagingSenderId: "892214914888",
+  appId: "1:892214914888:web:f2e31466057a8a237d4d7d",
+  measurementId: "G-2RE77TR2K6"
 };
 
 // Initialize Firebase

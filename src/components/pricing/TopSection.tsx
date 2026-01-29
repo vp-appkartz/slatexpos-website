@@ -3,7 +3,7 @@ import { Check } from 'lucide-react';
 import { usePricing } from '../../contexts/PricingContext';
 
 const PricingComponent = () => {
-    const { plans } = usePricing();
+    const { plans, heroSection } = usePricing();
 
     return (
         <div
@@ -16,10 +16,10 @@ const PricingComponent = () => {
         >
             <div className="text-center mb-8 sm:mb-12 pt-4 sm:pt-0">
                 <h1 className="text-3xl sm:text-4xl font-light text-gray-900 mb-3 sm:mb-4">
-                    <span className="text-gray-700 font-semibold">Flexible Pricing</span> for Every Restaurant Size
+                    {heroSection.title}
                 </h1>
                 <p className="text-base sm:text-lg text-gray-600">
-                    Whether you're just starting or scaling, we have a plan for you.
+                    {heroSection.subtitle}
                 </p>
             </div>
 

@@ -1,20 +1,79 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { PricingPlan, ComparisonFeature, initialPricingPlans, initialCompareFeatures } from '../Data/pricingData';
+import { subscribeToPricingPageData } from '../services/firestoreService';
+
+interface PricingPageContent {
+    plans: PricingPlan[];
+    compareFeatures: ComparisonFeature[];
+    heroSection?: {
+        title: string;
+        subtitle: string;
+    };
+    compareSection?: {
+        title: string;
+        subtitle: string;
+    };
+}
 
 interface PricingContextType {
     plans: PricingPlan[];
     compareFeatures: ComparisonFeature[];
+    heroSection: { title: string; subtitle: string };
+    compareSection: { title: string; subtitle: string };
+    isLoading: boolean;
     updatePlan: (id: string, updates: Partial<PricingPlan>) => void;
     updateFeature: (index: number, updates: Partial<ComparisonFeature>) => void;
     addFeature: (feature: ComparisonFeature) => void;
     removeFeature: (index: number) => void;
 }
 
+const defaultHeroSection = {
+    title: "Flexible Pricing for Every Restaurant Size",
+    subtitle: "Whether you're just starting or scaling, we have a plan for you."
+};
+
+const defaultCompareSection = {
+    title: "Plans",
+    subtitle: "Choose the perfect plan for your restaurant"
+};
+
 const PricingContext = createContext<PricingContextType | undefined>(undefined);
 
 export const PricingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [plans, setPlans] = useState<PricingPlan[]>(initialPricingPlans);
     const [compareFeatures, setCompareFeatures] = useState<ComparisonFeature[]>(initialCompareFeatures);
+    const [heroSection, setHeroSection] = useState(defaultHeroSection);
+    const [compareSection, setCompareSection] = useState(defaultCompareSection);
+    const [isLoading, setIsLoading] = useState(true);
+    // const [hasDraft, setHasDraft] = useState(false); // Removed for simplified realtime flow
+
+    useEffect(() => {
+        let unsubscribe: () => void;
+
+        const setupSubscription = async () => {
+            try {
+                // Subscribe to real-time updates
+                unsubscribe = subscribeToPricingPageData((data: any) => {
+                    if (data) {
+                        if (data.plans) setPlans(data.plans);
+                        if (data.compareFeatures) setCompareFeatures(data.compareFeatures);
+                        if (data.heroSection) setHeroSection(data.heroSection);
+                        if (data.compareSection) setCompareSection(data.compareSection);
+                    }
+                    setIsLoading(false);
+                });
+            } catch (error) {
+                console.error("Failed to subscribe to pricing data:", error);
+                setIsLoading(false);
+            }
+        };
+
+        setupSubscription();
+
+        return () => {
+            if (unsubscribe) unsubscribe();
+        };
+    }, []);
 
     const updatePlan = (id: string, updates: Partial<PricingPlan>) => {
         setPlans(prev => prev.map(plan =>
@@ -37,7 +96,17 @@ export const PricingProvider: React.FC<{ children: ReactNode }> = ({ children })
     };
 
     return (
-        <PricingContext.Provider value={{ plans, compareFeatures, updatePlan, updateFeature, addFeature, removeFeature }}>
+        <PricingContext.Provider value={{
+            plans,
+            compareFeatures,
+            heroSection,
+            compareSection,
+            isLoading,
+            updatePlan,
+            updateFeature,
+            addFeature,
+            removeFeature
+        }}>
             {children}
         </PricingContext.Provider>
     );

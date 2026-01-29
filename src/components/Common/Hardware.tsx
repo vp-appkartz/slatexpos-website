@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { HardwarePageContent, SolutionItem, subscribeToHeroPageData } from '../../services/firestoreService';
 
 const aosCardAnimations = [
   "zoom-in-up",
@@ -27,6 +28,25 @@ interface HardwareProps {
 }
 
 const Hardware: React.FC<HardwareProps> = (props) => {
+  const [pageData, setPageData] = React.useState<HardwarePageContent | null>(null);
+  console.log("Page Data: ", pageData);
+  useEffect(() => {
+    // Subscribe to Firestore updates
+    const unsubscribe = subscribeToHeroPageData((data) => {
+      if (data && data.hardware) {
+        setPageData({
+          hardware: {
+            title: "Hardware",
+            items: data.hardware.items,
+          },
+          solutions: data.hardware.solutions,
+        });
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   useEffect(() => {
     AOS.init({
       duration: 900,
@@ -39,7 +59,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
     };
   }, []);
 
-  const hardwareItems = [
+  const defaultHardwareItems = [
     {
       id: 1,
       title: "SlateX Station",
@@ -63,7 +83,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
     },
   ];
 
-  const solutionButtons = [
+  const defaultSolutionButtons = [
     { id: 1, title: "Products", row: 1 },
     { id: 2, title: "Casual Dining", row: 1 },
     { id: 3, title: "Cafe n Bakery", row: 1 },
@@ -72,10 +92,26 @@ const Hardware: React.FC<HardwareProps> = (props) => {
     { id: 6, title: "Bar n Lounge", row: 2 },
   ];
 
-  const firstRow = solutionButtons.filter((btn) => btn.row === 1);
-  const secondRow = solutionButtons.filter((btn) => btn.row === 2);
+  // Hardware Section Data
+  const hardwareItems = props.items || pageData?.hardware?.items || defaultHardwareItems;
+  console.log("Hardware Items: ", hardwareItems);
+  const hardwareTitle = props.title || pageData?.hardware?.title || "Hardware";
+  // Check for description first (per user request and common firebase pattern), then subtitle
+  const hardwareSubtitle = props.subtitle || pageData?.hardware?.description || pageData?.hardware?.subtitle || "Powerful Tools. Seamless Experience.";
 
-  const displayItems = props.items || hardwareItems;
+  // Solutions Section Data
+  // Handle case where solutions is just an array (from screenshot) or an object (schema)
+  const solutionData = pageData?.solutions as any;
+  const solutionItems: SolutionItem[] = Array.isArray(solutionData)
+    ? solutionData
+    : solutionData?.items || defaultSolutionButtons;
+
+  const solutionsTitle = (Array.isArray(solutionData) ? null : solutionData?.title) || "Solutions";
+  const solutionsSubtitle = (Array.isArray(solutionData) ? null : solutionData?.subtitle) || "One POS. Many Possibilities.";
+  const solutionsBg = (Array.isArray(solutionData) ? null : solutionData?.backgroundImage) || "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop";
+
+  const firstRow = solutionItems.filter((btn) => btn.row === 1);
+  const secondRow = solutionItems.filter((btn) => btn.row === 2);
 
   return (
     <section className="bg-gray-100 py-20 px-4">
@@ -85,16 +121,16 @@ const Hardware: React.FC<HardwareProps> = (props) => {
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-              {props.title || "Hardware"}
+              {hardwareTitle}
             </h2>
             <p className="text-lg md:text-2xl text-gray-800 font-medium">
-              {props.subtitle || "Powerful Tools. Seamless Experience."}
+              {hardwareSubtitle}
             </p>
           </div>
 
           {/* Hardware Items Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {displayItems.map((item, idx) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16  md:gap-8">
+            {hardwareItems.map((item, idx) => {
               const aosType = aosCardAnimations[idx % aosCardAnimations.length];
               const aosDelay = 200 + idx * 120;
               return (
@@ -135,68 +171,88 @@ const Hardware: React.FC<HardwareProps> = (props) => {
         </div>
 
         {/* Solutions Section */}
-        <div className="relative py-20 px-8 rounded-3xl overflow-hidden">
+        <div className="relative py-10 md:py-20 px-3 md:px-8 rounded-[2rem] md:rounded-3xl overflow-hidden">
           {/* Background Image with Overlay */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage:
-                "url(https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop)",
+              backgroundImage: `url(${solutionsBg})`,
             }}
           >
-            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-70 md:bg-opacity-60"></div>
           </div>
 
           {/* Content */}
-          <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="relative z-10 max-w-4xl mx-auto text-center px-2 md:px-0">
             {/* Header */}
-            <div className="mb-12" data-aos="fade-down" data-aos-delay="100">
-              <h2 className="text-5xl font-bold text-white mb-4">
-                Solutions
+            <div className="mb-6 md:mb-12" data-aos="fade-down" data-aos-delay="100">
+              <h2 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-4">
+                {solutionsTitle}
               </h2>
-              <p className="text-xl text-white">
-                One POS. Many Possibilities.
+              <p className="text-sm md:text-xl text-white text-opacity-90">
+                {solutionsSubtitle}
               </p>
             </div>
 
             {/* Solution Buttons */}
-            <div className="space-y-6">
-              {/* First Row */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {firstRow.map((solution, idx) => {
-                  const aosType = aosButtonAnimations[idx % aosButtonAnimations.length];
-                  const aosDelay = 200 + idx * 100;
+            <div className="space-y-3 md:space-y-6">
+              {/* Mobile: All buttons in vertical stack */}
+              <div className="md:hidden flex flex-col gap-3">
+                {solutionItems.map((solution, idx) => {
+                  const aosDelay = 200 + idx * 80;
                   return (
                     <button
                       key={solution.id}
-                      className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
-                      data-aos={aosType}
+                      className="group bg-white bg-opacity-20 hover:bg-opacity-30 active:bg-opacity-25 text-white px-5 py-3.5 rounded-xl border border-white border-opacity-20 hover:border-opacity-40 transition-all duration-300 flex items-center justify-between backdrop-blur-md w-full shadow-lg hover:shadow-xl"
+                      data-aos="fade-up"
                       data-aos-delay={aosDelay}
                     >
-                      <span className="text-lg font-medium">{solution.title}</span>
-                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      <span className="text-[15px] font-medium text-left">{solution.title}</span>
+                      <ChevronRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300 opacity-80" />
                     </button>
                   );
                 })}
               </div>
 
-              {/* Second Row */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {secondRow.map((solution, idx) => {
-                  const aosType = aosButtonAnimations[(idx + 1) % aosButtonAnimations.length];
-                  const aosDelay = 200 + (idx + firstRow.length) * 100;
-                  return (
-                    <button
-                      key={solution.id}
-                      className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
-                      data-aos={aosType}
-                      data-aos-delay={aosDelay}
-                    >
-                      <span className="text-lg font-medium">{solution.title}</span>
-                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
-                  );
-                })}
+              {/* Desktop: Two rows layout */}
+              <div className="hidden md:block space-y-6">
+                {/* First Row */}
+                <div className="flex flex-wrap justify-center gap-6">
+                  {firstRow.map((solution, idx) => {
+                    const aosType = aosButtonAnimations[idx % aosButtonAnimations.length];
+                    const aosDelay = 200 + idx * 100;
+                    return (
+                      <button
+                        key={solution.id}
+                        className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
+                        data-aos={aosType}
+                        data-aos-delay={aosDelay}
+                      >
+                        <span className="text-lg font-medium">{solution.title}</span>
+                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Second Row */}
+                <div className="flex flex-wrap justify-center gap-6">
+                  {secondRow.map((solution, idx) => {
+                    const aosType = aosButtonAnimations[(idx + 1) % aosButtonAnimations.length];
+                    const aosDelay = 200 + (idx + firstRow.length) * 100;
+                    return (
+                      <button
+                        key={solution.id}
+                        className="group bg-gray-300 bg-opacity-40 hover:bg-opacity-60 text-white px-8 py-4 rounded-lg border border-white border-opacity-30 hover:border-opacity-50 transition-all duration-300 flex items-center gap-3 min-w-[160px] justify-center backdrop-blur-sm"
+                        data-aos={aosType}
+                        data-aos-delay={aosDelay}
+                      >
+                        <span className="text-lg font-medium">{solution.title}</span>
+                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

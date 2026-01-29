@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import {
     Save,
     LayoutTemplate,
@@ -16,10 +17,14 @@ import HardwareHeroContentEditor from './hero/HardwareHeroContentEditor';
 import ScrollContentEditor from './hero/ScrollContentEditor';
 import FAQContentEditor from './hero/FAQContentEditor';
 import KeyFeaturesContentEditor from './hero/KeyFeaturesContentEditor';
+import { saveHardwarePageData, saveDraft, getDraft } from '../../services/firestoreService';
+import { AlertTriangle } from 'lucide-react';
+import { HardwarePageData } from '../../Data/hardwareData';
 
 const HardwarePageEditor: React.FC = () => {
     const {
         data,
+        setHardwareData,
         updateHeroSection,
         updateHeroImage,
         updateProductSection,
@@ -34,17 +39,35 @@ const HardwarePageEditor: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'hero' | 'products' | 'features' | 'faq'>('hero');
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
+    const [hasDraft, setHasDraft] = useState(false);
+
+    // Check for existing draft on mount
+    React.useEffect(() => {
+        const checkDraft = async () => {
+            const draft = await getDraft('content', 'hardware_page');
+            if (draft) {
+                setHardwareData(draft.data as HardwarePageData);
+                setHasDraft(true);
+            }
+        };
+        checkDraft();
+    }, [setHardwareData]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSaving(true);
-        // Simulate API call
-        setTimeout(() => {
-            setIsSaving(false);
+        try {
+            await saveDraft('content', 'hardware_page', data, 'hardware', 'Hardware Page');
+            setHasDraft(true);
+            console.log("Saved Draft:", data);
+            toast.success('Changes saved as Draft! Go to Settings > Content Approvals to publish.');
             setIsEditing(false);
-            // In a real app, you would save 'data' to backend here
-            console.log("Saved Data:", data);
-        }, 800);
+        } catch (error) {
+            console.error("Error saving hardware page draft:", error);
+            toast.error('Failed to save draft. Please try again.');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     // --- Handlers Wrappers ---
@@ -66,7 +89,15 @@ const HardwarePageEditor: React.FC = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Hardware Page Editor</h1>
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Hardware Page Editor</h1>
+                        {hasDraft && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                <AlertTriangle className="w-3 h-3" />
+                                Draft Mode
+                            </span>
+                        )}
+                    </div>
                     <p className="text-gray-500 mt-1">Manage content for the Hardware marketing page.</p>
                 </div>
 

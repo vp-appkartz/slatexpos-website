@@ -73,7 +73,7 @@ const HardwareContentEditor: React.FC<HardwareContentEditorProps> = ({
                     )} */}
                 </div>
 
-                <div className="p-6 space-y-6">
+                <div className="p-4 sm:p-6 space-y-6">
                     {data.items.map((item) => (
                         <div key={item.id} className="relative group p-6 rounded-xl border border-gray-200 bg-gray-50 hover:border-primary-200 transition-all">
                             {/* {isEditing && (
@@ -176,7 +176,7 @@ const HardwareContentEditor: React.FC<HardwareContentEditorProps> = ({
                     )} */}
                 </div>
 
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {data.solutions.map((solution) => (
                             <div key={solution.id} className="relative group p-4 rounded-xl border border-gray-200 bg-gray-50 flex items-center gap-3">

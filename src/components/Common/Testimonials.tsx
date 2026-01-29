@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 export interface TestimonialItem {
   id: number;
@@ -62,7 +63,26 @@ const Testimonial: React.FC<TestimonialProps> = ({
     }
   ];
 
-  const testimonials = items || defaultTestimonials;
+  const [dataTitle, setDataTitle] = useState(title);
+  const [dataSubtitle, setDataSubtitle] = useState(subtitle);
+  const [dataItems, setDataItems] = useState(items || defaultTestimonials);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToHeroPageData((heroData) => {
+      if (heroData && heroData.testimonials) {
+        setDataTitle(heroData.testimonials.title || title);
+        setDataSubtitle(heroData.testimonials.subtitle || subtitle);
+        if (heroData.testimonials.items && heroData.testimonials.items.length > 0) {
+          setDataItems(heroData.testimonials.items);
+        } else {
+          setDataItems(items || defaultTestimonials);
+        }
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const testimonials = dataItems;
 
   // By default, first card expanded. On hover, expand hovered card.
   const [expandedIndex, setExpandedIndex] = useState(0);
@@ -73,10 +93,10 @@ const Testimonial: React.FC<TestimonialProps> = ({
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000`}>
           <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-            {title}
+            {dataTitle}
           </h2>
           <p className="text-lg md:text-2xl font-medium text-gray-600">
-            {subtitle}
+            {dataSubtitle}
           </p>
         </div>
 

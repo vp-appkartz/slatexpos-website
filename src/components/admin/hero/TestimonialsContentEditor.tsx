@@ -41,7 +41,7 @@ const TestimonialsContentEditor: React.FC<TestimonialsContentEditorProps> = ({
                         </div>
                         <h2 className="text-lg font-semibold text-gray-900">Section Header</h2>
                     </div>
-                    <div className="p-6 space-y-4">
+                    <div className="p-4 sm:p-6 space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Section Title</label>
                             <input
@@ -82,7 +82,7 @@ const TestimonialsContentEditor: React.FC<TestimonialsContentEditorProps> = ({
                     </div>
 
                     <div className="space-y-4">
-                        {data.items.map((item, index) => (
+                        {(data.items || []).map((item, index) => (
                             <div key={item.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
                                 <div className="px-6 py-3 border-b border-gray-50 flex items-center justify-between bg-gray-50/30">
                                     <div className="flex items-center gap-3">
@@ -101,8 +101,8 @@ const TestimonialsContentEditor: React.FC<TestimonialsContentEditorProps> = ({
                                     )} */}
                                 </div>
 
-                                <div className="p-6 grid grid-cols-1 gap-4">
-                                    <div className="grid grid-cols-2 gap-4">
+                                <div className="p-4 sm:p-6 grid grid-cols-1 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div>
                                             <label className="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-1">
                                                 <User className="w-3 h-3" /> Name
@@ -142,7 +142,7 @@ const TestimonialsContentEditor: React.FC<TestimonialsContentEditorProps> = ({
                                         />
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div>
                                             <label className="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-1">
                                                 Logo Text

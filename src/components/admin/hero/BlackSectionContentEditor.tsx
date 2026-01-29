@@ -48,7 +48,7 @@ const BlackSectionContentEditor: React.FC<BlackSectionContentEditorProps> = ({
                         </div>
                         <h2 className="text-lg font-semibold text-gray-900">Text & Content</h2>
                     </div>
-                    <div className="p-6 space-y-4">
+                    <div className="p-4 sm:p-6 space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
                             <input
@@ -103,7 +103,7 @@ const BlackSectionContentEditor: React.FC<BlackSectionContentEditorProps> = ({
                             </button>
                         )} */}
                     </div>
-                    <div className="p-6 space-y-3">
+                    <div className="p-4 sm:p-6 space-y-3">
                         {data.trustIndicators.map((indicator, index) => (
                             <div key={index} className="flex items-center gap-3 group">
                                 <div className="p-2 bg-green-50 text-green-600 rounded-lg">
@@ -139,7 +139,7 @@ const BlackSectionContentEditor: React.FC<BlackSectionContentEditorProps> = ({
                         </div>
                         <h2 className="text-lg font-semibold text-gray-900">Visuals</h2>
                     </div>
-                    <div className="p-6 space-y-6">
+                    <div className="p-4 sm:p-6 space-y-6">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Side Image</label>
                             <div className="relative aspect-video bg-gray-50 rounded-xl border-dashed border-2 border-gray-200 overflow-hidden group">

@@ -160,27 +160,11 @@ const BlogSection = () => {
 
       console.log('Firebase blogs fetched:', blogData.length, blogData);
 
-      // If Firebase returns data, use it
-      if (blogData.length > 0) {
-        console.log('Using Firebase blog data');
-        setBlogs(blogData);
-        setLoading(false);
-        return;
-      }
-
-      // If no Firebase data, use static fallback data
-      console.log('No Firebase data found, using static fallback blog data');
-      if (selectedCategory === "All") {
-        blogData = staticBlogPosts;
-      } else {
-        blogData = staticBlogPosts.filter(blog => blog.category === selectedCategory);
-      }
-
       setBlogs(blogData);
     } catch (firebaseError) {
       console.error('Firebase fetch failed:', firebaseError);
 
-      // Fallback to static data
+      // Fallback to static data on error
       console.log('Firebase error, using static fallback blog data');
       const fallbackData = selectedCategory === "All"
         ? staticBlogPosts

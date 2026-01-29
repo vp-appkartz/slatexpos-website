@@ -31,6 +31,7 @@ import BlogForm from './components/admin/BlogForm';
 import ProductEditor from './components/admin/products/ProductEditor';
 import IndustryEditor from './components/admin/industries/IndustryEditor';
 import PricingEditor from './components/admin/pricing/PricingEditor';
+import ContentApprovals from './components/admin/settings/ContentApprovals';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import SEO from './components/Common/SEO';
 
@@ -140,7 +141,7 @@ const AppContent = () => {
                 <Route path="/admin/settings" element={
                     <ProtectedRoute>
                         <AdminLayout>
-                            <div className="p-8 text-center text-gray-600">Settings page coming soon...</div>
+                            <ContentApprovals />
                         </AdminLayout>
                     </ProtectedRoute>
                 } />
@@ -154,9 +155,12 @@ const AppContent = () => {
     );
 };
 
+import { Toaster } from 'react-hot-toast';
+
 function App() {
     return (
         <AuthProvider>
+            <Toaster position="top-center" />
             <HardwarePageProvider>
                 <PricingProvider>
                     <Router>

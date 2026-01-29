@@ -5,6 +5,7 @@ import { BlackSectionData } from '../components/admin/hero/BlackSectionContentEd
 
 interface HardwarePageContextType {
     data: HardwarePageData;
+    setHardwareData: (data: HardwarePageData) => void;
     updateHeroSection: (field: string, value: any) => void;
     updateHeroImage: (field: string, value: string) => void;
 
@@ -46,6 +47,39 @@ const HardwarePageContext = createContext<HardwarePageContextType | undefined>(u
 
 export const HardwarePageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [data, setData] = useState<HardwarePageData>(initialData);
+
+    // Subscribe to data from Firestore
+    React.useEffect(() => {
+        let unsubscribe: (() => void) | undefined;
+        let isMounted = true;
+
+        const setupSubscription = async () => {
+            try {
+                const { subscribeToHardwarePageData } = await import('../services/firestoreService');
+
+                if (!isMounted) return;
+
+                unsubscribe = subscribeToHardwarePageData((dbData) => {
+                    if (dbData && isMounted) {
+                        // Cast dbData to any to bypass potential type mismatch with partial definitions
+                        // The actual data in Firestore should match HardwarePageData structure
+                        setData(prev => ({ ...prev, ...(dbData as any) }));
+                    }
+                });
+            } catch (error) {
+                console.error("Failed to subscribe to hardware page data:", error);
+            }
+        };
+
+        setupSubscription();
+
+        return () => {
+            isMounted = false;
+            if (unsubscribe) {
+                unsubscribe();
+            }
+        };
+    }, []);
 
     // --- Hero Section ---
     const updateHeroSection = (field: string, value: any) => {
@@ -289,6 +323,7 @@ export const HardwarePageProvider: React.FC<{ children: ReactNode }> = ({ childr
     return (
         <HardwarePageContext.Provider value={{
             data,
+            setHardwareData: setData,
             updateHeroSection,
             updateHeroImage,
             updateProductSection,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
     LayoutTemplate,
@@ -13,6 +14,8 @@ import {
     ExternalLink
 } from 'lucide-react';
 import { categoryRegistry, CategoryPageData } from '../../../Data/categoryData';
+import { getIndustryData, saveIndustryData, getDraft, saveDraft } from '../../../services/firestoreService';
+import { AlertTriangle } from 'lucide-react';
 
 // Import Sub-Editors
 import IndustryHeroEditor from './editors/IndustryHeroEditor';
@@ -29,26 +32,65 @@ const IndustryEditor: React.FC = () => {
     const [formData, setFormData] = useState<CategoryPageData | null>(null);
     const [isSaving, setIsSaving] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [hasDraft, setHasDraft] = useState(false);
 
     useEffect(() => {
-        if (slug && categoryRegistry[slug]) {
-            setFormData(JSON.parse(JSON.stringify(categoryRegistry[slug])));
-        } else if (slug) {
-            navigate('/admin');
-        }
+        const fetchData = async () => {
+            if (slug) {
+                // 1. Check for Draft
+                const draft = await getDraft('industries', slug);
+                if (draft) {
+                    setFormData(draft.data as CategoryPageData);
+                    setHasDraft(true);
+                } else {
+                    // 2. Fetch Live data
+                    const dbData = await getIndustryData(slug);
+                    const staticData = categoryRegistry[slug] ? JSON.parse(JSON.stringify(categoryRegistry[slug])) : null;
+
+                    let finalData: CategoryPageData | null = null;
+
+                    if (dbData) {
+                        finalData = { ...dbData };
+                        // Ensure scrollSection exists even in live data
+                        if (staticData && (!finalData.scrollSection || !finalData.scrollSection.sections)) {
+                            finalData.scrollSection = staticData.scrollSection;
+                        }
+                    } else if (staticData) {
+                        finalData = staticData;
+                    }
+
+                    if (finalData) {
+                        setFormData(finalData);
+                    } else {
+                        navigate('/admin');
+                    }
+                }
+            }
+        };
+        fetchData();
     }, [slug, navigate]);
 
     if (!formData) return <div className="p-8 text-center animate-pulse">Loading editor...</div>;
 
-    const handleSave = () => {
+    const handleSave = async () => {
+        if (!slug || !formData) return;
         setIsSaving(true);
-        console.log('Saving data:', formData);
-        // Simulate save delay
-        setTimeout(() => {
-            setIsSaving(false);
+        try {
+            // 1. Save as Draft
+            await saveDraft('industries', slug, formData, 'industry', formData.heroSection?.title || slug);
+
+            // 2. ALSO Save directly to Live Firestore
+            await saveIndustryData(slug, formData);
+
+            setHasDraft(true);
             setIsEditing(false);
-            alert('Changes saved (simulated)! Check console for JSON.');
-        }, 800);
+            toast.success('Changes saved successfully and published live!');
+        } catch (error) {
+            console.error(error);
+            toast.error('Failed to save changes.');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const toggleEdit = () => {
@@ -77,9 +119,17 @@ const IndustryEditor: React.FC = () => {
                         <ArrowLeft className="w-5 h-5 text-gray-500" />
                     </button>
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
-                            Edit {formData.heroSection.title}
-                        </h1>
+                        <div className="flex items-center gap-3">
+                            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+                                Edit {formData.heroSection.title}
+                            </h1>
+                            {hasDraft && (
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    <AlertTriangle className="w-3 h-3" />
+                                    Draft Mode
+                                </span>
+                            )}
+                        </div>
                         <p className="text-gray-500 mt-1">Manage content for {slug} industry page</p>
                     </div>
                 </div>

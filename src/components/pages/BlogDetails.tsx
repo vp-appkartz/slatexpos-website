@@ -57,24 +57,25 @@ The return on investment for a quality POS system typically pays for itself with
       setError(null);
 
       // Try Firebase first
-      let blogData = null;
       try {
-        blogData = await getBlogBySlug(slug!);
+        const blogData = await getBlogBySlug(slug!);
         console.log('Firebase blog fetched:', blogData?.title || 'not found');
+
+        if (blogData) {
+          setBlog(blogData);
+        } else {
+          // If not found in DB, do not use static fallback, let it show "Not Found"
+          setBlog(null);
+          setError("Blog post not found.");
+        }
       } catch (firebaseError) {
         console.warn('Firebase fetch failed:', firebaseError);
+        // Fallback to static data ONLY on error
+        setBlog(staticBlogDetails);
       }
 
-      // If no Firebase data, use static fallback
-      if (!blogData) {
-        console.log('Using static fallback blog data');
-        blogData = staticBlogDetails;
-      }
-
-      setBlog(blogData);
     } catch (error) {
       console.error('Error fetching blog:', error);
-      // Final fallback to static data
       setBlog(staticBlogDetails);
     } finally {
       setLoading(false);

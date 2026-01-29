@@ -78,7 +78,7 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
                     <div className="p-2 bg-primary-50 rounded-lg text-primary-600"><Type className="w-5 h-5" /></div>
                     <h2 className="text-lg font-semibold text-gray-900">Scroll Header</h2>
                 </div>
-                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="label">Main Title</label>
                         <input name="heroTitle" value={data.heroTitle} onChange={onGlobalChange} disabled={!isEditing} className="input-field" />
@@ -94,12 +94,12 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">Scroll Sections</h2>
-                    {/* {isEditing && (
+                    {isEditing && (
                         <button onClick={onAddSection} className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-gray rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm font-medium">
                             <Plus className="w-4 h-4" />
                             Add Section
                         </button>
-                    )} */}
+                    )}
                 </div>
 
                 {data.sections.map((section) => (
@@ -133,7 +133,7 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
 
                         {/* Accordion Content */}
                         {expandedSection === section.id && (
-                            <div className="p-6 border-t border-gray-100 bg-gray-50/30 space-y-6">
+                            <div className="p-4 sm:p-6 border-t border-gray-100 bg-gray-50/30 space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {/* Left Col: Details */}
                                     <div className="space-y-4">

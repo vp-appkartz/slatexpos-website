@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { subscribeToHeroPageData, HeroPageContent } from "../../services/firestoreService";
 
 const aosAnimations = [
   "zoom-in-up",
@@ -33,8 +34,15 @@ const Contact: React.FC<ContactProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [dbData, setDbData] = useState<{ title: string; description: string } | null>(null);
 
   useEffect(() => {
+    const unsubscribe = subscribeToHeroPageData((data: HeroPageContent | null) => {
+      if (data?.cta) {
+        setDbData(data.cta);
+      }
+    });
+
     AOS.init({
       duration: 900,
       once: false, // Animation will trigger every time on scroll into view
@@ -42,6 +50,7 @@ const Contact: React.FC<ContactProps> = ({
       easing: "ease-in-out",
     });
     return () => {
+      unsubscribe();
       AOS.refresh();
     };
   }, []);
@@ -118,6 +127,16 @@ const Contact: React.FC<ContactProps> = ({
     }
   };
 
+  const displayTitle = title || dbData?.title || (
+    <>
+      Let's schedule
+      <br />
+      your free demo
+    </>
+  );
+
+  const displayDescription = description || dbData?.description || "Discover why top restaurants trust SlateX POS to run their business smoothly and efficiently. With powerful features like real-time order syncing, customizable menus, and seamless payment integration, our system is built to make your life easier. Book your free demo today and see how SlateX POS can help you save time, reduce errors, and grow your profits — all with a solution tailored to your restaurant's unique needs. Let us show you the difference in just one call!";
+
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -130,40 +149,34 @@ const Contact: React.FC<ContactProps> = ({
           {/* Overlay for better contrast on mobile */}
           <div className="absolute inset-0 bg-black/30 lg:bg-transparent z-0"></div>
           {/* Content Container */}
-          <div className="relative z-10 grid lg:grid-cols-2 gap-8 p-8 lg:p-12 min-h-[500px]">
+          <div className="relative z-10 grid lg:grid-cols-2 gap-8 p-6 md:p-8 lg:p-12 min-h-[500px]">
             {/* Left Content */}
             <div
-              className="text-white space-y-6 flex flex-col justify-center"
+              className="text-white space-y-6 flex flex-col justify-center text-center lg:text-left"
               data-aos="fade-right"
               data-aos-delay="120"
             >
               <h2
-                className="text-4xl lg:text-5xl font-semibold leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight"
                 data-aos="fade-down"
                 data-aos-delay="180"
               >
-                {title || (
-                  <>
-                    Let's schedule
-                    <br />
-                    your free demo
-                  </>
-                )}
+                {displayTitle}
               </h2>
 
               <p
-                className="text-white/90 text-lg leading-relaxed max-w-md"
+                className="text-white/90 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0"
                 data-aos="fade-up"
                 data-aos-delay="260"
               >
-                {description || "Discover why top restaurants trust SlateX POS to run their business smoothly and efficiently. With powerful features like real-time order syncing, customizable menus, and seamless payment integration, our system is built to make your life easier. Book your free demo today and see how SlateX POS can help you save time, reduce errors, and grow your profits — all with a solution tailored to your restaurant's unique needs. Let us show you the difference in just one call!"}
+                {displayDescription}
               </p>
             </div>
 
             {/* Right Content - Form with white glassy background */}
             <div className="flex items-center justify-center">
               <div
-                className="w-full max-w-md rounded-2xl p-8 shadow-2xl"
+                className="w-full max-w-md rounded-2xl p-6 md:p-8 shadow-2xl"
                 style={{
                   background: "rgba(255,255,255,0.85)",
                   backdropFilter: "blur(10px)",
@@ -188,7 +201,7 @@ const Contact: React.FC<ContactProps> = ({
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Name Fields */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div data-aos="fade-up" data-aos-delay="250">
                         <input
                           type="text"

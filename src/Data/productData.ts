@@ -98,6 +98,7 @@ export interface ProductPageData {
     faqs: FAQItem[];
   };
   meta?: Meta;
+  updatedAt?: any;
 }
 
 export const restaurantPOSData: ProductPageData = {
@@ -836,6 +837,63 @@ export const webOrderingData: ProductPageData = {
       }
     ]
   },
+  scrollSection: {
+    heroTitle: "Features",
+    heroSubtitle: "Optimized for speed, accuracy, and customer satisfaction in web ordering environments",
+    sections: [
+      {
+        id: '1',
+        icon: 'Zap',
+        title: 'Boost your Profit with commission-free ordering',
+        subtitle: 'Zero Commission',
+        description: 'Increase your sales and expand your reach with the commission-free online ordering solution of SlateX POS. From easy menu customization to timely order fulfillment, we empower restaurants to serve customers anytime, anywhere.',
+        bgColor: 'bg-orange-500',
+        bgGradient: 'from-orange-400 to-orange-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/web/web-about-1.png',
+        bulletPoints: [
+          { text: 'Commission Free', highlight: true },
+          { text: 'Future ordering options', highlight: true },
+          { text: 'Multi store listing', highlight: true },
+          { text: 'Guest Alerts Email/SMS', highlight: true }
+        ]
+      },
+      {
+        id: '2',
+        icon: 'Layers',
+        title: 'Branded Online Ordering Experience',
+        subtitle: 'Branded Experience',
+        description: 'Offer your customers a seamless and professional ordering experience with your own branded website. Customize colors, logos, and layouts to match your restaurant brand identity.',
+        bgColor: 'bg-blue-500',
+        bgGradient: 'from-blue-400 to-blue-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/web/web-about-2.png',
+        bulletPoints: [
+          { text: 'Custom Branding', highlight: true },
+          { text: 'Professional Design', highlight: true },
+          { text: 'Responsive Layout', highlight: true },
+          { text: 'Easy Navigation', highlight: true }
+        ]
+      },
+      {
+        id: '3',
+        icon: 'CreditCard',
+        title: 'Secure and Easy Payments',
+        subtitle: 'Secure Payments',
+        description: 'Accept a variety of payment methods including credit cards, Apple Pay, and Google Pay through our secure payment gateway. Ensure a smooth and reliable checkout process for your customers.',
+        bgColor: 'bg-green-500',
+        bgGradient: 'from-green-400 to-green-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/web/web-about-3.png',
+        bulletPoints: [
+          { text: 'Secure Gateway', highlight: true },
+          { text: 'Mobile Payments', highlight: true },
+          { text: 'Fast Checkout', highlight: true },
+          { text: 'Transparent Rates', highlight: true }
+        ]
+      }
+    ]
+  },
   faqSection: {
     faqs: [
       {
@@ -967,6 +1025,63 @@ export const mobileOrderingData: ProductPageData = {
         image: "/products/mobile/mobile-fe-6.png",
         title: "Order Scheduling",
         description: "Allow customers the flexibility to schedule orders for future delivery or pickup. Advanced scheduling options help customers plan ahead while helping you manage kitchen workflow and capacity during peak hours."
+      }
+    ]
+  },
+  scrollSection: {
+    heroTitle: "Features",
+    heroSubtitle: "Empower your guests with a branded mobile app for seamless ordering and engagement",
+    sections: [
+      {
+        id: '1',
+        icon: 'Smartphone',
+        title: 'Branded Mobile App for Direct Engagement',
+        subtitle: 'Branded App',
+        description: 'Enhance your brand presence with a custom mobile app tailored to your restaurant. Provide customers with a convenient and direct way to order, view menus, and engage with your business.',
+        bgColor: 'bg-purple-500',
+        bgGradient: 'from-purple-400 to-purple-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/mobile/mobile-about-1.png',
+        bulletPoints: [
+          { text: 'Custom Branding', highlight: true },
+          { text: 'iOS & Android Support', highlight: true },
+          { text: 'Direct Ordering', highlight: true },
+          { text: 'User Profile Management', highlight: true }
+        ]
+      },
+      {
+        id: '2',
+        icon: 'Bell',
+        title: 'Push Notifications and Real-time Updates',
+        subtitle: 'Instance Notifications',
+        description: 'Keep your customers informed and engaged with push notifications. Send real-time updates on order status, promotions, and special events directly to their mobile devices.',
+        bgColor: 'bg-blue-500',
+        bgGradient: 'from-blue-400 to-blue-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/mobile/mobile-about-2.png',
+        bulletPoints: [
+          { text: 'Order Status Updates', highlight: true },
+          { text: 'Promotional Alerts', highlight: true },
+          { text: 'Personalized Messages', highlight: true },
+          { text: 'Increased Engagement', highlight: true }
+        ]
+      },
+      {
+        id: '3',
+        icon: 'CheckCircle',
+        title: 'Flexible Order Scheduling',
+        subtitle: 'Order Scheduling',
+        description: 'Allow customers to schedule orders for future delivery or pickup. Advanced scheduling options help you manage kitchen workflow and capacity effectively during peak hours.',
+        bgColor: 'bg-green-500',
+        bgGradient: 'from-green-400 to-green-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/mobile/mobile-about-3.png',
+        bulletPoints: [
+          { text: 'Future Ordering', highlight: true },
+          { text: 'Workflow Management', highlight: true },
+          { text: 'Pickup/Delivery Options', highlight: true },
+          { text: 'Improved Efficiency', highlight: true }
+        ]
       }
     ]
   },
@@ -1134,6 +1249,63 @@ export const loyaltyPromotionData: ProductPageData = {
         image: "/products/promotion/promotion-fe-6.png",
         title: "Segmented Campaigns",
         description: "Create highly effective loyalty campaigns based on customer preferences, spending habits, days visited and menu preferences. Increase order reach and with rewards and give them a quality experience."
+      }
+    ]
+  },
+  scrollSection: {
+    heroTitle: "Features",
+    heroSubtitle: "Build customer loyalty and drive repeat business with powerful reward programs",
+    sections: [
+      {
+        id: '1',
+        icon: 'Gift',
+        title: 'One Loyalty works Everywhere',
+        subtitle: 'Unified Loyalty',
+        description: 'Our loyalty program is fully integrated across all platforms: POS, kiosk, online ordering, and mobile app. Customers can earn and redeem points seamlessly wherever they order.',
+        bgColor: 'bg-orange-500',
+        bgGradient: 'from-orange-400 to-orange-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/promotion/promotion-about-1.png',
+        bulletPoints: [
+          { text: 'Cross-platform Sync', highlight: true },
+          { text: 'Real-time Balancing', highlight: true },
+          { text: 'Easy Redemption', highlight: true },
+          { text: 'Unified Experience', highlight: true }
+        ]
+      },
+      {
+        id: '2',
+        icon: 'BarChart',
+        title: 'Extensive Analytics & Reporting',
+        subtitle: 'Smart Insights',
+        description: 'Gain deep insights into customer behavior to optimize your menus, pricing, and promotional campaigns. Track loyalty engagement and ROI with detailed reporting tools.',
+        bgColor: 'bg-blue-500',
+        bgGradient: 'from-blue-400 to-blue-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/promotion/promotion-about-2.png',
+        bulletPoints: [
+          { text: 'Customer Spending Habits', highlight: true },
+          { text: 'Campaign Performance', highlight: true },
+          { text: 'ROI Tracking', highlight: true },
+          { text: 'Data-driven Decisions', highlight: true }
+        ]
+      },
+      {
+        id: '3',
+        icon: 'Target',
+        title: 'Targeted Segmented Campaigns',
+        subtitle: 'Precision Marketing',
+        description: 'Create highly effective loyalty campaigns based on customer preferences, spending habits, and visit frequency. Increase your reach with rewards tailored to individual guest tastes.',
+        bgColor: 'bg-red-500',
+        bgGradient: 'from-red-400 to-red-600',
+        buttonText: "Let's Connect",
+        imageSrc: '/products/promotion/promotion-about-3.png',
+        bulletPoints: [
+          { text: 'Behavior-based Targeting', highlight: true },
+          { text: 'Custom Offers', highlight: true },
+          { text: 'Automated Marketing', highlight: true },
+          { text: 'Improved Reach', highlight: true }
+        ]
       }
     ]
   },

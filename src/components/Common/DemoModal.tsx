@@ -58,6 +58,18 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+  // Disable background scroll when open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -232,4 +244,4 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default DemoModal; 
+export default DemoModal;

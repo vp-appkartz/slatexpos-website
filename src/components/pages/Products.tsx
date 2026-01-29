@@ -10,7 +10,8 @@ import Hardware from '../Common/Hardware';
 import BlackSection from '../Common/BlackSection';
 import Testimonial from '../Common/Testimonials';
 import Contact from '../Common/CTA';
-import { getProductData } from '../../Data/productData';
+import { getProductData as getStaticProductData, ProductPageData } from '../../Data/productData';
+import { subscribeToProductData, subscribeToHeroPageData } from '../../services/firestoreService';
 import FAQSection from '../Common/Faq';
 
 import ScrollSection from '../Home/ScrollSection';
@@ -39,17 +40,35 @@ const getIcon = (iconName: string) => {
 
 const DynamicProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [productData, setProductData] = React.useState<ProductPageData | null>(() => {
+    return slug ? getStaticProductData(slug) : null;
+  });
 
   useEffect(() => {
     const el = document.scrollingElement || document.documentElement;
     el.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 
+  useEffect(() => {
+    if (!slug) return;
+
+    // Load static data first
+    const staticData = getStaticProductData(slug);
+    setProductData(staticData);
+
+    // Subscribe to Firebase updates
+    const unsubscribe = subscribeToProductData(slug, (data) => {
+      if (data) {
+        setProductData(data);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [slug]);
+
   if (!slug) {
     return <Navigate to="/" replace />;
   }
-
-  const productData = getProductData(slug);
 
   if (!productData) {
     return (
@@ -84,6 +103,20 @@ const DynamicProductPage: React.FC = () => {
 
   const scrollSectionData = transformScrollSectionData();
 
+  /* Shared Data State */
+  const [sharedData, setSharedData] = React.useState<any>(null);
+
+  useEffect(() => {
+    // Subscribe to Hero/Global data for shared sections
+    // Ensure subscribeToHeroPageData is imported
+    const unsubscribeHero = subscribeToHeroPageData((docData) => {
+      if (docData) {
+        setSharedData(docData);
+      }
+    });
+    return () => unsubscribeHero();
+  }, []);
+
   return (
     <>
       <SEO
@@ -112,7 +145,7 @@ const DynamicProductPage: React.FC = () => {
       />
 
       {/* Conditionally render ScrollSection only if product has scroll section data */}
-      {scrollSectionData ? (
+      {scrollSectionData && (
         <ScrollSection
           heroTitle={scrollSectionData.heroTitle}
           heroSubtitle={scrollSectionData.heroSubtitle}
@@ -122,8 +155,6 @@ const DynamicProductPage: React.FC = () => {
             console.log(`Button clicked for section: ${sectionId}`);
           }}
         />
-      ) : (
-        <ScrollSection />
       )}
 
       <KeyFeatures
@@ -140,10 +171,31 @@ const DynamicProductPage: React.FC = () => {
         />
       )}
 
-      <Hardware />
-      <BlackSection />
-      <Testimonial />
-      <Contact />
+      <Hardware
+        title={sharedData?.hardware?.title}
+        subtitle={sharedData?.hardware?.subtitle}
+        items={sharedData?.hardware?.items}
+      />
+
+      <BlackSection
+        title={sharedData?.blackSection?.title}
+        description={sharedData?.blackSection?.description}
+        buttonText={sharedData?.blackSection?.buttonText}
+        imageSrc={sharedData?.blackSection?.imageSrc}
+        trustIndicators={sharedData?.blackSection?.trustIndicators}
+      />
+
+      <Testimonial
+        title={sharedData?.testimonials?.title}
+        subtitle={sharedData?.testimonials?.subtitle}
+        items={sharedData?.testimonials?.items}
+      />
+
+      <Contact
+        title={sharedData?.cta?.title}
+        description={sharedData?.cta?.description}
+        image={sharedData?.cta?.image}
+      />
       <FAQSection
         faqs={productData.faqSection.faqs}
       />

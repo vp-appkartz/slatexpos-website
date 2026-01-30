@@ -92,16 +92,16 @@ const Testimonial: React.FC<TestimonialProps> = ({
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000`}>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
             {dataTitle}
           </h2>
-          <p className="text-lg md:text-2xl font-medium text-gray-600">
+          <p className="text-gray-600 font-medium text-base sm:text-lg md:text-xl lg:text-2xl">
             {dataSubtitle}
           </p>
         </div>
 
         {/* Testimonial Cards for Desktop */}
-        <div className="hidden md:flex gap-4 h-96 overflow-hidden">
+        <div className="hidden xl:flex gap-4 h-96 overflow-hidden">
           {testimonials.map((testimonial, index) => {
             const isExpanded = expandedIndex === index;
             return (
@@ -146,11 +146,11 @@ const Testimonial: React.FC<TestimonialProps> = ({
                 <div className={`absolute inset-0 bg-black bg-opacity-80 transition-opacity duration-700 flex flex-col justify-center p-8
                   ${isExpanded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
                 `}>
-                  <p className="text-white text-base leading-relaxed mb-8">
+                  <p className="text-white text-base lg:text-lg leading-relaxed mb-8">
                     {testimonial.text}
                   </p>
                   <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-white mb-1">
+                    <h3 className="text-xl lg:text-2xl font-semibold text-white mb-1">
                       {testimonial.name}
                     </h3>
                     <p className="text-gray-300 text-sm">
@@ -174,7 +174,7 @@ const Testimonial: React.FC<TestimonialProps> = ({
         </div>
 
         {/* Mobile Version - Stack cards vertically on small screens */}
-        <div className="md:hidden mt-8 space-y-4">
+        <div className="xl:hidden mt-8 space-y-4">
           {testimonials.map((testimonial, index) => {
             return (
               <div
@@ -195,14 +195,14 @@ const Testimonial: React.FC<TestimonialProps> = ({
                   sm:px-4 sm:py-6
                   md:px-6 md:py-6
                 ">
-                  <p className="text-sm leading-relaxed mb-3 sm:mb-4">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                     {testimonial.text}
                   </p>
 
-                  <h3 className="text-base sm:text-lg font-semibold mb-1">
+                  <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-1">
                     {testimonial.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4">
+                  <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-3 sm:mb-4">
                     {testimonial.position}
                   </p>
 

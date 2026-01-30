@@ -31,6 +31,7 @@ import BlogForm from './components/admin/BlogForm';
 import ProductEditor from './components/admin/products/ProductEditor';
 import IndustryEditor from './components/admin/industries/IndustryEditor';
 import PricingEditor from './components/admin/pricing/PricingEditor';
+import FooterEditor from './components/admin/footer/FooterEditor';
 import ContentApprovals from './components/admin/settings/ContentApprovals';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import SEO from './components/Common/SEO';
@@ -86,6 +87,13 @@ const AppContent = () => {
                     <ProtectedRoute>
                         <AdminLayout>
                             <HeroEditor />
+                        </AdminLayout>
+                    </ProtectedRoute>
+                } />
+                <Route path="/admin/footer" element={
+                    <ProtectedRoute>
+                        <AdminLayout>
+                            <FooterEditor />
                         </AdminLayout>
                     </ProtectedRoute>
                 } />

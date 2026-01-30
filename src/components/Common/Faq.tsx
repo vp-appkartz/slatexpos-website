@@ -92,8 +92,8 @@ const FAQSection: React.FC<FAQSectionProps> = ({
       <div className="w-full max-w-7xl mx-auto bg-gray-100 rounded-lg p-8">
         {/* Header */}
         <div className="text-center mb-8" data-aos="fade-down">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
-          <p className="text-gray-800 text-lg font-medium">{subtitle}</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-2">{title}</h2>
+          <p className="text-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl font-medium">{subtitle}</p>
         </div>
 
         {/* FAQ Items */}
@@ -112,7 +112,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
                 aria-expanded={expandedIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <span className="text-gray-800 font-bold text-xl pr-4">
+                <span className="text-gray-800 font-bold text-lg sm:text-xl md:text-2xl pr-4">
                   {faq.question}
                 </span>
                 <div className="flex-shrink-0">
@@ -130,7 +130,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
               >
                 {expandedIndex === index && (
                   <div className="px-6 pb-6">
-                    <div className="text-gray-800 font-medium text-md leading-relaxed">
+                    <div className="text-gray-800 font-medium text-sm sm:text-base md:text-lg leading-relaxed">
                       {faq.answer}
                     </div>
                   </div>

@@ -167,10 +167,10 @@ const BulletList: React.FC<{ points: { text: string; highlight?: boolean }[] }> 
                 key={pointIdx}
                 className="flex items-center flex-shrink-0"
               >
-                <span className="flex-shrink-0 rounded-full bg-primary-300 w-7 h-7 md:w-5 md:h-5 flex items-center justify-center mr-3">
-                  <Check className="w-5 h-5 md:w-4 md:h-4 text-white" strokeWidth={2.5} />
+                <span className="flex-shrink-0 rounded-full bg-primary-300 w-6 h-6 md:w-5 md:h-5 flex items-center justify-center mr-3">
+                  <Check className="w-4 h-4 md:w-3 md:h-3 text-white" strokeWidth={2.5} />
                 </span>
-                <span className="text-gray-700 font-semibold text-lg sm:text-xl md:text-sm lg:text-base leading-snug">
+                <span className="text-gray-700 font-semibold text-sm sm:text-base md:text-sm lg:text-base leading-snug">
                   {point.text}
                 </span>
               </div>
@@ -376,10 +376,10 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
       {/* Hero Section - Reduced spacing */}
       <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl mt-4 md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto mt-4">
             {dataTitle}
           </h1>
-          <p className="text-black text-lg sm:text-xl font-medium md:text-sm lg:text-base mt-2 md:mt-2">
+          <p className="text-gray-800 text-base sm:text-lg md:text-xl font-medium mt-3 md:mt-4">
             {dataSubtitle}
           </p>
         </div>
@@ -438,11 +438,11 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                 <div className="w-12 h-1.5 bg-gray-200 rounded-full mb-8"></div>
 
                 <div className="w-full max-w-sm">
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4 leading-tight text-center">
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-4 leading-tight text-center">
                     {section.subtitle}
                   </h2>
 
-                  <p className="text-gray-600 mb-8 text-center leading-relaxed font-medium">
+                  <p className="text-gray-600 mb-8 text-center leading-relaxed font-medium text-sm sm:text-base">
                     {section.description}
                   </p>
 
@@ -455,7 +455,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
 
                   <button
                     onClick={() => handleButtonClick(section.id)}
-                    className="w-full group relative overflow-hidden bg-gray-900 text-white px-6 py-4 rounded-xl font-bold text-lg shadow-xl shadow-gray-900/10 hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 active:scale-95"
+                    className="w-full group relative overflow-hidden bg-gray-900 text-white px-6 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-xl shadow-gray-900/10 hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 active:scale-95"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       {section.buttonText}
@@ -490,10 +490,10 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                   className="min-h-screen text-left flex items-center justify-start px-2 md:px-4 lg:px-6"
                 >
                   <div className="max-w-sm md:max-w-md lg:max-w-lg w-full">
-                    <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-4xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{ lineHeight: '1.3' }}>
+                    <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{ lineHeight: '1.2' }}>
                       {section.subtitle}
                     </h2>
-                    <p className="text-lg font-normal text-black mb-3 md:mb-4 lg:mb-6 ">
+                    <p className="text-base md:text-lg lg:text-xl font-normal text-black mb-3 md:mb-4 lg:mb-6 leading-relaxed">
                       {section.description}
                     </p>
 

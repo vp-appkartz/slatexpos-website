@@ -60,10 +60,10 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
           data-aos={window.innerWidth >= 768 ? "fade-down" : undefined}
           data-aos-delay={window.innerWidth >= 768 ? "100" : undefined}
         >
-          <h2 className="text-3xl sm:text-3xl mt-6 sm:mt-8 md:mt-10 lg:text-4xl xl:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl mt-6 sm:mt-8 md:mt-10 md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
             {heading}
           </h2>
-          <p className="text-gray-800 text-lg sm:text-lg font-medium md:text-lg lg:text-2xl mt-1 md:mt-2">
+          <p className="text-gray-800 text-base sm:text-lg font-medium md:text-xl lg:text-2xl mt-1 md:mt-2">
             {subheading}
           </p>
         </div>
@@ -100,10 +100,10 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
 
                 {/* Feature Content */}
                 <div className="flex-1 flex flex-col items-center text-center">
-                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 sm:mb-3 max-w-[${maxW}]`}>
+                  <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2 sm:mb-3 max-w-[${maxW}]`}>
                     {feature.title}
                   </h3>
-                  <p className="text-gray-800 text-sm sm:text-base leading-relaxed">
+                  <p className="text-gray-800 text-sm sm:text-base md:text-lg leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

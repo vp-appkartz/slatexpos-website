@@ -96,15 +96,15 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             data-aos="fade-right"
             data-aos-delay="120"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-down" data-aos-delay="180">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6" data-aos="fade-down" data-aos-delay="180">
               {data.title}
             </h2>
-            <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-md" data-aos="fade-up" data-aos-delay="260">
+            <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-md" data-aos="fade-up" data-aos-delay="260">
               {data.description}
             </p>
             {data.buttonText && (
               <button
-                className="bg-primary-300 text-lg hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
+                className="bg-primary-300 text-base sm:text-lg hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
                 onClick={onButtonClick}
                 data-aos="zoom-in"
                 data-aos-delay="340"
@@ -144,7 +144,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
                   data-aos-delay={aosDelay}
                 >
                   <Check className="w-5 h-5 text-primary-300 mr-3 flex-shrink-0" />
-                  <span className="text-base lg:text-lg font-medium">{indicator}</span>
+                  <span className="text-sm sm:text-base lg:text-lg font-medium">{indicator}</span>
                 </div>
               );
             })}

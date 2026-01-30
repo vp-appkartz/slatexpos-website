@@ -9,11 +9,12 @@ import {
     Menu,
     ChevronDown,
     ChevronRight,
-    Package,
-    Layers,
     Monitor,
     DollarSign,
-    Command
+    Command,
+    LayoutTemplate,
+    Package,
+    Layers
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { signOutUser } from '../../services/authService';
@@ -225,7 +226,24 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                                 {renderMenuItem(Command, 'Hero Section', isCurrentPath('/admin/hero'))}
                             </button>
                         </li>
-
+                        <li>
+                            <button
+                                onClick={() => {
+                                    navigate('/admin/footer');
+                                    setSidebarOpen(false);
+                                }}
+                                className={`
+                  w-full flex items-center rounded-xl transition-all duration-200 group relative
+                  ${sidebarCollapsed ? 'justify-center py-3 px-1' : 'justify-between px-4 py-3.5'}
+                  ${isCurrentPath('/admin/footer')
+                                        ? 'bg-primary-50/50'
+                                        : 'hover:bg-gray-50'
+                                    }
+                `}
+                            >
+                                {renderMenuItem(LayoutTemplate, 'Footer', isCurrentPath('/admin/footer'))}
+                            </button>
+                        </li>
                         {/* Products Dropdown */}
                         <li>
                             <button

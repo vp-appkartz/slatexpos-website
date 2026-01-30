@@ -51,10 +51,10 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12" data-aos="fade-down" data-aos-delay="100">
-          <h2 className="text-4xl font-bold text-gray-800 mb-2 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 leading-tight">
             {title}
           </h2>
-          <p className="text-gray-800 text-base sm:text-lg md:text-xl font-medium">
+          <p className="text-gray-800 text-sm sm:text-base md:text-xl font-medium">
             {subtitle}
           </p>
         </div>
@@ -109,10 +109,10 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
                 data-aos-delay={aosDelay}
               >
                 <div className="mb-2 flex-1 flex flex-col justify-center items-start">
-                  <span className="block text-5xl text-left font-bold text-gray-900 mb-1 drop-shadow  transition-colors duration-300">
+                  <span className="block text-3xl sm:text-4xl md:text-5xl text-left font-bold text-gray-900 mb-1 drop-shadow  transition-colors duration-300">
                     {stat.value}
                   </span>
-                  <span className="block text-lg text-gray-800 max-w-[170px] mt-4 font-medium">
+                  <span className="block text-sm sm:text-base md:text-lg text-gray-800 max-w-[170px] mt-4 font-medium">
                     {stat.description}
                   </span>
                 </div>

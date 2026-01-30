@@ -36,10 +36,10 @@ const ComparePlanComponent = () => {
         <div className="w-full bg-gray-50 min-h-screen mt-16 sm:mt-20 lg:mt-[140px]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="text-center mb-8 lg:mb-12">
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2 lg:mb-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-2 lg:mb-4">
                         {compareSection.title}
                     </h1>
-                    <p className="text-base lg:text-lg text-gray-600">
+                    <p className="text-gray-600 text-base sm:text-lg md:text-xl">
                         {compareSection.subtitle}
                     </p>
                 </div>
@@ -50,7 +50,7 @@ const ComparePlanComponent = () => {
                         <div key={plan.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                             {/* Plan Header */}
                             <div className="bg-orange-50 p-4 sm:p-6 text-center border-b border-gray-200">
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{plan.name}</h3>
+                                <h3 className="font-semibold text-gray-900 text-xl sm:text-2xl mb-2">{plan.name}</h3>
                                 <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
                                 <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg transition-colors text-sm">
                                     Get Started
@@ -72,7 +72,7 @@ const ComparePlanComponent = () => {
 
                                     return (
                                         <div key={index} className="px-4 sm:px-6 py-3 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors">
-                                            <span className="text-sm text-gray-700 flex-1 pr-4">
+                                            <span className="text-sm sm:text-base text-gray-700 flex-1 pr-4">
                                                 {feature.name}
                                             </span>
                                             <div className="flex items-center justify-center min-w-0 flex-shrink-0">
@@ -95,8 +95,8 @@ const ComparePlanComponent = () => {
                         </div>
                         {plans.map((plan) => (
                             <div key={plan.id} className="flex flex-col items-center p-6 h-full">
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{plan.name}</h3>
-                                <p className="text-sm text-gray-600 mb-4 text-center min-h-[40px] flex items-center">
+                                <h3 className="font-semibold text-gray-900 text-lg sm:text-xl mb-2">{plan.name}</h3>
+                                <p className="text-sm sm:text-base text-gray-600 mb-4 text-center min-h-[40px] flex items-center">
                                     {plan.description}
                                 </p>
                                 <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm mt-auto">
@@ -112,7 +112,7 @@ const ComparePlanComponent = () => {
                             return (
                                 <div key={index} className="grid grid-cols-4 bg-gray-50 border-b border-gray-200">
                                     <div className="p-4 flex items-center col-span-4">
-                                        <span className="text-lg font-semibold text-gray-900">
+                                        <span className="text-xl font-semibold text-gray-900">
                                             {feature.category}
                                         </span>
                                     </div>
@@ -123,7 +123,7 @@ const ComparePlanComponent = () => {
                         return (
                             <div key={index} className="grid grid-cols-4 border-b border-gray-100 bg-white hover:bg-gray-50 transition-colors">
                                 <div className="p-4 flex items-center">
-                                    <span className="text-sm text-gray-700">
+                                    <span className="text-base text-gray-700">
                                         {feature.name}
                                     </span>
                                 </div>

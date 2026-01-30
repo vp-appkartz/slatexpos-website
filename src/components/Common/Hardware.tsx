@@ -120,16 +120,16 @@ const Hardware: React.FC<HardwareProps> = (props) => {
         <div>
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
               {hardwareTitle}
             </h2>
-            <p className="text-lg md:text-2xl text-gray-800 font-medium">
+            <p className="text-gray-800 font-medium text-base sm:text-lg md:text-xl lg:text-2xl">
               {hardwareSubtitle}
             </p>
           </div>
 
           {/* Hardware Items Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16  md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12 px-2 md:px-0">
             {hardwareItems.map((item, idx) => {
               const aosType = aosCardAnimations[idx % aosCardAnimations.length];
               const aosDelay = 200 + idx * 120;
@@ -142,8 +142,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
                 >
                   {/* Device Image - OUTSIDE the card, floating above */}
                   <div
-                    className="absolute left-1/2 -top-20 -translate-x-1/2 z-10"
-                    style={{ width: 280, height: 230 }}
+                    className="absolute left-1/2 -top-20 -translate-x-1/2 z-10 w-64 md:w-[280px] h-[200px] md:h-[230px]"
                   >
                     <img
                       src={item.image}
@@ -156,12 +155,12 @@ const Hardware: React.FC<HardwareProps> = (props) => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl md:text-4xl font-bold text-left text-gray-800 mb-4 mt-[100px]">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-left text-gray-800 mb-4 mt-[80px] md:mt-[100px]">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-800 text-base md:text-lg font-medium text-left leading-relaxed">
+                  <p className="text-gray-800 text-sm sm:text-base md:text-lg font-medium text-left leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -186,10 +185,10 @@ const Hardware: React.FC<HardwareProps> = (props) => {
           <div className="relative z-10 max-w-4xl mx-auto text-center px-2 md:px-0">
             {/* Header */}
             <div className="mb-6 md:mb-12" data-aos="fade-down" data-aos-delay="100">
-              <h2 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-4">
                 {solutionsTitle}
               </h2>
-              <p className="text-sm md:text-xl text-white text-opacity-90">
+              <p className="text-white text-opacity-90 text-sm sm:text-base md:text-lg lg:text-xl">
                 {solutionsSubtitle}
               </p>
             </div>

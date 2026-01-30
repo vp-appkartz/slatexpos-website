@@ -8,7 +8,7 @@ export interface ContentDraft {
     targetCollection: string;
     targetDocId: string;
     targetName: string; // Human readable name (e.g., "QSR Industry" or "Pro Plan")
-    moduleType: 'product' | 'industry' | 'pricing' | 'hero' | 'hardware';
+    moduleType: 'product' | 'industry' | 'pricing' | 'hero' | 'hardware' | 'footer';
     data: any;
     lastModified: any; // Firestore Timestamp
     status: 'draft';
@@ -398,6 +398,63 @@ export const subscribeToIndustryData = (slug: string, callback: (data: CategoryP
         }
     }, (error) => {
         console.error(`Error subscribing to industry data for ${slug}:`, error);
+        callback(null);
+    });
+};
+
+// 6. Footer Module (Stored in 'content' collection, doc 'footer')
+const FOOTER_DOC_REF = doc(db, 'content', 'footer');
+
+export interface FooterLink {
+    name: string;
+    url: string; // or slug for internal links, but we can treat as URL path
+}
+
+export interface FooterData {
+    description: string;
+    socialLinks: {
+        facebook: string;
+        twitter: string;
+        instagram: string;
+        linkedin: string;
+    };
+    productLinks: FooterLink[];
+    industryLinks: FooterLink[];
+    companyLinks: FooterLink[];
+    updatedAt?: any;
+}
+
+export const getFooterData = async (): Promise<FooterData | null> => {
+    try {
+        const docSnap = await getDoc(FOOTER_DOC_REF);
+        return docSnap.exists() ? (docSnap.data() as FooterData) : null;
+    } catch (error) {
+        console.error("Error fetching footer data:", error);
+        return null;
+    }
+};
+
+export const saveFooterData = async (data: FooterData): Promise<void> => {
+    try {
+        await setDoc(FOOTER_DOC_REF, {
+            ...data,
+            updatedAt: serverTimestamp()
+        }, { merge: true });
+    } catch (error) {
+        console.error("Error saving footer data:", error);
+        throw error;
+    }
+};
+
+export const subscribeToFooterData = (callback: (data: FooterData | null) => void) => {
+    return onSnapshot(FOOTER_DOC_REF, (docSnap) => {
+        if (docSnap.exists()) {
+            callback(docSnap.data() as FooterData);
+        } else {
+            callback(null);
+        }
+    }, (error) => {
+        console.error("Error subscribing to footer data:", error);
         callback(null);
     });
 };

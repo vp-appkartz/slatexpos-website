@@ -15,10 +15,10 @@ const PricingComponent = () => {
             }}
         >
             <div className="text-center mb-8 sm:mb-12 pt-4 sm:pt-0">
-                <h1 className="text-3xl sm:text-4xl font-light text-gray-900 mb-3 sm:mb-4">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-3 sm:mb-4">
                     {heroSection.title}
                 </h1>
-                <p className="text-base sm:text-lg text-gray-600">
+                <p className="text-gray-600 text-base sm:text-lg md:text-xl lg:text-2xl">
                     {heroSection.subtitle}
                 </p>
             </div>
@@ -38,12 +38,12 @@ const PricingComponent = () => {
                             </div>
                         )}
                         <div className="mb-6">
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-2">{plan.name}</h2>
-                            <p className="text-gray-600 text-sm mb-6">{plan.description}</p>
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-2">{plan.name}</h2>
+                            <p className="text-gray-600 text-sm sm:text-base mb-6">{plan.description}</p>
                             <div className="flex items-baseline mb-2">
-                                <span className={`text-5xl font-semibold text-gray-900`}>{plan.price}</span>
+                                <span className={`text-4xl sm:text-5xl md:text-6xl font-semibold text-gray-900`}>{plan.price}</span>
                                 {plan.strikePrice && (
-                                    <span className="text-xl text-gray-400 ml-2 line-through">{plan.strikePrice}</span>
+                                    <span className="text-lg sm:text-xl text-gray-400 ml-2 line-through">{plan.strikePrice}</span>
                                 )}
                             </div>
                             <p className="text-sm text-gray-600 mb-6">{plan.priceNote}</p>
@@ -59,7 +59,7 @@ const PricingComponent = () => {
                                     <div className="w-6 h-6 rounded-full flex items-center justify-center mr-3 bg-orange-400">
                                         <Check className="w-4 h-4 text-white" />
                                     </div>
-                                    <span className="text-sm text-gray-700">{feature}</span>
+                                    <span className="text-sm sm:text-base text-gray-700">{feature}</span>
                                 </div>
                             ))}
                         </div>

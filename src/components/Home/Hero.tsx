@@ -21,7 +21,7 @@ const Hero = () => {
   const highlightedText = heroData?.highlightedText || "More Efficiently";
   const suffixText = heroData?.suffixText || "Smarter";
   const buttonText = heroData?.buttonText || "Let's Connect";
-  const bgImage = heroData?.backgroundImage || "/bg.png";
+  const bgImage = "/bg.png";
 
   const centerImage = heroData?.centerImage || "/hero-home-center.png";
   const images = {

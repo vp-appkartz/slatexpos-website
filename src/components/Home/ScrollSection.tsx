@@ -376,7 +376,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
       {/* Hero Section - Reduced spacing */}
       <section className="pt-2 md:pt-4 lg:pt-6 pb-2 md:pb-4">
         <div className="text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto mt-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto mt-4">
             {dataTitle}
           </h1>
           <p className="text-gray-800 text-base sm:text-lg md:text-xl font-medium mt-3 md:mt-4">
@@ -490,7 +490,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
                   className="min-h-screen text-left flex items-center justify-start px-2 md:px-4 lg:px-6"
                 >
                   <div className="max-w-sm md:max-w-md lg:max-w-lg w-full">
-                    <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{ lineHeight: '1.2' }}>
+                    <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-4xl font-bold text-gray-700 mb-2 md:mb-3 lg:mb-4 tracking-wide" style={{ lineHeight: '1.2' }}>
                       {section.subtitle}
                     </h2>
                     <p className="text-base md:text-lg lg:text-xl font-normal text-black mb-3 md:mb-4 lg:mb-6 leading-relaxed">

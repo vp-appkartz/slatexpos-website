@@ -60,7 +60,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
           data-aos={window.innerWidth >= 768 ? "fade-down" : undefined}
           data-aos-delay={window.innerWidth >= 768 ? "100" : undefined}
         >
-          <h2 className="text-3xl sm:text-4xl mt-6 sm:mt-8 md:mt-10 md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl mt-6 sm:mt-8 md:mt-10 md:text-5xl lg:text-5xl font-bold text-gray-800 leading-tight max-w-4xl mx-auto">
             {heading}
           </h2>
           <p className="text-gray-800 text-base sm:text-lg font-medium md:text-xl lg:text-2xl mt-1 md:mt-2">

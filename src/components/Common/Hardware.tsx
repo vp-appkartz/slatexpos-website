@@ -120,7 +120,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
         <div>
           {/* Header */}
           <div className="text-center mb-16" data-aos="fade-down" data-aos-delay="100">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-800 mb-4">
               {hardwareTitle}
             </h2>
             <p className="text-gray-800 font-medium text-base sm:text-lg md:text-xl lg:text-2xl">

@@ -92,7 +92,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
       <div className="w-full max-w-7xl mx-auto bg-gray-100 rounded-lg p-8">
         {/* Header */}
         <div className="text-center mb-8" data-aos="fade-down">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-2">{title}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 mb-2">{title}</h2>
           <p className="text-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl font-medium">{subtitle}</p>
         </div>
 

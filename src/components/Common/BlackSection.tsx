@@ -96,7 +96,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             data-aos="fade-right"
             data-aos-delay="120"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6" data-aos="fade-down" data-aos-delay="180">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-6" data-aos="fade-down" data-aos-delay="180">
               {data.title}
             </h2>
             <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-md" data-aos="fade-up" data-aos-delay="260">

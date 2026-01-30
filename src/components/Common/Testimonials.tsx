@@ -92,7 +92,7 @@ const Testimonial: React.FC<TestimonialProps> = ({
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-800 mb-4">
             {dataTitle}
           </h2>
           <p className="text-gray-600 font-medium text-base sm:text-lg md:text-xl lg:text-2xl">

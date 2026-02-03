@@ -44,6 +44,20 @@ const DynamicProductPage: React.FC = () => {
     return slug ? getStaticProductData(slug) : null;
   });
 
+  /* Shared Data State */
+  const [sharedData, setSharedData] = React.useState<any>(null);
+
+  useEffect(() => {
+    // Subscribe to Hero/Global data for shared sections
+    // Ensure subscribeToHeroPageData is imported
+    const unsubscribeHero = subscribeToHeroPageData((docData) => {
+      if (docData) {
+        setSharedData(docData);
+      }
+    });
+    return () => unsubscribeHero();
+  }, []);
+
   useEffect(() => {
     const el = document.scrollingElement || document.documentElement;
     el.scrollTo({ top: 0, behavior: 'smooth' });
@@ -103,19 +117,7 @@ const DynamicProductPage: React.FC = () => {
 
   const scrollSectionData = transformScrollSectionData();
 
-  /* Shared Data State */
-  const [sharedData, setSharedData] = React.useState<any>(null);
 
-  useEffect(() => {
-    // Subscribe to Hero/Global data for shared sections
-    // Ensure subscribeToHeroPageData is imported
-    const unsubscribeHero = subscribeToHeroPageData((docData) => {
-      if (docData) {
-        setSharedData(docData);
-      }
-    });
-    return () => unsubscribeHero();
-  }, []);
 
   return (
     <>

@@ -8,7 +8,7 @@ export interface ContentDraft {
     targetCollection: string;
     targetDocId: string;
     targetName: string; // Human readable name (e.g., "QSR Industry" or "Pro Plan")
-    moduleType: 'product' | 'industry' | 'pricing' | 'hero' | 'hardware' | 'footer';
+    moduleType: 'product' | 'industry' | 'pricing' | 'hero' | 'hardware' | 'footer' | 'header';
     data: any;
     lastModified: any; // Firestore Timestamp
     status: 'draft';
@@ -459,3 +459,59 @@ export const subscribeToFooterData = (callback: (data: FooterData | null) => voi
     });
 };
 
+
+// 7. Header Module (Stored in 'content' collection, doc 'header')
+const HEADER_DOC_REF = doc(db, 'content', 'header');
+
+export interface NavigationItem {
+    title: string;
+    description: string;
+    image: string;
+    slug?: string; // Optional for categories if they use title as slug generator
+}
+
+export interface ProductSection {
+    title: string;
+    items: NavigationItem[];
+}
+
+export interface HeaderData {
+    productSections: ProductSection[];
+    categoryItems: NavigationItem[];
+    updatedAt?: any;
+}
+
+export const getHeaderData = async (): Promise<HeaderData | null> => {
+    try {
+        const docSnap = await getDoc(HEADER_DOC_REF);
+        return docSnap.exists() ? (docSnap.data() as HeaderData) : null;
+    } catch (error) {
+        console.error("Error fetching header data:", error);
+        return null;
+    }
+};
+
+export const saveHeaderData = async (data: HeaderData): Promise<void> => {
+    try {
+        await setDoc(HEADER_DOC_REF, {
+            ...data,
+            updatedAt: serverTimestamp()
+        }, { merge: true });
+    } catch (error) {
+        console.error("Error saving header data:", error);
+        throw error;
+    }
+};
+
+export const subscribeToHeaderData = (callback: (data: HeaderData | null) => void) => {
+    return onSnapshot(HEADER_DOC_REF, (docSnap) => {
+        if (docSnap.exists()) {
+            callback(docSnap.data() as HeaderData);
+        } else {
+            callback(null);
+        }
+    }, (error) => {
+        console.error("Error subscribing to header data:", error);
+        callback(null);
+    });
+};

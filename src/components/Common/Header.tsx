@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import DemoModal from './DemoModal';
+import { subscribeToHeaderData, HeaderData } from '../../services/firestoreService';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,7 +81,9 @@ const Header: React.FC = () => {
     navigate(`/categories/${slug}`);
   };
 
-  const productSections = [
+
+
+  const defaultProductSections = [
     {
       title: "Restaurant Operations",
       items: [
@@ -146,7 +149,7 @@ const Header: React.FC = () => {
     }
   ];
 
-  const categoryItems = [
+  const defaultCategoryItems = [
     {
       image: "/ih1.png",
       title: "Quick-Service Restaurants (QSR)",
@@ -188,6 +191,24 @@ const Header: React.FC = () => {
       description: "Manage tabs, happy hours, and tip distribution effortlessly with bar-optimized POS features."
     }
   ];
+
+  const [headerData, setHeaderData] = useState<HeaderData>({
+    productSections: defaultProductSections,
+    categoryItems: defaultCategoryItems
+  });
+
+  useEffect(() => {
+    const unsubscribe = subscribeToHeaderData((data) => {
+      if (data) {
+        setHeaderData(data);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const { productSections, categoryItems } = headerData;
+
+
 
   return (
     <>
@@ -420,9 +441,10 @@ const Header: React.FC = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* Product Sections - 2 columns, Let's Talk in 3rd */}
                     {/* Column 1: Restaurant Operations */}
+                    {/* Column 1: First Section */}
                     <div>
                       {(() => {
-                        const section = productSections.find(s => s.title === 'Restaurant Operations');
+                        const section = productSections[0];
                         if (!section) return null;
                         return (
                           <>
@@ -434,7 +456,7 @@ const Header: React.FC = () => {
                                 <div
                                   key={itemIndex}
                                   className="flex items-start space-x-3 group cursor-pointer"
-                                  onClick={() => handleProductItemClick(item.slug)}
+                                  onClick={() => handleProductItemClick(item.slug || '')}
                                 >
                                   <div className="mt-1 group-hover:scale-110 transition-transform duration-200 w-10 h-10 flex-shrink-0">
                                     <img
@@ -458,24 +480,24 @@ const Header: React.FC = () => {
                         );
                       })()}
                     </div>
-                    {/* Column 2: Customer Interaction, then Marketing Operations */}
+                    {/* Column 2: Second and Third Sections */}
                     <div>
                       {(() => {
-                        const customerSection = productSections.find(s => s.title === 'Customer Interaction');
-                        const marketingSection = productSections.find(s => s.title === 'Marketing Operations');
+                        const section2 = productSections[1];
+                        const section3 = productSections[2];
                         return (
                           <>
-                            {customerSection && (
+                            {section2 && (
                               <>
                                 <h3 className="text-primary-300 font-semibold text-sm uppercase tracking-wide mb-4">
-                                  {customerSection.title}
+                                  {section2.title}
                                 </h3>
                                 <div className="space-y-4 mb-8">
-                                  {customerSection.items.map((item, itemIndex) => (
+                                  {section2.items.map((item, itemIndex) => (
                                     <div
                                       key={itemIndex}
                                       className="flex items-start space-x-3 group cursor-pointer"
-                                      onClick={() => handleProductItemClick(item.slug)}
+                                      onClick={() => handleProductItemClick(item.slug || '')}
                                     >
                                       <div className="mt-1 group-hover:scale-110 transition-transform duration-200 w-10 h-10 flex-shrink-0">
                                         <img
@@ -497,17 +519,17 @@ const Header: React.FC = () => {
                                 </div>
                               </>
                             )}
-                            {marketingSection && (
+                            {section3 && (
                               <>
                                 <h3 className="text-primary-300 font-semibold text-sm uppercase tracking-wide mb-4">
-                                  {marketingSection.title}
+                                  {section3.title}
                                 </h3>
                                 <div className="space-y-4">
-                                  {marketingSection.items.map((item, itemIndex) => (
+                                  {section3.items.map((item, itemIndex) => (
                                     <div
                                       key={itemIndex}
                                       className="flex items-start space-x-3 group cursor-pointer"
-                                      onClick={() => handleProductItemClick(item.slug)}
+                                      onClick={() => handleProductItemClick(item.slug || '')}
                                     >
                                       <div className="mt-1 group-hover:scale-110 transition-transform duration-200 w-10 h-10 flex-shrink-0">
                                         <img

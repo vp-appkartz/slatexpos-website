@@ -32,6 +32,7 @@ import ProductEditor from './components/admin/products/ProductEditor';
 import IndustryEditor from './components/admin/industries/IndustryEditor';
 import PricingEditor from './components/admin/pricing/PricingEditor';
 import FooterEditor from './components/admin/footer/FooterEditor';
+import HeaderEditor from './components/admin/header/HeaderEditor';
 import ContentApprovals from './components/admin/settings/ContentApprovals';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import SEO from './components/Common/SEO';
@@ -94,6 +95,13 @@ const AppContent = () => {
                     <ProtectedRoute>
                         <AdminLayout>
                             <FooterEditor />
+                        </AdminLayout>
+                    </ProtectedRoute>
+                } />
+                <Route path="/admin/header" element={
+                    <ProtectedRoute>
+                        <AdminLayout>
+                            <HeaderEditor />
                         </AdminLayout>
                     </ProtectedRoute>
                 } />

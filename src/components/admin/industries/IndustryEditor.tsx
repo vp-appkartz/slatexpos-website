@@ -79,15 +79,12 @@ const IndustryEditor: React.FC = () => {
             // 1. Save as Draft
             await saveDraft('industries', slug, formData, 'industry', formData.heroSection?.title || slug);
 
-            // 2. ALSO Save directly to Live Firestore
-            await saveIndustryData(slug, formData);
-
             setHasDraft(true);
             setIsEditing(false);
-            toast.success('Changes saved successfully and published live!');
+            toast.success('Changes saved as draft! Go to Settings > Approvals to publish.');
         } catch (error) {
             console.error(error);
-            toast.error('Failed to save changes.');
+            toast.error('Failed to save draft.');
         } finally {
             setIsSaving(false);
         }
@@ -196,6 +193,7 @@ const IndustryEditor: React.FC = () => {
                         data={formData.heroSection}
                         onChange={(newData) => setFormData({ ...formData, heroSection: newData })}
                         isEditing={isEditing}
+                        industryId={slug!}
                     />
                 )}
                 {activeTab === 'stats' && (
@@ -203,6 +201,7 @@ const IndustryEditor: React.FC = () => {
                         data={formData.numberSpeaks}
                         onChange={(newData) => setFormData({ ...formData, numberSpeaks: newData })}
                         isEditing={isEditing}
+                        industryId={slug!}
                     />
                 )}
                 {activeTab === 'scroll' && formData.scrollSection && (
@@ -210,6 +209,7 @@ const IndustryEditor: React.FC = () => {
                         data={formData.scrollSection}
                         onChange={(newData) => setFormData({ ...formData, scrollSection: newData })}
                         isEditing={isEditing}
+                        industryId={slug!}
                     />
                 )}
                 {activeTab === 'features' && formData.keyFeatures && (
@@ -217,6 +217,7 @@ const IndustryEditor: React.FC = () => {
                         data={formData.keyFeatures}
                         onChange={(newData) => setFormData({ ...formData, keyFeatures: newData })}
                         isEditing={isEditing}
+                        industryId={slug!}
                     />
                 )}
                 {activeTab === 'blackcard' && formData.blackCardSection && (
@@ -224,6 +225,7 @@ const IndustryEditor: React.FC = () => {
                         data={formData.blackCardSection}
                         onChange={(newData) => setFormData({ ...formData, blackCardSection: newData })}
                         isEditing={isEditing}
+                        industryId={slug!}
                     />
                 )}
                 {activeTab === 'faq' && (
@@ -231,6 +233,7 @@ const IndustryEditor: React.FC = () => {
                         data={formData.faqSection || { faqs: [] }}
                         onChange={(newData) => setFormData({ ...formData, faqSection: newData })}
                         isEditing={isEditing}
+                        industryId={slug!}
                     />
                 )}
             </div>

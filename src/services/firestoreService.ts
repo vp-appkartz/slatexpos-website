@@ -128,7 +128,7 @@ export interface HeroData {
         rightBadge: string;
         rightBottom: string;
     };
-    logos: Array<{ src: string; alt: string }>;
+    logos: Array<{ id: string; src: string; alt: string }>;
 }
 
 export interface ScrollSectionData {
@@ -464,6 +464,7 @@ export const subscribeToFooterData = (callback: (data: FooterData | null) => voi
 const HEADER_DOC_REF = doc(db, 'content', 'header');
 
 export interface NavigationItem {
+    id?: string;
     title: string;
     description: string;
     image: string;

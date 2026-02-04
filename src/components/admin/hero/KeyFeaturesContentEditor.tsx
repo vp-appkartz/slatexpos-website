@@ -1,5 +1,6 @@
 import React from 'react';
 import { Type, ImageIcon, Upload } from 'lucide-react';
+import ImageUpload from '../../common/ImageUpload';
 import { HardwareFeatureItem } from '../../../Data/hardwareData';
 
 export interface KeyFeaturesData {
@@ -31,21 +32,17 @@ const KeyFeaturesContentEditor: React.FC<KeyFeaturesContentEditorProps> = ({
                         {data.features.map((feature, index) => (
                             <div key={index} className="p-4 rounded-xl border border-gray-200 bg-gray-50 hover:border-primary-200 transition-all space-y-4">
                                 {/* Image Upload */}
-                                {/* <div className="relative aspect-video bg-white rounded-lg border-2 border-dashed border-gray-300 overflow-hidden group/image hover:border-primary-400 transition-colors">
-                                    <img src={feature.image} alt={feature.title} className="w-full h-full object-contain p-2" />
-                                    {isEditing && (
-                                        <label className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity cursor-pointer">
-                                            <Upload className="w-6 h-6 text-white mb-1" />
-                                            <span className="text-xs text-white font-medium">Change Image</span>
-                                            <input
-                                                type="file"
-                                                className="hidden"
-                                                accept="image/*"
-                                                onChange={(e) => e.target.files?.[0] && onUpdateFeature(index, 'image', URL.createObjectURL(e.target.files[0]))}
-                                            />
-                                        </label>
-                                    )}
-                                </div> */}
+                                {/* Image Upload */}
+                                <div className="h-40 rounded-lg overflow-hidden border border-gray-200 bg-white">
+                                    <ImageUpload
+                                        value={feature.image}
+                                        onChange={(url) => onUpdateFeature(index, 'image', url)}
+                                        disabled={!isEditing}
+                                        folder="hardware/features"
+                                        fileName={`feature-${index}`}
+                                        className="h-full w-full"
+                                    />
+                                </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Title</label>
                                     <input

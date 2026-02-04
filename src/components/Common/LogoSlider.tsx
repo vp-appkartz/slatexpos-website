@@ -1,33 +1,40 @@
-import React, { useRef, useEffect } from 'react';
-
-const clientLogos = [
-  { src: '/flavours_of_gujarat.png', alt: 'Flavours of Gujarat' },
-  { src: '/bombay_st.png', alt: 'Bombay Street' },
-  { src: '/desi_loco.png', alt: 'Desi Loco' },
-  { src: '/virsa.png', alt: 'Virsa' },
-  { src: '/split_mil.png', alt: 'Split Mil' },
-  { src: '/trademark.png', alt: 'Trademark' },
-  // Add more logos as needed
-];
+import React, { useRef, useEffect, useState } from 'react';
+import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 const LogoSlider: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [logos, setLogos] = useState<Array<{ id?: string; src: string; alt: string }>>([]);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToHeroPageData((data) => {
+      if (data && data.hero && data.hero.logos) {
+        setLogos(data.hero.logos);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const slider = sliderRef.current;
-    if (!slider) return;
+    if (!slider || logos.length === 0) return;
 
     let animationFrame: number;
     let scrollAmount = 0;
 
-    // Duplicate the logos for seamless infinite scroll
-    const totalWidth = slider.scrollWidth / 2;
+    // Calculate total width of one set of logos
+    // We need to wait for render to get accurate scrollWidth, but for now we can rely on content
+    // Better approach for smooth loop:
+    // We duplicate content. When scrollLeft reaches half of scrollWidth, reset to 0.
 
     const scrollStep = () => {
-      scrollAmount += 1; // px per frame
-      if (scrollAmount >= totalWidth) {
+      if (!slider) return;
+      scrollAmount += 1; // Adjusted speed for smoother look
+
+      // If we've scrolled past the first set of logos (half the total width)
+      if (scrollAmount >= slider.scrollWidth / 2) {
         scrollAmount = 0;
       }
+
       slider.scrollLeft = scrollAmount;
       animationFrame = requestAnimationFrame(scrollStep);
     };
@@ -37,7 +44,9 @@ const LogoSlider: React.FC = () => {
     return () => {
       cancelAnimationFrame(animationFrame);
     };
-  }, []);
+  }, [logos]);
+
+  if (logos.length === 0) return null;
 
   return (
     <section className="relative py-4 overflow-hidden">
@@ -52,9 +61,9 @@ const LogoSlider: React.FC = () => {
           }}
         >
           {/* Duplicate logos for seamless infinite scroll */}
-          {[...clientLogos, ...clientLogos].map((logo, idx) => (
+          {[...logos, ...logos].map((logo, idx) => (
             <div
-              key={idx}
+              key={`${logo.id || idx} -${idx} `} // Ensure unique key for duplicated items
               className="flex-shrink-0 flex items-center justify-center"
               style={{ width: 160, height: 80 }}
             >
@@ -73,4 +82,4 @@ const LogoSlider: React.FC = () => {
   );
 };
 
-export default LogoSlider;
+export default LogoSlider

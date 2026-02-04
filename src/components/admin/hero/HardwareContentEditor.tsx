@@ -1,22 +1,19 @@
 import React from 'react';
 import {
     Monitor,
-    Trash2,
-    Plus,
-    Upload,
-    ChevronRight,
     LayoutGrid
 } from 'lucide-react';
+import ImageUpload from '../../common/ImageUpload';
 
 interface HardwareItem {
-    id: number;
+    id: string | number;
     title: string;
     description: string;
     image: string;
 }
 
 interface SolutionItem {
-    id: number;
+    id: string | number;
     title: string;
     row: number;
 }
@@ -28,26 +25,18 @@ export interface HardwareData {
 
 interface HardwareContentEditorProps {
     data: HardwareData;
-    onItemChange: (id: number, field: keyof HardwareItem, value: any) => void;
-    onAddItem: () => void;
-    onRemoveItem: (id: number) => void;
-    onImageUpload: (id: number, file: File) => void;
+    onItemChange: (id: string | number, field: keyof HardwareItem, value: any) => void;
+    onImageUpload: (id: string | number, url: string) => void;
     // Solutions
-    onSolutionChange: (id: number, field: keyof SolutionItem, value: any) => void;
-    onAddSolution: () => void;
-    onRemoveSolution: (id: number) => void;
+    onSolutionChange: (id: string | number, field: keyof SolutionItem, value: any) => void;
     isEditing: boolean;
 }
 
 const HardwareContentEditor: React.FC<HardwareContentEditorProps> = ({
     data,
     onItemChange,
-    onAddItem,
-    onRemoveItem,
     onImageUpload,
     onSolutionChange,
-    onAddSolution,
-    onRemoveSolution,
     isEditing
 }) => {
     return (
@@ -62,59 +51,25 @@ const HardwareContentEditor: React.FC<HardwareContentEditorProps> = ({
                         </div>
                         <h2 className="text-lg font-semibold text-gray-900">Hardware Showcase Items</h2>
                     </div>
-                    {/* {isEditing && (
-                        <button
-                            onClick={onAddItem}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-600 text-gray text-sm font-medium hover:bg-primary-700 transition-colors shadow-sm"
-                        >
-                            <Plus className="w-4 h-4" />
-                            <span>Add Item</span>
-                        </button>
-                    )} */}
                 </div>
 
                 <div className="p-4 sm:p-6 space-y-6">
                     {data.items.map((item) => (
                         <div key={item.id} className="relative group p-6 rounded-xl border border-gray-200 bg-gray-50 hover:border-primary-200 transition-all">
-                            {/* {isEditing && (
-                                <div className="absolute top-4 right-4 flex items-center gap-2">
-                                    <span className="text-xs font-mono text-gray-400">ID: {item.id}</span>
-                                    <button
-                                        onClick={() => onRemoveItem(item.id)}
-                                        className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                        title="Remove Item"
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            )} */}
-
                             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                                 {/* Image Upload */}
                                 <div className="md:col-span-3">
                                     <div className="space-y-2">
                                         <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Device Image</label>
-                                        <div className="relative aspect-square bg-white rounded-lg border-2 border-dashed border-gray-300 overflow-hidden group/image hover:border-primary-400 transition-colors">
-                                            {item.image ? (
-                                                <img src={item.image} alt={item.title} className="w-full h-full object-contain p-4" />
-                                            ) : (
-                                                <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                                                    <Monitor className="w-8 h-8 opacity-50" />
-                                                </div>
-                                            )}
-
-                                            {isEditing && (
-                                                <label className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity cursor-pointer">
-                                                    <Upload className="w-6 h-6 text-white mb-1" />
-                                                    <span className="text-xs text-white font-medium">Change Image</span>
-                                                    <input
-                                                        type="file"
-                                                        className="hidden"
-                                                        accept="image/*"
-                                                        onChange={(e) => e.target.files?.[0] && onImageUpload(item.id, e.target.files[0])}
-                                                    />
-                                                </label>
-                                            )}
+                                        <div className="h-40">
+                                            <ImageUpload
+                                                value={item.image}
+                                                onChange={(url) => onImageUpload(item.id, url)}
+                                                disabled={!isEditing}
+                                                folder="hardware"
+                                                fileName={String(item.id)}
+                                                className="h-full w-full"
+                                            />
                                         </div>
                                     </div>
                                 </div>

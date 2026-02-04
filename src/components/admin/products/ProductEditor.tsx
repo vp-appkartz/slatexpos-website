@@ -233,13 +233,9 @@ const ProductEditor: React.FC = () => {
             // 1. Save as Draft (Standard procedure)
             await saveDraft('products', slug, productData, 'product', productData.heroSection?.title || slug);
 
-            // 2. ALSO Save directly to Live Firestore (Immediate fix requested by user)
-            // This ensures the data is immediately available in the live database without needing approval
-            await saveProductData(slug, productData);
-
             setHasDraft(true);
             setIsEditing(false);
-            toast.success('Changes saved successfully!');
+            toast.success('Changes saved as draft! Go to Settings > Approvals to publish.');
         } catch (error) {
             console.error(error);
             toast.error('Failed to save changes.');
@@ -400,6 +396,7 @@ const ProductEditor: React.FC = () => {
                         data={productData.heroSection}
                         onChange={(newData) => setProductData({ ...productData, heroSection: newData })}
                         isEditing={isEditing}
+                        productId={slug!}
                     />
                 )}
 
@@ -408,6 +405,7 @@ const ProductEditor: React.FC = () => {
                         data={productData.numberSpeaks}
                         onChange={(newData) => setProductData({ ...productData, numberSpeaks: newData })}
                         isEditing={isEditing}
+                        productId={slug!}
                     />
                 )}
 
@@ -416,6 +414,7 @@ const ProductEditor: React.FC = () => {
                         data={productData.scrollSection || INITIAL_SCROLL_DATA}
                         onChange={(newData) => setProductData({ ...productData, scrollSection: newData })}
                         isEditing={isEditing}
+                        productId={slug!}
                     />
                 )}
 
@@ -424,6 +423,7 @@ const ProductEditor: React.FC = () => {
                         data={productData.keyFeatures}
                         onChange={(newData) => setProductData({ ...productData, keyFeatures: newData })}
                         isEditing={isEditing}
+                        productId={slug!}
                     />
                 )}
 
@@ -432,6 +432,7 @@ const ProductEditor: React.FC = () => {
                         data={productData.blackCardSection}
                         onChange={(newData) => setProductData({ ...productData, blackCardSection: newData })}
                         isEditing={isEditing}
+                        productId={slug!}
                     />
                 ) : activeTab === 'blackcard' && (
                     <div className="text-center py-12 text-gray-500 italic">This product does not have a black card section configured.</div>
@@ -442,6 +443,7 @@ const ProductEditor: React.FC = () => {
                         data={productData.faqSection}
                         onChange={(newData) => setProductData({ ...productData, faqSection: newData })}
                         isEditing={isEditing}
+                        productId={slug!}
                     />
                 )}
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Layers, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Layers, Plus, Trash2, ChevronDown, ChevronUp, Image as ImageIcon } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 
 interface ScrollSectionData {
     heroTitle?: string;
@@ -25,9 +26,10 @@ interface ProductScrollEditorProps {
     data: ScrollSectionData;
     onChange: (data: ScrollSectionData) => void;
     isEditing: boolean;
+    productId: string;
 }
 
-const ProductScrollEditor: React.FC<ProductScrollEditorProps> = ({ data, onChange, isEditing }) => {
+const ProductScrollEditor: React.FC<ProductScrollEditorProps> = ({ data, onChange, isEditing, productId }) => {
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
     const toggleSection = (id: string) => {
@@ -208,6 +210,19 @@ const ProductScrollEditor: React.FC<ProductScrollEditorProps> = ({ data, onChang
                                                         <Plus className="w-3 h-3" /> Add Point
                                                     </button>
                                                 )}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-700 mb-2">Section Image</label>
+                                            <div className="h-40">
+                                                <ImageUpload
+                                                    value={section.imageSrc || ''}
+                                                    onChange={(url) => handleSectionChange(section.id, 'imageSrc', url)}
+                                                    disabled={!isEditing}
+                                                    folder={`products/${productId}/scroll/${section.id}`}
+                                                    fileName="section-image"
+                                                    className="h-full w-full"
+                                                />
                                             </div>
                                         </div>
                                     </div>

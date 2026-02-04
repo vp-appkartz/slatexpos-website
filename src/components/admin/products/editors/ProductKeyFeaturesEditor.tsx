@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Plus, Trash2, Upload } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 import { FeatureItem } from '../../../../Data/productData';
 
 interface KeyFeaturesSectionData {
@@ -13,9 +14,10 @@ interface ProductKeyFeaturesEditorProps {
     data: KeyFeaturesSectionData;
     onChange: (data: KeyFeaturesSectionData) => void;
     isEditing: boolean;
+    productId: string;
 }
 
-const ProductKeyFeaturesEditor: React.FC<ProductKeyFeaturesEditorProps> = ({ data, onChange, isEditing }) => {
+const ProductKeyFeaturesEditor: React.FC<ProductKeyFeaturesEditorProps> = ({ data, onChange, isEditing, productId }) => {
 
     const handleHeaderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -42,9 +44,8 @@ const ProductKeyFeaturesEditor: React.FC<ProductKeyFeaturesEditorProps> = ({ dat
         });
     };
 
-    const handleImageUpload = (index: number, file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        handleFeatureChange(index, 'image', imageUrl);
+    const handleImageUpload = (index: number, url: string) => {
+        handleFeatureChange(index, 'image', url);
     };
 
     return (
@@ -82,19 +83,17 @@ const ProductKeyFeaturesEditor: React.FC<ProductKeyFeaturesEditorProps> = ({ dat
                 {data.features.map((feature, idx) => (
                     <div key={idx} className="bg-white rounded-xl border border-gray-100 overflow-hidden group hover:shadow-md transition-all relative">
                         {/* Image Preview */}
-                        {/* <div className="aspect-video bg-gray-50 relative overflow-hidden group-image">
-                            {feature.image ? (
-                                <img src={feature.image} className="w-full h-full object-cover" alt={feature.title} />
-                            ) : (
-                                <div className="flex items-center justify-center h-full text-gray-400 text-xs">No Image</div>
-                            )}
-                            {isEditing && (
-                                <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
-                                    <Upload className="text-white w-5 h-5" />
-                                    <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(idx, e.target.files[0])} />
-                                </label>
-                            )}
-                        </div> */}
+                        {/* Image Preview */}
+                        <div className="aspect-video bg-gray-50 relative overflow-hidden group-image">
+                            <ImageUpload
+                                value={feature.image || ''}
+                                onChange={(url) => handleImageUpload(idx, url)}
+                                disabled={!isEditing}
+                                folder={`products/${productId}/features/${idx}`}
+                                fileName={`feature-${idx}`}
+                                className="h-full w-full"
+                            />
+                        </div>
 
                         <div className="p-4 space-y-3">
                             <input

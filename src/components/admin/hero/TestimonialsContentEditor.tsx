@@ -1,23 +1,19 @@
 import React from 'react';
 import {
     Type,
-    Image as ImageIcon,
-    Plus,
-    Trash2,
     Quote,
     User,
     Briefcase,
     MessageSquare
 } from 'lucide-react';
 import { TestimonialsData, TestimonialItem } from '../../Common/Testimonials';
+import ImageUpload from '../../common/ImageUpload';
 
 interface TestimonialsContentEditorProps {
     data: TestimonialsData;
     onChange: (field: keyof TestimonialsData, value: any) => void;
-    onItemChange: (id: number, field: keyof TestimonialItem, value: any) => void;
-    onAddItem: () => void;
-    onRemoveItem: (id: number) => void;
-    onImageUpload: (id: number, e: React.ChangeEvent<HTMLInputElement>) => void;
+    onItemChange: (id: string | number, field: keyof TestimonialItem, value: any) => void;
+    onImageUpload: (id: string | number, url: string) => void;
     isEditing: boolean;
 }
 
@@ -25,8 +21,6 @@ const TestimonialsContentEditor: React.FC<TestimonialsContentEditorProps> = ({
     data,
     onChange,
     onItemChange,
-    onAddItem,
-    onRemoveItem,
     onImageUpload,
     isEditing
 }) => {
@@ -172,28 +166,17 @@ const TestimonialsContentEditor: React.FC<TestimonialsContentEditorProps> = ({
                                     <div>
                                         <label className="block text-xs font-medium text-gray-500 mb-2">Customer Image</label>
                                         <div className="flex items-center gap-4">
-                                            <div className="relative w-16 h-16 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
-                                                {item.image ? (
-                                                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                                                ) : (
-                                                    <div className="flex items-center justify-center h-full text-gray-400">
-                                                        <ImageIcon className="w-6 h-6" />
-                                                    </div>
-                                                )}
+                                            <div className="relative w-32 h-32 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
+                                                <ImageUpload
+                                                    value={item.image}
+                                                    onChange={(url) => onImageUpload(item.id, url)}
+                                                    disabled={!isEditing}
+                                                    folder="testimonials"
+                                                    fileName={String(item.id)}
+                                                    className="w-full h-full"
+                                                />
                                             </div>
                                             <div className="flex-1">
-                                                {isEditing && (
-                                                    <label className="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                                                        <ImageIcon className="w-4 h-4" />
-                                                        Upload Image
-                                                        <input
-                                                            type="file"
-                                                            className="hidden"
-                                                            onChange={(e) => onImageUpload(item.id, e)}
-                                                            accept="image/*"
-                                                        />
-                                                    </label>
-                                                )}
                                                 <input
                                                     type="text"
                                                     value={item.image}

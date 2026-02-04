@@ -6,9 +6,10 @@ interface IndustryStatsEditorProps {
     data: NumberSpeaksData;
     onChange: (data: NumberSpeaksData) => void;
     isEditing: boolean;
+    industryId: string;
 }
 
-const IndustryStatsEditor: React.FC<IndustryStatsEditorProps> = ({ data, onChange, isEditing }) => {
+const IndustryStatsEditor: React.FC<IndustryStatsEditorProps> = ({ data, onChange, isEditing, industryId }) => {
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             {/* Header Info */}

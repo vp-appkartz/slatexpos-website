@@ -10,9 +10,10 @@ interface ProductFAQEditorProps {
     data: FAQSectionData;
     onChange: (data: FAQSectionData) => void;
     isEditing: boolean;
+    productId: string;
 }
 
-const ProductFAQEditor: React.FC<ProductFAQEditorProps> = ({ data, onChange, isEditing }) => {
+const ProductFAQEditor: React.FC<ProductFAQEditorProps> = ({ data, onChange, isEditing, productId }) => {
 
     const handleFAQChange = (index: number, field: keyof FAQItem, value: string) => {
         const newFAQs = [...data.faqs];

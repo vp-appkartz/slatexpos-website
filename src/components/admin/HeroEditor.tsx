@@ -16,7 +16,7 @@ import HardwareContentEditor, { HardwareData } from './hero/HardwareContentEdito
 
 import BlackSectionContentEditor, { BlackSectionData } from './hero/BlackSectionContentEditor';
 import TestimonialsContentEditor from './hero/TestimonialsContentEditor';
-import { TestimonialsData } from '../Common/Testimonials';
+import { TestimonialsData, TestimonialItem } from '../Common/Testimonials';
 import CTAContentEditor, { CTAData } from './hero/CTAContentEditor';
 import {
     getHeroPageData,
@@ -25,6 +25,7 @@ import {
     ScrollSectionData,
     HeroPageContent
 } from '../../services/firestoreService';
+import { deleteImage } from '../../services/imageService';
 
 // --- Types ---
 interface Section {
@@ -57,12 +58,12 @@ const INITIAL_HERO_DATA: HeroData = {
         rightBottom: '/right-b1.png'
     },
     logos: [
-        { src: '/flavours_of_gujarat.png', alt: 'Flavours of Gujarat' },
-        { src: '/bombay_st.png', alt: 'Bombay Street' },
-        { src: '/desi_loco.png', alt: 'Desi Loco' },
-        { src: '/virsa.png', alt: 'Virsa' },
-        { src: '/split_mil.png', alt: 'Split Mil' },
-        { src: '/trademark.png', alt: 'Trademark' },
+        { id: '1', src: '/flavours_of_gujarat.png', alt: 'Flavours of Gujarat' },
+        { id: '2', src: '/bombay_st.png', alt: 'Bombay Street' },
+        { id: '3', src: '/desi_loco.png', alt: 'Desi Loco' },
+        { id: '4', src: '/virsa.png', alt: 'Virsa' },
+        { id: '5', src: '/split_mil.png', alt: 'Split Mil' },
+        { id: '6', src: '/trademark.png', alt: 'Trademark' },
     ]
 };
 
@@ -292,7 +293,15 @@ const HeroEditor = () => {
             const data = await getHeroPageData();
             console.log(data);
             if (data) {
-                setHeroData(data.hero);
+                // Ensure logos have IDs
+                const processedHero = {
+                    ...data.hero,
+                    logos: (data.hero.logos || []).map((logo: any) => ({
+                        ...logo,
+                        id: logo.id || crypto.randomUUID()
+                    }))
+                };
+                setHeroData(processedHero);
 
                 // Merge remote data with initial data to ensure all default sections exist
                 if (data.scroll && data.scroll.sections) {
@@ -310,9 +319,16 @@ const HeroEditor = () => {
                 } else {
                     setScrollData(data.scroll);
                 }
-                setHardwareData(data.hardware);
+                setHardwareData({
+                    ...data.hardware,
+                    items: data.hardware.items.map((item: any) => ({ ...item, id: item.id || crypto.randomUUID() })),
+                    solutions: data.hardware.solutions.map((sol: any) => ({ ...sol, id: sol.id || crypto.randomUUID() }))
+                });
                 setBlackSectionData(data.blackSection);
-                setTestimonialsData(data.testimonials);
+                setTestimonialsData({
+                    ...data.testimonials,
+                    items: (data.testimonials.items || []).map((item: any) => ({ ...item, id: item.id || crypto.randomUUID() }))
+                });
                 setCtaData(data.cta);
             }
             setIsLoading(false);
@@ -341,22 +357,33 @@ const HeroEditor = () => {
         }
     };
 
-    const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files?.[0]) {
-            const newLogo = {
-                src: URL.createObjectURL(e.target.files[0]),
-                alt: 'New Partner'
-            };
-            setHeroData(prev => ({ ...prev, logos: [...prev.logos, newLogo] }));
-        }
+    const handleLogoUpload = (url: string) => {
+        const newLogo = {
+            id: crypto.randomUUID(),
+            src: url,
+            alt: 'New Partner'
+        };
+        setHeroData(prev => ({ ...prev, logos: [...prev.logos, newLogo] }));
     };
 
-    const removeLogo = (index: number) => {
+    const removeLogo = async (index: number) => {
+        const logoToRemove = heroData.logos[index];
+        if (logoToRemove && logoToRemove.src) {
+            await deleteImage(logoToRemove.src);
+        }
         setHeroData(prev => ({ ...prev, logos: prev.logos.filter((_, i) => i !== index) }));
     };
 
     const updateLogoAlt = (index: number, alt: string) => {
         setHeroData(prev => ({ ...prev, logos: prev.logos.map((logo, i) => i === index ? { ...logo, alt } : logo) }));
+    };
+
+    const updateLogoImage = async (index: number, url: string) => {
+        const logoToUpdate = heroData.logos[index];
+        if (logoToUpdate && logoToUpdate.src) {
+            await deleteImage(logoToUpdate.src);
+        }
+        setHeroData(prev => ({ ...prev, logos: prev.logos.map((logo, i) => i === index ? { ...logo, src: url } : logo) }));
     };
 
     // --- Scroll Section Handlers ---
@@ -403,7 +430,7 @@ const HeroEditor = () => {
     };
 
     const addSection = () => {
-        const newId = (scrollData.sections.length + 1).toString();
+        const newId = crypto.randomUUID();
         const newSection: Section = {
             id: newId,
             icon: 'Zap',
@@ -424,57 +451,22 @@ const HeroEditor = () => {
     };
 
     // --- Hardware Handlers ---
-    const handleHardwareItemChange = (id: number, field: any, value: any) => {
+    // --- Hardware Handlers ---
+    const handleHardwareItemChange = (id: string | number, field: any, value: any) => {
         setHardwareData(prev => ({
             ...prev,
             items: prev.items.map(item => item.id === id ? { ...item, [field]: value } : item)
         }));
     };
 
-    const addHardwareItem = () => {
-        const newId = Math.max(...hardwareData.items.map(i => i.id), 0) + 1;
-        setHardwareData(prev => ({
-            ...prev,
-            items: [...prev.items, {
-                id: newId,
-                title: "New Device",
-                description: "Description",
-                image: ""
-            }]
-        }));
+    const handleHardwareImageUpload = (id: string | number, url: string) => {
+        handleHardwareItemChange(id, 'image', url);
     };
 
-    const removeHardwareItem = (id: number) => {
-        setHardwareData(prev => ({
-            ...prev,
-            items: prev.items.filter(item => item.id !== id)
-        }));
-    };
-
-    const handleHardwareImageUpload = (id: number, file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        handleHardwareItemChange(id, 'image', imageUrl);
-    };
-
-    const handleSolutionChange = (id: number, field: any, value: any) => {
+    const handleSolutionChange = (id: string | number, field: any, value: any) => {
         setHardwareData(prev => ({
             ...prev,
             solutions: prev.solutions.map(sol => sol.id === id ? { ...sol, [field]: value } : sol)
-        }));
-    };
-
-    const addSolution = () => {
-        const newId = Math.max(...hardwareData.solutions.map(s => s.id), 0) + 1;
-        setHardwareData(prev => ({
-            ...prev,
-            solutions: [...prev.solutions, { id: newId, title: "New Solution", row: 1 }]
-        }));
-    };
-
-    const removeSolution = (id: number) => {
-        setHardwareData(prev => ({
-            ...prev,
-            solutions: prev.solutions.filter(sol => sol.id !== id)
         }));
     };
 
@@ -504,11 +496,8 @@ const HeroEditor = () => {
         }));
     };
 
-    const handleBlackSectionImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files?.[0]) {
-            const imageUrl = URL.createObjectURL(e.target.files[0]);
-            handleBlackSectionChange('imageSrc', imageUrl);
-        }
+    const handleBlackSectionImageUpload = (url: string) => {
+        handleBlackSectionChange('imageSrc', url);
     };
 
 
@@ -517,42 +506,20 @@ const HeroEditor = () => {
         setTestimonialsData(prev => ({ ...prev, [field]: value }));
     };
 
-    const handleTestimonialItemChange = (id: number, field: any, value: any) => {
-        setTestimonialsData(prev => ({
-            ...prev,
-            items: (prev.items || []).map(item => item.id === id ? { ...item, [field]: value } : item)
-        }));
+    const handleTestimonialItemChange = (id: string | number, field: keyof TestimonialItem, value: any) => {
+        setTestimonialsData(prev => {
+            if (!prev) return null;
+            return {
+                ...prev,
+                items: (prev.items || []).map(item =>
+                    item.id === id ? { ...item, [field]: value } : item
+                )
+            };
+        });
     };
 
-    const addTestimonialItem = () => {
-        const currentItems = testimonialsData.items || [];
-        const newId = currentItems.length > 0 ? Math.max(...currentItems.map(i => i.id)) + 1 : 1;
-        setTestimonialsData(prev => ({
-            ...prev,
-            items: [...(prev.items || []), {
-                id: newId,
-                name: "New Customer",
-                position: "Restaurant Name",
-                image: "",
-                text: "Add your testimonial text here.",
-                logo: "",
-                logoSubtext: ""
-            }]
-        }));
-    };
-
-    const removeTestimonialItem = (id: number) => {
-        setTestimonialsData(prev => ({
-            ...prev,
-            items: (prev.items || []).filter(item => item.id !== id)
-        }));
-    };
-
-    const handleTestimonialImageUpload = (id: number, e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files?.[0]) {
-            const imageUrl = URL.createObjectURL(e.target.files[0]);
-            handleTestimonialItemChange(id, 'image', imageUrl);
-        }
+    const handleTestimonialImageUpload = (id: string | number, url: string) => {
+        handleTestimonialItemChange(id, 'image', url);
     };
 
 
@@ -698,6 +665,7 @@ const HeroEditor = () => {
                     onLogoUpload={handleLogoUpload}
                     onRemoveLogo={removeLogo}
                     onUpdateLogoAlt={updateLogoAlt}
+                    onUpdateLogoImage={updateLogoImage}
                     isEditing={isEditing}
                 />
             )}
@@ -709,7 +677,6 @@ const HeroEditor = () => {
                     onGlobalChange={handleScrollGlobalChange}
                     onUpdateSection={updateSection}
                     onAddSection={addSection}
-                    onRemoveSection={removeSection}
                     onAddBullet={addBullet}
                     onUpdateBullet={updateBullet}
                     onRemoveBullet={removeBullet}
@@ -722,12 +689,8 @@ const HeroEditor = () => {
                 <HardwareContentEditor
                     data={hardwareData}
                     onItemChange={handleHardwareItemChange}
-                    onAddItem={addHardwareItem}
-                    onRemoveItem={removeHardwareItem}
                     onImageUpload={handleHardwareImageUpload}
                     onSolutionChange={handleSolutionChange}
-                    onAddSolution={addSolution}
-                    onRemoveSolution={removeSolution}
                     isEditing={isEditing}
                 />
             )}
@@ -738,8 +701,6 @@ const HeroEditor = () => {
                     data={blackSectionData}
                     onChange={handleBlackSectionChange}
                     onTrustIndicatorChange={handleTrustIndicatorChange}
-                    onAddTrustIndicator={addTrustIndicator}
-                    onRemoveTrustIndicator={removeTrustIndicator}
                     onImageUpload={handleBlackSectionImageUpload}
                     isEditing={isEditing}
                 />
@@ -751,8 +712,6 @@ const HeroEditor = () => {
                     data={testimonialsData}
                     onChange={handleTestimonialsChange}
                     onItemChange={handleTestimonialItemChange}
-                    onAddItem={addTestimonialItem}
-                    onRemoveItem={removeTestimonialItem}
                     onImageUpload={handleTestimonialImageUpload}
                     isEditing={isEditing}
                 />

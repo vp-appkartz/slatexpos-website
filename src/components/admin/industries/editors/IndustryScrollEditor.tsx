@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Layers, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 import { ScrollSectionData } from '../../../../Data/categoryData';
 
 interface IndustryScrollEditorProps {
     data: ScrollSectionData;
     onChange: (data: ScrollSectionData) => void;
     isEditing: boolean;
+    industryId: string;
 }
 
-const IndustryScrollEditor: React.FC<IndustryScrollEditorProps> = ({ data, onChange, isEditing }) => {
+const IndustryScrollEditor: React.FC<IndustryScrollEditorProps> = ({ data, onChange, isEditing, industryId }) => {
     // Safety check
     const safeData = data || { heroTitle: '', heroSubtitle: '', sections: [] };
 
@@ -187,6 +189,18 @@ const IndustryScrollEditor: React.FC<IndustryScrollEditorProps> = ({ data, onCha
                                     </div>
 
                                     <div className="space-y-4">
+                                        <div className="h-40">
+                                            <label className="block text-xs font-medium text-gray-700 mb-2">Section Image</label>
+                                            <ImageUpload
+                                                value={section.imageSrc}
+                                                onChange={(url) => handleSectionChange(section.id, 'imageSrc', url)}
+                                                disabled={!isEditing}
+                                                folder={`industries/${industryId}/scroll/${section.id}`}
+                                                fileName={`web-scroll-${section.id}`}
+                                                className="h-full w-full"
+                                            />
+                                        </div>
+
                                         <div>
                                             <label className="block text-xs font-medium text-gray-700 mb-2">Detailed Features (Bullet Points)</label>
                                             <div className="space-y-2 max-h-[200px] overflow-y-auto pr-1">

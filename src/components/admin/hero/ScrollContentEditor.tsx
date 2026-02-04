@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import {
     Type,
     Plus,
-    Trash2,
     ChevronDown,
     ChevronRight,
     List,
-    Upload,
     Zap,
     X,
     Utensils,
@@ -15,6 +13,7 @@ import {
     Coffee,
     ChefHat
 } from 'lucide-react';
+import ImageUpload from '../../common/ImageUpload';
 
 interface Section {
     id: string;
@@ -40,11 +39,11 @@ interface ScrollContentEditorProps {
     onGlobalChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onUpdateSection: (id: string, field: keyof Section, value: any) => void;
     onAddSection: () => void;
-    onRemoveSection: (id: string) => void;
     onAddBullet: (sectionId: string) => void;
     onUpdateBullet: (sectionId: string, index: number, field: 'text' | 'highlight', value: any) => void;
     onRemoveBullet: (sectionId: string, index: number) => void;
     isEditing: boolean;
+    folderPath?: string;
 }
 
 // --- Icon Mapping ---
@@ -62,11 +61,11 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
     onGlobalChange,
     onUpdateSection,
     onAddSection,
-    onRemoveSection,
     onAddBullet,
     onUpdateBullet,
     onRemoveBullet,
-    isEditing
+    isEditing,
+    folderPath
 }) => {
     const [expandedSection, setExpandedSection] = useState<string | null>('1');
 
@@ -194,12 +193,16 @@ const ScrollContentEditor: React.FC<ScrollContentEditorProps> = ({
                                                 ) : (
                                                     <div className="flex items-center justify-center h-full text-gray-400 text-xs">No Image</div>
                                                 )}
-                                                {isEditing && (
-                                                    <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                                        <Upload className="text-white w-6 h-6" />
-                                                        <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && onUpdateSection(section.id, 'imageSrc', URL.createObjectURL(e.target.files[0]))} />
-                                                    </label>
-                                                )}
+                                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <ImageUpload
+                                                        value={section.imageSrc}
+                                                        onChange={(url) => onUpdateSection(section.id, 'imageSrc', url)}
+                                                        disabled={!isEditing}
+                                                        folder={folderPath || 'scroll-sections'}
+                                                        fileName={section.id}
+                                                        className="h-full w-full"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
 

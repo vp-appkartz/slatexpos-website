@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 export interface TestimonialItem {
-  id: number;
+  id: string | number;
   name: string;
   position: string;
   image: string;

@@ -1,14 +1,12 @@
 import React from 'react';
 import {
-    Image as ImageIcon,
     Type,
-    LayoutTemplate,
-    Upload,
-    Eye,
+    Image as ImageIcon,
     Trash2,
-    Plus,
-    Users
+    Users,
+    Eye
 } from 'lucide-react';
+import ImageUpload from '../../common/ImageUpload';
 
 interface HeroData {
     heading: string;
@@ -18,16 +16,17 @@ interface HeroData {
     backgroundImage: string;
     centerImage: string;
     images: { [key: string]: string };
-    logos: { src: string; alt: string }[];
+    logos: { id: string; src: string; alt: string }[];
 }
 
 interface HeroContentEditorProps {
     data: HeroData;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onImageChange: (key: string, value: string) => void;
-    onLogoUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onLogoUpload: (url: string) => void;
     onRemoveLogo: (index: number) => void;
     onUpdateLogoAlt: (index: number, alt: string) => void;
+    onUpdateLogoImage: (index: number, url: string) => void;
     isEditing: boolean;
 }
 
@@ -38,10 +37,11 @@ const HeroContentEditor: React.FC<HeroContentEditorProps> = ({
     onLogoUpload,
     onRemoveLogo,
     onUpdateLogoAlt,
+    onUpdateLogoImage,
     isEditing
 }) => {
     return (
-        <div className={`grid grid-cols-1 lg:grid-cols-1 gap-8 transition-opacity duration-300 ${!isEditing ? 'opacity-80 pointer-events-none' : 'opacity-100'}`}>
+        <div className={`grid grid - cols - 1 lg: grid - cols - 1 gap - 8 transition - opacity duration - 300 ${!isEditing ? 'opacity-80 pointer-events-none' : 'opacity-100'} `}>
             <div className="lg:col-span-2 space-y-8">
                 {/* Text Content */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -80,27 +80,29 @@ const HeroContentEditor: React.FC<HeroContentEditorProps> = ({
                         {/* Background */}
                         <div className="space-y-3">
                             <label className="block text-sm font-medium text-gray-700">Background</label>
-                            <div className="relative aspect-video bg-gray-50 rounded-xl border-dashed border-2 border-gray-200 overflow-hidden group">
-                                <img src={data.backgroundImage} className="w-full h-full object-cover" alt="Background" />
-                                {isEditing && (
-                                    <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                        <Upload className="text-white w-6 h-6" />
-                                        <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && onImageChange('backgroundImage', URL.createObjectURL(e.target.files[0]))} />
-                                    </label>
-                                )}
+                            <div className="h-64">
+                                <ImageUpload
+                                    value={data.backgroundImage}
+                                    onChange={(url) => onImageChange('backgroundImage', url)}
+                                    disabled={!isEditing}
+                                    folder="hero"
+                                    fileName="hero-background"
+                                    className="h-full w-full"
+                                />
                             </div>
                         </div>
                         {/* Center Image */}
                         <div className="space-y-3">
                             <label className="block text-sm font-medium text-gray-700">Center Hero</label>
-                            <div className="relative aspect-[4/3] bg-gray-50 rounded-xl border-dashed border-2 border-gray-200 overflow-hidden group">
-                                <img src={data.centerImage} className="w-full h-full object-contain p-2" alt="Center Hero" />
-                                {isEditing && (
-                                    <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                        <Upload className="text-white w-6 h-6" />
-                                        <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && onImageChange('centerImage', URL.createObjectURL(e.target.files[0]))} />
-                                    </label>
-                                )}
+                            <div className="h-64">
+                                <ImageUpload
+                                    value={data.centerImage}
+                                    onChange={(url) => onImageChange('centerImage', url)}
+                                    disabled={!isEditing}
+                                    folder="hero"
+                                    fileName="hero-center"
+                                    className="h-full w-full"
+                                />
                             </div>
                         </div>
                     </div>
@@ -113,23 +115,33 @@ const HeroContentEditor: React.FC<HeroContentEditorProps> = ({
                             <div className="p-2 bg-primary-50 rounded-lg text-primary-600"><Users className="w-5 h-5" /></div>
                             <h2 className="text-lg font-semibold text-gray-900">Client Logos</h2>
                         </div>
-                        {isEditing && (
-                            <label className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-600 text-gray text-sm font-medium hover:bg-primary-700 transition-colors shadow-sm cursor-pointer">
-                                <Plus className="w-4 h-4" />
-                                <span>Add Logo</span>
-                                <input type="file" className="hidden" onChange={onLogoUpload} />
-                            </label>
-                        )}
                     </div>
                     <div className="p-6">
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {data.logos.map((logo, idx) => (
-                                <div key={idx} className="relative group p-3 rounded-xl border border-gray-100 bg-gray-50/50 flex flex-col gap-2">
-                                    <div className="h-12 flex items-center justify-center bg-white rounded-lg border border-gray-200"><img src={logo.src} className="max-h-8 max-w-full" alt={logo.alt} /></div>
+                                <div key={logo.id || idx} className="relative group p-3 rounded-xl border border-gray-100 bg-gray-50/50 flex flex-col gap-2">
+                                    <div className="h-24 flex items-center justify-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+                                        <ImageUpload
+                                            value={logo.src}
+                                            onChange={(url) => onUpdateLogoImage(idx, url)}
+                                            disabled={!isEditing}
+                                            folder="hero-logos"
+                                            className="w-full h-full"
+                                        />
+                                    </div>
                                     <input value={logo.alt} onChange={(e) => onUpdateLogoAlt(idx, e.target.value)} disabled={!isEditing} className="text-center text-xs bg-transparent border-b border-transparent focus:border-primary-500 outline-none" placeholder="Alt Text" />
                                     {isEditing && <button onClick={() => onRemoveLogo(idx)} className="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100"><Trash2 className="w-4 h-4" /></button>}
                                 </div>
                             ))}
+                            {isEditing && (
+                                <div className="h-full min-h-[100px] flex items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-4">
+                                    <ImageUpload
+                                        onChange={(url) => onLogoUpload(url)}
+                                        folder="hero-logos"
+                                        className="w-full h-full"
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -150,7 +162,7 @@ const HeroContentEditor: React.FC<HeroContentEditorProps> = ({
                                     {isEditing && (
                                         <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 cursor-pointer">
                                             <Upload className="text-white w-4 h-4" />
-                                            <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && onImageChange(`images.${key}`, URL.createObjectURL(e.target.files[0]))} />
+                                            <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && onImageChange(`images.${ key } `, URL.createObjectURL(e.target.files[0]))} />
                                         </label>
                                     )}
                                 </div>
@@ -174,22 +186,22 @@ const HeroContentEditor: React.FC<HeroContentEditorProps> = ({
             <style>{`
                 .input-field {
                     width: 100%;
-                    padding: 0.625rem 1rem;
+    padding: 0.625rem 1rem;
                     border-radius: 0.5rem;
-                    border: 1px solid #e5e7eb;
-                    outline: none;
-                    transition: all 0.2s;
+    border: 1px solid #e5e7eb;
+    outline: none;
+    transition: all 0.2s;
                     font-size: 0.875rem;
-                }
+}
                 .input-field:focus {
                     border-color: #f97316;
                     box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
-                }
+}
                 .input-field:disabled {
                     background-color: #f3f4f6;
-                    color: #9ca3af;
-                }
-            `}</style>
+    color: #9ca3af;
+}
+`}</style>
         </div>
     );
 };

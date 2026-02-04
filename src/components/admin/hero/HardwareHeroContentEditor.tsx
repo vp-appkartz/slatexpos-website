@@ -1,5 +1,6 @@
 import React from 'react';
 import { Type, ImageIcon, Upload, Eye } from 'lucide-react';
+import ImageUpload from '../../common/ImageUpload';
 import { HardwareHeroSectionData } from '../../../Data/hardwareData';
 
 interface HardwareHeroContentEditorProps {
@@ -69,13 +70,14 @@ const HardwareHeroContentEditor: React.FC<HardwareHeroContentEditorProps> = ({
                         <div className="space-y-3">
                             <label className="block text-sm font-medium text-gray-700">Main Image</label>
                             <div className="relative aspect-square bg-gray-50 rounded-xl border-dashed border-2 border-gray-200 overflow-hidden group">
-                                <img src={data.mainImage} className="w-full h-full object-contain p-2" alt="Main Hero" />
-                                {isEditing && (
-                                    <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                        <Upload className="text-white w-6 h-6" />
-                                        <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && onImageChange('mainImage', URL.createObjectURL(e.target.files[0]))} />
-                                    </label>
-                                )}
+                                <ImageUpload
+                                    value={data.mainImage}
+                                    onChange={(url) => onImageChange('mainImage', url)}
+                                    disabled={!isEditing}
+                                    folder="hardware/hero"
+                                    fileName="main-hero"
+                                    className="h-full w-full"
+                                />
                             </div>
                         </div>
                     </div>

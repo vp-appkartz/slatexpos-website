@@ -1,14 +1,16 @@
 import React from 'react';
 import { List, Plus, Trash2 } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 import { KeyFeaturesData } from '../../../../Data/categoryData';
 
 interface IndustryKeyFeaturesEditorProps {
     data: KeyFeaturesData;
     onChange: (data: KeyFeaturesData) => void;
     isEditing: boolean;
+    industryId: string;
 }
 
-const IndustryKeyFeaturesEditor: React.FC<IndustryKeyFeaturesEditorProps> = ({ data, onChange, isEditing }) => {
+const IndustryKeyFeaturesEditor: React.FC<IndustryKeyFeaturesEditorProps> = ({ data, onChange, isEditing, industryId }) => {
     // Safety check
     const safeData = data || { heading: '', subheading: '', features: [] };
 
@@ -81,6 +83,16 @@ const IndustryKeyFeaturesEditor: React.FC<IndustryKeyFeaturesEditorProps> = ({ d
                             )} */}
 
                             <div className="p-4 space-y-3">
+                                <div className="h-32 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                                    <ImageUpload
+                                        value={feature.image}
+                                        onChange={(url) => handleFeatureChange(index, 'image', url)}
+                                        disabled={!isEditing}
+                                        folder={`industries/${industryId}/features/${index}`}
+                                        fileName={`feature-${index}`}
+                                        className="h-full w-full"
+                                    />
+                                </div>
                                 <input
                                     value={feature.title}
                                     onChange={(e) => handleFeatureChange(index, 'title', e.target.value)}

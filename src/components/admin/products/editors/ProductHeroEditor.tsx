@@ -5,6 +5,7 @@ import {
     Upload,
     Eye
 } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 
 interface HeroSectionData {
     title: string;
@@ -22,9 +23,10 @@ interface ProductHeroEditorProps {
     data: HeroSectionData;
     onChange: (data: HeroSectionData) => void;
     isEditing: boolean;
+    productId: string;
 }
 
-const ProductHeroEditor: React.FC<ProductHeroEditorProps> = ({ data, onChange, isEditing }) => {
+const ProductHeroEditor: React.FC<ProductHeroEditorProps> = ({ data, onChange, isEditing, productId }) => {
 
     // Helper to handle text changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,10 +34,9 @@ const ProductHeroEditor: React.FC<ProductHeroEditorProps> = ({ data, onChange, i
         onChange({ ...data, [name]: value });
     };
 
-    // Helper to handle image uploads (mock)
-    const handleImageUpload = (key: keyof HeroSectionData, file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        onChange({ ...data, [key]: imageUrl });
+    // Helper to handle image uploads
+    const handleImageUpload = (key: keyof HeroSectionData, url: string) => {
+        onChange({ ...data, [key]: url });
     };
 
     return (
@@ -96,16 +97,15 @@ const ProductHeroEditor: React.FC<ProductHeroEditorProps> = ({ data, onChange, i
                             {/* Main Image */}
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-2">Main Hero Image</label>
-                                <div className="relative aspect-[4/3] bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 overflow-hidden group hover:border-primary-300 transition-colors">
-                                    <img src={data.mainImage} className="w-full h-full object-contain p-4" alt="Main Product" />
-                                    {isEditing && (
-                                        <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
-                                            <div className="bg-white text-gray-900 text-xs font-medium px-3 py-1.5 rounded-md flex items-center gap-2">
-                                                <Upload className="w-3 h-3" /> Change
-                                            </div>
-                                            <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload('mainImage', e.target.files[0])} />
-                                        </label>
-                                    )}
+                                <div className="h-64">
+                                    <ImageUpload
+                                        value={data.mainImage}
+                                        onChange={(url) => handleImageUpload('mainImage', url)}
+                                        disabled={!isEditing}
+                                        folder={`products/${productId}/hero`}
+                                        fileName="main-image"
+                                        className="h-full w-full"
+                                    />
                                 </div>
                                 <input
                                     placeholder="Alt Text"

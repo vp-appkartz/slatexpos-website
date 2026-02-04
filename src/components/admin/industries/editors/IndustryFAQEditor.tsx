@@ -6,9 +6,10 @@ interface IndustryFAQEditorProps {
     data: FAQSectionData;
     onChange: (data: FAQSectionData) => void;
     isEditing: boolean;
+    industryId: string;
 }
 
-const IndustryFAQEditor: React.FC<IndustryFAQEditorProps> = ({ data, onChange, isEditing }) => {
+const IndustryFAQEditor: React.FC<IndustryFAQEditorProps> = ({ data, onChange, isEditing, industryId }) => {
     // Safety check with defaults
     const defaultFaqs = [
         {

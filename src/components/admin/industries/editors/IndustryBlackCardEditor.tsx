@@ -1,14 +1,16 @@
 import React from 'react';
 import { CreditCard, Plus, Trash2 } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 import { BlackCardSectionData } from '../../../../Data/categoryData';
 
 interface IndustryBlackCardEditorProps {
     data: BlackCardSectionData;
     onChange: (data: BlackCardSectionData) => void;
     isEditing: boolean;
+    industryId: string;
 }
 
-const IndustryBlackCardEditor: React.FC<IndustryBlackCardEditorProps> = ({ data, onChange, isEditing }) => {
+const IndustryBlackCardEditor: React.FC<IndustryBlackCardEditorProps> = ({ data, onChange, isEditing, industryId }) => {
     // Safety check
     const safeData = data || { heading: '', subheading: '', items: [] };
 
@@ -81,6 +83,16 @@ const IndustryBlackCardEditor: React.FC<IndustryBlackCardEditorProps> = ({ data,
                             )} */}
 
                             {/* Content */}
+                            <div className="w-16 h-16 flex-shrink-0">
+                                <ImageUpload
+                                    value={item.image}
+                                    onChange={(url) => handleItemChange(index, 'image', url)}
+                                    disabled={!isEditing}
+                                    folder={`industries/${industryId}/black-card/${index}`}
+                                    fileName={`feature-${index}`}
+                                    className="h-full w-full rounded-lg"
+                                />
+                            </div>
                             <div className="flex-1 space-y-2">
                                 <input
                                     value={item.title}

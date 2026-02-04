@@ -1,5 +1,6 @@
 import React from 'react';
 import { CreditCard, Plus, Trash2, Upload } from 'lucide-react';
+import ImageUpload from '../../../common/ImageUpload';
 import { BlackCardItem } from '../../../../Data/productData';
 
 interface BlackCardSectionData {
@@ -12,9 +13,10 @@ interface ProductBlackCardEditorProps {
     data: BlackCardSectionData;
     onChange: (data: BlackCardSectionData) => void;
     isEditing: boolean;
+    productId: string;
 }
 
-const ProductBlackCardEditor: React.FC<ProductBlackCardEditorProps> = ({ data, onChange, isEditing }) => {
+const ProductBlackCardEditor: React.FC<ProductBlackCardEditorProps> = ({ data, onChange, isEditing, productId }) => {
     const handleHeaderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         onChange({ ...data, [name]: value });
@@ -40,9 +42,8 @@ const ProductBlackCardEditor: React.FC<ProductBlackCardEditorProps> = ({ data, o
         });
     };
 
-    const handleImageUpload = (index: number, file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        handleItemChange(index, 'image', imageUrl);
+    const handleImageUpload = (index: number, url: string) => {
+        handleItemChange(index, 'image', url);
     };
 
     return (
@@ -81,19 +82,17 @@ const ProductBlackCardEditor: React.FC<ProductBlackCardEditorProps> = ({ data, o
                 {data.items.map((item, idx) => (
                     <div key={idx} className="bg-white p-4 rounded-xl border border-gray-100 flex gap-4 items-start group">
                         {/* Image */}
-                        {/* <div className="w-20 h-20 bg-gray-50 rounded-lg flex-shrink-0 relative overflow-hidden border border-gray-100">
-                            {item.image ? (
-                                <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
-                            ) : (
-                                <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">Img</div>
-                            )}
-                            {isEditing && (
-                                <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
-                                    <Upload className="text-white w-4 h-4" />
-                                    <input type="file" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(idx, e.target.files[0])} />
-                                </label>
-                            )}
-                        </div> */}
+                        {/* Image */}
+                        <div className="w-24 h-24 flex-shrink-0">
+                            <ImageUpload
+                                value={item.image || ''}
+                                onChange={(url) => handleImageUpload(idx, url)}
+                                disabled={!isEditing}
+                                folder={`products/${productId}/black-card/${idx}`}
+                                fileName={`item-${idx}`}
+                                className="h-full w-full rounded-lg"
+                            />
+                        </div>
 
                         {/* Content */}
                         <div className="flex-1 space-y-2">

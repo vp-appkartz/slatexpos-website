@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Save, Plus, Trash2, ArrowLeft, Loader2, Upload, AlertCircle, Edit, X } from 'lucide-react';
+import { Save, Plus, Trash2, ArrowLeft, Loader2, AlertCircle, Edit, X } from 'lucide-react';
+import ImageUpload from '../../common/ImageUpload';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -8,7 +9,6 @@ import {
     saveHeaderData,
     saveDraft,
     getDraft,
-
     discardDraft,
     HeaderData,
     ProductSection,
@@ -152,30 +152,55 @@ const HeaderEditor: React.FC = () => {
 
             if (draft) {
                 console.log("Loaded draft data");
-                setData(draft.data as HeaderData);
+                const draftData = draft.data as HeaderData;
+                setData({
+                    ...draftData,
+                    productSections: draftData.productSections.map(section => ({
+                        ...section,
+                        items: section.items.map(item => ({
+                            ...item,
+                            id: item.id || crypto.randomUUID()
+                        }))
+                    })),
+                    categoryItems: draftData.categoryItems.map(item => ({
+                        ...item,
+                        id: item.id || crypto.randomUUID()
+                    }))
+                });
                 setHasPendingDraft(true);
                 setDraftId(draft.id);
-                toast.success("Loaded unsaved draft");
             } else {
-                // 2. Fallback to live data
-                const fetchedData = await getHeaderData();
-
-                // Check if fetched data is effectively empty
-                const isEmpty = !fetchedData ||
-                    (fetchedData.categoryItems.length === 0 &&
-                        fetchedData.productSections.every(s => s.items.length === 0));
-
-                if (!isEmpty && fetchedData) {
-                    setData(fetchedData);
-                } else {
-                    // 3. Fallback to defaults
+                const headerData = await getHeaderData();
+                if (headerData) {
                     setData({
-                        productSections: defaultProductSections,
-                        categoryItems: defaultCategoryItems
+                        ...headerData,
+                        productSections: headerData.productSections.map(section => ({
+                            ...section,
+                            items: section.items.map(item => ({
+                                ...item,
+                                id: item.id || crypto.randomUUID()
+                            }))
+                        })),
+                        categoryItems: headerData.categoryItems.map(item => ({
+                            ...item,
+                            id: item.id || crypto.randomUUID()
+                        }))
+                    });
+                } else {
+                    setData({
+                        productSections: defaultProductSections.map(section => ({
+                            ...section,
+                            items: section.items.map(item => ({
+                                ...item,
+                                id: crypto.randomUUID()
+                            }))
+                        })),
+                        categoryItems: defaultCategoryItems.map(item => ({
+                            ...item,
+                            id: crypto.randomUUID()
+                        }))
                     });
                 }
-                setHasPendingDraft(false);
-                setDraftId(null);
             }
         } catch (error) {
             console.error("Error loading header data:", error);
@@ -185,21 +210,21 @@ const HeaderEditor: React.FC = () => {
         }
     };
 
-
-
     const handleSaveDraft = async () => {
+        if (!data) return;
         setSaving(true);
         try {
+            // Save as draft
             await saveDraft(
-                'content',      // targetCollection
-                'header',       // targetDocId
+                'content',
+                'header',
                 data,
-                'header',       // moduleType
-                'Header Navigation' // targetName
+                'header',
+                'Header Navigation'
             );
             setHasPendingDraft(true);
             setDraftId('content_header');
-            toast.success("Draft saved successfully");
+            toast.success("Changes saved as draft! Go to Settings > Approvals to publish.");
         } catch (error) {
             console.error("Error saving draft:", error);
             toast.error("Failed to save draft");
@@ -229,6 +254,7 @@ const HeaderEditor: React.FC = () => {
     const addProductItem = (sectionIndex: number) => {
         const newSections = [...data.productSections];
         newSections[sectionIndex].items.push({
+            id: crypto.randomUUID(),
             title: "New Product",
             description: "Product description",
             image: "/prh1.png",
@@ -255,6 +281,7 @@ const HeaderEditor: React.FC = () => {
     const addCategoryItem = () => {
         const newItems = [...data.categoryItems];
         newItems.push({
+            id: crypto.randomUUID(),
             title: "New Category",
             description: "Category description",
             image: "/ih1.png"
@@ -387,23 +414,16 @@ const HeaderEditor: React.FC = () => {
                                     {section.items.map((item, itemIndex) => (
                                         <div key={itemIndex} className="flex items-start space-x-4 p-4 border border-gray-100 rounded-xl hover:border-gray-300 transition-colors">
                                             <div className="flex-shrink-0">
-                                                <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
-                                                    {item.image ? (
-                                                        <img src={item.image} alt={item.title} className="w-full h-full object-contain p-2" />
-                                                    ) : (
-                                                        <Upload className="w-6 h-6 text-gray-400" />
-                                                    )}
-                                                </div>
-                                                <input
-                                                    type="text"
+                                                <ImageUpload
                                                     value={item.image}
-                                                    onChange={(e) => updateProductItem(sectionIndex, itemIndex, 'image', e.target.value)}
-                                                    className="mt-2 text-xs w-full p-1.5 border rounded-md"
-                                                    placeholder="Image URL"
-                                                    disabled={true}
+                                                    onChange={(url) => updateProductItem(sectionIndex, itemIndex, 'image', url)}
+                                                    folder="header-products"
+                                                    fileName={item.id}
+                                                    disabled={!isEditing}
+                                                    className="w-20 h-20"
                                                 />
                                             </div>
-                                            <div className="flex-1 space-y-3">
+                                            <div className="flex-1 space-y-3 min-w-0">
                                                 <div className="grid grid-cols-2 gap-4">
                                                     <div>
                                                         <label className="block text-xs font-medium text-gray-500 mb-1">Title</label>
@@ -472,23 +492,16 @@ const HeaderEditor: React.FC = () => {
                                 {data.categoryItems.map((item, index) => (
                                     <div key={index} className="flex items-start space-x-4 p-4 border border-gray-100 rounded-xl hover:border-gray-300 transition-colors relative group">
                                         <div className="flex-shrink-0">
-                                            <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
-                                                {item.image ? (
-                                                    <img src={item.image} alt={item.title} className="w-full h-full object-contain p-2" />
-                                                ) : (
-                                                    <Upload className="w-6 h-6 text-gray-400" />
-                                                )}
-                                            </div>
-                                            <input
-                                                type="text"
+                                            <ImageUpload
                                                 value={item.image}
-                                                onChange={(e) => updateCategoryItem(index, 'image', e.target.value)}
-                                                className="mt-2 text-xs w-full p-1.5 border rounded-md"
-                                                placeholder="Image URL"
+                                                onChange={(url) => updateCategoryItem(index, 'image', url)}
+                                                folder="header-industries"
+                                                fileName={item.id}
                                                 disabled={!isEditing}
+                                                className="w-20 h-20"
                                             />
                                         </div>
-                                        <div className="flex-1 space-y-3">
+                                        <div className="flex-1 space-y-3 min-w-0">
                                             <div>
                                                 <label className="block text-xs font-medium text-gray-500 mb-1">Title</label>
                                                 <input

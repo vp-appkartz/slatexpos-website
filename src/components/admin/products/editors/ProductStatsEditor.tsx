@@ -12,9 +12,10 @@ interface ProductStatsEditorProps {
     data: StatsSectionData;
     onChange: (data: StatsSectionData) => void;
     isEditing: boolean;
+    productId: string;
 }
 
-const ProductStatsEditor: React.FC<ProductStatsEditorProps> = ({ data, onChange, isEditing }) => {
+const ProductStatsEditor: React.FC<ProductStatsEditorProps> = ({ data, onChange, isEditing, productId }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;

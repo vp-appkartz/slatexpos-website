@@ -1,6 +1,6 @@
 import React from 'react';
 import { Type, ImageIcon, Upload } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 import { HardwareFeatureItem } from '../../../Data/hardwareData';
 
 export interface KeyFeaturesData {

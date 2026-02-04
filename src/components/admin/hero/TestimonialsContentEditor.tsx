@@ -7,7 +7,7 @@ import {
     MessageSquare
 } from 'lucide-react';
 import { TestimonialsData, TestimonialItem } from '../../Common/Testimonials';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 
 interface TestimonialsContentEditorProps {
     data: TestimonialsData;

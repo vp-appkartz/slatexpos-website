@@ -3,7 +3,7 @@ import {
     Monitor,
     LayoutGrid
 } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 
 interface HardwareItem {
     id: string | number;

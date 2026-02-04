@@ -1,6 +1,6 @@
 import React from 'react';
 import { Type, Image as ImageIcon, Eye } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 import { HeroSectionData } from '../../../../Data/categoryData';
 
 interface IndustryHeroEditorProps {

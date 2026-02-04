@@ -5,7 +5,7 @@ import {
     Upload,
     Eye
 } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 
 interface HeroSectionData {
     title: string;

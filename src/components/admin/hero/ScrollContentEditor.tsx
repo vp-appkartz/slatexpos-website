@@ -13,7 +13,7 @@ import {
     Coffee,
     ChefHat
 } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 
 interface Section {
     id: string;

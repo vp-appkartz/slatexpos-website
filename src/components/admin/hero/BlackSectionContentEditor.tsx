@@ -5,7 +5,7 @@ import {
     Check,
     Eye
 } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 
 export interface BlackSectionData {
     title: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Plus, Trash2 } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 import { KeyFeaturesData } from '../../../../Data/categoryData';
 
 interface IndustryKeyFeaturesEditorProps {

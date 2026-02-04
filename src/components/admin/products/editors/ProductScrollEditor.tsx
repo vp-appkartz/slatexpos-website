@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Plus, Trash2, ChevronDown, ChevronUp, Image as ImageIcon } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 
 interface ScrollSectionData {
     heroTitle?: string;

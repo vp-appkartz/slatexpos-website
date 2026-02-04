@@ -6,7 +6,7 @@ import {
     Users,
     Eye
 } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 
 interface HeroData {
     heading: string;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 import { ScrollSectionData } from '../../../../Data/categoryData';
 
 interface IndustryScrollEditorProps {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Plus, Trash2, Upload } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 import { FeatureItem } from '../../../../Data/productData';
 
 interface KeyFeaturesSectionData {

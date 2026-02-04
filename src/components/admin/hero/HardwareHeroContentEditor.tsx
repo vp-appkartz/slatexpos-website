@@ -1,6 +1,6 @@
 import React from 'react';
 import { Type, ImageIcon, Upload, Eye } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 import { HardwareHeroSectionData } from '../../../Data/hardwareData';
 
 interface HardwareHeroContentEditorProps {

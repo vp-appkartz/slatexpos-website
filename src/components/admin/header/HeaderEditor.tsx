@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Save, Plus, Trash2, ArrowLeft, Loader2, AlertCircle, Edit, X } from 'lucide-react';
-import ImageUpload from '../../common/ImageUpload';
+import ImageUpload from '../../Common/ImageUpload';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import {

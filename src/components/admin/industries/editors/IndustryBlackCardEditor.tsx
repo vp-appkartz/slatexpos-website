@@ -1,6 +1,6 @@
 import React from 'react';
 import { CreditCard, Plus, Trash2 } from 'lucide-react';
-import ImageUpload from '../../../common/ImageUpload';
+import ImageUpload from '../../../Common/ImageUpload';
 import { BlackCardSectionData } from '../../../../Data/categoryData';
 
 interface IndustryBlackCardEditorProps {

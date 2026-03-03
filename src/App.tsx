@@ -1,21 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/Common/Header';
-import Hero from './components/Home/Hero';
-import Contact from './components/Common/CTA';
-import Footer from './components/Common/Footer';
-import ScrollSection from './components/Home/ScrollSection';
-import FreeTrial from './components/Common/BlackSection';
-import Testimonials from './components/Common/Testimonials';
-import Hardware from './components/Common/Hardware';
-import Industries from './components/pages/Ind';
-import Pricing from './components/pages/Pricing';
-import DynamicProductPage from './components/pages/Products';
-import DynamicCategoryPage from './components/pages/Category';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+
+// Public pages
+import ComingSoon from './components/pages/ComingSoon';
 import ScrollToTop from './components/Common/ScrollToTop';
-import HardwarePage from './components/pages/Hardware';
-import BlogList from './components/pages/BlogList';
-import BlogDetails from './components/pages/BlogDetails';
-import NotFound from './components/pages/NotFound';
 
 // Admin imports
 import { AuthProvider } from './contexts/AuthContext';
@@ -35,144 +23,96 @@ import FooterEditor from './components/admin/footer/FooterEditor';
 import HeaderEditor from './components/admin/header/HeaderEditor';
 import ContentApprovals from './components/admin/settings/ContentApprovals';
 import ProtectedRoute from './components/admin/ProtectedRoute';
-import SEO from './components/Common/SEO';
 
-// Component to handle route-aware rendering
+// ── Route-aware shell ────────────────────────────────────────────────────────
 const AppContent = () => {
-    const location = useLocation();
-    const path = location.pathname.toLowerCase();
-    // Hide header/footer if path starts with /admin
-    const isPublic = !path.startsWith('/admin');
 
     return (
-        <div className="">
-            {isPublic && <Header />}
-
+        <div>
             <Routes>
-                <Route path="/" element={
-                    <>
-                        <SEO
-                            title="SlateX POS - Restaurant POS System"
-                            description="SlateX POS is the best all-in-one POS system for restaurants and retail. Manage orders, payments, and inventory with ease."
-                            keywords="POS system, restaurant POS, retail POS, SlateX"
-                        />
-                        <Hero />
-                        <ScrollSection />
-                        <Hardware />
-                        <FreeTrial
-                            title='Why Choose SlateX POS?'
-                            description='Switch to SlateX POS for a flexible, all‑in‑one solution: tweak menus and taxes on the fly, and leverage built‑in tools like gift cards, loyalty programs, and seamless payment processing. SlateX adapts as you grow, so you can focus on delighting customers and boosting profits.'
-                        />
-                        <Testimonials />
-                        <Contact />
-                    </>
-                } />
-                <Route path="/industries" element={<Industries />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/products/:slug" element={<DynamicProductPage />} />
-                <Route path="/categories/:slug" element={<DynamicCategoryPage />} />
-                <Route path="/hardware" element={<HardwarePage />} />
-                <Route path="/blog" element={<BlogList />} />
-                <Route path="/blog/:slug" element={<BlogDetails />} />
+                {/* ── Coming Soon — shown at the root ── */}
+                <Route path="/" element={<ComingSoon />} />
 
-                {/* Admin Routes */}
+                {/* ── All public routes redirect to Coming Soon ── */}
+                <Route path="/industries" element={<Navigate to="/" replace />} />
+                <Route path="/pricing" element={<Navigate to="/" replace />} />
+                <Route path="/products/:slug" element={<Navigate to="/" replace />} />
+                <Route path="/categories/:slug" element={<Navigate to="/" replace />} />
+                <Route path="/hardware" element={<Navigate to="/" replace />} />
+                <Route path="/blog" element={<Navigate to="/" replace />} />
+                <Route path="/blog/:slug" element={<Navigate to="/" replace />} />
+
+                {/* ── Admin routes — always accessible ── */}
                 <Route path="/admin" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <Dashboard />
-                        </AdminLayout>
+                        <AdminLayout><Dashboard /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/hero" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <HeroEditor />
-                        </AdminLayout>
+                        <AdminLayout><HeroEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/footer" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <FooterEditor />
-                        </AdminLayout>
+                        <AdminLayout><FooterEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/header" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <HeaderEditor />
-                        </AdminLayout>
+                        <AdminLayout><HeaderEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/hardware" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <HardwarePageEditor />
-                        </AdminLayout>
+                        <AdminLayout><HardwarePageEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/blogs" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <AdminBlogList />
-                        </AdminLayout>
+                        <AdminLayout><AdminBlogList /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/blogs/new" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <BlogForm />
-                        </AdminLayout>
+                        <AdminLayout><BlogForm /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/blogs/:id/edit" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <BlogForm />
-                        </AdminLayout>
+                        <AdminLayout><BlogForm /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/products/:slug" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <ProductEditor />
-                        </AdminLayout>
+                        <AdminLayout><ProductEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/categories/:slug" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <IndustryEditor />
-                        </AdminLayout>
+                        <AdminLayout><IndustryEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/pricing" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <PricingEditor />
-                        </AdminLayout>
+                        <AdminLayout><PricingEditor /></AdminLayout>
                     </ProtectedRoute>
                 } />
                 <Route path="/admin/settings" element={
                     <ProtectedRoute>
-                        <AdminLayout>
-                            <ContentApprovals />
-                        </AdminLayout>
+                        <AdminLayout><ContentApprovals /></AdminLayout>
                     </ProtectedRoute>
                 } />
 
-                {/* 404 Page - Must be last */}
-                <Route path="*" element={<NotFound />} />
+                {/* ── Any unknown URL → Coming Soon ── */}
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-
-            {isPublic && <Footer />}
         </div>
     );
 };
 
-import { Toaster } from 'react-hot-toast';
-
+// ── Root app ─────────────────────────────────────────────────────────────────
 function App() {
     return (
         <AuthProvider>

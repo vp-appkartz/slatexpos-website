@@ -5,6 +5,22 @@ import { Toaster } from 'react-hot-toast';
 import ComingSoon from './components/pages/ComingSoon';
 import ScrollToTop from './components/Common/ScrollToTop';
 
+import Header from './components/Common/Header';
+import Hero from './components/Home/Hero';
+import Contact from './components/Common/CTA';
+import Footer from './components/Common/Footer';
+import ScrollSection from './components/Home/ScrollSection';
+import FreeTrial from './components/Common/BlackSection';
+import Testimonials from './components/Common/Testimonials';
+import Hardware from './components/Common/Hardware';
+import Industries from './components/pages/Ind';
+import Pricing from './components/pages/Pricing';
+import DynamicProductPage from './components/pages/Products';
+import DynamicCategoryPage from './components/pages/Category';
+import HardwarePage from './components/pages/Hardware';
+import BlogList from './components/pages/BlogList';
+import BlogDetails from './components/pages/BlogDetails';
+
 // Admin imports
 import { AuthProvider } from './contexts/AuthContext';
 import { HardwarePageProvider } from './contexts/HardwarePageContext';
@@ -30,17 +46,80 @@ const AppContent = () => {
     return (
         <div>
             <Routes>
-                {/* ── Coming Soon — shown at the root ── */}
-                <Route path="/" element={<ComingSoon />} />
+                {/* ── Public Routes ── */}
+                <Route path="/" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <Hero />
+                        <ScrollSection />
+                        <Hardware />
+                        <FreeTrial
+                            title='Why Choose SlateX POS?'
+                            description='Switch to SlateX POS for a flexible, all-in-one solution: tweak menus and taxes on the fly, and leverage built-in tools like gift cards, loyalty programs, and seamless payment processing. SlateX adapts as you grow, so you can focus on delighting customers and boosting profits.'
+                        />
+                        <Testimonials />
+                        <Contact />
+                        <Footer />
+                    </div>
+                } />
 
-                {/* ── All public routes redirect to Coming Soon ── */}
-                <Route path="/industries" element={<Navigate to="/" replace />} />
-                <Route path="/pricing" element={<Navigate to="/" replace />} />
-                <Route path="/products/:slug" element={<Navigate to="/" replace />} />
-                <Route path="/categories/:slug" element={<Navigate to="/" replace />} />
-                <Route path="/hardware" element={<Navigate to="/" replace />} />
-                <Route path="/blog" element={<Navigate to="/" replace />} />
-                <Route path="/blog/:slug" element={<Navigate to="/" replace />} />
+                <Route path="/industries" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <Industries />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/pricing" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <Pricing />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/products/:slug" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <DynamicProductPage />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/categories/:slug" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <DynamicCategoryPage />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/hardware" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <HardwarePage />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/blog" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <BlogList />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/blog/:slug" element={
+                    <div className="overflow-x-hidden">
+                        <Header />
+                        <BlogDetails />
+                        <Footer />
+                    </div>
+                } />
+
+                <Route path="/coming-soon" element={<ComingSoon />} />
 
                 {/* ── Admin routes — always accessible ── */}
                 <Route path="/admin" element={<AdminLogin />} />
@@ -105,7 +184,7 @@ const AppContent = () => {
                     </ProtectedRoute>
                 } />
 
-                {/* ── Any unknown URL → Coming Soon ── */}
+                {/* ── Any unknown URL → Not Found / Replace with / for now ── */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </div>

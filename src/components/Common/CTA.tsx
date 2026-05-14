@@ -129,13 +129,13 @@ const Contact: React.FC<ContactProps> = ({
 
   const displayTitle = title || dbData?.title || (
     <>
-      Let's schedule
+      Ready to Run Your Restaurant
       <br />
-      your free demo
+      on Your Terms?
     </>
   );
 
-  const displayDescription = description || dbData?.description || "Discover why top restaurants trust SlateX POS to run their business smoothly and efficiently. With powerful features like real-time order syncing, customizable menus, and seamless payment integration, our system is built to make your life easier. Book your free demo today and see how SlateX POS can help you save time, reduce errors, and grow your profits — all with a solution tailored to your restaurant's unique needs. Let us show you the difference in just one call!";
+  const displayDescription = description || dbData?.description || "Book a free demo. See SlateX in action on your device, with your menu. No commitment. No hardware purchase. Just a real conversation with a real person. We serve restaurants in Edmonton, Vancouver, Brandon, and across all of Canada.";
 
   return (
     <section className="py-16 px-4">

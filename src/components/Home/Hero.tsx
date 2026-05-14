@@ -17,10 +17,11 @@ const Hero = () => {
   }, []);
 
   // Default values if data hasn't loaded or fields are missing
-  const heading = heroData?.heading || "Run Your Restaurant";
-  const highlightedText = heroData?.highlightedText || "More Efficiently";
-  const suffixText = heroData?.suffixText || "Smarter";
-  const buttonText = heroData?.buttonText || "Let's Connect";
+  const heading = heroData?.heading || "The Restaurant POS System";
+  const highlightedText = heroData?.highlightedText || "Built for Real";
+  const suffixText = heroData?.suffixText || "Canadian Restaurants";
+  const subheadline = (heroData as any)?.subheadline || "Cloud-based. Android-powered. Works offline. One flat monthly fee — on hardware you may already own.";
+  const buttonText = heroData?.buttonText || "Book a Free Demo";
   const bgImage = "/bg.png";
 
   const centerImage = heroData?.centerImage || "/hero-home-center.png";
@@ -48,9 +49,13 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Heading */}
           <div className="text-center mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 leading-tight mb-4 sm:mb-6 px-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 leading-tight mb-3 sm:mb-4 px-2">
               {heading} <span className="font-bold text-gray-700">{highlightedText}</span> {suffixText}
             </h1>
+
+            <p className="text-gray-600 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-5 sm:mb-6 px-2">
+              {subheadline}
+            </p>
 
             {/* CTA Button */}
             <button

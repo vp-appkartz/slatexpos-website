@@ -16,17 +16,17 @@ export interface BlackSectionProps {
 }
 
 const defaultProps: Required<Omit<BlackSectionProps, 'onButtonClick' | 'className'>> = {
-  title: "Free for 90 Days",
+  title: "Your POS Should Work for You. Not the Other Way Around.",
   description:
-    "Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut",
-  buttonText: "Signup Now",
+    "Restaurants across Canada are stuck paying for bloated systems that require $3,000 hardware purchases, lock them into iPads, and charge extra for every feature you actually need. SlateX is different — one flat monthly fee, runs on hardware you already own, and never goes down when your internet does.",
+  buttonText: "Book a Free Demo",
   imageSrc: "/pos-lady.png",
   imageAlt: "Woman working with laptop in restaurant",
   trustIndicators: [
-    "200+ Loyal Partner",
-    "Reliable Hardware",
-    "No Hidden Charges",
-    "24/7 Customer"
+    "Works on Any Android Device",
+    "Full Offline Mode",
+    "One Monthly Fee",
+    "Canadian-First Support"
   ]
 };
 

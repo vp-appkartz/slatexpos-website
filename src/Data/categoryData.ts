@@ -248,7 +248,7 @@ export const quickServiceRestaurantData: CategoryPageData = {
   },
   heroSection: {
     title: "Quick-Service Restaurants (QSR)",
-    description: "Streamline operations with fast, efficient POS solutions designed specifically for quick-service establishments. Boost speed, accuracy, and customer satisfaction.",
+    description: "In a QSR, every second counts. SlateX delivers fast order entry, real-time kitchen communication, and full offline capability so your line never stops moving — even when your internet doesn't cooperate.",
     buttonText: "Let's Connect",
     mainImage: "/qsr-hero.png",
     mainImageAlt: "Quick-Service Restaurant POS System",
@@ -453,8 +453,8 @@ export const quickServiceRestaurantData: CategoryPageData = {
 export const casualDiningData: CategoryPageData = {
   slug: "casual-dining",
   heroSection: {
-    title: "Casual Dining",
-    description: "Enhance your casual dining experience with comprehensive POS solutions that support table service, complex orders, and exceptional customer experiences.",
+    title: "Casual Fine Dine",
+    description: "Casual fine dining runs at a different pace — but still demands accuracy, great service, and tight operations. SlateX gives your team the speed of a QSR system with the flexibility of a full-service platform.",
     buttonText: "Let's Connect",
     mainImage: "/Casual_Header.png",
     mainImageAlt: "Casual Dining Restaurant POS System",
@@ -638,7 +638,7 @@ export const fineDiningData: CategoryPageData = {
   slug: "fine-dining",
   heroSection: {
     title: "Fine Dining",
-    description: "Elevate your fine dining establishment with sophisticated POS solutions that support complex service requirements, wine management, and exceptional guest experiences.",
+    description: "Your guests expect precision. Your POS should deliver it. SlateX gives fine dining restaurants the tools to manage complex floor plans, multi-course orders, and table-side service — with the reliability your guests never have to think about.",
     buttonText: "Let's Connect",
     mainImage: "/fine-dining-hero.png",
     mainImageAlt: "Fine Dining Restaurant POS System",
@@ -1267,8 +1267,8 @@ export const fullServicesRestaurantData: CategoryPageData = {
 export const pizzeriaData: CategoryPageData = {
   slug: "pizzeria",
   heroSection: {
-    title: "Pizzeria",
-    description: "Streamline your pizzeria operations with specialized POS solutions designed for pizza restaurants. From custom toppings to delivery management, enhance efficiency and customer satisfaction.",
+    title: "Pizza Store",
+    description: "Pizzas are the ultimate modifier challenge — size, crust, sauce, toppings, halves, extras. SlateX's multi-level modifier system was built exactly for this. Your customers get exactly what they ordered. Every time.",
     buttonText: "Let's Connect",
     mainImage: "/category/pizza/pizza-hero.png",
     mainImageAlt: "Pizzeria POS System",
@@ -1426,7 +1426,7 @@ export const cafeBakeryData: CategoryPageData = {
   slug: "caf-and-bakery",
   heroSection: {
     title: "Café & Bakery",
-    description: "Elevate your café and bakery operations with specialized POS solutions designed for artisanal establishments. From complex coffee orders to fresh bakery items, streamline your workflow and enhance customer experience.",
+    description: "Cafés aren't just coffee — you're managing modifiers for every drink, tracking pastry inventory, handling walk-up orders, and building a loyal local customer base. SlateX handles the complexity quietly, so your team can focus on the experience.",
     buttonText: "Let's Connect",
     mainImage: "/category/cafe/cafe-hero.png",
     mainImageAlt: "Café & Bakery POS System",

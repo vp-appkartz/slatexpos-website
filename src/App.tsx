@@ -60,8 +60,8 @@ const AppContent = () => {
               <ScrollSection />
               <Hardware />
               <FreeTrial
-                title="Why Choose SlateX POS?"
-                description="Switch to SlateX POS for a flexible, all-in-one solution: tweak menus and taxes on the fly, and leverage built-in tools like gift cards, loyalty programs, and seamless payment processing. SlateX adapts as you grow, so you can focus on delighting customers and boosting profits."
+                title="Your POS Should Work for You. Not the Other Way Around."
+                description="Restaurants across Canada are stuck paying for bloated systems that require $3,000 hardware purchases, lock them into iPads, and charge extra for every feature you actually need. SlateX is different. We built a cloud-based Android POS that runs on the devices you already own, stays on when your internet goes down, and includes every feature — from Caller ID to AI-powered promotions — in one straightforward monthly subscription. No hardware invoice. No surprises. No compromises."
               />
               <Testimonials />
               <Contact />

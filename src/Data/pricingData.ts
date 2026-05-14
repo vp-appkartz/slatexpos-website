@@ -25,7 +25,7 @@ export const initialPricingPlans: PricingPlan[] = [
     {
         id: 'free',
         name: "Free",
-        description: "Launch and scale your business with minimal initial investment.",
+        description: "Get started with every core feature included. No hardware purchase required — run SlateX on any Android device you already own.",
         price: "$0",
         priceNote: "per location/monthly",
         button: { text: "Get Started", style: "bg-orange-400 hover:bg-orange-500" },
@@ -44,7 +44,7 @@ export const initialPricingPlans: PricingPlan[] = [
     {
         id: 'plus',
         name: "Plus",
-        description: "Get software credit up to $1000* against hardware purchases.",
+        description: "Everything in Free, plus priority support, DoorDash Drive, and discounted payment processing. Get software credit up to $1,000 against hardware.",
         price: "$99",
         priceNote: "per location/monthly",
         button: { text: "Schedule Call", style: "bg-orange-400 hover:bg-orange-500" },
@@ -64,7 +64,7 @@ export const initialPricingPlans: PricingPlan[] = [
     {
         id: 'premium',
         name: "Enterprise",
-        description: "Create a setup that fits your restaurant. Choose the features that work best for you.",
+        description: "For multi-location operations and restaurants with custom requirements. Tailored pricing, custom feature development, and dedicated support.",
         price: "Custom",
         priceNote: "Tailored Pricing Plan",
         button: { text: "Contact us", style: "bg-orange-400 hover:bg-orange-500" },

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import LogoSlider from "../Common/LogoSlider";
 import { subscribeToHeroPageData, HeroPageContent } from "../../services/firestoreService";
 
 const Hero = () => {
   const [heroData, setHeroData] = useState<HeroPageContent['hero'] | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = subscribeToHeroPageData((data) => {
@@ -11,176 +13,89 @@ const Hero = () => {
         setHeroData(data.hero);
       }
     });
-
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
-  // Default values if data hasn't loaded or fields are missing
-  const heading = heroData?.heading || "The Restaurant POS System";
-  const highlightedText = heroData?.highlightedText || "Built for Real";
-  const suffixText = heroData?.suffixText || "Canadian Restaurants";
-  const subheadline = (heroData as any)?.subheadline || "Cloud-based. Android-powered. Works offline. One flat monthly fee — on hardware you may already own.";
-  const buttonText = heroData?.buttonText || "Book a Free Demo";
-  const bgImage = "/bg.png";
-
-  const centerImage = heroData?.centerImage || "/hero-home-center.png";
-  const images = {
-    leftTop: heroData?.images?.leftTop || "/left-t1.png",
-    leftBadge: heroData?.images?.leftBadge || "/left-badge.png",
-    leftBottom: heroData?.images?.leftBottom || "/left-b1.png",
-    rightTop: heroData?.images?.rightTop || "/right-t1.png",
-    rightBadge: heroData?.images?.rightBadge || "/right-badge.png",
-    rightBottom: heroData?.images?.rightBottom || "/right-b1.png",
-  };
+  const heading         = heroData?.heading         || "The POS That";
+  const highlightedText = heroData?.highlightedText || "Just Works.";
+  const suffixText      = heroData?.suffixText      || "";
+  const subheadline     = (heroData as any)?.subheadline
+    || "Cloud-based. Android-powered. Works offline.\nOne flat monthly fee — on hardware you may already own.";
+  const buttonText      = heroData?.buttonText      || "Book a Free Demo";
+  const heroImage       = heroData?.centerImage     || "/hero-home.png";
 
   return (
-    <div
-      className="relative overflow-hidden mt-20"
-      style={{
-        backgroundImage: `url('${bgImage}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "top",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Hero Section */}
-      <section className="pt-10 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Main Heading */}
-          <div className="text-center mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 leading-tight mb-3 sm:mb-4 px-2">
-              {heading} <span className="font-bold text-gray-700">{highlightedText}</span> {suffixText}
-            </h1>
+    <div className="relative bg-white overflow-hidden mt-20">
 
-            <p className="text-gray-600 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-5 sm:mb-6 px-2">
-              {subheadline}
-            </p>
+      {/* ── Text block ── */}
+      <section className="pt-20 sm:pt-28 lg:pt-32 pb-10 text-center px-4">
 
-            {/* CTA Button */}
-            <button
-              className="bg-primary-300 text-base sm:text-lg text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-            >
-              {buttonText}
-            </button>
-          </div>
+        {/* Eyebrow */}
+        <p className="text-sm font-semibold tracking-widest uppercase text-orange-500 mb-4">
+          Restaurant POS · Canada
+        </p>
 
-          {/* Desktop Layout - Hidden on mobile and tablet */}
-          <div className="relative mt-16 hidden xl:block">
-            <div className="flex justify-center items-center relative">
-              {/* Center Image */}
-              <div className="relative z-10">
-                <div className="overflow-hidden">
-                  <img
-                    src={centerImage}
-                    alt="Restaurant Staff"
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-              </div>
+        {/* Headline — Apple-scale */}
+        <h1
+          className="font-semibold text-gray-900 leading-tight tracking-tight mb-6 max-w-4xl mx-auto"
+          style={{
+            fontSize: "clamp(2.2rem, 5vw, 4.2rem)",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
+          {heading}{" "}
+          <span className="text-primary-300">{highlightedText}</span>
+          {suffixText ? <><br /><span className="text-gray-900">{suffixText}</span></> : null}
+        </h1>
 
-              {/* Left Top */}
-              <div className="absolute top-0 left-[10%] transform -translate-x-32 -translate-y-8 z-20">
-                <div className="flex-1 mb-2 overflow-hidden">
-                  <img
-                    src={images.leftTop}
-                    alt="Web Ordering"
-                    className="w-full h-full"
-                  />
-                </div>
-              </div>
+        {/* Subheadline */}
+        <p
+          className="text-gray-500 leading-relaxed max-w-xl mx-auto mb-8 whitespace-pre-line"
+          style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)" }}
+        >
+          {subheadline}
+        </p>
 
-              {/* Left Badge */}
-              <div className="absolute bottom-[25%] left-[12%] transform -translate-x-24 translate-y-8 z-20">
-                <div className="flex-1 mb-2 overflow-hidden">
-                  <img
-                    src={images.leftBadge}
-                    alt="Loyalty Program"
-                    className="w-full h-full"
-                  />
-                </div>
-              </div>
-
-              {/* Left Bottom */}
-              <div className="absolute bottom-[10%] left-[12%] transform translate-x-8 translate-y-16 z-20">
-                <div className="mb-2 overflow-hidden">
-                  <img
-                    src={images.leftBottom}
-                    alt="Restaurant POS"
-                    className="w-full h-full"
-                  />
-                </div>
-              </div>
-
-              {/* Right Top */}
-              <div className="absolute top-[5%] right-[22%] transform translate-x-32 -translate-y-8 z-20">
-                <div className="flex-1 mb-2 overflow-hidden">
-                  <img
-                    src={images.rightTop}
-                    alt="Payment Processing"
-                    className="w-full h-full"
-                  />
-                </div>
-              </div>
-
-              {/* Right Badge */}
-              <div className="absolute top-0 right-[10%] transform translate-x-24 translate-y-12 z-20">
-                <div className="flex-1 mb-1 overflow-hidden">
-                  <img
-                    src={images.rightBadge}
-                    alt="Gift Card"
-                    className="w-full h-full"
-                  />
-                </div>
-              </div>
-
-              {/* Right Bottom */}
-              <div className="absolute bottom-[5%] right-[2%] transform translate-x-20 translate-y-8 z-20">
-                <div className="flex-1 mb-2 overflow-hidden">
-                  <img
-                    src={images.rightBottom}
-                    alt="Kitchen Display"
-                    className="w-[85%] h-full"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile & Tablet Layout */}
-          <div className="mt-6 sm:mt-10 xl:hidden">
-            {/* Mobile: Only girl image centered */}
-            <div className="block sm:hidden">
-              <div className="flex justify-center px-4">
-                {/* Center girl image only */}
-                <div className="w-full max-w-sm">
-                  <img
-                    src={centerImage}
-                    alt="Restaurant Staff"
-                    className="w-full h-auto object-cover rounded-lg shadow-lg"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Tablet: Show main image prominently */}
-            <div className="hidden sm:block xl:hidden">
-              <div className="flex justify-center">
-                <div className="w-full max-w-md lg:max-w-lg">
-                  <img
-                    src={centerImage}
-                    alt="Restaurant Staff"
-                    className="w-full h-auto object-cover rounded-lg shadow-lg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Apple-style CTAs — plain text links, no filled button */}
+        <div className="flex items-center justify-center gap-8">
+          <button
+            onClick={() => navigate('/contact')}
+            className="group flex items-center gap-1 text-base sm:text-lg font-medium text-primary-300 hover:underline underline-offset-4 transition-all"
+          >
+            {buttonText}
+            <span className="transition-transform group-hover:translate-x-1">›</span>
+          </button>
+          <span className="text-gray-300 text-xl select-none">|</span>
+          <button
+            onClick={() => navigate('/pricing')}
+            className="group flex items-center gap-1 text-base sm:text-lg font-medium text-gray-500 hover:text-gray-900 transition-all"
+          >
+            See pricing
+            <span className="transition-transform group-hover:translate-x-1">›</span>
+          </button>
         </div>
       </section>
 
-      {/* Client Logo Slider Section */}
-      <div className="relative z-10 mt-6 sm:mt-8 pb-8">
+      {/* ── Hero image — edge-to-edge, fades into white at bottom ── */}
+      <div className="relative w-full">
+        <img
+          src={heroImage}
+          alt="Restaurant staff using SlateX POS"
+          className="w-full object-cover object-top"
+          style={{ maxHeight: "620px" }}
+        />
+        {/* White fade at bottom — the Apple signature move */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+          style={{
+            background: "linear-gradient(to bottom, transparent 0%, white 100%)",
+          }}
+        />
+      </div>
+
+      {/* ── Logo slider ── */}
+      <div className="pb-8">
         <LogoSlider />
       </div>
     </div>

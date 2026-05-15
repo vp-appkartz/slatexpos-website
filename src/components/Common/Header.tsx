@@ -22,14 +22,14 @@ const ItemIcon: React.FC<{ image: string; iconName?: string; title: string }> = 
   if (iconName && iconMap[iconName]) {
     const Icon = iconMap[iconName];
     return (
-      <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
-        <Icon className="w-5 h-5 text-primary-300" strokeWidth={1.7} />
+      <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+        <Icon className="w-6 h-6 text-primary-300" strokeWidth={1.6} />
       </div>
     );
   }
   return (
-    <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
-      <img src={image} alt={title} className="w-6 h-6 object-contain" />
+    <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
+      <img src={image} alt={title} className="w-7 h-7 object-contain" />
     </div>
   );
 };

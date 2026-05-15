@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoSlider from "../Common/LogoSlider";
 import { subscribeToHeroPageData, HeroPageContent } from "../../services/firestoreService";
+import DemoModal from "../Common/DemoModal";
 
 const Hero = () => {
   const [heroData, setHeroData] = useState<HeroPageContent['hero'] | null>(null);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,22 +59,21 @@ const Hero = () => {
           {subheadline}
         </p>
 
-        {/* Apple-style CTAs — plain text links, no filled button */}
-        <div className="flex items-center justify-center gap-8">
+        {/* CTAs */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          {/* Primary — filled pill */}
           <button
-            onClick={() => navigate('/contact')}
-            className="group flex items-center gap-1 text-base sm:text-lg font-medium text-primary-300 hover:underline underline-offset-4 transition-all"
+            onClick={() => setIsDemoOpen(true)}
+            className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600 text-white font-semibold rounded-full px-7 py-3 text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
           >
             {buttonText}
-            <span className="transition-transform group-hover:translate-x-1">›</span>
           </button>
-          <span className="text-gray-300 text-xl select-none">|</span>
+          {/* Secondary — outlined pill */}
           <button
             onClick={() => navigate('/pricing')}
-            className="group flex items-center gap-1 text-base sm:text-lg font-medium text-gray-500 hover:text-gray-900 transition-all"
+            className="inline-flex items-center gap-2 border border-gray-300 hover:border-gray-500 text-gray-700 hover:text-gray-900 font-semibold rounded-full px-7 py-3 text-base hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
           >
-            See pricing
-            <span className="transition-transform group-hover:translate-x-1">›</span>
+            See Pricing
           </button>
         </div>
       </section>
@@ -98,6 +99,8 @@ const Hero = () => {
       <div className="pb-8">
         <LogoSlider />
       </div>
+
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </div>
   );
 };

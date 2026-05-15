@@ -48,7 +48,6 @@ const defaultFeatures: Feature[] = [
       'Kitchen Tickets Continue Printing',
       'Auto-Sync When Back Online',
       'Zero Data Loss',
-      'Works Anywhere in Canada',
     ],
     imageSrc: '/home-about-2.png',
     imageAlt: 'SlateX offline mode indicator',
@@ -101,7 +100,6 @@ const defaultFeatures: Feature[] = [
       'No Extra Tablet Needed',
       'Direct POS Integration',
       'Scheduled & Future Orders',
-      'Catering & Express Catering',
       'Branded Ordering Page',
     ],
     imageSrc: '/home-about-3.png',
@@ -234,7 +232,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
         {/* CTA */}
         <button
           onClick={onCTA}
-          className="group inline-flex items-center gap-2 text-primary-300 font-semibold text-sm hover:gap-3 transition-all duration-200"
+          className="group inline-flex items-center gap-2.5 bg-primary-300 hover:bg-orange-600 text-white font-semibold rounded-full px-7 py-3 text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
         >
           Book a Free Demo
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

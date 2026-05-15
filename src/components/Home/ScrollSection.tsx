@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Check, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 /* ─── Types ────────────────────────────────────────────────────── */
@@ -156,13 +157,12 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
   return (
     <div
       ref={ref}
-      className={`
-        flex flex-col gap-10
-        ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}
-        items-center py-16 lg:py-24
-        transition-all duration-700 ease-out
-        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}
-      `}
+      className={`flex flex-col gap-10 items-center py-16 lg:py-24 ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0px)' : 'translateY(50px)',
+        transition: 'opacity 0.75s ease-out, transform 0.75s ease-out',
+      }}
     >
       {/* ── Image ── */}
       <div className="w-full lg:w-1/2 flex-shrink-0">
@@ -209,7 +209,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
               <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-50 flex items-center justify-center">
                 <Check className="w-3 h-3 text-primary-300" strokeWidth={3} />
               </span>
-              <span className="text-sm text-gray-600 font-medium">{b}</span>
+              <span className="text-sm text-gray-400 font-normal tracking-wide">{b}</span>
             </div>
           ))}
         </div>
@@ -238,6 +238,7 @@ const ScrollSection: React.FC<{
   const [features, setFeatures] = useState<Feature[]>(defaultFeatures);
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const navigate = useNavigate();
 
   /* Firestore subscription */
   useEffect(() => {
@@ -281,9 +282,7 @@ const ScrollSection: React.FC<{
 
   const handleCTA = (id: string) => {
     onButtonClick?.(id);
-    // Scroll to contact section as fallback
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    navigate('/contact');
   };
 
   return (
@@ -293,8 +292,12 @@ const ScrollSection: React.FC<{
         {/* ── Section header ── */}
         <div
           ref={headerRef}
-          className={`text-center pt-16 pb-4 transition-all duration-700 ease-out
-            ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className="text-center pt-16 pb-4"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0px)' : 'translateY(32px)',
+            transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+          }}
         >
           <span className="inline-block text-xs font-bold tracking-widest uppercase text-primary-300 mb-3">
             Features

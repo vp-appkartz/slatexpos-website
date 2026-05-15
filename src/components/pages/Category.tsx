@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { Zap, Monitor, CreditCard, BarChart3, Users, Utensils, Clock, Coffee, ChefHat } from 'lucide-react';
 import HeroSection from '../Common/HeroSection';
 import NumberSpeaks from '../Common/StatData';
-
 import KeyFeatures from '../Common/KeyFeature';
 import BlackCardSection from '../Common/BlackCard';
 import Hardware from '../Common/Hardware';
 import BlackSection from '../Common/BlackSection';
 import Testimonial from '../Common/Testimonials';
 import Contact from '../Common/CTA';
-import { getCategoryData, CategoryPageData } from '../../Data/categoryData';
+import { getCategoryData } from '../../Data/categoryData';
 import FAQSection from '../Common/Faq';
 import ScrollSection from '../Home/ScrollSection';
 import SEO from '../Common/SEO';
-import { subscribeToIndustryData, subscribeToHeroPageData } from '../../services/firestoreService';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -34,48 +32,10 @@ const getIcon = (iconName: string) => {
 
 const DynamicCategoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [categoryData, setCategoryData] = useState<CategoryPageData | null>(null);
-  const [sharedData, setSharedData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Subscribe to Hero/Global data for shared sections
-    const unsubscribeHero = subscribeToHeroPageData((docData) => {
-      if (docData) {
-        setSharedData(docData);
-      }
-    });
-    return () => unsubscribeHero();
-  }, []);
+  if (!slug) return <Navigate to="/" replace />;
 
-  useEffect(() => {
-    if (!slug) return;
-
-    const unsubscribe = subscribeToIndustryData(slug, (data) => {
-      if (data) {
-        setCategoryData(data);
-      } else {
-        // Fallback to static data if not found in Firebase
-        const staticData = getCategoryData(slug);
-        setCategoryData(staticData || null);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [slug]);
-
-  if (!slug) {
-    return <Navigate to="/" replace />;
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div>
-      </div>
-    );
-  }
+  const categoryData = getCategoryData(slug);
 
   if (!categoryData) {
     return (
@@ -163,30 +123,30 @@ const DynamicCategoryPage: React.FC = () => {
       )}
 
       <Hardware
-        title={sharedData?.hardware?.title || categoryData.hardwareSection?.title}
-        subtitle={sharedData?.hardware?.subtitle || categoryData.hardwareSection?.subtitle}
-        items={sharedData?.hardware?.items || categoryData.hardwareSection?.items}
+        title={categoryData.hardwareSection?.title}
+        subtitle={categoryData.hardwareSection?.subtitle}
+        items={categoryData.hardwareSection?.items}
       />
 
       <BlackSection
-        title={sharedData?.blackSection?.title || categoryData.promoSection?.title}
-        description={sharedData?.blackSection?.description || categoryData.promoSection?.description}
-        buttonText={sharedData?.blackSection?.buttonText || categoryData.promoSection?.buttonText}
-        imageSrc={sharedData?.blackSection?.imageSrc || categoryData.promoSection?.imageSrc}
+        title={categoryData.promoSection?.title}
+        description={categoryData.promoSection?.description}
+        buttonText={categoryData.promoSection?.buttonText}
+        imageSrc={categoryData.promoSection?.imageSrc}
         imageAlt={categoryData.promoSection?.imageAlt}
-        trustIndicators={sharedData?.blackSection?.trustIndicators || categoryData.promoSection?.trustIndicators}
+        trustIndicators={categoryData.promoSection?.trustIndicators}
       />
 
       <Testimonial
-        title={sharedData?.testimonials?.title || categoryData.testimonialSection?.title}
-        subtitle={sharedData?.testimonials?.subtitle || categoryData.testimonialSection?.subtitle}
-        items={sharedData?.testimonials?.items || categoryData.testimonialSection?.items}
+        title={categoryData.testimonialSection?.title}
+        subtitle={categoryData.testimonialSection?.subtitle}
+        items={categoryData.testimonialSection?.items}
       />
 
       <Contact
-        title={sharedData?.cta?.title || categoryData.ctaSection?.title}
-        description={sharedData?.cta?.description || categoryData.ctaSection?.description}
-        image={sharedData?.cta?.image || categoryData.ctaSection?.image}
+        title={categoryData.ctaSection?.title}
+        description={categoryData.ctaSection?.description}
+        image={categoryData.ctaSection?.image}
       />
       <FAQSection faqs={categoryData.faqSection?.faqs} />
     </>

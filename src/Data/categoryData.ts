@@ -1579,6 +1579,101 @@ export const cafeBakeryData: CategoryPageData = {
   }
 };
 
+/* ─── Bars & Pubs ─────────────────────────────────────────────── */
+export const barsPubsData: CategoryPageData = {
+  slug: "bars-and-pubs",
+  meta: {
+    title: "Bar & Pub POS System | SlateX POS Canada",
+    description: "Run tabs, manage happy hours, and streamline tip distribution with SlateX POS — built for bars, pubs, and nightlife venues across Canada.",
+    keywords: "bar POS, pub POS, nightclub POS, tab management, happy hour POS, Canada",
+  },
+  heroSection: {
+    title: "POS Built for Bars & Pubs",
+    description: "Open tabs, run happy hours, split bills, and close out the night — all from one fast, reliable system. SlateX keeps pace with your busiest rushes.",
+    buttonText: "Book a Free Demo",
+    mainImage: "/Bars_header.png",
+    mainImageAlt: "Bar & Pub POS System",
+    backgroundText: "Bars & Pubs",
+  },
+  numberSpeaks: {
+    title: "Built for the Bar Business",
+    subtitle: "Tools that keep service fast and profits clear.",
+    stats: [
+      { value: "3x", description: "Faster tab management vs traditional POS" },
+      { value: "100%", description: "Offline mode — never lose a sale" },
+      { value: "0%", description: "Commission on online orders" },
+      { value: "24/7", description: "Canadian-based support" },
+    ],
+  },
+  keyFeatures: {
+    heading: "Everything a Bar Needs",
+    subheading: "From tab management to inventory — built for the pace of nightlife.",
+    features: [
+      {
+        image: "/icons/Restuarant POS System.svg",
+        title: "Tab Management",
+        description: "Open, manage, and close tabs in seconds. Keep track of every order across multiple bar stations without confusion.",
+      },
+      {
+        image: "/icons/Payment Processing.svg",
+        title: "Happy Hour Pricing",
+        description: "Schedule automatic price changes for happy hour, late night, or any promotional window — no manual overrides needed.",
+      },
+      {
+        image: "/icons/Loyalty & Promotions.svg",
+        title: "Tip Distribution",
+        description: "Automatically calculate and distribute tips across your bar staff — transparent, fair, and audit-ready.",
+      },
+      {
+        image: "/icons/Reporting App.svg",
+        title: "Sales Reporting",
+        description: "See which drinks, servers, and time slots drive the most revenue. Close every night with clarity.",
+      },
+    ],
+  },
+  blackCardSection: {
+    heading: "Why Bars Choose SlateX",
+    subheading: "Purpose-built features for fast-paced nightlife environments.",
+    items: [
+      {
+        image: "/icons/Restuarant POS System.svg",
+        title: "Multi-Station Sync",
+        description: "Every bartender sees every order in real time. No miscommunication, no duplicate tabs.",
+      },
+      {
+        image: "/icons/Payment Processing.svg",
+        title: "Fast Payment Processing",
+        description: "Accept all payment types — tap, chip, swipe, and digital wallets — without slowing down the line.",
+      },
+      {
+        image: "/icons/Giftcard.svg",
+        title: "Gift Cards & Loyalty",
+        description: "Keep regulars coming back with digital gift cards and loyalty rewards built right into your POS.",
+      },
+    ],
+  },
+  faqSection: {
+    faqs: [
+      {
+        question: "Can SlateX handle busy Friday night rushes?",
+        answer: "Absolutely. SlateX is designed for high-volume environments. Offline mode keeps you running even if internet drops, and multi-device sync means every station stays up to date in real time.",
+      },
+      {
+        question: "How does tab management work?",
+        answer: "Open a tab for any guest, add drinks and food from any station, and close it out at the end of the night. You can hold a card on file or process payment at close — your call.",
+      },
+      {
+        question: "Can I set automatic happy hour prices?",
+        answer: "Yes. You can schedule time-based price rules for any category or individual item. Set it once and SlateX handles it automatically every day.",
+      },
+      {
+        question: "What hardware do I need for my bar?",
+        answer: "SlateX works on any Android device — tablets at the bar, a SlateX Station at the server station, or SlateX Go handhelds for table service. No proprietary hardware required.",
+      },
+    ],
+  },
+};
+
 // Centralized category data registry
 export const categoryRegistry: Record<string, CategoryPageData> = {
   "quick-service-restaurants-qsr": quickServiceRestaurantData,
@@ -1588,7 +1683,8 @@ export const categoryRegistry: Record<string, CategoryPageData> = {
   "food-trucks": foodTrucksData,
   "full-services-restaurant": fullServicesRestaurantData,
   "pizzeria": pizzeriaData,
-  "caf-and-bakery": cafeBakeryData
+  "caf-and-bakery": cafeBakeryData,
+  "bars-and-pubs": barsPubsData,
 };
 
 // Helper function to get category data by slug

@@ -244,10 +244,24 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
 /* ─── Main component ────────────────────────────────────────────── */
 const ScrollSection: React.FC<{
   onButtonClick?: (id: string) => void;
-}> = ({ onButtonClick }) => {
-  const title    = 'Everything You Need to Run Your Restaurant';
-  const subtitle = 'No add-on fees. No feature tiers. Every feature below is included in your SlateX plan.';
-  const features = defaultFeatures;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  sections?: any[];
+}> = ({ onButtonClick, heroTitle, heroSubtitle, sections }) => {
+  const title    = heroTitle   || 'Everything You Need to Run Your Restaurant';
+  const subtitle = heroSubtitle || 'No add-on fees. No feature tiers. Every feature below is included in your SlateX plan.';
+  const features = sections
+    ? sections.map((s: any, i: number) => ({
+        id:          s.id || String(i + 1),
+        number:      String(i + 1).padStart(2, '0'),
+        tag:         s.subtitle || s.tag || '',
+        title:       s.title    || '',
+        description: s.description || '',
+        bullets:     (s.bulletPoints || []).map((b: any) => typeof b === 'string' ? b : b.text),
+        imageSrc:    s.imageSrc || `/home-about-${(i % 5) + 1}.png`,
+        imageAlt:    s.imageAlt || s.title || '',
+      }))
+    : defaultFeatures;
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isDemoOpen, setIsDemoOpen] = useState(false);

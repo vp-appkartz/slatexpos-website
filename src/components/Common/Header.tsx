@@ -41,9 +41,9 @@ const Header: React.FC = () => {
   const handleDropdownClick    = (n: string) => setActiveDropdown(activeDropdown === n ? null : n);
   const handleMobileDropdown   = (n: string) => setMobileDropdown(mobileDropdown === n ? null : n);
   const handleProductItemClick = (slug: string) => { setActiveDropdown(null); setIsMenuOpen(false); navigate(`/products/${slug}`); };
-  const handleCategoryItemClick = (title: string) => {
-    const slug = title.toLowerCase().replace(/&/g,'and').replace(/[()]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
-    setActiveDropdown(null); setIsMenuOpen(false); navigate(`/categories/${slug}`);
+  const handleCategoryItemClick = (title: string, slug?: string) => {
+    const resolved = slug || title.toLowerCase().replace(/&/g,'and').replace(/[()]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    setActiveDropdown(null); setIsMenuOpen(false); navigate(`/categories/${resolved}`);
   };
 
   /* ── Default Products data ── */
@@ -75,14 +75,14 @@ const Header: React.FC = () => {
 
   /* ── Default Industries data ── */
   const defaultCategoryItems = [
-    { image: '/icons/Quick Serve Resturants (QSR).svg', title: 'Quick-Service (QSR)',     description: 'Speed & accuracy for high-volume counters.' },
-    { image: '/icons/Casual Dining.svg',                title: 'Casual Dining',           description: 'Order splitting, modifiers & smooth table service.' },
-    { image: '/icons/Full Serve Restaurant.svg',        title: 'Full-Service Restaurant', description: 'Table management, floor layout & gratuity tools.' },
-    { image: '/icons/Fast Casual Restaurant.svg',       title: 'Fast Casual',             description: 'Kiosk support, mobile ordering & fast workflows.' },
-    { image: '/icons/Food Trucks.svg',                  title: 'Food Trucks',             description: 'Lightweight, offline-ready POS for on-the-go.' },
-    { image: '/icons/Pizzeria.svg',                     title: 'Pizzeria',                description: 'Half-and-half toppings, modifiers & combos.' },
-    { image: '/icons/Cafe & Bakery.svg',                title: 'Café & Bakery',           description: 'Quick item selection, loyalty & kitchen sync.' },
-    { image: '/icons/Bars & Pubs.svg',                  title: 'Bars & Pubs',             description: 'Tabs, happy hours & tip distribution made easy.' },
+    { image: '/icons/Quick Serve Resturants (QSR).svg', title: 'Quick-Service (QSR)',     slug: 'quick-service-restaurants-qsr',  description: 'Speed & accuracy for high-volume counters.' },
+    { image: '/icons/Casual Dining.svg',                title: 'Casual Dining',           slug: 'casual-dining',                  description: 'Order splitting, modifiers & smooth table service.' },
+    { image: '/icons/Full Serve Restaurant.svg',        title: 'Full-Service Restaurant', slug: 'full-services-restaurant',       description: 'Table management, floor layout & gratuity tools.' },
+    { image: '/icons/Fast Casual Restaurant.svg',       title: 'Fast Casual',             slug: 'fast-casual-restaurant',         description: 'Kiosk support, mobile ordering & fast workflows.' },
+    { image: '/icons/Food Trucks.svg',                  title: 'Food Trucks',             slug: 'food-trucks',                    description: 'Lightweight, offline-ready POS for on-the-go.' },
+    { image: '/icons/Pizzeria.svg',                     title: 'Pizzeria',                slug: 'pizzeria',                       description: 'Half-and-half toppings, modifiers & combos.' },
+    { image: '/icons/Cafe & Bakery.svg',                title: 'Café & Bakery',           slug: 'caf-and-bakery',                 description: 'Quick item selection, loyalty & kitchen sync.' },
+    { image: '/icons/Bars & Pubs.svg',                  title: 'Bars & Pubs',             slug: 'bars-and-pubs',                  description: 'Tabs, happy hours & tip distribution made easy.' },
   ];
 
   const productSections = defaultProductSections;
@@ -213,7 +213,7 @@ const Header: React.FC = () => {
                         <div className="ml-4 mt-1 space-y-1">
                           {categoryItems.map((item, i) => (
                             <div key={i} className="flex items-start gap-3 py-2 border-l-2 border-orange-200 pl-4 cursor-pointer"
-                              onClick={() => handleCategoryItemClick(item.title)}>
+                              onClick={() => handleCategoryItemClick(item.title, (item as any).slug)}>
                               <ItemIcon image={item.image} title={item.title} />
                               <div>
                                 <h5 className="font-semibold text-gray-900 text-sm">{item.title}</h5>
@@ -338,7 +338,7 @@ const Header: React.FC = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {categoryItems.map((item, i) => (
                           <div key={i} className="flex items-start gap-3 group cursor-pointer"
-                            onClick={() => handleCategoryItemClick(item.title)}>
+                            onClick={() => handleCategoryItemClick(item.title, (item as any).slug)}>
                             <ItemIcon image={item.image} title={item.title} />
                             <div>
                               <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>

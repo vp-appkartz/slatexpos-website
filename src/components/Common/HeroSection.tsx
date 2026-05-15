@@ -70,7 +70,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         }}
       >
         <section
-          className={`flex items-center pt-6 sm:pt-8 lg:pt-12 pb-6 sm:pb-8 lg:pb-16 ${className}`}
+          className={`flex items-center pt-28 sm:pt-32 lg:pt-36 pb-8 sm:pb-12 lg:pb-16 ${className}`}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 xl:gap-24 relative z-10">

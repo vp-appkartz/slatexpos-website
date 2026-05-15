@@ -223,10 +223,10 @@ const BlogSection = () => {
         description="Stay updated with the latest trends, tips, and insights in the restaurant and retail POS industry."
         keywords="POS blog, restaurant technology, retail trends, SlateX blog"
       />
-      <div className="w-full min-h-screen bg-white">
+      <div className="w-full min-h-screen">
         {/* Hero Section */}
         <div
-          className="w-full relative mt-[170px]"
+          className="w-full relative"
           style={{
             backgroundImage: "url(/bg.png)",
             backgroundSize: "cover",
@@ -234,7 +234,7 @@ const BlogSection = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="max-w-[1200px] mx-auto px-2 sm:px-4 pt-12 pb-10 flex flex-col items-center text-center">
+          <div className="max-w-[1200px] mx-auto px-2 sm:px-4 pt-32 sm:pt-36 pb-10 flex flex-col items-center text-center">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Blog</h1>
             <p className="max-w-xl text-gray-700 text-md font-medium sm:text-lg mb-2">
               Explore our insightful articles packed with industry trends, expert advice, and practical solutions to elevate your knowledge.

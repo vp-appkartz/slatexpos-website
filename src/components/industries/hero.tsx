@@ -1,7 +1,7 @@
 const FastCasualSection = () => {
     return (
       <section
-        className="min-h-screen flex items-center py-8 sm:py-12 lg:py-0"
+        className="min-h-screen flex items-center pt-28 sm:pt-32 lg:pt-28 pb-10 sm:pb-14 lg:pb-20"
         style={{
           backgroundImage: "url('/bg.png')",
           backgroundSize: "cover",

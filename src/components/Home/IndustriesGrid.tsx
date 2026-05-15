@@ -275,11 +275,7 @@ const IndustriesGrid: React.FC = () => {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Seamless gradient bridge from white ScrollSection into grid wash */}
-      <div
-        className="py-20 lg:py-28"
-        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #f3f4f6 35%, #f3f4f6 100%)' }}
-      >
+      <div className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* ── Header ── */}

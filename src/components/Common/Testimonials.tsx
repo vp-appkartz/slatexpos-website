@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Star, MapPin } from 'lucide-react';
 import { subscribeToHeroPageData } from '../../services/firestoreService';
 
+/* ─── Types ────────────────────────────────────────────────────── */
 export interface TestimonialItem {
   id: string | number;
   name: string;
@@ -10,216 +12,251 @@ export interface TestimonialItem {
   logo: string;
   logoSubtext: string;
 }
-
 export interface TestimonialsData {
   title?: string;
   subtitle?: string;
   items?: TestimonialItem[];
 }
 
-interface TestimonialProps extends TestimonialsData { }
+/* ─── Scroll reveal ────────────────────────────────────────────── */
+function useReveal(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, visible };
+}
 
-const Testimonial: React.FC<TestimonialProps> = ({
-  title = "Real Restaurants. Real Results.",
-  subtitle = "Trusted by restaurants in Edmonton, Vancouver, and Brandon — and growing fast.",
-  items
+/* ─── Stars ────────────────────────────────────────────────────── */
+const Stars: React.FC = () => (
+  <div className="flex gap-0.5 mb-5">
+    {[...Array(5)].map((_, i) => (
+      <Star key={i} className="w-4 h-4 fill-primary-300 text-primary-300" />
+    ))}
+  </div>
+);
+
+/* ─── Single glass card ─────────────────────────────────────────── */
+const TestimonialCard: React.FC<{ t: TestimonialItem }> = ({ t }) => (
+  <div
+    className="relative flex-shrink-0 w-[420px] rounded-3xl p-8 flex flex-col gap-4
+      hover:-translate-y-1 transition-all duration-300"
+    style={{
+      background: 'rgba(255,255,255,0.65)',
+      border: '1px solid rgba(255,255,255,0.88)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+    }}
+  >
+    {/* Decorative quote */}
+    <span
+      className="absolute top-5 right-7 text-8xl font-serif leading-none select-none pointer-events-none"
+      style={{ color: 'rgba(251,146,60,0.13)' }}
+    >
+      "
+    </span>
+
+    <Stars />
+
+    {/* Review text — larger */}
+    <p className="text-gray-700 text-lg leading-relaxed font-normal flex-1">
+      "{t.text}"
+    </p>
+
+    <div className="w-full h-px bg-gray-100" />
+
+    {/* Author */}
+    <div className="flex items-center gap-3">
+      <div
+        className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 text-base font-bold text-white"
+        style={{ background: 'linear-gradient(135deg, #fb923c, #f97316)' }}
+      >
+        {t.name.charAt(0)}
+      </div>
+      <div className="min-w-0">
+        <p className="text-base font-bold text-gray-900 truncate">{t.name}</p>
+        <p className="text-sm font-semibold text-gray-600 truncate">{t.logo}</p>
+        <p className="flex items-center gap-1 text-xs text-gray-400 font-medium mt-0.5">
+          <MapPin className="w-3 h-3 flex-shrink-0" />
+          {t.logoSubtext || t.position}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+/* ─── Main component ────────────────────────────────────────────── */
+const Testimonial: React.FC<TestimonialsData> = ({
+  title    = 'Real Restaurants. Real Results.',
+  subtitle = 'Trusted by restaurants across Canada & the USA — and growing fast.',
+  items,
 }) => {
-  const defaultTestimonials = [
+  const defaultTestimonials: TestimonialItem[] = [
     {
       id: 1,
-      name: "Restaurant Owner",
-      position: "Edmonton, AB",
-      image: "https://images.pexels.com/photos/1707828/pexels-photo-1707828.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "SlateX gave us the flexibility we couldn’t find anywhere else. We already had Android tablets — now they’re our full POS system. The setup was fast and the team actually answered the phone when we needed help.",
-      logo: "Edmonton Restaurant",
-      logoSubtext: "Alberta"
+      name: 'Harry Singh',
+      position: 'Edmonton, AB',
+      image: '',
+      text: "SlateX gave us the flexibility we couldn't find anywhere else. We already had Android tablets — now they're our full POS system. The setup was fast and the team actually answered the phone when we needed help.",
+      logo: 'Ghazal Fine Dine Experience',
+      logoSubtext: 'Edmonton, AB · Canada',
     },
     {
       id: 2,
-      name: "Café Owner",
-      position: "Vancouver, BC",
-      image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "The offline mode alone was worth the switch. We’ve never lost an order since. Internet goes down, SlateX keeps going — everything syncs the moment we’re back online.",
-      logo: "Vancouver Café",
-      logoSubtext: "British Columbia"
+      name: 'Café Owner',
+      position: 'Vancouver, BC',
+      image: '',
+      text: "The offline mode alone was worth the switch. We've never lost an order since. Internet goes down, SlateX keeps going — everything syncs the moment we're back online.",
+      logo: 'Vancouver Café',
+      logoSubtext: 'Vancouver, BC · Canada',
     },
     {
       id: 3,
-      name: "Gurbir Singh",
-      position: "Royal Sweets & Restaurant",
-      image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      text: "Managing dine-in, takeout, and sweets counters together used to be stressful. With SlateX POS, we’ve streamlined everything under one roof. The weighing scale integration is something no other POS at this price offers.",
-      logo: "Royal Sweets & Restaurant",
-      logoSubtext: ""
+      name: 'Gurbir Singh',
+      position: 'Royal Sweets & Restaurant',
+      image: '',
+      text: "Managing dine-in, takeout, and sweets counters together used to be stressful. With SlateX POS, we've streamlined everything under one roof. The weighing scale integration is something no other POS at this price offers.",
+      logo: 'Royal Sweets & Restaurant',
+      logoSubtext: 'Brandon, MB · Canada',
     },
     {
       id: 4,
-      name: "Riaz Khan",
-      position: "Chutney Restaurant",
-      image: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      name: 'Tushar Mistry',
+      position: 'Edmonton, AB',
+      image: '',
       text: "One monthly fee, no hardware invoice, and every feature included. We switched from Toast and saved thousands in the first year. SlateX is the real deal for Canadian restaurants.",
-      logo: "Chutney Restaurant",
-      logoSubtext: ""
-    }
+      logo: 'Bombay Street Tadka',
+      logoSubtext: 'Edmonton, AB · Canada',
+    },
   ];
 
-  const [dataTitle, setDataTitle] = useState(title);
+  const [dataTitle,    setDataTitle]    = useState(title);
   const [dataSubtitle, setDataSubtitle] = useState(subtitle);
-  const [dataItems, setDataItems] = useState(items || defaultTestimonials);
+  const [dataItems,    setDataItems]    = useState<TestimonialItem[]>(items || defaultTestimonials);
 
   useEffect(() => {
-    const unsubscribe = subscribeToHeroPageData((heroData) => {
-      if (heroData && heroData.testimonials) {
+    const unsub = subscribeToHeroPageData((heroData) => {
+      if (heroData?.testimonials) {
         setDataTitle(heroData.testimonials.title || title);
         setDataSubtitle(heroData.testimonials.subtitle || subtitle);
-        if (heroData.testimonials.items && heroData.testimonials.items.length > 0) {
+        if (heroData.testimonials.items?.length > 0) {
           setDataItems(heroData.testimonials.items);
         } else {
           setDataItems(items || defaultTestimonials);
         }
       }
     });
-    return () => unsubscribe();
+    return () => unsub();
   }, []);
 
-  const testimonials = dataItems;
+  const { ref: headerRef, visible: headerVisible } = useReveal(0.2);
+  const { ref: trackRef,  visible: trackVisible  } = useReveal(0.1);
 
-  // By default, first card expanded. On hover, expand hovered card.
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const regions = [
+    { label: 'Edmonton, AB',  flag: '🍁' },
+    { label: 'Vancouver, BC', flag: '🍁' },
+    { label: 'Brandon, MB',   flag: '🍁' },
+    { label: 'United States', flag: '🇺🇸' },
+  ];
+
+  /* Duplicate cards for seamless infinite loop */
+  const looped = [...dataItems, ...dataItems, ...dataItems];
 
   return (
-    <section className="bg-white py-16 px-4 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-800 mb-4">
+    <section
+      className="relative py-20 lg:py-28 overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #fff7ed 0%, #ffffff 45%, #f0f4ff 100%)',
+      }}
+    >
+      {/* Keyframe injection */}
+      <style>{`
+        @keyframes testimonial-scroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+        .testimonial-track {
+          animation: testimonial-scroll 38s linear infinite;
+        }
+        .testimonial-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      {/* Decorative orbs */}
+      <div className="absolute top-16 left-0 w-80 h-80 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.10) 0%, transparent 70%)', filter: 'blur(48px)' }} />
+      <div className="absolute bottom-16 right-0 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)', filter: 'blur(56px)' }} />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Header ── */}
+        <div
+          ref={headerRef}
+          className="text-center mb-14"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(28px)',
+            transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+          }}
+        >
+          <span className="inline-block text-xs font-bold tracking-widest uppercase text-primary-300 mb-4">
+            Testimonials
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 max-w-2xl mx-auto leading-tight">
             {dataTitle}
           </h2>
-          <p className="text-gray-600 font-medium text-base sm:text-lg md:text-xl lg:text-2xl">
+          <p className="text-gray-500 text-base sm:text-lg max-w-lg mx-auto mb-8">
             {dataSubtitle}
           </p>
+
+          {/* Region chips */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {regions.map((r) => (
+              <span
+                key={r.label}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600
+                  bg-white/80 border border-gray-200 rounded-full px-4 py-1.5
+                  shadow-sm backdrop-blur-sm"
+              >
+                <span>{r.flag}</span>
+                {r.label}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Testimonial Cards for Desktop */}
-        <div className="hidden xl:flex gap-4 h-96 overflow-hidden">
-          {testimonials.map((testimonial, index) => {
-            const isExpanded = expandedIndex === index;
-            return (
-              <div
-                key={testimonial.id}
-                className={`group relative rounded-lg overflow-hidden cursor-pointer transition-all duration-700 ease-out flex-shrink-0
-                  ${isExpanded ? 'w-[500px]' : 'w-64'}
-                `}
-                onMouseEnter={() => setExpandedIndex(index)}
-                onMouseLeave={() => setExpandedIndex(0)}
-                style={{ minWidth: isExpanded ? 320 : 256, maxWidth: isExpanded ? 500 : 256 }}
-              >
-                {/* Background Image */}
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-full h-full object-cover"
-                />
+      </div>
 
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-
-                {/* Content - Always visible on small image */}
-                <div className={`absolute bottom-0 left-0 right-0 p-6 text-white transition-opacity duration-500 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                  <h3 className="text-lg font-semibold mb-1">
-                    {testimonial.name}
-                  </h3>
-                  <p className="text-sm text-gray-300 mb-4">
-                    {testimonial.position}
-                  </p>
-                  <div className="border-t border-gray-500 pt-4">
-                    <div className="text-sm font-bold tracking-wider">
-                      {testimonial.logo}
-                    </div>
-                    <div className="text-xs text-gray-400 tracking-wide">
-                      {testimonial.logoSubtext}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Expanded Content - Only visible when expanded */}
-                <div className={`absolute inset-0 bg-black bg-opacity-80 transition-opacity duration-700 flex flex-col justify-center p-8
-                  ${isExpanded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-                `}>
-                  <p className="text-white text-base lg:text-lg leading-relaxed mb-8">
-                    {testimonial.text}
-                  </p>
-                  <div className="mb-6">
-                    <h3 className="text-xl lg:text-2xl font-semibold text-white mb-1">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-gray-300 text-sm">
-                      {testimonial.position}
-                    </p>
-                  </div>
-                  <div className="border-t border-gray-600 pt-6">
-                    <div className="text-white">
-                      <div className="text-lg font-bold tracking-wider">
-                        {testimonial.logo}
-                      </div>
-                      <div className="text-xs text-gray-400 tracking-wide">
-                        {testimonial.logoSubtext}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Mobile Version - Stack cards vertically on small screens */}
-        <div className="xl:hidden mt-8 space-y-4">
-          {testimonials.map((testimonial, index) => {
-            return (
-              <div
-                key={`mobile-${testimonial.id}`}
-                className="relative rounded-lg overflow-hidden h-64"
-              >
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-full h-full object-cover"
-                />
-
-                <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-
-                {/* Responsive padding for mobile: px-3 for very small, px-4 for normal, px-6 for md */}
-                <div className="absolute inset-0 flex flex-col justify-end text-white
-                  px-3 py-4
-                  sm:px-4 sm:py-6
-                  md:px-6 md:py-6
-                ">
-                  <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
-                    {testimonial.text}
-                  </p>
-
-                  <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-1">
-                    {testimonial.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-3 sm:mb-4">
-                    {testimonial.position}
-                  </p>
-
-                  <div className="border-t border-gray-500 pt-3 sm:pt-4">
-                    <div className="text-xs sm:text-sm font-bold tracking-wider">
-                      {testimonial.logo}
-                    </div>
-                    <div className="text-[10px] sm:text-xs text-gray-400 tracking-wide">
-                      {testimonial.logoSubtext}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+      {/* ── Marquee track — full bleed, no side padding ── */}
+      <div
+        ref={trackRef}
+        className="overflow-hidden"
+        style={{
+          opacity: trackVisible ? 1 : 0,
+          transition: 'opacity 0.8s ease-out 0.2s',
+          /* Fade edges */
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        }}
+      >
+        <div className="testimonial-track flex gap-5 w-max py-4 px-4">
+          {looped.map((t, idx) => (
+            <TestimonialCard key={`${t.id}-${idx}`} t={t} />
+          ))}
         </div>
       </div>
+
     </section>
   );
 };

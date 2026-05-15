@@ -158,9 +158,6 @@ const Testimonial: React.FC<TestimonialsData> = ({
   return (
     <section
       className="relative py-20 lg:py-28 overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, #fffbf7 0%, #ffffff 40%, #f4f4ff 100%)',
-      }}
     >
       {/* Keyframe injection */}
       <style>{`

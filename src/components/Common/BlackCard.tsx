@@ -32,8 +32,8 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
   }
 
   return (
-    <section className={`py-16 md:py-20 relative ${className}`}
-      style={{ background: 'linear-gradient(135deg, #060612 0%, #0f0f1e 40%, #090916 100%)' }}>
+    <section className={`py-24 md:py-32 relative ${className}`}
+      style={{ background: 'linear-gradient(to bottom, transparent 0%, #060612 9%, #0f0f1e 50%, #090916 91%, transparent 100%)' }}>
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.06) 0%, transparent 65%)', filter: 'blur(60px)' }} />
       <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full pointer-events-none"

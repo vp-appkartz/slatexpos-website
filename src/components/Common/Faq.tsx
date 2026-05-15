@@ -70,7 +70,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
     AOS.init({
       duration: 700,
       easing: 'ease-in-out-cubic',
-      once: false,
+      once: true,
       mirror: false,
       offset: 40,
     });
@@ -88,8 +88,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   };
 
   return (
-    <section className="relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%)' }}>
+    <section className="relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto rounded-lg p-8">
         {/* Header */}
         <div className="text-center mb-8" data-aos="fade-down">

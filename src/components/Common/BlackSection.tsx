@@ -66,8 +66,8 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   }, []);
 
   return (
-    <section className={`py-16 px-4 relative overflow-hidden ${className}`}
-      style={{ background: 'linear-gradient(135deg, #06060f 0%, #0d0d1f 50%, #080814 100%)' }}>
+    <section className={`py-24 px-4 relative overflow-hidden ${className}`}
+      style={{ background: 'linear-gradient(to bottom, transparent 0%, #06060f 9%, #0d0d1f 50%, #080814 91%, transparent 100%)' }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(251,146,60,0.08) 0%, transparent 70%)', filter: 'blur(50px)' }} />
       <div className="max-w-7xl mx-auto">

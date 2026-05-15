@@ -15,6 +15,7 @@ import Hero from "./components/Home/Hero";
 import Contact from "./components/Common/CTA";
 import Footer from "./components/Common/Footer";
 import ScrollSection from "./components/Home/ScrollSection";
+import IndustriesGrid from "./components/Home/IndustriesGrid";
 import FreeTrial from "./components/Common/BlackSection";
 import Testimonials from "./components/Common/Testimonials";
 import Hardware from "./components/Common/Hardware";
@@ -58,6 +59,7 @@ const AppContent = () => {
               <Header />
               <Hero />
               <ScrollSection />
+              <IndustriesGrid />
               <Hardware />
               <FreeTrial
                 title="Your POS Should Work for You. Not the Other Way Around."

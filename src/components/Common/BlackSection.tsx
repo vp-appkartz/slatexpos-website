@@ -29,12 +29,7 @@ const defaultProps: Required<Omit<BlackSectionProps, 'onButtonClick' | 'classNam
   ]
 };
 
-const aosAnimations = [
-  "zoom-in-up",
-  "fade-up",
-  "flip-left",
-  "flip-right"
-];
+const aosAnimations = ["zoom-in-up", "fade-up", "flip-left", "flip-right"];
 
 const BlackSection: React.FC<BlackSectionProps> = ({
   title = defaultProps.title,
@@ -46,55 +41,50 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   trustIndicators = defaultProps.trustIndicators,
   className = ""
 }) => {
-  const [data] = useState({
-    title,
-    description,
-    buttonText,
-    imageSrc,
-    imageAlt,
-    trustIndicators
-  });
+  const [data] = useState({ title, description, buttonText, imageSrc, imageAlt, trustIndicators });
 
   useEffect(() => {
-    AOS.init({
-      duration: 900,
-      once: true,
-      offset: 60,
-      easing: "ease-in-out",
-    });
+    AOS.init({ duration: 900, once: true, offset: 60, easing: "ease-in-out" });
     return () => { AOS.refresh(); };
   }, []);
 
   return (
     <section
-      className={`py-24 px-4 relative overflow-hidden ${className}`}
-      style={{
-        /* Fades in from the page background, goes dark, fades back out */
-        background: 'linear-gradient(to bottom, #f8f8f8 0%, #06060f 8%, #0d0d1f 50%, #080814 92%, #f8f8f8 100%)',
-      }}
+      className={`relative overflow-hidden ${className}`}
+      style={{ background: 'linear-gradient(135deg, #06060f 0%, #0d0d1f 55%, #080814 100%)' }}
     >
+      {/* ── Top fade — dissolves into the section above ── */}
+      <div
+        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+        style={{ background: 'linear-gradient(to bottom, #f8f8f8 0%, transparent 100%)' }}
+      />
+      {/* ── Bottom fade — dissolves into the section below ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
+        style={{ background: 'linear-gradient(to top, #f8f8f8 0%, transparent 100%)' }}
+      />
+
       {/* Decorative orb */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(251,146,60,0.08) 0%, transparent 70%)', filter: 'blur(50px)' }}
       />
 
-      <div className="max-w-7xl mx-auto">
-        {/* Main Content */}
+      {/* Content — padded well clear of the fade zones */}
+      <div className="relative z-0 max-w-7xl mx-auto px-4 py-32 lg:py-36">
+        {/* Main two-column grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Left Content */}
+          {/* Left — text */}
           <div className="text-white" data-aos="fade-right" data-aos-delay="120">
             <h2
               className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-6"
-              data-aos="fade-down"
-              data-aos-delay="180"
+              data-aos="fade-down" data-aos-delay="180"
             >
               {data.title}
             </h2>
             <p
               className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-md"
-              data-aos="fade-up"
-              data-aos-delay="260"
+              data-aos="fade-up" data-aos-delay="260"
             >
               {data.description}
             </p>
@@ -102,31 +92,22 @@ const BlackSection: React.FC<BlackSectionProps> = ({
               <button
                 className="bg-primary-300 text-base sm:text-lg hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
                 onClick={onButtonClick}
-                data-aos="zoom-in"
-                data-aos-delay="340"
+                data-aos="zoom-in" data-aos-delay="340"
               >
                 {data.buttonText}
               </button>
             )}
           </div>
 
-          {/* Right Content - Image */}
-          <div
-            className="flex justify-center lg:justify-end"
-            data-aos="zoom-in-up"
-            data-aos-delay="200"
-          >
+          {/* Right — image */}
+          <div className="flex justify-center lg:justify-end" data-aos="zoom-in-up" data-aos-delay="200">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={data.imageSrc}
-                alt={data.imageAlt}
-                className="w-full h-auto object-cover"
-              />
+              <img src={data.imageSrc} alt={data.imageAlt} className="w-full h-auto object-cover" />
             </div>
           </div>
         </div>
 
-        {/* Trust Indicators */}
+        {/* Trust indicators */}
         {data.trustIndicators && data.trustIndicators.length > 0 && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {data.trustIndicators.map((indicator, index) => {
@@ -136,8 +117,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
                 <div
                   key={index}
                   className="flex items-center text-white"
-                  data-aos={aosType}
-                  data-aos-delay={aosDelay}
+                  data-aos={aosType} data-aos-delay={aosDelay}
                 >
                   <Check className="w-5 h-5 text-primary-300 mr-3 flex-shrink-0" />
                   <span className="text-sm sm:text-base lg:text-lg font-medium">{indicator}</span>

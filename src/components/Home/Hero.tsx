@@ -14,7 +14,11 @@ const Hero = () => {
   const heroImage       = "/hero-home.webp";
 
   return (
-    <div className="relative bg-white overflow-hidden">
+    <div className="relative overflow-hidden">
+      <div className="absolute -top-32 right-0 w-[560px] h-[560px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.10) 0%, transparent 65%)', filter: 'blur(48px)' }} />
+      <div className="absolute top-1/2 -left-32 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
       {/* ── Text block ── */}
       <section className="pt-8 sm:pt-12 lg:pt-16 pb-10 text-center px-4">

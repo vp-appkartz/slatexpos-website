@@ -88,8 +88,9 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   };
 
   return (
-    <section className="bg-gray-100">
-      <div className="w-full max-w-7xl mx-auto bg-gray-100 rounded-lg p-8">
+    <section className="relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%)' }}>
+      <div className="w-full max-w-7xl mx-auto rounded-lg p-8">
         {/* Header */}
         <div className="text-center mb-8" data-aos="fade-down">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 mb-2">{title}</h2>

@@ -79,7 +79,8 @@ const Hardware: React.FC<HardwareProps> = (props) => {
   ];
 
   return (
-    <section className="bg-white py-20 lg:py-28 px-4 overflow-hidden">
+    <section className="relative py-20 lg:py-28 px-4 overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f6f7ff 50%, #ffffff 100%)' }}>
       <div className="max-w-6xl mx-auto space-y-24">
 
         {/* ══════════════════════════════════════════

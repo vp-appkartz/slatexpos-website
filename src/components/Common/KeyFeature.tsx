@@ -52,8 +52,13 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
   }, []);
 
   return (
-    <section className={`py-10 bg-[#F0F0F9] ${className}`}>
+    <section className={`py-10 relative overflow-hidden ${className}`}
+      style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #fafafa 45%, #f0f9ff 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)', filter: 'blur(50px)' }} />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.07) 0%, transparent 70%)', filter: 'blur(50px)' }} />
         {/* Header */}
         <div
           className="text-center mb-10 sm:mb-14 md:mb-16"

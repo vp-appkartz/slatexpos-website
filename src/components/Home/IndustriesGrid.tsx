@@ -274,7 +274,7 @@ const IndustriesGrid: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-white overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Seamless gradient bridge from white ScrollSection into grid wash */}
       <div
         className="py-20 lg:py-28"

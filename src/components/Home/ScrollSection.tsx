@@ -285,8 +285,13 @@ const ScrollSection: React.FC<{
 
   return (
     <>
-    <section className="bg-white">
+    <section className="relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* bg orbs */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none -z-0"
+          style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.07) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none -z-0"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%)', filter: 'blur(60px)' }} />
 
         {/* ── Section header ── */}
         <div

@@ -47,7 +47,8 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
   }, []);
 
   return (
-    <section className={`py-8 sm:py-14 md:py-15 bg-gray-100  ${className}`}>
+    <section className={`py-8 sm:py-14 md:py-15 relative overflow-hidden ${className}`}
+      style={{ background: 'linear-gradient(135deg, #f0efff 0%, #f8f9ff 40%, #eff6ff 100%)' }}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12" data-aos="fade-down" data-aos-delay="100">

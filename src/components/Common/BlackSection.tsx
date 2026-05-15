@@ -46,7 +46,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   trustIndicators = defaultProps.trustIndicators,
   className = ""
 }) => {
-  const [data, setData] = useState({
+  const [data] = useState({
     title,
     description,
     buttonText,
@@ -66,23 +66,36 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   }, []);
 
   return (
-    <section className={`py-24 px-4 relative overflow-hidden ${className}`}
-      style={{ background: 'linear-gradient(to bottom, transparent 0%, #06060f 9%, #0d0d1f 50%, #080814 91%, transparent 100%)' }}>
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(251,146,60,0.08) 0%, transparent 70%)', filter: 'blur(50px)' }} />
+    <section
+      className={`py-24 px-4 relative overflow-hidden ${className}`}
+      style={{
+        /* Fades in from the page background, goes dark, fades back out */
+        background: 'linear-gradient(to bottom, #f8f8f8 0%, #06060f 8%, #0d0d1f 50%, #080814 92%, #f8f8f8 100%)',
+      }}
+    >
+      {/* Decorative orb */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(251,146,60,0.08) 0%, transparent 70%)', filter: 'blur(50px)' }}
+      />
+
       <div className="max-w-7xl mx-auto">
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Left Content */}
-          <div
-            className="text-white"
-            data-aos="fade-right"
-            data-aos-delay="120"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-6" data-aos="fade-down" data-aos-delay="180">
+          <div className="text-white" data-aos="fade-right" data-aos-delay="120">
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-6"
+              data-aos="fade-down"
+              data-aos-delay="180"
+            >
               {data.title}
             </h2>
-            <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-md" data-aos="fade-up" data-aos-delay="260">
+            <p
+              className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-md"
+              data-aos="fade-up"
+              data-aos-delay="260"
+            >
               {data.description}
             </p>
             {data.buttonText && (

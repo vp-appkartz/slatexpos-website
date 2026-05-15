@@ -55,7 +55,7 @@ const AppContent = () => {
         <Route
           path="/"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <Hero />
               <ScrollSection />
@@ -75,7 +75,7 @@ const AppContent = () => {
         <Route
           path="/industries"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <Industries />
               <Footer />
@@ -86,7 +86,7 @@ const AppContent = () => {
         <Route
           path="/pricing"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <Pricing />
               <Footer />
@@ -97,7 +97,7 @@ const AppContent = () => {
         <Route
           path="/products/:slug"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <DynamicProductPage />
               <Footer />
@@ -108,7 +108,7 @@ const AppContent = () => {
         <Route
           path="/categories/:slug"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <DynamicCategoryPage />
               <Footer />
@@ -119,7 +119,7 @@ const AppContent = () => {
         <Route
           path="/hardware"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <HardwarePage />
               <Footer />
@@ -130,7 +130,7 @@ const AppContent = () => {
         <Route
           path="/blog"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <BlogList />
               <Footer />
@@ -141,7 +141,7 @@ const AppContent = () => {
         <Route
           path="/blog/:slug"
           element={
-            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fffcf8 0%, #ffffff 20%, #f6f8ff 50%, #ffffff 75%, #fffcf8 100%)' }}>
+            <div className="overflow-x-hidden" style={{ background: '#f8f8f8' }}>
               <Header />
               <BlogDetails />
               <Footer />

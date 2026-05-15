@@ -7,154 +7,159 @@ const Footer = () => {
 
   const defaultProductLinks = [
     { name: "Restaurant POS System", url: "restaurant-pos-system" },
-    { name: "Kitchen Display", url: "kitchen-display" },
-    { name: "Payment Processing", url: "payment-processing" },
-    { name: "Reporting App", url: "reporting-app" },
-    { name: "Web Ordering", url: "web-ordering" },
-    { name: "Branded Mobile App", url: "mobile-ordering" },
-    { name: "Loyalty & Promotion", url: "loyalty-promotion" },
-    { name: "Gift Card", url: "gift-card" },
+    { name: "Kitchen Display",       url: "kitchen-display" },
+    { name: "Payment Processing",    url: "payment-processing" },
+    { name: "Reporting App",         url: "reporting-app" },
+    { name: "Web Ordering",          url: "web-ordering" },
+    { name: "Branded Mobile App",    url: "mobile-ordering" },
+    { name: "Loyalty & Promotion",   url: "loyalty-promotion" },
+    { name: "Gift Card",             url: "gift-card" },
   ];
 
   const defaultIndustryLinks = [
-    { name: "Quick-Service Restaurants (QSR)", url: "quick-service-restaurants-qsr" },
-    { name: "Casual Dining", url: "casual-dining" },
-    { name: "Full Services Restaurant", url: "full-services-restaurant" },
-    { name: "Fast Casual Restaurant", url: "fast-casual-restaurant" },
-    { name: "Food Trucks", url: "food-trucks" },
-    { name: "Pizzeria", url: "pizzeria" },
-    { name: "Café & Bakery", url: "cafe-bakery" },
-    { name: "Bars & Pubs", url: "bars-pubs" },
+    { name: "Quick-Service (QSR)",     url: "quick-service-restaurants-qsr" },
+    { name: "Casual Dining",           url: "casual-dining" },
+    { name: "Full-Service Restaurant", url: "full-services-restaurant" },
+    { name: "Fast Casual",             url: "fast-casual-restaurant" },
+    { name: "Food Trucks",             url: "food-trucks" },
+    { name: "Pizzeria",                url: "pizzeria" },
+    { name: "Café & Bakery",           url: "caf-and-bakery" },
+    { name: "Bars & Pubs",            url: "bars-and-pubs" },
   ];
 
   const defaultCompanyLinks = [
-    { name: "About us", url: "/about" },
-    { name: "Hardware", url: "/hardware" },
-    { name: "Pricing", url: "/pricing" },
-    { name: "Career", url: "/career" },
-    { name: "Licenses", url: "/licenses" },
+    { name: "About Us",  url: "/about" },
+    { name: "Hardware",  url: "/hardware" },
+    { name: "Pricing",   url: "/pricing" },
+    { name: "Career",    url: "/career" },
+    { name: "Licenses",  url: "/licenses" },
   ];
 
-  const socialLinksMap = [
-    { key: 'facebook', icon: <Facebook className="w-5 h-5 text-white" />, label: "Facebook" },
-    { key: 'twitter', icon: <Twitter className="w-5 h-5 text-white" />, label: "Twitter" },
-    { key: 'instagram', icon: <Instagram className="w-5 h-5 text-white" />, label: "Instagram" },
-    { key: 'linkedin', icon: <Linkedin className="w-5 h-5 text-white" />, label: "LinkedIn" },
-  ];
-
-  const productLinks  = defaultProductLinks;
-  const industryLinks = defaultIndustryLinks;
-  const companyLinks  = defaultCompanyLinks;
-  const description   = "Serve up seamless service with SlateX POS — your all-in-one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support. Ready to wow your guests and grow your business? Let's get started today";
-
-  const getIndustryUrl = (url: string) => {
-    if (url.startsWith('/')) return url;
-    if (url.includes('categories/')) return url;
-    // If it looks like a slug
-    return "/categories/" + url;
+  const socialLinks: Record<string, string> = {
+    facebook:  "https://www.facebook.com/slatexpos",
+    twitter:   "https://twitter.com/slatexpos",
+    instagram: "https://www.instagram.com/slatexpos/",
+    linkedin:  "https://www.linkedin.com/company/slatexpos",
   };
 
-  const getProductUrl = (url: string) => {
-    if (url.startsWith('/')) return url;
-    if (url.includes('products/')) return url;
-    // If it looks like a slug
-    return "/products/" + url;
-  };
+  const description = "Serve up seamless service with SlateX POS — your all-in-one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support.";
+
+  const getProductUrl  = (url: string) => url.startsWith('/') ? url : `/products/${url}`;
+  const getIndustryUrl = (url: string) => url.startsWith('/') ? url : `/categories/${url}`;
 
   return (
-    <footer className="bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer
+      className="relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(160deg, #fdf8ff 0%, #f5f3ff 35%, #eef2ff 65%, #f5f3ff 85%, #fdf8ff 100%)',
+      }}
+    >
+      {/* Decorative orbs */}
+      <div className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.08) 0%, transparent 65%)', filter: 'blur(72px)' }} />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%)', filter: 'blur(60px)' }} />
+
+      {/* Top divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent" />
+
+      <div className="relative max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* SlateX Column */}
+
+          {/* Brand column */}
           <div className="lg:col-span-2">
             <img
-              src="/logo/footer_logo.png"
-              alt="SlatexPOS Logo"
-              className="h-8 sm:h-10 lg:h-12 mb-5 w-auto cursor-pointer"
+              src="/logo/slatex_logo.png"
+              alt="SlateX POS"
+              className="h-8 sm:h-9 lg:h-10 mb-5 w-auto cursor-pointer"
               onClick={() => navigate('/')}
             />
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-sm">
               {description}
             </p>
-            {/* Social Icons */}
-            <div className="flex space-x-4 mb-8">
-              {socialLinksMap.map((item) => {
-                const defaults: Record<string, string> = {
-                  facebook: "https://www.facebook.com/slatexpos",
-                  twitter:  "https://twitter.com/slatexpos",
-                  instagram:"https://www.instagram.com/slatexpos/",
-                  linkedin: "https://www.linkedin.com/company/slatexpos",
-                };
-                return (
-                  <a
-                    key={item.label}
-                    href={defaults[item.key] || '#'}
-                    className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
-                    aria-label={item.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.icon}
-                  </a>
-                );
-              })}
-            </div>
-            {/* Copyright */}
 
-            <p className="text-gray-500 text-sm">
+            {/* Social icons */}
+            <div className="flex space-x-3 mb-8">
+              {[
+                { key: 'facebook',  Icon: Facebook  },
+                { key: 'twitter',   Icon: Twitter   },
+                { key: 'instagram', Icon: Instagram },
+                { key: 'linkedin',  Icon: Linkedin  },
+              ].map(({ key, Icon }) => (
+                <a
+                  key={key}
+                  href={socialLinks[key]}
+                  className="w-9 h-9 rounded-lg bg-white border border-gray-200 hover:border-orange-300 hover:bg-orange-50
+                    flex items-center justify-center transition-all duration-200 shadow-sm"
+                  aria-label={key}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon className="w-4 h-4 text-gray-500 hover:text-orange-500" />
+                </a>
+              ))}
+            </div>
+
+            <p className="text-gray-400 text-xs">
               © {new Date().getFullYear()} Slatex, Inc. All rights reserved.
             </p>
           </div>
 
-          {/* Products Column */}
+          {/* Products */}
           <div className="lg:col-span-1">
-            <h3 className="text-xl font-semibold text-white mb-6">Products</h3>
-            <ul className="space-y-2">
-              {productLinks.map((product) => (
-                <li key={product.url}>
-                  <a
-                    href={getProductUrl(product.url)}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {product.name}
+            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-5">Products</h3>
+            <ul className="space-y-2.5">
+              {defaultProductLinks.map((p) => (
+                <li key={p.url}>
+                  <a href={getProductUrl(p.url)}
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-sm">
+                    {p.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Industries Column */}
+          {/* Industries */}
           <div className="lg:col-span-1">
-            <h3 className="text-xl font-semibold text-white mb-6">Industries</h3>
-            <ul className="space-y-2">
-              {industryLinks.map((industry) => (
-                <li key={industry.name}>
-                  <a
-                    href={getIndustryUrl(industry.url)}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {industry.name}
+            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-5">Industries</h3>
+            <ul className="space-y-2.5">
+              {defaultIndustryLinks.map((i) => (
+                <li key={i.name}>
+                  <a href={getIndustryUrl(i.url)}
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-sm">
+                    {i.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company Column */}
+          {/* Company */}
           <div className="lg:col-span-1">
-            <h3 className="text-xl font-semibold text-white mb-6">Company</h3>
-            <ul className="space-y-2">
-              {companyLinks.map((company) => (
-                <li key={company.name}>
-                  <a
-                    href={company.url}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {company.name}
+            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-5">Company</h3>
+            <ul className="space-y-2.5">
+              {defaultCompanyLinks.map((c) => (
+                <li key={c.name}>
+                  <a href={c.url}
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-sm">
+                    {c.name}
                   </a>
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="relative border-t border-indigo-100">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
+          <div className="flex gap-4">
+            <a href="/privacy"  className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Privacy</a>
+            <a href="/terms"    className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Terms</a>
+            <a href="/security" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Security</a>
           </div>
         </div>
       </div>

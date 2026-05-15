@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Check, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { subscribeToHeroPageData } from '../../services/firestoreService';
+import DemoModal from '../Common/DemoModal';
 
 /* ─── Types ────────────────────────────────────────────────────── */
 interface Feature {
@@ -147,10 +147,11 @@ function useReveal() {
 }
 
 /* ─── Single feature strip ──────────────────────────────────────── */
-const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => void }> = ({
+const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => void; index: number }> = ({
   feature,
   reverse,
   onCTA,
+  index,
 }) => {
   const { ref, visible } = useReveal();
 
@@ -160,12 +161,20 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
       className={`flex flex-col gap-10 items-center py-16 lg:py-24 ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0px)' : 'translateY(50px)',
-        transition: 'opacity 0.75s ease-out, transform 0.75s ease-out',
+        transform: visible ? 'translateY(0px)' : 'translateY(60px)',
+        transition: `opacity 0.8s ease-out, transform 0.8s ease-out`,
+        transitionDelay: visible ? '0ms' : '0ms',
       }}
     >
       {/* ── Image ── */}
-      <div className="w-full lg:w-1/2 flex-shrink-0">
+      <div className="w-full lg:w-1/2 flex-shrink-0"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateX(0px) scale(1)' : `translateX(${reverse ? '40px' : '-40px'}) scale(0.96)`,
+          transition: 'opacity 0.9s ease-out, transform 0.9s ease-out',
+          transitionDelay: visible ? '100ms' : '0ms',
+        }}
+      >
         <div
           className={`
             relative rounded-2xl overflow-hidden
@@ -188,7 +197,15 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
       </div>
 
       {/* ── Text ── */}
-      <div className={`w-full lg:w-1/2 ${reverse ? 'lg:pr-8 xl:pr-16' : 'lg:pl-8 xl:pl-16'}`}>
+      <div
+        className={`w-full lg:w-1/2 ${reverse ? 'lg:pr-8 xl:pr-16' : 'lg:pl-8 xl:pl-16'}`}
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateX(0px)' : `translateX(${reverse ? '-40px' : '40px'})`,
+          transition: 'opacity 0.9s ease-out, transform 0.9s ease-out',
+          transitionDelay: visible ? '200ms' : '0ms',
+        }}
+      >
         {/* Feature number — decorative */}
         <p className="text-7xl font-black text-gray-100 leading-none select-none mb-2 -ml-1">
           {feature.number}
@@ -209,7 +226,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
               <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-50 flex items-center justify-center">
                 <Check className="w-3 h-3 text-primary-300" strokeWidth={3} />
               </span>
-              <span className="text-sm text-gray-400 font-normal tracking-wide">{b}</span>
+              <span className="text-sm text-gray-600 font-normal tracking-wider">{b}</span>
             </div>
           ))}
         </div>
@@ -238,7 +255,7 @@ const ScrollSection: React.FC<{
   const [features, setFeatures] = useState<Feature[]>(defaultFeatures);
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
-  const navigate = useNavigate();
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   /* Firestore subscription */
   useEffect(() => {
@@ -282,10 +299,11 @@ const ScrollSection: React.FC<{
 
   const handleCTA = (id: string) => {
     onButtonClick?.(id);
-    navigate('/contact');
+    setIsDemoOpen(true);
   };
 
   return (
+    <>
     <section className="bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -320,9 +338,9 @@ const ScrollSection: React.FC<{
               <FeatureStrip
                 feature={feature}
                 reverse={i % 2 !== 0}
+                index={i}
                 onCTA={() => handleCTA(feature.id)}
               />
-              {/* Subtle divider between strips (not after last) */}
               {i < features.length - 1 && (
                 <div className="border-t border-gray-100 mx-auto w-full" />
               )}
@@ -332,6 +350,10 @@ const ScrollSection: React.FC<{
 
       </div>
     </section>
+
+    {/* Demo modal — shared with header */}
+    <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
+  </>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 export interface BlackSectionProps {
   title?: string;
@@ -59,30 +58,11 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   useEffect(() => {
     AOS.init({
       duration: 900,
-      once: false, // Animation will trigger every time on scroll into view
+      once: false,
       offset: 60,
       easing: "ease-in-out",
     });
-
-    const unsubscribe = subscribeToHeroPageData((heroData) => {
-      if (heroData && heroData.blackSection) {
-        setData({
-          title: heroData.blackSection.title || defaultProps.title,
-          description: heroData.blackSection.description || defaultProps.description,
-          buttonText: heroData.blackSection.buttonText || defaultProps.buttonText,
-          imageSrc: heroData.blackSection.imageSrc || defaultProps.imageSrc,
-          imageAlt: heroData.blackSection.imageAlt || defaultProps.imageAlt,
-          trustIndicators: heroData.blackSection.trustIndicators && heroData.blackSection.trustIndicators.length > 0
-            ? heroData.blackSection.trustIndicators
-            : defaultProps.trustIndicators
-        });
-      }
-    });
-
-    return () => {
-      AOS.refresh();
-      unsubscribe();
-    };
+    return () => { AOS.refresh(); };
   }, []);
 
   return (

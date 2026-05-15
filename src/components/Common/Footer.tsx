@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { subscribeToFooterData, FooterData } from '../../services/firestoreService';
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [footerData, setFooterData] = useState<FooterData | null>(null);
 
-  useEffect(() => {
-    const unsubscribe = subscribeToFooterData((data) => {
-      setFooterData(data);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  // Default data (fallback)
   const defaultProductLinks = [
     { name: "Restaurant POS System", url: "restaurant-pos-system" },
     { name: "Kitchen Display", url: "kitchen-display" },
@@ -52,10 +42,10 @@ const Footer = () => {
     { key: 'linkedin', icon: <Linkedin className="w-5 h-5 text-white" />, label: "LinkedIn" },
   ];
 
-  const productLinks = footerData?.productLinks?.length ? footerData.productLinks : defaultProductLinks;
-  const industryLinks = footerData?.industryLinks?.length ? footerData.industryLinks : defaultIndustryLinks;
-  const companyLinks = footerData?.companyLinks?.length ? footerData.companyLinks : defaultCompanyLinks;
-  const description = footerData?.description || "Serve up seamless service with SlateX POS—your all‑in‑one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support. Ready to wow your guests and grow your business? Let’s get started today";
+  const productLinks  = defaultProductLinks;
+  const industryLinks = defaultIndustryLinks;
+  const companyLinks  = defaultCompanyLinks;
+  const description   = "Serve up seamless service with SlateX POS — your all-in-one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support. Ready to wow your guests and grow your business? Let's get started today";
 
   const getIndustryUrl = (url: string) => {
     if (url.startsWith('/')) return url;
@@ -89,41 +79,16 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="flex space-x-4 mb-8">
               {socialLinksMap.map((item) => {
-                const href = footerData?.socialLinks?.[item.key as keyof typeof footerData.socialLinks];
-                // If we have data but no link for this social, skip it? Or just #?
-                // Let's use the provided one if available, otherwise default hardcoded ones might be confusing if they cant change them.
-                // Actually, let's just render if it exists.
-                if (!href) return null;
-
-                return (
-                  <a
-                    key={item.label}
-                    href={href}
-                    className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
-                    aria-label={item.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.icon}
-                  </a>
-                );
-              })}
-              {/* Fallback if no footerData is loaded yet, show defaults? 
-                  The above logic will show nothing if footerData is null.
-                  Let's handle the initial state better.
-              */}
-              {!footerData && socialLinksMap.map((item) => {
-                // Hardcoded defaults for pre-load state or empty DB
-                const defaults: any = {
+                const defaults: Record<string, string> = {
                   facebook: "https://www.facebook.com/slatexpos",
-                  twitter: "https://twitter.com/slatexpos",
-                  instagram: "https://www.instagram.com/slatexpos/",
-                  linkedin: "https://www.linkedin.com/company/slatexpos"
+                  twitter:  "https://twitter.com/slatexpos",
+                  instagram:"https://www.instagram.com/slatexpos/",
+                  linkedin: "https://www.linkedin.com/company/slatexpos",
                 };
                 return (
                   <a
                     key={item.label}
-                    href={defaults[item.key]}
+                    href={defaults[item.key] || '#'}
                     className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
                     aria-label={item.label}
                     target="_blank"

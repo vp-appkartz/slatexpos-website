@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, Bot } from 'lucide-react';
-import { HardwarePageContent, subscribeToHeroPageData } from '../../services/firestoreService';
 
 /* ─── Scroll reveal ────────────────────────────────────────────── */
 function useReveal(threshold = 0.1) {
@@ -26,22 +25,9 @@ interface HardwareProps {
 }
 
 const Hardware: React.FC<HardwareProps> = (props) => {
-  const [pageData, setPageData] = React.useState<HardwarePageContent | null>(null);
   const { ref: headerRef, visible: headerVisible } = useReveal(0.2);
   const { ref: cardsRef,  visible: cardsVisible  } = useReveal(0.1);
   const { ref: csRef,     visible: csVisible     } = useReveal(0.1);
-
-  useEffect(() => {
-    const unsubscribe = subscribeToHeroPageData((data) => {
-      if (data && data.hardware) {
-        setPageData({
-          hardware: { title: 'Hardware', items: data.hardware.items },
-          solutions: data.hardware.solutions,
-        });
-      }
-    });
-    return () => unsubscribe();
-  }, []);
 
   /* ── Hardware data ── */
   const defaultHardwareItems = [
@@ -68,12 +54,9 @@ const Hardware: React.FC<HardwareProps> = (props) => {
     },
   ];
 
-  const hardwareItems    = props.items   || pageData?.hardware?.items    || defaultHardwareItems;
-  const hardwareTitle    = props.title   || pageData?.hardware?.title    || 'Hardware';
-  const hardwareSubtitle = props.subtitle
-    || (pageData?.hardware as any)?.description
-    || (pageData?.hardware as any)?.subtitle
-    || 'Powerful Tools. Seamless Experience.';
+  const hardwareItems    = props.items    || defaultHardwareItems;
+  const hardwareTitle    = props.title    || 'Hardware';
+  const hardwareSubtitle = props.subtitle || 'Powerful Tools. Seamless Experience.';
 
   /* ── Coming Soon data ── */
   const comingSoonFeatures = [

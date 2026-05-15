@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import DemoModal from './DemoModal';
-import { subscribeToHeaderData, HeaderData } from '../../services/firestoreService';
 
 /* ─── SVG icon container — always crisp, never blurry ──────────── */
 const ItemIcon: React.FC<{ image: string; title: string }> = ({ image, title }) => (
@@ -86,17 +85,8 @@ const Header: React.FC = () => {
     { image: '/icons/Bars & Pubs.svg',                  title: 'Bars & Pubs',             description: 'Tabs, happy hours & tip distribution made easy.' },
   ];
 
-  const [headerData, setHeaderData] = useState<HeaderData>({
-    productSections: defaultProductSections,
-    categoryItems:   defaultCategoryItems,
-  });
-
-  useEffect(() => {
-    const unsub = subscribeToHeaderData((data) => { if (data) setHeaderData(data); });
-    return () => unsub();
-  }, []);
-
-  const { productSections, categoryItems } = headerData;
+  const productSections = defaultProductSections;
+  const categoryItems   = defaultCategoryItems;
 
   /* ── "Book a Demo" CTA panel (reused in both dropdowns) ── */
   const DemoCTA = () => (
@@ -123,7 +113,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="bg-[url('/nav-bg.png')] bg-fill bg-no-repeat overflow-x-hidden">
+      <div className="bg-white overflow-x-hidden">
         <div className={`transition-all duration-300 ${
           isScrolled
             ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-2 sm:px-6 lg:px-8 xl:px-[150px]'

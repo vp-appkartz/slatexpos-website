@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { subscribeToHeroPageData, HeroPageContent } from "../../services/firestoreService";
 
 const aosAnimations = [
   "zoom-in-up",
@@ -34,15 +33,7 @@ const Contact: React.FC<ContactProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [dbData, setDbData] = useState<{ title: string; description: string } | null>(null);
-
   useEffect(() => {
-    const unsubscribe = subscribeToHeroPageData((data: HeroPageContent | null) => {
-      if (data?.cta) {
-        setDbData(data.cta);
-      }
-    });
-
     AOS.init({
       duration: 900,
       once: false, // Animation will trigger every time on scroll into view
@@ -50,7 +41,6 @@ const Contact: React.FC<ContactProps> = ({
       easing: "ease-in-out",
     });
     return () => {
-      unsubscribe();
       AOS.refresh();
     };
   }, []);
@@ -127,7 +117,7 @@ const Contact: React.FC<ContactProps> = ({
     }
   };
 
-  const displayTitle = title || dbData?.title || (
+  const displayTitle = title || (
     <>
       Ready to Run Your Restaurant
       <br />
@@ -135,7 +125,7 @@ const Contact: React.FC<ContactProps> = ({
     </>
   );
 
-  const displayDescription = description || dbData?.description || "Book a free demo. See SlateX in action on your device, with your menu. No commitment. No hardware purchase. Just a real conversation with a real person. We serve restaurants in Edmonton, Vancouver, Brandon, and across all of Canada.";
+  const displayDescription = description || "Book a free demo. See SlateX in action on your device, with your menu. No commitment. No hardware purchase. Just a real conversation with a real person. We serve restaurants in Edmonton, Vancouver, Brandon, and across all of Canada.";
 
   return (
     <section className="py-16 px-4">

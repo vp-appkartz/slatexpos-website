@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Check, ArrowRight } from 'lucide-react';
-import { subscribeToHeroPageData } from '../../services/firestoreService';
 import DemoModal from '../Common/DemoModal';
 
 /* ─── Types ────────────────────────────────────────────────────── */
@@ -246,42 +245,12 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
 const ScrollSection: React.FC<{
   onButtonClick?: (id: string) => void;
 }> = ({ onButtonClick }) => {
-  const [title, setTitle] = useState('Everything You Need to Run Your Restaurant');
-  const [subtitle, setSubtitle] = useState(
-    'No add-on fees. No feature tiers. Every feature below is included in your SlateX plan.'
-  );
-  const [features, setFeatures] = useState<Feature[]>(defaultFeatures);
+  const title    = 'Everything You Need to Run Your Restaurant';
+  const subtitle = 'No add-on fees. No feature tiers. Every feature below is included in your SlateX plan.';
+  const features = defaultFeatures;
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
-
-  /* Firestore subscription */
-  useEffect(() => {
-    const unsub = subscribeToHeroPageData((data) => {
-      if (data?.scroll) {
-        if (data.scroll.heroTitle) setTitle(data.scroll.heroTitle);
-        if (data.scroll.heroSubtitle) setSubtitle(data.scroll.heroSubtitle);
-        // If Firestore has features data, map it; otherwise keep defaults
-        if (data.scroll.sections?.length) {
-          setFeatures(
-            data.scroll.sections.map((s: any, i: number) => ({
-              id: s.id || String(i + 1),
-              number: String(i + 1).padStart(2, '0'),
-              tag: s.tag || s.subtitle || '',
-              title: s.title || s.subtitle || '',
-              description: s.description || '',
-              bullets: (s.bulletPoints || []).map((b: any) =>
-                typeof b === 'string' ? b : b.text
-              ),
-              imageSrc: s.imageSrc || `/home-about-${(i % 5) + 1}.png`,
-              imageAlt: s.imageAlt || s.title || '',
-            }))
-          );
-        }
-      }
-    });
-    return () => unsub();
-  }, []);
 
   /* Header reveal */
   useEffect(() => {

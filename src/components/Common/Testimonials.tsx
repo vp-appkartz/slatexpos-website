@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Star, MapPin } from 'lucide-react';
-import { subscribeToHeroPageData } from '../../services/firestoreService';
 
 /* ─── Types ────────────────────────────────────────────────────── */
 export interface TestimonialItem {
@@ -139,24 +138,9 @@ const Testimonial: React.FC<TestimonialsData> = ({
     },
   ];
 
-  const [dataTitle,    setDataTitle]    = useState(title);
-  const [dataSubtitle, setDataSubtitle] = useState(subtitle);
-  const [dataItems,    setDataItems]    = useState<TestimonialItem[]>(items || defaultTestimonials);
-
-  useEffect(() => {
-    const unsub = subscribeToHeroPageData((heroData) => {
-      if (heroData?.testimonials) {
-        setDataTitle(heroData.testimonials.title || title);
-        setDataSubtitle(heroData.testimonials.subtitle || subtitle);
-        if (heroData.testimonials.items?.length > 0) {
-          setDataItems(heroData.testimonials.items);
-        } else {
-          setDataItems(items || defaultTestimonials);
-        }
-      }
-    });
-    return () => unsub();
-  }, []);
+  const dataTitle    = title;
+  const dataSubtitle = subtitle;
+  const dataItems    = items || defaultTestimonials;
 
   const { ref: headerRef, visible: headerVisible } = useReveal(0.2);
   const { ref: trackRef,  visible: trackVisible  } = useReveal(0.1);

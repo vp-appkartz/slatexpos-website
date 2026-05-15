@@ -1,36 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoSlider from "../Common/LogoSlider";
-import { subscribeToHeroPageData, HeroPageContent } from "../../services/firestoreService";
 import DemoModal from "../Common/DemoModal";
 
 const Hero = () => {
-  const [heroData, setHeroData] = useState<HeroPageContent['hero'] | null>(null);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = subscribeToHeroPageData((data) => {
-      if (data && data.hero) {
-        setHeroData(data.hero);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const heading         = heroData?.heading         || "The POS That";
-  const highlightedText = heroData?.highlightedText || "Just Works.";
-  const suffixText      = heroData?.suffixText      || "";
-  const subheadline     = (heroData as any)?.subheadline
-    || "Cloud-based. Android-powered. Works offline.\nOne flat monthly fee — on hardware you may already own.";
-  const buttonText      = heroData?.buttonText      || "Book a Free Demo";
-  const heroImage       = heroData?.centerImage     || "/hero-home.webp";
+  const heading         = "The POS That";
+  const highlightedText = "Just Works.";
+  const subheadline     = "Cloud-based. Android-powered. Works offline.\nOne flat monthly fee — on hardware you may already own.";
+  const buttonText      = "Book a Free Demo";
+  const heroImage       = "/hero-home.webp";
 
   return (
-    <div className="relative bg-white overflow-hidden mt-20">
+    <div className="relative bg-white overflow-hidden">
 
       {/* ── Text block ── */}
-      <section className="pt-20 sm:pt-28 lg:pt-32 pb-10 text-center px-4">
+      <section className="pt-8 sm:pt-12 lg:pt-16 pb-10 text-center px-4">
 
         {/* Eyebrow */}
         <p className="text-sm font-semibold tracking-widest uppercase text-orange-500 mb-4">
@@ -48,7 +35,6 @@ const Hero = () => {
         >
           {heading}{" "}
           <span className="text-primary-300">{highlightedText}</span>
-          {suffixText ? <><br /><span className="text-gray-900">{suffixText}</span></> : null}
         </h1>
 
         {/* Subheadline */}

@@ -36,7 +36,7 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
     // Set once: false so animation triggers every time the element enters the viewport
     AOS.init({
       duration: 900,
-      once: false, // Animation will trigger every time on scroll into view
+      once: true,
       offset: 60,
       easing: "ease-in-out",
     });

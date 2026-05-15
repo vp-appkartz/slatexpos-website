@@ -58,7 +58,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   useEffect(() => {
     AOS.init({
       duration: 900,
-      once: false,
+      once: true,
       offset: 60,
       easing: "ease-in-out",
     });

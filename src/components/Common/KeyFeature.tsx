@@ -39,7 +39,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
     if (window.innerWidth >= 768) {
       AOS.init({
         duration: 900,
-        once: false,
+        once: true,
         offset: 60,
         easing: "ease-in-out",
       });

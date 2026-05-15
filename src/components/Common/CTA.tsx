@@ -36,7 +36,7 @@ const Contact: React.FC<ContactProps> = ({
   useEffect(() => {
     AOS.init({
       duration: 900,
-      once: false, // Animation will trigger every time on scroll into view
+      once: true,
       offset: 60,
       easing: "ease-in-out",
     });

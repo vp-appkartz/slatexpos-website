@@ -640,9 +640,9 @@ export const fineDiningData: CategoryPageData = {
     title: "Fine Dining",
     description: "Your guests expect precision. Your POS should deliver it. SlateX gives fine dining restaurants the tools to manage complex floor plans, multi-course orders, and table-side service — with the reliability your guests never have to think about.",
     buttonText: "Let's Connect",
-    mainImage: "/fine-dining-hero.png",
+    mainImage: "/Fullservices_Header.png",
     mainImageAlt: "Fine Dining Restaurant POS System",
-    deviceImage: "/fine-dining-device.png",
+    deviceImage: "",
     deviceImageAlt: "Fine Dining POS Device",
     deviceTitle: "Fine Dining",
     deviceDescription: "Premium hospitality solution",
@@ -699,32 +699,32 @@ export const fineDiningData: CategoryPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/categories/fine/fine-feature-1.png",
+        image: "/category/fsr/fsr-fe-1.png",
         title: "Wine & Beverage Management",
         description: "Comprehensive wine list management with detailed inventory tracking, pairing suggestions, and sommelier tools. Track vintage years, manage wine cellar inventory, and provide detailed wine information to enhance guest experience."
       },
       {
-        image: "/categories/fine/fine-feature-2.png",
+        image: "/category/fsr/fsr-fe-2.png",
         title: "Guest Profile Management",
         description: "Maintain detailed guest profiles including dining preferences, allergies, special occasions, and visit history. Personalize service and create memorable dining experiences with comprehensive customer relationship management."
       },
       {
-        image: "/categories/fine/fine-feature-3.png",
+        image: "/category/fsr/fsr-fe-3.png",
         title: "Course Timing & Service Flow",
         description: "Advanced kitchen timing system ensures perfect course sequencing and service flow. Coordinate multiple courses, special preparations, and dietary requirements with precision timing for exceptional dining experiences."
       },
       {
-        image: "/categories/fine/fine-feature-4.png",
+        image: "/category/fsr/fsr-fe-4.png",
         title: "Premium Reservation Management",
         description: "Sophisticated reservation system with table optimization, guest preferences, and special event management. Handle complex booking scenarios, private dining events, and VIP guest requirements seamlessly."
       },
       {
-        image: "/categories/fine/fine-feature-5.png",
+        image: "/category/fsr/fsr-fe-5.png",
         title: "Detailed Analytics & Insights",
         description: "In-depth reporting on guest preferences, menu performance, wine sales, and service metrics. Gain insights into dining trends, optimize menu pricing, and enhance overall restaurant performance with comprehensive analytics."
       },
       {
-        image: "/categories/fine/fine-feature-6.png",
+        image: "/category/fsr/fsr-fe-6.png",
         title: "Staff Performance Tracking",
         description: "Monitor service quality, track staff performance, and manage gratuities with detailed reporting. Ensure consistent service excellence and optimize staff scheduling for peak dining experiences."
       }
@@ -735,17 +735,17 @@ export const fineDiningData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/categories/fine/fine-tech-1.png",
+        image: "/category/fsr/fsr-wwo-1.png",
         title: "Restaurant POS System",
         description: "Premium POS solution designed for fine dining with advanced features for complex menu management, service coordination, and guest experience enhancement."
       },
       {
-        image: "/categories/fine/fine-tech-2.png",
+        image: "/category/fsr/fsr-wwo-2.png",
         title: "Kitchen Display System",
         description: "Sophisticated kitchen management with course timing, special preparation tracking, and seamless communication between front-of-house and kitchen staff."
       },
       {
-        image: "/categories/fine/fine-tech-3.png",
+        image: "/category/fsr/fsr-wwo-3.png",
         title: "Guest Management System",
         description: "Comprehensive guest relationship management with detailed profiles, preference tracking, and personalized service capabilities for memorable dining experiences."
       }

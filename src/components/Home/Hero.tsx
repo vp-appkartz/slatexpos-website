@@ -20,8 +20,8 @@ const Hero = () => {
       <div className="absolute top-1/2 -left-32 w-96 h-96 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
-      {/* ── Text block ── */}
-      <section className="pt-8 sm:pt-12 lg:pt-16 pb-10 text-center px-4">
+      {/* ── Text block — top padding clears the fixed header ── */}
+      <section className="pt-28 sm:pt-32 lg:pt-36 pb-10 text-center px-4">
 
         {/* Eyebrow */}
         <p className="text-sm font-semibold tracking-widest uppercase text-orange-500 mb-4">
@@ -80,7 +80,7 @@ const Hero = () => {
         <div
           className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
           style={{
-            background: "linear-gradient(to bottom, transparent 0%, white 100%)",
+            background: "linear-gradient(to bottom, transparent 0%, #f8f8f8 100%)",
           }}
         />
       </div>

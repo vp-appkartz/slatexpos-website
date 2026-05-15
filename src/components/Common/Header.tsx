@@ -113,14 +113,13 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="bg-white overflow-x-hidden">
-        <div className={`transition-all duration-300 ${
-          isScrolled
-            ? 'fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 px-2 sm:px-6 lg:px-8 xl:px-[150px]'
-            : 'py-2 sm:py-4 px-2 sm:px-6 lg:px-8 xl:px-[150px]'
-        }`}>
-          <header className={`bg-white shadow-xl transition-all duration-300 w-full p-2 sm:p-5 ${
-            isScrolled ? 'rounded-xl sm:rounded-2xl opacity-95' : 'rounded-xl sm:rounded-2xl opacity-100'
+      {/* Always-fixed header — floats over the hero */}
+      <div className="fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 px-2 sm:px-6 lg:px-8 xl:px-[150px] transition-all duration-300">
+        <div>
+          <header className={`transition-all duration-300 w-full p-2 sm:p-5 rounded-xl sm:rounded-2xl ${
+            isScrolled
+              ? 'bg-white shadow-xl opacity-95'
+              : 'bg-white/80 backdrop-blur-md shadow-sm'
           }`}>
             <div className="w-full">
               <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
@@ -243,8 +242,9 @@ const Header: React.FC = () => {
             </div>
           </header>
         </div>
+      </div>
 
-        {/* ── Products mega-menu ── */}
+      {/* ── Products mega-menu ── */}
         {activeDropdown === 'products' && (
           <div className="fixed left-0 right-0 z-40 top-[108px]" onClick={() => setActiveDropdown(null)}>
             <div className="px-4 sm:px-6 lg:px-8 xl:px-[150px] pt-2">
@@ -357,7 +357,6 @@ const Header: React.FC = () => {
             </div>
           </div>
         )}
-      </div>
 
       <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </>

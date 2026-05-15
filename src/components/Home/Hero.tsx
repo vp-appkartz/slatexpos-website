@@ -24,7 +24,7 @@ const Hero = () => {
   const subheadline     = (heroData as any)?.subheadline
     || "Cloud-based. Android-powered. Works offline.\nOne flat monthly fee — on hardware you may already own.";
   const buttonText      = heroData?.buttonText      || "Book a Free Demo";
-  const heroImage       = heroData?.centerImage     || "/hero-home.png";
+  const heroImage       = heroData?.centerImage     || "/hero-home.webp";
 
   return (
     <div className="relative bg-white overflow-hidden mt-20">

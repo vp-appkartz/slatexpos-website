@@ -1,38 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Menu, X, ChevronDown, Phone,
-  Monitor, ChefHat, CreditCard, BarChart2,
-  Globe, Smartphone, Tag, Gift,
-  Zap, Utensils, UtensilsCrossed, Truck,
-  Coffee, Pizza, Wine, Crown,
-} from 'lucide-react';
+import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import DemoModal from './DemoModal';
 import { subscribeToHeaderData, HeaderData } from '../../services/firestoreService';
 
-/* ─── Crisp icon container (replaces blurry PNGs) ──────────────── */
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
-  monitor: Monitor, 'chef-hat': ChefHat, 'credit-card': CreditCard, 'bar-chart': BarChart2,
-  globe: Globe, smartphone: Smartphone, tag: Tag, gift: Gift,
-  zap: Zap, utensils: Utensils, 'utensils-crossed': UtensilsCrossed, truck: Truck,
-  coffee: Coffee, pizza: Pizza, wine: Wine, crown: Crown,
-};
-
-const ItemIcon: React.FC<{ image: string; iconName?: string; title: string }> = ({ image, iconName, title }) => {
-  if (iconName && iconMap[iconName]) {
-    const Icon = iconMap[iconName];
-    return (
-      <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
-        <Icon className="w-6 h-6 text-primary-300" strokeWidth={1.6} />
-      </div>
-    );
-  }
-  return (
-    <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
-      <img src={image} alt={title} className="w-7 h-7 object-contain" />
-    </div>
-  );
-};
+/* ─── SVG icon container — always crisp, never blurry ──────────── */
+const ItemIcon: React.FC<{ image: string; title: string }> = ({ image, title }) => (
+  <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 p-2">
+    <img src={image} alt={title} className="w-full h-full object-contain" />
+  </div>
+);
 
 const Header: React.FC = () => {
   const [isMenuOpen,       setIsMenuOpen]       = useState(false);
@@ -75,38 +52,38 @@ const Header: React.FC = () => {
     {
       title: 'Restaurant Operations',
       items: [
-        { iconName: 'monitor',      image: '/prh1.png', title: 'Restaurant POS System',  description: 'All-in-one POS for orders, payments & operations.',         slug: 'restaurant-pos-system' },
-        { iconName: 'chef-hat',     image: '/prh2.png', title: 'Kitchen Display',         description: 'Real-time digital order tracking for your kitchen.',         slug: 'kitchen-display' },
-        { iconName: 'credit-card',  image: '/prh3.png', title: 'Payment Processing',      description: 'Accept all major payment types, fast & secure.',             slug: 'payment-processing' },
-        { iconName: 'bar-chart',    image: '/prh4.png', title: 'Reporting App',           description: 'Powerful insights into sales & performance.',                slug: 'reporting-app' },
+        { image: '/icons/Restuarant POS System.svg',    title: 'Restaurant POS System',  description: 'All-in-one POS for orders, payments & operations.',         slug: 'restaurant-pos-system' },
+        { image: '/icons/Kitchen Display System.svg',   title: 'Kitchen Display',         description: 'Real-time digital order tracking for your kitchen.',         slug: 'kitchen-display' },
+        { image: '/icons/Payment Processing.svg',       title: 'Payment Processing',      description: 'Accept all major payment types, fast & secure.',             slug: 'payment-processing' },
+        { image: '/icons/Reporting App.svg',            title: 'Reporting App',           description: 'Powerful insights into sales & performance.',                slug: 'reporting-app' },
       ],
     },
     {
       title: 'Customer Interaction',
       items: [
-        { iconName: 'globe',        image: '/prh5.png', title: 'Web Ordering',            description: 'Zero-commission orders from your branded website.',          slug: 'web-ordering' },
-        { iconName: 'smartphone',   image: '/prh6.png', title: 'Branded Mobile App',      description: 'Custom app for ordering, rewards & direct engagement.',      slug: 'mobile-ordering' },
+        { image: '/icons/Web Ordering.svg',             title: 'Web Ordering',            description: 'Zero-commission orders from your branded website.',          slug: 'web-ordering' },
+        { image: '/icons/Branded Mobile App.svg',       title: 'Branded Mobile App',      description: 'Custom app for ordering, rewards & direct engagement.',      slug: 'mobile-ordering' },
       ],
     },
     {
       title: 'Marketing Operations',
       items: [
-        { iconName: 'tag',          image: '/prh7.png', title: 'Loyalty & Promotion',     description: 'Tailored loyalty programs & automated promotions.',          slug: 'loyalty-promotion' },
-        { iconName: 'gift',         image: '/prh8.png', title: 'Gift Card',               description: 'Digital & physical gift cards to boost revenue.',            slug: 'gift-card' },
+        { image: '/icons/Loyalty & Promotions.svg',     title: 'Loyalty & Promotion',     description: 'Tailored loyalty programs & automated promotions.',          slug: 'loyalty-promotion' },
+        { image: '/icons/Giftcard.svg',                 title: 'Gift Card',               description: 'Digital & physical gift cards to boost revenue.',            slug: 'gift-card' },
       ],
     },
   ];
 
   /* ── Default Industries data ── */
   const defaultCategoryItems = [
-    { iconName: 'zap',              image: '/ih1.png', title: 'Quick-Service (QSR)',           description: 'Speed & accuracy for high-volume counters.' },
-    { iconName: 'utensils',         image: '/ih2.png', title: 'Casual Dining',                 description: 'Order splitting, modifiers & smooth table service.' },
-    { iconName: 'utensils-crossed', image: '/ih3.png', title: 'Full-Service Restaurant',       description: 'Table management, floor layout & gratuity tools.' },
-    { iconName: 'coffee',           image: '/ih4.png', title: 'Fast Casual',                   description: 'Kiosk support, mobile ordering & fast workflows.' },
-    { iconName: 'truck',            image: '/ih5.png', title: 'Food Trucks',                   description: 'Lightweight, offline-ready POS for on-the-go.' },
-    { iconName: 'pizza',            image: '/ih6.png', title: 'Pizzeria',                      description: 'Half-and-half toppings, modifiers & combos.' },
-    { iconName: 'coffee',           image: '/ih7.png', title: 'Café & Bakery',                 description: 'Quick item selection, loyalty & kitchen sync.' },
-    { iconName: 'wine',             image: '/ih8.png', title: 'Bars & Pubs',                   description: 'Tabs, happy hours & tip distribution made easy.' },
+    { image: '/icons/Quick Serve Resturants (QSR).svg', title: 'Quick-Service (QSR)',     description: 'Speed & accuracy for high-volume counters.' },
+    { image: '/icons/Casual Dining.svg',                title: 'Casual Dining',           description: 'Order splitting, modifiers & smooth table service.' },
+    { image: '/icons/Full Serve Restaurant.svg',        title: 'Full-Service Restaurant', description: 'Table management, floor layout & gratuity tools.' },
+    { image: '/icons/Fast Casual Restaurant.svg',       title: 'Fast Casual',             description: 'Kiosk support, mobile ordering & fast workflows.' },
+    { image: '/icons/Food Trucks.svg',                  title: 'Food Trucks',             description: 'Lightweight, offline-ready POS for on-the-go.' },
+    { image: '/icons/Pizzeria.svg',                     title: 'Pizzeria',                description: 'Half-and-half toppings, modifiers & combos.' },
+    { image: '/icons/Cafe & Bakery.svg',                title: 'Café & Bakery',           description: 'Quick item selection, loyalty & kitchen sync.' },
+    { image: '/icons/Bars & Pubs.svg',                  title: 'Bars & Pubs',             description: 'Tabs, happy hours & tip distribution made easy.' },
   ];
 
   const [headerData, setHeaderData] = useState<HeaderData>({
@@ -222,7 +199,7 @@ const Header: React.FC = () => {
                               {section.items.map((item, ii) => (
                                 <div key={ii} className="flex items-start gap-3 py-2 cursor-pointer"
                                   onClick={() => handleProductItemClick((item as any).slug || '')}>
-                                  <ItemIcon image={item.image} iconName={(item as any).iconName} title={item.title} />
+                                  <ItemIcon image={item.image} title={item.title} />
                                   <div>
                                     <h5 className="font-semibold text-gray-900 text-sm">{item.title}</h5>
                                     <p className="text-xs text-gray-500 mt-0.5">{item.description}</p>
@@ -247,7 +224,7 @@ const Header: React.FC = () => {
                           {categoryItems.map((item, i) => (
                             <div key={i} className="flex items-start gap-3 py-2 border-l-2 border-orange-200 pl-4 cursor-pointer"
                               onClick={() => handleCategoryItemClick(item.title)}>
-                              <ItemIcon image={item.image} iconName={(item as any).iconName} title={item.title} />
+                              <ItemIcon image={item.image} title={item.title} />
                               <div>
                                 <h5 className="font-semibold text-gray-900 text-sm">{item.title}</h5>
                                 <p className="text-xs text-gray-500 mt-0.5">{item.description}</p>
@@ -296,7 +273,7 @@ const Header: React.FC = () => {
                             {s.items.map((item, i) => (
                               <div key={i} className="flex items-start gap-3 group cursor-pointer"
                                 onClick={() => handleProductItemClick((item as any).slug || '')}>
-                                <ItemIcon image={item.image} iconName={(item as any).iconName} title={item.title} />
+                                <ItemIcon image={item.image} title={item.title} />
                                 <div>
                                   <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
                                   <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
@@ -319,7 +296,7 @@ const Header: React.FC = () => {
                               {s2.items.map((item, i) => (
                                 <div key={i} className="flex items-start gap-3 group cursor-pointer"
                                   onClick={() => handleProductItemClick((item as any).slug || '')}>
-                                  <ItemIcon image={item.image} iconName={(item as any).iconName} title={item.title} />
+                                  <ItemIcon image={item.image} title={item.title} />
                                   <div>
                                     <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
                                     <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
@@ -334,7 +311,7 @@ const Header: React.FC = () => {
                               {s3.items.map((item, i) => (
                                 <div key={i} className="flex items-start gap-3 group cursor-pointer"
                                   onClick={() => handleProductItemClick((item as any).slug || '')}>
-                                  <ItemIcon image={item.image} iconName={(item as any).iconName} title={item.title} />
+                                  <ItemIcon image={item.image} title={item.title} />
                                   <div>
                                     <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
                                     <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
@@ -372,7 +349,7 @@ const Header: React.FC = () => {
                         {categoryItems.map((item, i) => (
                           <div key={i} className="flex items-start gap-3 group cursor-pointer"
                             onClick={() => handleCategoryItemClick(item.title)}>
-                            <ItemIcon image={item.image} iconName={(item as any).iconName} title={item.title} />
+                            <ItemIcon image={item.image} title={item.title} />
                             <div>
                               <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
                               <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>

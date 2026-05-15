@@ -31,6 +31,8 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
       className={`relative overflow-hidden py-20 sm:py-24 ${className}`}
       style={{
         background: 'linear-gradient(135deg, #eef2ff 0%, #ede9fe 35%, #faf5ff 65%, #f0f4ff 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
+        maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
       }}
     >
       {/* Decorative orbs */}

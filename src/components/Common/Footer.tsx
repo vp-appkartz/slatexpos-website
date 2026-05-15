@@ -52,6 +52,8 @@ const Footer = () => {
       className="relative overflow-hidden"
       style={{
         background: 'linear-gradient(160deg, #fdf8ff 0%, #f5f3ff 35%, #eef2ff 65%, #f5f3ff 85%, #fdf8ff 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 6%, black 100%)',
+        maskImage: 'linear-gradient(to bottom, transparent 0%, black 6%, black 100%)',
       }}
     >
       {/* Decorative orbs */}

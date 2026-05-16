@@ -31,7 +31,7 @@ const defaultFeatures: Feature[] = [
       'Drag & Drop Floor Management',
       'Dynamic Invoice & KOT Layout',
     ],
-    imageSrc: '/homescreen-1.webp',
+    imageSrc: '/homescreen2.png',
     imageAlt: 'SlateX POS running on Android tablet',
   },
   {
@@ -172,12 +172,26 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
           transitionDelay: visible ? '100ms' : '0ms',
         }}
       >
-        <div className={`${reverse ? 'lg:ml-auto' : ''}`}>
+        <div className={`relative flex items-center justify-center ${reverse ? 'lg:ml-auto' : ''}`}>
+          {index === 0 && (
+            <style>{`
+              @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-14px); }
+              }
+              .img-float { animation: float 5s ease-in-out infinite; }
+            `}</style>
+          )}
           <img
             src={feature.imageSrc}
             alt={feature.imageAlt}
-            className="w-full h-auto object-contain"
-            style={{ mixBlendMode: 'multiply' }}
+            className={`relative w-full h-auto object-contain${index === 0 ? ' img-float' : ''}`}
+            style={{
+              mixBlendMode: 'multiply',
+              ...(index === 0 && {
+                filter: 'drop-shadow(0 32px 48px rgba(249,110,77,0.18)) drop-shadow(0 8px 20px rgba(99,102,241,0.10))',
+              }),
+            }}
           />
         </div>
       </div>

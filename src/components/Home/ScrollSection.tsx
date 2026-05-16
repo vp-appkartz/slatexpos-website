@@ -217,7 +217,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
         </p>
 
         {/* Bullet grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0.5 mb-8">
           {feature.bullets.map((b) => (
             <div key={b} className="flex items-center gap-2.5">
               <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-50 flex items-center justify-center">

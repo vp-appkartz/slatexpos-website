@@ -31,7 +31,7 @@ const defaultFeatures: Feature[] = [
       'Drag & Drop Floor Management',
       'Dynamic Invoice & KOT Layout',
     ],
-    imageSrc: '/home-about-1.png',
+    imageSrc: '/homescreen-1.webp',
     imageAlt: 'SlateX POS running on Android tablet',
   },
   {

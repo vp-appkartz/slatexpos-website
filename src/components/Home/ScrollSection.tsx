@@ -155,7 +155,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
   return (
     <div
       ref={ref}
-      className={`flex flex-col gap-10 items-center py-16 lg:py-24 ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
+      className={`flex flex-col gap-10 items-center py-8 lg:py-12 ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0px)' : 'translateY(60px)',

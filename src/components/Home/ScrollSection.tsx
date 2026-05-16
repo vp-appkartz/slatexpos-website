@@ -177,6 +177,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
             src={feature.imageSrc}
             alt={feature.imageAlt}
             className="w-full h-auto object-contain"
+            style={{ mixBlendMode: 'multiply' }}
           />
         </div>
       </div>

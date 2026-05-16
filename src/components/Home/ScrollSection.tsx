@@ -172,16 +172,12 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
           transitionDelay: visible ? '100ms' : '0ms',
         }}
       >
-        <div className={`relative transition-transform duration-500 hover:scale-[1.02] ${reverse ? 'lg:ml-auto' : ''}`}>
+        <div className={`${reverse ? 'lg:ml-auto' : ''}`}>
           <img
             src={feature.imageSrc}
             alt={feature.imageAlt}
             className="w-full h-auto object-contain"
           />
-          {/* Subtle orange corner accent */}
-          <div className="absolute top-4 left-4 bg-primary-300 text-white text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
-            {feature.tag}
-          </div>
         </div>
       </div>
 

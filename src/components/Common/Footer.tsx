@@ -76,7 +76,7 @@ const Footer = () => {
               className="h-8 sm:h-9 lg:h-10 mb-5 w-auto cursor-pointer"
               onClick={() => navigate('/')}
             />
-            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-sm">
+            <p className="text-gray-500 text-base leading-relaxed mb-8 max-w-sm">
               {description}
             </p>
 
@@ -102,19 +102,19 @@ const Footer = () => {
               ))}
             </div>
 
-            <p className="text-gray-400 text-xs">
+            <p className="text-gray-400 text-sm">
               © {new Date().getFullYear()} Slatex, Inc. All rights reserved.
             </p>
           </div>
 
           {/* Products */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-5">Products</h3>
+            <h3 className="text-base font-bold text-gray-900 uppercase tracking-widest mb-5">Products</h3>
             <ul className="space-y-2.5">
               {defaultProductLinks.map((p) => (
                 <li key={p.url}>
                   <a href={getProductUrl(p.url)}
-                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-sm">
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base">
                     {p.name}
                   </a>
                 </li>
@@ -124,12 +124,12 @@ const Footer = () => {
 
           {/* Industries */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-5">Industries</h3>
+            <h3 className="text-base font-bold text-gray-900 uppercase tracking-widest mb-5">Industries</h3>
             <ul className="space-y-2.5">
               {defaultIndustryLinks.map((i) => (
                 <li key={i.name}>
                   <a href={getIndustryUrl(i.url)}
-                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-sm">
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base">
                     {i.name}
                   </a>
                 </li>
@@ -139,12 +139,12 @@ const Footer = () => {
 
           {/* Company */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-5">Company</h3>
+            <h3 className="text-base font-bold text-gray-900 uppercase tracking-widest mb-5">Company</h3>
             <ul className="space-y-2.5">
               {defaultCompanyLinks.map((c) => (
                 <li key={c.name}>
                   <a href={c.url}
-                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-sm">
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base">
                     {c.name}
                   </a>
                 </li>
@@ -157,11 +157,11 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="relative border-t border-indigo-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
+          <p className="text-sm text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
           <div className="flex gap-4">
-            <a href="/privacy"  className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Privacy</a>
-            <a href="/terms"    className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Terms</a>
-            <a href="/security" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Security</a>
+            <a href="/privacy"  className="text-sm text-gray-400 hover:text-gray-600 transition-colors">Privacy</a>
+            <a href="/terms"    className="text-sm text-gray-400 hover:text-gray-600 transition-colors">Terms</a>
+            <a href="/security" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">Security</a>
           </div>
         </div>
       </div>

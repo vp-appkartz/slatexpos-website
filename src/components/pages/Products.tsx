@@ -194,7 +194,7 @@ const DynamicProductPage: React.FC = () => {
       />
 
       <FAQSection
-        faqs={productData.faqSection.faqs}
+        faqs={productData.faqSection.faqs?.slice(0, 5)}
       />
       <Contact
         title={sharedData?.cta?.title}

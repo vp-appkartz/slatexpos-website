@@ -1,84 +1,208 @@
+import React from "react";
+import {
+  Utensils,
+  Coffee,
+  Pizza,
+  ShoppingBag,
+  Truck,
+  Wine,
+} from "lucide-react";
+
+const industries = [
+  { icon: Utensils, label: "Full-Service" },
+  { icon: Coffee, label: "Café & Bakery" },
+  { icon: Pizza, label: "Pizzeria" },
+  { icon: ShoppingBag, label: "Fast Casual" },
+  { icon: Truck, label: "Food Trucks" },
+  { icon: Wine, label: "Bars & Pubs" },
+];
+
 const FastCasualSection = () => {
-    return (
-      <section
-        className="min-h-screen flex items-center pt-28 sm:pt-32 lg:pt-28 pb-10 sm:pb-14 lg:pb-20"
+  return (
+    <section className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-20 sm:pb-24 lg:pb-28">
+      {/* ── Deep gradient background ── */}
+      <div
+        className="absolute inset-0"
         style={{
-          backgroundImage: "url('/bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          background:
+            "linear-gradient(135deg, #0f0c1e 0%, #12102b 30%, #0d1928 65%, #1a0e1f 100%)",
         }}
+      />
+
+      {/* ── Glow orbs ── */}
+      <div
+        className="absolute top-[-120px] right-[-80px] w-[560px] h-[560px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(249,110,77,0.22) 0%, transparent 68%)",
+          filter: "blur(48px)",
+        }}
+      />
+      <div
+        className="absolute bottom-[-60px] left-[-60px] w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)",
+          filter: "blur(48px)",
+        }}
+      />
+
+      {/* ── Dot grid ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          opacity: 0.045,
+        }}
+      />
+
+      {/* ── Background watermark ── */}
+      <div
+        className="absolute right-[-20px] top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
+        aria-hidden="true"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 relative z-10">
-            {/* Left Content */}
-            <div className="col-span-1 flex flex-col justify-center order-2 lg:order-1">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[48px] font-semibold text-gray-800 leading-tight lg:leading-[100%] tracking-[0.02em]">
-                Cafes & Bakeries
-              </h1>
-              <p className="font-medium text-base sm:text-lg lg:text-xl xl:text-[20px] text-gray-600 leading-relaxed lg:leading-8 tracking-[0.04em] max-w-lg mt-4 sm:mt-6">
-                Rorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-                turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus
-                nec fringilla accumsan, risus sem sollicitudin lacus, ut
-              </p>
-              <button className="bg-orange-500 hover:bg-orange-600 w-fit mt-4 sm:mt-5 text-white font-bold text-sm leading-[100%] tracking-[0.04em] px-6 sm:px-8 lg:px-[40px] py-3 sm:py-4 lg:py-[20px] rounded-[10px] transition-all duration-300">
-                Let's Connect
-              </button>
-            </div>
-  
-            {/* Right Visual Section */}
-            <div className="relative flex items-center justify-center order-1 lg:order-2 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
-              {/* Main person eating image */}
-              <div className="w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] xl:max-w-[635px] h-[240px] sm:h-[320px] lg:h-[400px] xl:h-[496px] rounded-2xl overflow-hidden z-30 opacity-100 flex items-center">
-                <img
-                  src="/banner1.png"
-                  alt="Person eating"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-  
-              {/* Laptop screen */}
-              <div className="absolute z-30 top-[60px] sm:top-[100px] lg:top-[120px] xl:top-[160px] right-[10px] sm:right-[20px] lg:right-[30px] xl:right-[50px] rounded-[12px] bg-white opacity-100 shadow-[0_8px_32px_rgba(0,0,0,0.12)] w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[250px] h-[220px] sm:h-[230px] lg:h-[260px] xl:h-[350px] flex flex-col  border-2 border-[#e0e7ef]">
-                <div className="mt-1 lg:mt-2 p-1 sm:p-2">
-                  <img
-                    src="/cafe-device.png"
-                    alt="Cafés & Bakeries POS Device"
-                    className="w-[100%] object-cover"
-                  />
-                </div>
-                <div className="flex flex-col mx-1 sm:mx-2  sm:p-2">
-                  <h3 className="font-bold text-xs sm:text-sm leading-[100%] tracking-[0.02em]  text-left">
-                    Cafés & Bakeries
-                  </h3>
-                  <p className="font-medium text-[10px] sm:text-xs leading-[100%] tracking-[0.04em] p-1">
-                    Rorem ipsum dolor
-                  </p>
-                </div>
-              </div>
-  
-              {/* Cafe text in background style */}
-              <span
-                className="absolute left-[-20px] sm:left-[-40px] lg:left-[-60px] bottom-[-20px] sm:bottom-[-40px] lg:bottom-[-60px] z-40 select-none pointer-events-none"
-                aria-hidden="true"
-              >
-                <span
-                  className="font-extrabold text-[60px] sm:text-[80px] lg:text-[120px] xl:text-[150px] text-white/40 drop-shadow-lg z-40 tracking-tight leading-none mx-3"
-                  style={{
-                    WebkitTextStroke: "2px #fff",
-                    color: "transparent",
-                    textShadow: "0 4px 32px rgba(0,0,0,0.08)",
-                    letterSpacing: "-0.04em",
-                    lineHeight: "1",
-                  }}
-                >
-                  Cafe
-                </span>
+        <span
+          style={{
+            fontSize: "clamp(80px, 13vw, 200px)",
+            fontWeight: 900,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            color: "transparent",
+            WebkitTextStroke: "1.5px rgba(255,255,255,0.05)",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Industries
+        </span>
+      </div>
+
+      {/* ── Content ── */}
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left */}
+          <div className="order-2 lg:order-1">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary-300">
+                Who We Serve
               </span>
+            </div>
+
+            <h1
+              className="font-bold text-white leading-[1.18] mb-5"
+              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
+            >
+              Built for Every Restaurant Type
+            </h1>
+
+            <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+              From bustling quick-service counters to fine-dining rooms, SlateX POS adapts to your workflow — not the other way around. One platform, every service style.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-5">
+              <a
+                href="#contact"
+                className="bg-primary-300 hover:bg-orange-600 text-white font-bold text-base px-7 py-3.5 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                style={{ boxShadow: "0 8px 32px rgba(249,110,77,0.38)" }}
+              >
+                Let's Connect
+              </a>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.7)]" />
+                <span className="text-white/45 text-sm font-medium">
+                  No credit card required
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: industry icon grid */}
+          <div className="order-1 lg:order-2">
+            <div className="relative">
+              {/* Outer glow */}
+              <div
+                className="absolute inset-[-24px] rounded-[36px] pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(249,110,77,0.28) 0%, rgba(139,92,246,0.18) 100%)",
+                  filter: "blur(28px)",
+                  opacity: 0.65,
+                }}
+              />
+
+              {/* Glass grid card */}
+              <div
+                className="relative rounded-3xl p-6 sm:p-8"
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.13)",
+                  backdropFilter: "blur(20px)",
+                  boxShadow:
+                    "0 40px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12)",
+                }}
+              >
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  {industries.map(({ icon: Icon, label }) => (
+                    <div
+                      key={label}
+                      className="flex flex-col items-center gap-3 p-4 rounded-2xl transition-all duration-200 hover:-translate-y-1 cursor-default"
+                      style={{
+                        background: "rgba(255,255,255,0.05)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                      }}
+                    >
+                      <div
+                        className="w-11 h-11 rounded-xl flex items-center justify-center"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(249,110,77,0.25) 0%, rgba(249,110,77,0.08) 100%)",
+                          border: "1px solid rgba(249,110,77,0.3)",
+                        }}
+                      >
+                        <Icon className="w-5 h-5 text-primary-300" />
+                      </div>
+                      <span className="text-white/75 text-sm font-medium text-center leading-tight">
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Stats strip */}
+                <div className="mt-6 pt-5 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
+                  {[
+                    { value: "500+", label: "Restaurants" },
+                    { value: "99.9%", label: "Uptime" },
+                    { value: "24/7", label: "Support" },
+                  ].map((s) => (
+                    <div key={s.label}>
+                      <div className="text-xl sm:text-2xl font-bold text-white">
+                        {s.value}
+                      </div>
+                      <div className="text-white/45 text-xs sm:text-sm font-medium">
+                        {s.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-    );
-  };
-  
-  export default FastCasualSection;
+      </div>
+
+      {/* ── Bottom fade ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, transparent 0%, #fff8f3 100%)",
+        }}
+      />
+    </section>
+  );
+};
+
+export default FastCasualSection;

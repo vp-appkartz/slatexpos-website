@@ -224,22 +224,91 @@ const BlogSection = () => {
         keywords="POS blog, restaurant technology, retail trends, SlateX blog"
       />
       <div className="w-full min-h-screen">
-        {/* Hero Section */}
-        <div
-          className="w-full relative"
-          style={{
-            backgroundImage: "url(/bg.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <div className="max-w-[1200px] mx-auto px-2 sm:px-4 pt-32 sm:pt-36 pb-10 flex flex-col items-center text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Blog</h1>
-            <p className="max-w-xl text-gray-700 text-md font-medium sm:text-lg mb-2">
-              Explore our insightful articles packed with industry trends, expert advice, and practical solutions to elevate your knowledge.
+        {/* ── Hero Section ── */}
+        <div className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20">
+          {/* Background */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, #0f0c1e 0%, #12102b 30%, #0d1928 65%, #1a0e1f 100%)",
+            }}
+          />
+          {/* Glow orbs */}
+          <div
+            className="absolute top-[-100px] right-[-60px] w-[480px] h-[480px] rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(249,110,77,0.2) 0%, transparent 68%)",
+              filter: "blur(48px)",
+            }}
+          />
+          <div
+            className="absolute bottom-[-60px] left-[-40px] w-[360px] h-[360px] rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(139,92,246,0.16) 0%, transparent 70%)",
+              filter: "blur(48px)",
+            }}
+          />
+          {/* Dot grid */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+              opacity: 0.04,
+            }}
+          />
+          {/* Background watermark */}
+          <div
+            className="absolute right-[-12px] top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
+            aria-hidden="true"
+          >
+            <span
+              style={{
+                fontSize: "clamp(80px, 14vw, 200px)",
+                fontWeight: 900,
+                lineHeight: 1,
+                letterSpacing: "-0.04em",
+                color: "transparent",
+                WebkitTextStroke: "1.5px rgba(255,255,255,0.05)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Blog
+            </span>
+          </div>
+
+          {/* Content */}
+          <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary-300">
+                Insights & Tips
+              </span>
+              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
+            </div>
+            <h1
+              className="font-bold text-white mb-4"
+              style={{ fontSize: "clamp(30px, 5vw, 56px)", lineHeight: 1.18 }}
+            >
+              POS Insights & Resources
+            </h1>
+            <p className="max-w-xl text-white/60 text-base sm:text-lg leading-relaxed">
+              Industry trends, expert advice, and practical solutions to help your restaurant thrive.
             </p>
           </div>
+
+          {/* Bottom fade */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent 0%, #fff8f3 100%)",
+            }}
+          />
         </div>
 
         <div className="max-w-[1200px] mx-auto px-2 sm:px-4 py-8">

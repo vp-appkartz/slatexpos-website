@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import LogoSlider from "./LogoSlider";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
 
 interface HeroSectionProps {
   title: string;
@@ -10,11 +7,11 @@ interface HeroSectionProps {
   buttonAction?: () => void;
   mainImage: string;
   mainImageAlt?: string;
-  deviceImage: string;
+  deviceImage?: string;
   deviceImageAlt?: string;
-  deviceTitle: string;
-  deviceDescription: string;
-  backgroundText: string;
+  deviceTitle?: string;
+  deviceDescription?: string;
+  backgroundText?: string;
   backgroundImage?: string;
   className?: string;
 }
@@ -26,105 +23,176 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   buttonAction,
   mainImage,
   mainImageAlt = "Hero Image",
-  deviceImage,
-  deviceImageAlt = "Device Image",
-  deviceTitle,
-  deviceDescription,
   backgroundText,
-  backgroundImage = "/bg.png",
   className = "",
 }) => {
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  useEffect(() => {
-    // Check if device is mobile to prevent AOS animations on mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    // Only initialize AOS on larger screens to prevent mobile horizontal scrollbar issues
-    if (!isMobile) {
-      AOS.init({
-        duration: 900,
-        once: true,
-        offset: 60,
-        easing: "ease-in-out",
-      });
-    }
-
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [isMobile]);
-
   return (
-    <>
-      <section
+    <section
+      className={`relative overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-20 sm:pb-24 lg:pb-28 ${className}`}
+    >
+      {/* ── Deep gradient background ── */}
+      <div
+        className="absolute inset-0"
         style={{
-          backgroundImage: `url('${backgroundImage}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          overflow: "hidden",         /* prevent child mt-[140px] margin collapse */
+          background:
+            "linear-gradient(135deg, #0f0c1e 0%, #12102b 30%, #0d1928 65%, #1a0e1f 100%)",
         }}
-      >
-        <section
-          className={`flex items-center pt-28 sm:pt-32 lg:pt-36 pb-8 sm:pb-12 lg:pb-16 ${className}`}
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 xl:gap-24 relative z-10">
-              {/* Left Content */}
-              <div
-                className="col-span-1 flex flex-col justify-center order-2 lg:order-1"
-                {...(!isMobile && { "data-aos": "fade-right", "data-aos-delay": "100" })}
-              >
-                <h1
-                  className="text-2xl sm:text-3xl lg:text-4xl xl:text-[48px] font-bold text-gray-800 max-w-xs lg:max-w-none"
-                  style={{ lineHeight: "1.3" }}
-                >
-                  {title}
-                </h1>
-                <p
-                  className="font-semibold text-sm sm:text-base lg:text-lg xl:text-[20px] text-gray-600 leading-relaxed lg:leading-8 tracking-[0.04em] max-w-lg mt-2 sm:mt-3 lg:mt-4"
-                  {...(!isMobile && { "data-aos": "fade-up", "data-aos-delay": "250" })}
-                >
-                  {description}
-                </p>
-                <button
-                  onClick={buttonAction}
-                  className="bg-primary-300 hover:bg-orange-600 w-fit mt-3 sm:mt-4 lg:mt-5 text-white font-bold text-lg leading-[100%] tracking-[0.04em] px-6 sm:px-8 lg:px-[40px] py-2.5 sm:py-3 lg:py-[20px] rounded-[10px] transition-all duration-300 shadow-lg"
-                  {...(!isMobile && { "data-aos": "zoom-in", "data-aos-delay": "400" })}
-                >
-                  {buttonText}
-                </button>
-              </div>
+      />
 
-              {/* Right Visual Section */}
-              <div
-                className="relative flex items-center justify-center order-1 lg:order-2 min-h-[200px] sm:min-h-[250px] lg:min-h-[400px] xl:min-h-[500px]"
-                {...(!isMobile && { "data-aos": "fade-left", "data-aos-delay": "200" })}
+      {/* ── Orange glow — top right ── */}
+      <div
+        className="absolute top-[-120px] right-[-80px] w-[560px] h-[560px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(249,110,77,0.22) 0%, transparent 68%)",
+          filter: "blur(48px)",
+        }}
+      />
+
+      {/* ── Purple glow — bottom left ── */}
+      <div
+        className="absolute bottom-[-60px] left-[-60px] w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)",
+          filter: "blur(48px)",
+        }}
+      />
+
+      {/* ── Subtle dot grid ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          opacity: 0.045,
+        }}
+      />
+
+      {/* ── Large decorative background text ── */}
+      {backgroundText && (
+        <div
+          className="absolute right-[-24px] top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
+          aria-hidden="true"
+        >
+          <span
+            style={{
+              fontSize: "clamp(72px, 11vw, 180px)",
+              fontWeight: 900,
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
+              color: "transparent",
+              WebkitTextStroke: "1.5px rgba(255,255,255,0.06)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {backgroundText}
+          </span>
+        </div>
+      )}
+
+      {/* ── Main content grid ── */}
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-center">
+
+          {/* Left: text */}
+          <div className="order-2 lg:order-1">
+            {/* Accent line + label */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary-300">
+                SlateX POS
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1
+              className="font-bold text-white leading-[1.18] mb-5"
+              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
+            >
+              {title}
+            </h1>
+
+            {/* Description */}
+            <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+              {description}
+            </p>
+
+            {/* CTA row */}
+            <div className="flex flex-wrap items-center gap-5">
+              <button
+                onClick={buttonAction}
+                className="bg-primary-300 hover:bg-orange-600 text-white font-bold text-base px-7 py-3.5 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  boxShadow: "0 8px 32px rgba(249,110,77,0.38)",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.boxShadow =
+                    "0 12px 40px rgba(249,110,77,0.55)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.boxShadow =
+                    "0 8px 32px rgba(249,110,77,0.38)")
+                }
               >
-                {/* Main image */}
-                <div
-                  className="w-full rounded-2xl overflow-hidden z-30 opacity-100 flex items-center"
-                  {...(!isMobile && { "data-aos": "zoom-in-up", "data-aos-delay": "350" })}
-                >
-                  <img
-                    src={mainImage}
-                    alt={mainImageAlt}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+                {buttonText}
+              </button>
+
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.7)]" />
+                <span className="text-white/45 text-sm font-medium">
+                  No credit card required
+                </span>
               </div>
             </div>
           </div>
-        </section>
-        <div className="mt-4 sm:mt-6 lg:mt-8">
-          <LogoSlider />
+
+          {/* Right: image card */}
+          <div className="order-1 lg:order-2 flex items-center justify-center">
+            <div className="relative w-full max-w-[540px]">
+              {/* Outer glow halo */}
+              <div
+                className="absolute inset-[-24px] rounded-[36px] pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(249,110,77,0.28) 0%, rgba(139,92,246,0.18) 100%)",
+                  filter: "blur(28px)",
+                  opacity: 0.7,
+                }}
+              />
+
+              {/* Glass card */}
+              <div
+                className="relative rounded-3xl overflow-hidden"
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.13)",
+                  backdropFilter: "blur(20px)",
+                  boxShadow:
+                    "0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12)",
+                }}
+              >
+                <img
+                  src={mainImage}
+                  alt={mainImageAlt}
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/* ── Bottom fade to page canvas ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, #fff8f3 100%)",
+        }}
+      />
+    </section>
   );
 };
 

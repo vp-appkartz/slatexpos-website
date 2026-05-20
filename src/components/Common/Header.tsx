@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import DemoModal from './DemoModal';
+import { useDemoModal } from '../../contexts/DemoModalContext';
 
 /* ─── SVG icon container — always crisp, never blurry ──────────── */
 const ItemIcon: React.FC<{ image: string; title: string }> = ({ image, title }) => (
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   const [activeDropdown,   setActiveDropdown]   = useState<string | null>(null);
   const [isScrolled,       setIsScrolled]       = useState(false);
   const [mobileDropdown,   setMobileDropdown]   = useState<string | null>(null);
-  const [isDemoModalOpen,  setIsDemoModalOpen]  = useState(false);
+  const { openDemoModal } = useDemoModal();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
         Have questions or need assistance? We're just a message away.
       </p>
       <button
-        onClick={() => { setActiveDropdown(null); setIsDemoModalOpen(true); }}
+        onClick={() => { setActiveDropdown(null); openDemoModal(); }}
         className="bg-primary-300 hover:bg-orange-600 text-white px-5 py-3 rounded-xl
           transition-all duration-200 font-semibold w-full text-sm
           hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
@@ -147,13 +147,14 @@ const Header: React.FC = () => {
                   </div>
                   <button className="text-black text-lg font-medium py-2" onClick={() => navigate('/hardware')}>Hardware</button>
                   <button className="text-black text-lg font-medium py-2" onClick={() => navigate('/pricing')}>Pricing</button>
+                  <button className="text-black text-lg font-medium py-2" onClick={() => navigate('/blog')}>Blog</button>
                 </nav>
 
                 {/* Right actions */}
                 <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                   <button
                     className="hidden sm:block relative group bg-white text-primary-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-base"
-                    onClick={() => setIsDemoModalOpen(true)}
+                    onClick={() => openDemoModal()}
                   >
                     <div className="absolute inset-0 bg-primary-300 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center" />
                     <span className="relative z-10">Get a Demo</span>
@@ -228,9 +229,11 @@ const Header: React.FC = () => {
                       className="text-gray-700 hover:bg-gray-50 py-3 px-4 rounded-lg text-left font-medium">Hardware</button>
                     <button onClick={() => { setIsMenuOpen(false); navigate('/pricing'); }}
                       className="text-gray-700 hover:bg-gray-50 py-3 px-4 rounded-lg text-left font-medium">Pricing</button>
+                    <button onClick={() => { setIsMenuOpen(false); navigate('/blog'); }}
+                      className="text-gray-700 hover:bg-gray-50 py-3 px-4 rounded-lg text-left font-medium">Blog</button>
 
                     <div className="px-4 py-3">
-                      <button onClick={() => setIsDemoModalOpen(true)}
+                      <button onClick={() => openDemoModal()}
                         className="relative group bg-white text-primary-300 px-6 py-3 rounded-full border border-primary-300 transition-all duration-300 font-semibold w-full overflow-hidden hover:text-white">
                         <div className="absolute inset-0 bg-primary-300 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
                         <span className="relative z-10">Get a Demo</span>
@@ -358,7 +361,6 @@ const Header: React.FC = () => {
           </div>
         )}
 
-      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </>
   );
 };

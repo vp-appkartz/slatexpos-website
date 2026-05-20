@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoSlider from "../Common/LogoSlider";
-import DemoModal from "../Common/DemoModal";
+import { useDemoModal } from "../../contexts/DemoModalContext";
 
 const Hero = () => {
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const { openDemoModal } = useDemoModal();
   const navigate = useNavigate();
 
   const heading         = "The POS That";
@@ -53,7 +52,7 @@ const Hero = () => {
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           {/* Primary — filled pill */}
           <button
-            onClick={() => setIsDemoOpen(true)}
+            onClick={openDemoModal}
             className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600 text-white font-semibold rounded-full px-7 py-3 text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
           >
             {buttonText}
@@ -90,7 +89,6 @@ const Hero = () => {
         <LogoSlider />
       </div>
 
-      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { useDemoModal } from "../../contexts/DemoModalContext";
 
 interface HeroSectionProps {
   title: string;
@@ -26,64 +27,75 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundText,
   className = "",
 }) => {
+  const { openDemoModal } = useDemoModal();
+  const handleCTA = buttonAction ?? openDemoModal;
+
   return (
     <section
-      className={`relative overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-20 sm:pb-24 lg:pb-28 ${className}`}
+      className={`relative overflow-hidden pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 ${className}`}
     >
-      {/* ── Deep gradient background ── */}
+      {/* ── Keyframe animations ── */}
+      <style>{`
+        @keyframes hsl {
+          from { opacity: 0; transform: translateX(-36px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes hsr {
+          from { opacity: 0; transform: translateX(36px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes hsfloat {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-14px); }
+        }
+        .hero-slide-left  { animation: hsl 0.65s cubic-bezier(0.22,1,0.36,1) both; }
+        .hero-slide-right { animation: hsr 0.65s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
+        .hero-float       { animation: hsfloat 6s ease-in-out infinite; }
+      `}</style>
+
+      {/* ── Subtle light gradient background ── */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(135deg, #0f0c1e 0%, #12102b 30%, #0d1928 65%, #1a0e1f 100%)",
+            "linear-gradient(135deg, #fffaf6 0%, #fafafa 45%, #f3f0ff 100%)",
         }}
       />
 
       {/* ── Orange glow — top right ── */}
       <div
-        className="absolute top-[-120px] right-[-80px] w-[560px] h-[560px] rounded-full pointer-events-none"
+        className="absolute -top-24 -right-24 w-[480px] h-[480px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(249,110,77,0.22) 0%, transparent 68%)",
-          filter: "blur(48px)",
+            "radial-gradient(circle, rgba(249,110,77,0.10) 0%, transparent 65%)",
+          filter: "blur(60px)",
         }}
       />
 
       {/* ── Purple glow — bottom left ── */}
       <div
-        className="absolute bottom-[-60px] left-[-60px] w-[420px] h-[420px] rounded-full pointer-events-none"
+        className="absolute -bottom-20 -left-20 w-[380px] h-[380px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)",
-          filter: "blur(48px)",
+            "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 68%)",
+          filter: "blur(60px)",
         }}
       />
 
-      {/* ── Subtle dot grid ── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-          opacity: 0.045,
-        }}
-      />
-
-      {/* ── Large decorative background text ── */}
+      {/* ── Watermark text ── */}
       {backgroundText && (
         <div
-          className="absolute right-[-24px] top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
+          className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
           aria-hidden="true"
         >
           <span
             style={{
-              fontSize: "clamp(72px, 11vw, 180px)",
+              fontSize: "clamp(72px, 12vw, 190px)",
               fontWeight: 900,
               lineHeight: 1,
               letterSpacing: "-0.04em",
               color: "transparent",
-              WebkitTextStroke: "1.5px rgba(255,255,255,0.06)",
+              WebkitTextStroke: "1.5px rgba(0,0,0,0.045)",
               whiteSpace: "nowrap",
             }}
           >
@@ -92,106 +104,96 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       )}
 
-      {/* ── Main content grid ── */}
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
+      {/* ── Bottom blur + fade into next section ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+        style={{
+          height: "160px",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%)",
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(249,249,251,0.92) 100%)",
+        }}
+      />
+
+      {/* ── Main content ── */}
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[150px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-center">
 
-          {/* Left: text */}
-          <div className="order-2 lg:order-1">
-            {/* Accent line + label */}
+          {/* Left — text (animates in from left) */}
+          <div className="order-2 lg:order-1 hero-slide-left">
+            {/* Accent label */}
             <div className="flex items-center gap-3 mb-5">
-              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
-              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary-300">
+              <div className="w-8 h-[3px] rounded-full bg-primary-300" />
+              <span className="text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-[0.16em]">
                 SlateX POS
               </span>
             </div>
 
             {/* Title */}
             <h1
-              className="font-bold text-white leading-[1.18] mb-5"
-              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
+              className="font-bold text-gray-900 leading-[1.18] mb-5"
+              style={{ fontSize: "clamp(26px, 3.8vw, 50px)" }}
             >
               {title}
             </h1>
 
             {/* Description */}
-            <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
               {description}
             </p>
 
             {/* CTA row */}
             <div className="flex flex-wrap items-center gap-5">
               <button
-                onClick={buttonAction}
-                className="bg-primary-300 hover:bg-orange-600 text-white font-bold text-base px-7 py-3.5 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                onClick={handleCTA}
+                className="bg-primary-300 hover:bg-orange-600 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
                 style={{
-                  boxShadow: "0 8px 32px rgba(249,110,77,0.38)",
+                  boxShadow: "0 6px 24px rgba(249,110,77,0.30)",
                 }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.boxShadow =
-                    "0 12px 40px rgba(249,110,77,0.55)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.boxShadow =
-                    "0 8px 32px rgba(249,110,77,0.38)")
-                }
               >
                 {buttonText}
               </button>
 
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.7)]" />
-                <span className="text-white/45 text-sm font-medium">
+                <span className="w-2 h-2 rounded-full bg-green-400" />
+                <span className="text-gray-400 text-sm font-medium">
                   No credit card required
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Right: image card */}
-          <div className="order-1 lg:order-2 flex items-center justify-center">
+          {/* Right — image (animates in from right, then floats) */}
+          <div className="order-1 lg:order-2 flex items-center justify-center hero-slide-right">
             <div className="relative w-full max-w-[540px]">
-              {/* Outer glow halo */}
+              {/* Soft shadow halo behind image */}
               <div
-                className="absolute inset-[-24px] rounded-[36px] pointer-events-none"
+                className="absolute inset-x-8 bottom-0 h-16 rounded-full pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(249,110,77,0.28) 0%, rgba(139,92,246,0.18) 100%)",
-                  filter: "blur(28px)",
-                  opacity: 0.7,
+                    "radial-gradient(ellipse, rgba(249,110,77,0.18) 0%, transparent 70%)",
+                  filter: "blur(20px)",
+                  transform: "translateY(8px)",
                 }}
               />
-
-              {/* Glass card */}
-              <div
-                className="relative rounded-3xl overflow-hidden"
+              <img
+                src={mainImage}
+                alt={mainImageAlt}
+                className="relative w-full h-auto object-contain hero-float"
                 style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.13)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow:
-                    "0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12)",
+                  filter:
+                    "drop-shadow(0 24px 48px rgba(0,0,0,0.10)) drop-shadow(0 6px 16px rgba(249,110,77,0.08))",
                 }}
-              >
-                <img
-                  src={mainImage}
-                  alt={mainImageAlt}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+              />
             </div>
           </div>
         </div>
       </div>
-
-      {/* ── Bottom fade to page canvas ── */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent 0%, #fff8f3 100%)",
-        }}
-      />
     </section>
   );
 };

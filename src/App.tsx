@@ -33,6 +33,7 @@ import BlogDetails from "./components/pages/BlogDetails";
 import { AuthProvider } from "./contexts/AuthContext";
 import { HardwarePageProvider } from "./contexts/HardwarePageContext";
 import { PricingProvider } from "./contexts/PricingContext";
+import { DemoModalProvider } from "./contexts/DemoModalContext";
 import AdminLogin from "./components/admin/Login";
 import AdminLayout from "./components/admin/AdminLayout";
 import Dashboard from "./components/admin/Dashboard";
@@ -288,16 +289,18 @@ const AppContent = () => {
 function App() {
   return (
     <AuthProvider>
-      <Toaster position="top-center" />
-      <HardwarePageProvider>
-        <PricingProvider>
-          <Router>
-            <ScrollToTop />
-            <ScrollFab />
-            <AppContent />
-          </Router>
-        </PricingProvider>
-      </HardwarePageProvider>
+      <DemoModalProvider>
+        <Toaster position="top-center" />
+        <HardwarePageProvider>
+          <PricingProvider>
+            <Router>
+              <ScrollToTop />
+              <ScrollFab />
+              <AppContent />
+            </Router>
+          </PricingProvider>
+        </HardwarePageProvider>
+      </DemoModalProvider>
     </AuthProvider>
   );
 }

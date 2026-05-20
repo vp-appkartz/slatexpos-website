@@ -1190,6 +1190,95 @@ export const loyaltyPromotionData: ProductPageData = {
 
 
 
+// ── Gift Card ──────────────────────────────────────────────────────────────────
+export const giftCardData: ProductPageData = {
+  slug: "gift-card",
+  meta: {
+    title: "Digital & Physical Gift Cards | SlateX POS",
+    description: "Boost revenue and drive new customers with branded digital and physical gift cards fully integrated into your SlateX POS.",
+    keywords: "restaurant gift cards, digital gift cards, POS gift card, SlateX gift card",
+  },
+  heroSection: {
+    title: "Gift Cards That Drive Revenue",
+    description: "Launch branded digital and physical gift cards in minutes. Customers can buy, redeem, and balance-check across every channel — with zero extra hardware.",
+    buttonText: "Let's Connect",
+    mainImage: "/loyalty-hero.png",
+    mainImageAlt: "SlateX Gift Card Management",
+    backgroundText: "GiftCard",
+    backgroundImage: "/bg.png",
+  },
+  numberSpeaks: {
+    title: "Gift Cards That Pay Off",
+    subtitle: "Real numbers from restaurants using SlateX gift cards",
+    stats: [
+      { value: "30%", description: "Avg. gift card overspend vs. card value", bgColor: "bg-orange-100" },
+      { value: "2×", description: "New customer acquisition vs. walk-ins", bgColor: "bg-purple-100" },
+      { value: "0%", description: "Commission on every gift card sale", bgColor: "bg-green-100" },
+      { value: "100%", description: "Integrated with POS, web & mobile app", bgColor: "bg-cyan-100" },
+    ],
+  },
+  keyFeatures: {
+    heading: "Everything Your Gift Card Program Needs",
+    subheading: "One platform. Zero complexity.",
+    features: [
+      {
+        image: "/products/promotion/promotion-fe-1.png",
+        title: "Instant Digital Delivery",
+        description: "Customers purchase gift cards online or in-store and receive them instantly via email or SMS — no physical card required.",
+      },
+      {
+        image: "/products/promotion/promotion-fe-2.png",
+        title: "Physical Cards Support",
+        description: "Print and sell branded physical gift cards. Activate at the POS, track balances in real time, and reload without any extra hardware.",
+      },
+      {
+        image: "/products/promotion/promotion-fe-3.png",
+        title: "Multi-Channel Redemption",
+        description: "Redeem gift cards at the POS terminal, through your website, or on the branded mobile app. Balance syncs instantly across all channels.",
+      },
+      {
+        image: "/products/promotion/promotion-fe-4.png",
+        title: "Custom Branding",
+        description: "Add your logo and brand colours to digital and physical cards. Give customers a premium experience that feels native to your restaurant.",
+      },
+      {
+        image: "/products/promotion/promotion-fe-5.png",
+        title: "Balance Management",
+        description: "Customers can check their remaining balance online, in the app, or at the counter. Staff can reload or void cards with a single tap.",
+      },
+      {
+        image: "/products/promotion/promotion-fe-6.png",
+        title: "Sales & Liability Reporting",
+        description: "Track outstanding gift card liability, redemption rates, and revenue in your SlateX dashboard. Full audit trail, zero guesswork.",
+      },
+    ],
+  },
+  faqSection: {
+    faqs: [
+      {
+        question: "Do I need extra hardware to accept gift cards?",
+        answer: "No. Gift cards are fully built into SlateX POS. Digital cards are redeemed by entering a code or scanning a QR; physical cards use the same card reader you already have for payments.",
+      },
+      {
+        question: "Can customers buy gift cards online?",
+        answer: "Yes. Your branded online ordering site and mobile app include a gift card purchase flow. Customers get their card delivered instantly by email or SMS.",
+      },
+      {
+        question: "Is there a fee per gift card transaction?",
+        answer: "No commission or per-transaction fee. Gift card functionality is included in your SlateX subscription — selling and redeeming cards costs you nothing extra.",
+      },
+      {
+        question: "What happens to unredeemed gift card balances?",
+        answer: "Your dashboard tracks outstanding gift card liability in real time. You can set expiry policies to comply with local regulations, and all balances are auditable at any time.",
+      },
+      {
+        question: "Can gift cards be used alongside loyalty points?",
+        answer: "Yes. A customer can pay with a gift card and still earn loyalty points on the same order. Both systems run natively inside SlateX POS with no manual steps.",
+      },
+    ],
+  },
+};
+
 // Centralized product data registry
 export const productRegistry: Record<string, ProductPageData> = {
   "restaurant-pos-system": restaurantPOSData,
@@ -1199,6 +1288,7 @@ export const productRegistry: Record<string, ProductPageData> = {
   "web-ordering": webOrderingData,
   "mobile-ordering": mobileOrderingData,
   "loyalty-promotion": loyaltyPromotionData,
+  "gift-card": giftCardData,
   // Add more products here as you create them
 };
 

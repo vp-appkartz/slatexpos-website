@@ -1,220 +1,190 @@
 import React, { useState, useEffect } from "react";
-import { ChevronDown, Calendar, User, Search, Check } from "lucide-react";
+import {
+  Search, Clock, ArrowRight, TrendingUp,
+  LayoutGrid, Zap, Pizza, Wine, Globe, Utensils, ShoppingCart, Cpu, Heart,
+} from "lucide-react";
 import Contact from "../Common/CTA";
 import SEO from "../Common/SEO";
 import { useNavigate } from "react-router-dom";
-import { getPublishedBlogs, getBlogsByCategory } from "../../services/blogService";
 import { BlogPost } from "../../types/blog";
+import { staticBlogPosts } from "../../Data/blogData";
 
-// Blog categories matching the Firebase data structure
+/* ── Category config ─────────────────────────────────────────────────── */
 const blogCategories = [
-  { name: "All", slug: "all" },
-  { name: "QSR", slug: "qsr" },
-  { name: "Pizzeria", slug: "pizzeria" },
-  { name: "Cafe n Bakery", slug: "cafe-n-bakery" },
-  { name: "Web Ordering", slug: "web-ordering" },
-  { name: "Casual Dining", slug: "casual-dining" },
-  { name: "Online Ordering", slug: "online-ordering" },
-  { name: "Technology", slug: "technology" },
-  { name: "Customer Experience", slug: "customer-experience" },
+  { name: "All",                slug: "all",                Icon: LayoutGrid  },
+  { name: "QSR",                slug: "qsr",                Icon: Zap         },
+  { name: "Pizzeria",           slug: "pizzeria",           Icon: Pizza       },
+  { name: "Fine Dining",        slug: "fine-dining",        Icon: Wine        },
+  { name: "Web Ordering",       slug: "web-ordering",       Icon: Globe       },
+  { name: "Casual Dining",      slug: "casual-dining",      Icon: Utensils    },
+  { name: "Online Ordering",    slug: "online-ordering",    Icon: ShoppingCart},
+  { name: "Technology",         slug: "technology",         Icon: Cpu         },
+  { name: "Customer Experience",slug: "customer-experience",Icon: Heart       },
 ];
 
-// Fallback static blog posts (your original design)
-const staticBlogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Boosting Profit Margins: The Strategic Role of POS Systems in Quick Service Restaurants",
-    excerpt: "Discover how modern POS systems can streamline operations, reduce costs, and increase profits for QSRs.",
-    content: "Discover how modern POS systems can streamline operations, reduce costs, and increase profits for QSRs through advanced analytics and automation.",
-    category: "QSR",
-    author: "Admin",
-    date: "July 5, 2023",
-    imageUrl: "/blog.png",
-    featured: true,
-    published: true,
-    createdAt: new Date("2023-07-05"),
-    updatedAt: new Date("2023-07-05"),
-    tags: ["POS", "QSR", "Technology"],
-    slug: "boosting-profit-margins-pos-systems-qsr"
-  },
-  {
-    id: "2",
-    title: "The Future of Restaurant Technology: AI-Powered POS Systems",
-    excerpt: "Explore how artificial intelligence is revolutionizing restaurant operations through intelligent POS systems.",
-    content: "Artificial Intelligence is transforming the restaurant industry, and POS systems are at the forefront of this technological revolution.",
-    category: "Technology",
-    author: "Admin",
-    date: "July 4, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-04"),
-    updatedAt: new Date("2023-07-04"),
-    tags: ["AI", "Technology", "POS"],
-    slug: "future-restaurant-technology-ai-pos"
-  },
-  {
-    id: "3",
-    title: "Maximizing Customer Satisfaction Through Digital Ordering",
-    excerpt: "Learn how digital ordering platforms enhance customer experience while increasing operational efficiency.",
-    content: "Digital ordering has become a cornerstone of modern restaurant operations, fundamentally changing how customers interact with food service businesses.",
-    category: "Customer Experience",
-    author: "Admin",
-    date: "July 3, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-03"),
-    updatedAt: new Date("2023-07-03"),
-    tags: ["Digital Ordering", "Customer Experience"],
-    slug: "maximizing-customer-satisfaction-digital-ordering"
-  },
-  {
-    id: "4",
-    title: "Pizza Restaurant POS: Streamlining Operations for Better Service",
-    excerpt: "Optimize your pizzeria operations with specialized POS features designed for pizza restaurants.",
-    content: "Pizza restaurants have unique operational needs that require specialized POS system features to maximize efficiency and customer satisfaction.",
-    category: "Pizzeria",
-    author: "Admin",
-    date: "July 2, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-02"),
-    updatedAt: new Date("2023-07-02"),
-    tags: ["Pizza", "POS", "Operations"],
-    slug: "pizza-restaurant-pos-streamlining-operations"
-  },
-  {
-    id: "5",
-    title: "Cafe & Bakery Management: Essential POS Features",
-    excerpt: "Discover the key POS features that help cafes and bakeries manage inventory, orders, and customer relationships.",
-    content: "Cafes and bakeries require specialized point-of-sale solutions that can handle their unique inventory management and customer service needs.",
-    category: "Cafe n Bakery",
-    author: "Admin",
-    date: "July 1, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-07-01"),
-    updatedAt: new Date("2023-07-01"),
-    tags: ["Cafe", "Bakery", "Management"],
-    slug: "cafe-bakery-management-pos-features"
-  },
-  {
-    id: "6",
-    title: "Web Ordering Integration: Seamless Online-to-Kitchen Workflow",
-    excerpt: "Learn how to integrate web ordering systems with your POS for a seamless operation from order to delivery.",
-    content: "Web ordering integration has become essential for restaurants looking to expand their reach and provide customers with convenient ordering options.",
-    category: "Web Ordering",
-    author: "Admin",
-    date: "June 30, 2023",
-    imageUrl: "/blog.png",
-    featured: false,
-    published: true,
-    createdAt: new Date("2023-06-30"),
-    updatedAt: new Date("2023-06-30"),
-    tags: ["Web Ordering", "Integration", "Workflow"],
-    slug: "web-ordering-integration-seamless-workflow"
-  }
-];
+/* ── Helpers ─────────────────────────────────────────────────────────── */
+const estimateReadTime = (content: string) =>
+  Math.max(1, Math.ceil(content.split(" ").length / 200));
 
+const formatDate = (date: Date | string) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric", month: "short", day: "numeric",
+  });
+
+/* ── Blog card ───────────────────────────────────────────────────────── */
+const BlogCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onClick }) => (
+  <article
+    onClick={onClick}
+    className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col"
+  >
+    {/* Image */}
+    <div className="relative overflow-hidden h-48">
+      <img
+        src={post.imageUrl}
+        alt={post.title}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.png"; }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+      {post.featured && (
+        <span className="absolute top-3 left-3 flex items-center gap-1 bg-primary-300 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+          <TrendingUp className="w-3 h-3" /> Featured
+        </span>
+      )}
+      <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">
+        {post.category}
+      </span>
+    </div>
+
+    {/* Body */}
+    <div className="p-5 flex flex-col flex-1">
+      <div className="flex items-center gap-3 text-xs text-gray-400 mb-3">
+        <span>{formatDate(post.date || post.createdAt)}</span>
+        <span className="w-1 h-1 rounded-full bg-gray-300" />
+        <span className="flex items-center gap-1">
+          <Clock className="w-3 h-3" />
+          {estimateReadTime(post.content)} min read
+        </span>
+      </div>
+      <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 line-clamp-2 group-hover:text-primary-300 transition-colors duration-200">
+        {post.title}
+      </h3>
+      <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+        {post.excerpt}
+      </p>
+      <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
+        <span className="text-xs text-gray-400 font-medium">By {post.author}</span>
+        <span className="flex items-center gap-1 text-primary-300 text-sm font-semibold group-hover:gap-2 transition-all duration-200">
+          Read More <ArrowRight className="w-3.5 h-3.5" />
+        </span>
+      </div>
+    </div>
+  </article>
+);
+
+/* ── Featured card ───────────────────────────────────────────────────── */
+const FeaturedCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onClick }) => (
+  <article
+    onClick={onClick}
+    className="group relative rounded-3xl overflow-hidden cursor-pointer mb-10 bg-white border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-300"
+  >
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      {/* Image */}
+      <div className="relative h-64 lg:h-auto overflow-hidden">
+        <img
+          src={post.imageUrl}
+          alt={post.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.png"; }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 lg:from-transparent lg:to-white" />
+      </div>
+      {/* Text */}
+      <div className="p-8 lg:p-10 flex flex-col justify-center">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="flex items-center gap-1 bg-primary-300/10 text-primary-300 text-xs font-bold px-3 py-1.5 rounded-full border border-primary-300/20">
+            <TrendingUp className="w-3 h-3" /> Featured
+          </span>
+          <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1.5 rounded-full">
+            {post.category}
+          </span>
+        </div>
+        <h2 className="font-bold text-gray-900 text-2xl lg:text-3xl leading-tight mb-4 group-hover:text-primary-300 transition-colors duration-200">
+          {post.title}
+        </h2>
+        <p className="text-gray-500 text-base leading-relaxed mb-6 line-clamp-3">
+          {post.excerpt}
+        </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3 text-sm text-gray-400">
+            <span>{formatDate(post.date || post.createdAt)}</span>
+            <span className="w-1 h-1 rounded-full bg-gray-300" />
+            <span className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5" />
+              {estimateReadTime(post.content)} min
+            </span>
+          </div>
+          <span className="flex items-center gap-1.5 text-primary-300 font-bold group-hover:gap-3 transition-all duration-200">
+            Read article <ArrowRight className="w-4 h-4" />
+          </span>
+        </div>
+      </div>
+    </div>
+  </article>
+);
+
+/* ── Main component ──────────────────────────────────────────────────── */
 const BlogSection = () => {
-  const [selectedSort, setSelectedSort] = useState("Newest");
-  const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [blogs, setBlogs] = useState<BlogPost[]>([]);
-  const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [search, setSearch]                     = useState("");
+  const [blogs, setBlogs]                       = useState<BlogPost[]>([]);
+  const [filteredBlogs, setFilteredBlogs]       = useState<BlogPost[]>([]);
+  const [loading, setLoading]                   = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchBlogs();
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    filterAndSortBlogs();
-  }, [blogs, search, selectedSort]);
+  useEffect(() => { fetchBlogs(); }, [selectedCategory]);
+  useEffect(() => { filterBlogs(); }, [blogs, search]);
 
   const fetchBlogs = async () => {
     setLoading(true);
-
     try {
-      // Try to fetch from Firebase first
-      let blogData: BlogPost[] = [];
-
-      // Import the getAllBlogs function to get both published and draft blogs for debugging
-      const { getAllBlogs } = await import('../../services/blogService');
-
-      if (selectedCategory === "All") {
-        // Get all blogs (including drafts) for debugging
-        const allBlogs = await getAllBlogs();
-        console.log('All blogs (including drafts):', allBlogs);
-
-        // Filter to only published blogs
-        blogData = allBlogs.filter(blog => blog.published);
-        console.log('Published blogs only:', blogData);
-      } else {
-        blogData = await getBlogsByCategory(selectedCategory);
-      }
-
-      console.log('Firebase blogs fetched:', blogData.length, blogData);
-
-      setBlogs(blogData);
-    } catch (firebaseError) {
-      console.error('Firebase fetch failed:', firebaseError);
-
-      // Fallback to static data on error
-      console.log('Firebase error, using static fallback blog data');
-      const fallbackData = selectedCategory === "All"
-        ? staticBlogPosts
-        : staticBlogPosts.filter(blog => blog.category === selectedCategory);
-
-      setBlogs(fallbackData);
+      const { getAllBlogs } = await import("../../services/blogService");
+      const all = await getAllBlogs();
+      // Merge: static posts always show; add any Firebase-only posts on top
+      const staticSlugs = new Set(staticBlogPosts.map((b) => b.slug));
+      const firebaseOnly = all.filter((b) => b.published && !staticSlugs.has(b.slug));
+      const merged = [...staticBlogPosts, ...firebaseOnly];
+      const filtered =
+        selectedCategory === "All"
+          ? merged
+          : merged.filter((b) => b.category === selectedCategory);
+      setBlogs(filtered);
+    } catch {
+      setBlogs(fallback());
     } finally {
       setLoading(false);
     }
   };
 
-  const filterAndSortBlogs = () => {
-    let filtered = blogs;
+  const fallback = () =>
+    selectedCategory === "All"
+      ? staticBlogPosts
+      : staticBlogPosts.filter((b) => b.category === selectedCategory);
 
-    // Filter by search term
-    if (search) {
-      filtered = filtered.filter(blog =>
-        blog.title.toLowerCase().includes(search.toLowerCase()) ||
-        blog.excerpt.toLowerCase().includes(search.toLowerCase()) ||
-        blog.content.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    // Sort blogs
-    filtered = [...filtered].sort((a, b) => {
-      switch (selectedSort) {
-        case "Newest":
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        case "Oldest":
-          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-        case "Popular":
-          // For now, sort by featured status, then by date
-          if (a.featured && !b.featured) return -1;
-          if (!a.featured && b.featured) return 1;
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        default:
-          return 0;
-      }
-    });
-
-    setFilteredBlogs(filtered);
+  const filterBlogs = () => {
+    if (!search.trim()) { setFilteredBlogs(blogs); return; }
+    const q = search.toLowerCase();
+    setFilteredBlogs(
+      blogs.filter(
+        (b) =>
+          b.title.toLowerCase().includes(q) ||
+          b.excerpt.toLowerCase().includes(q)
+      )
+    );
   };
 
-  const formatDate = (date: Date | string) => {
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+  const featuredPost = filteredBlogs.find((b) => b.featured);
+  const regularPosts = filteredBlogs.filter((b) => !b.featured || search);
 
   return (
     <>
@@ -223,280 +193,146 @@ const BlogSection = () => {
         description="Stay updated with the latest trends, tips, and insights in the restaurant and retail POS industry."
         keywords="POS blog, restaurant technology, retail trends, SlateX blog"
       />
-      <div className="w-full min-h-screen">
-        {/* ── Hero Section ── */}
-        <div className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20">
-          {/* Background */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(135deg, #0f0c1e 0%, #12102b 30%, #0d1928 65%, #1a0e1f 100%)",
-            }}
-          />
-          {/* Glow orbs */}
-          <div
-            className="absolute top-[-100px] right-[-60px] w-[480px] h-[480px] rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(249,110,77,0.2) 0%, transparent 68%)",
-              filter: "blur(48px)",
-            }}
-          />
-          <div
-            className="absolute bottom-[-60px] left-[-40px] w-[360px] h-[360px] rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(139,92,246,0.16) 0%, transparent 70%)",
-              filter: "blur(48px)",
-            }}
-          />
-          {/* Dot grid */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-              opacity: 0.04,
-            }}
-          />
-          {/* Background watermark */}
-          <div
-            className="absolute right-[-12px] top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
-            aria-hidden="true"
-          >
-            <span
-              style={{
-                fontSize: "clamp(80px, 14vw, 200px)",
-                fontWeight: 900,
-                lineHeight: 1,
-                letterSpacing: "-0.04em",
-                color: "transparent",
-                WebkitTextStroke: "1.5px rgba(255,255,255,0.05)",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Blog
-            </span>
-          </div>
 
-          {/* Content */}
-          <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
-              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary-300">
-                Insights & Tips
-              </span>
-              <div className="h-[3px] w-8 rounded-full bg-primary-300" />
-            </div>
-            <h1
-              className="font-bold text-white mb-4"
-              style={{ fontSize: "clamp(30px, 5vw, 56px)", lineHeight: 1.18 }}
-            >
-              POS Insights & Resources
-            </h1>
-            <p className="max-w-xl text-white/60 text-base sm:text-lg leading-relaxed">
-              Industry trends, expert advice, and practical solutions to help your restaurant thrive.
-            </p>
-          </div>
-
-          {/* Bottom fade */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent 0%, #fff8f3 100%)",
-            }}
-          />
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden pt-32 sm:pt-36 lg:pt-40 pb-16">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(135deg, #fffaf6 0%, #fafafa 45%, #f3f0ff 100%)" }}
+        />
+        <div
+          className="absolute -top-24 -right-16 w-[400px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(249,110,77,0.10) 0%, transparent 65%)", filter: "blur(60px)" }}
+        />
+        <div
+          className="absolute -bottom-16 -left-16 w-[340px] h-[340px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 68%)", filter: "blur(60px)" }}
+        />
+        {/* Watermark */}
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden"
+          aria-hidden
+        >
+          <span style={{ fontSize: "clamp(72px,14vw,200px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "transparent", WebkitTextStroke: "1.5px rgba(0,0,0,0.04)", whiteSpace: "nowrap" }}>
+            Blog
+          </span>
         </div>
+        {/* Bottom blur */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+          style={{ height: "160px", backdropFilter: "blur(18px)", WebkitBackdropFilter: "blur(18px)", maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%)", background: "linear-gradient(to bottom, transparent 0%, rgba(249,249,251,0.92) 100%)" }}
+        />
 
-        <div className="max-w-[1200px] mx-auto px-2 sm:px-4 py-8">
-          {/* Top Bar: Sort and Results */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-            {/* Sort */}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-700">Sort by:</span>
-              <div className="relative">
-                <select
-                  value={selectedSort}
-                  onChange={(e) => setSelectedSort(e.target.value)}
-                  className="appearance-none bg-transparent border-none text-[15px] font-semibold pr-6 pl-1 py-1 focus:outline-none cursor-pointer"
-                  style={{ minWidth: 80 }}
-                >
-                  <option value="Newest">Newest</option>
-                  <option value="Oldest">Oldest</option>
-                  <option value="Popular">Popular</option>
-                </select>
-                <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-black pointer-events-none" />
-              </div>
-
-              {/* Refresh Button */}
-              <button
-                onClick={() => fetchBlogs()}
-                className="ml-4 px-3 py-1 bg-primary-300 hover:bg-primary-400 text-white text-sm font-medium rounded-md transition-colors duration-200"
-              >
-                Refresh
-              </button>
-            </div>
-            {/* Results count */}
-            <div className="text-right text-[15px] text-gray-700">
-              Showing {filteredBlogs.length} of {blogs.length} posts
-            </div>
+        {/* Content */}
+        <div className="relative z-20 max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-[3px] w-8 rounded-full bg-primary-300" />
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary-300">
+              Insights & Tips
+            </span>
+            <div className="h-[3px] w-8 rounded-full bg-primary-300" />
           </div>
+          <h1
+            className="font-bold text-gray-900 mb-4"
+            style={{ fontSize: "clamp(28px,5vw,52px)", lineHeight: 1.18 }}
+          >
+            POS Insights & Resources
+          </h1>
+          <p className="max-w-xl text-gray-500 text-base sm:text-lg leading-relaxed mb-8">
+            Industry trends, expert advice, and practical solutions to help your restaurant thrive.
+          </p>
 
-          {/* Main Content: Grid + Sidebar */}
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Blog Grid */}
-            <div className="w-full lg:w-3/4">
-              {loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-300"></div>
-                </div>
-              ) : filteredBlogs.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-10">
-                  {filteredBlogs.map((post) => (
-                    <div
-                      key={post.id}
-                      className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer"
-                      onClick={() => navigate(`/blog/${post.slug}`)}
-                    >
-                      {/* Image */}
-                      <div className="relative rounded-t-2xl overflow-hidden">
-                        <img
-                          src={post.imageUrl}
-                          alt={post.title}
-                          className="w-full h-48 object-cover"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = "/blog.png";
-                          }}
-                        />
-                        {post.featured && (
-                          <div className="absolute top-3 left-3 bg-primary-300 text-white text-xs px-2 py-1 rounded-md font-medium">
-                            Featured
-                          </div>
-                        )}
-                      </div>
-                      {/* Content */}
-                      <div className="p-5">
-                        {/* Meta */}
-                        <div className="flex items-center justify-between gap-4 text-xs text-gray-500 mb-2">
-                          <span className="bg-gray-900 text-white text-xs px-3 py-1 rounded-lg font-semibold">
-                            {post.category}
-                          </span>
-                          <span className="text-black font-medium">{formatDate(post.date || post.createdAt)}</span>
-                        </div>
-                        {/* Title */}
-                        <h3 className="text-sm font-semibold text-gray-800 mb-2 mt-3 line-clamp-2">
-                          {post.title}
-                        </h3>
-                        {/* Excerpt */}
-                        <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                          {post.excerpt}
-                        </p>
-                        {/* Button */}
-                        <button
-                          className="mt-3 bg-primary-300 px-4 py-2 hover:bg-primary-500 text-white text-md font-semibold rounded-lg transition-all duration-150"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            navigate(`/blog/${post.slug}`);
-                          }}
-                        >
-                          Get Started
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Search className="w-8 h-8 text-gray-400" />
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No posts found</h3>
-                  <p className="text-gray-600">
-                    {search
-                      ? 'Try adjusting your search criteria'
-                      : 'No blog posts available in this category'
-                    }
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <aside className="w-full lg:w-1/4 flex-shrink-0">
-              <div
-                className="bg-white border border-gray-200 rounded-2xl px-4 py-5 sm:px-5 sm:py-6 mb-6"
-                style={{
-                  minWidth: 0,
-                  maxWidth: 340,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              >
-                {/* Search */}
-                <div className="mb-7">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                      className="w-full border border-gray-200 rounded-lg py-[13px] pl-4 pr-3 text-[15px] text-gray-700 placeholder:text-gray-500 focus:outline-none focus:ring-0 focus:border-gray-300"
-                      style={{
-                        fontWeight: 400,
-                        fontFamily: "inherit",
-                        boxShadow: "none",
-                        height: 44,
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Categories */}
-                <div>
-                  <ul className="space-y-6">
-                    {blogCategories.map((cat) => (
-                      <li key={cat.name}>
-                        <button
-                          onClick={() => setSelectedCategory(cat.name)}
-                          className={`flex items-center gap-4 w-full text-left text-[18px] font-medium hover:text-[#333] focus:outline-none transition-colors duration-200 ${selectedCategory === cat.name ? 'text-primary-300' : 'text-[#333]'
-                            }`}
-                          style={{
-                            fontFamily: "inherit",
-                            fontWeight: 500,
-                            letterSpacing: 0,
-                            padding: 0,
-                          }}
-                        >
-                          <span
-                            className="flex items-center justify-center w-8 h-8 rounded-full"
-                            style={{
-                              background: selectedCategory === cat.name ? "#F96E4D" : "#FF7A51",
-                              minWidth: 32,
-                              minHeight: 32,
-                            }}
-                          >
-                            <Check
-                              className="w-5 h-5"
-                              color="#fff"
-                              strokeWidth={2.5}
-                            />
-                          </span>
-                          <span className="text-md font-medium">
-                            {cat.name}
-                          </span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </aside>
+          {/* ── Centered search bar ── */}
+          <div className="relative w-full max-w-lg">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search articles…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-300/40 focus:border-primary-300 shadow-sm transition-all duration-200 text-sm"
+            />
           </div>
         </div>
       </div>
+
+      {/* ── Glass Category Tabs ───────────────────────────────────────── */}
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-8 pb-4">
+        <div className="flex flex-wrap justify-center gap-2.5">
+          {blogCategories.map(({ name, Icon }) => {
+            const active = selectedCategory === name;
+            return (
+              <button
+                key={name}
+                onClick={() => setSelectedCategory(name)}
+                className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-200 whitespace-nowrap border backdrop-blur-md ${
+                  active
+                    ? "bg-primary-300/90 text-white border-primary-300/60 shadow-lg shadow-primary-300/25"
+                    : "bg-white/60 text-gray-600 border-white/70 hover:bg-white/80 hover:text-primary-300 shadow-sm"
+                }`}
+                style={
+                  active
+                    ? { boxShadow: "0 4px 20px rgba(249,110,77,0.25), inset 0 1px 0 rgba(255,255,255,0.2)" }
+                    : { boxShadow: "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)" }
+                }
+              >
+                <Icon className={`w-4 h-4 ${active ? "text-white" : "text-gray-400"}`} />
+                {name}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Blog content ─────────────────────────────────────────────── */}
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 pb-16">
+        {loading ? (
+          <div className="flex items-center justify-center py-24">
+            <div className="animate-spin rounded-full h-9 w-9 border-b-2 border-primary-300" />
+          </div>
+        ) : filteredBlogs.length === 0 ? (
+          <div className="text-center py-24">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search className="w-8 h-8 text-gray-400" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No posts found</h3>
+            <p className="text-gray-500 text-sm">
+              {search ? "Try a different search term." : "No posts in this category yet."}
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Featured post */}
+            {featuredPost && !search && (
+              <FeaturedCard
+                post={featuredPost}
+                onClick={() => navigate(`/blog/${featuredPost.slug}`)}
+              />
+            )}
+
+            {/* Results count */}
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-sm text-gray-400">
+                Showing{" "}
+                <span className="font-semibold text-gray-700">{filteredBlogs.length}</span>{" "}
+                article{filteredBlogs.length !== 1 ? "s" : ""}
+              </p>
+            </div>
+
+            {/* Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              {(search ? filteredBlogs : regularPosts).map((post) => (
+                <BlogCard
+                  key={post.id}
+                  post={post}
+                  onClick={() => navigate(`/blog/${post.slug}`)}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
       <Contact />
     </>
   );

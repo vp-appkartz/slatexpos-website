@@ -19,6 +19,7 @@ import IndustriesGrid from "./components/Home/IndustriesGrid";
 import FreeTrial from "./components/Common/BlackSection";
 import Testimonials from "./components/Common/Testimonials";
 import Hardware from "./components/Common/Hardware";
+import FAQSection from "./components/Common/Faq";
 import Industries from "./components/pages/Ind";
 import Pricing from "./components/pages/Pricing";
 import DynamicProductPage from "./components/pages/Products";
@@ -66,6 +67,7 @@ const AppContent = () => {
                 description="Restaurants across Canada are stuck paying for bloated systems that require $3,000 hardware purchases, lock them into iPads, and charge extra for every feature you actually need. SlateX is different. We built a cloud-based Android POS that runs on the devices you already own, stays on when your internet goes down, and includes every feature — from Caller ID to AI-powered promotions — in one straightforward monthly subscription. No hardware invoice. No surprises. No compromises."
               />
               <Testimonials />
+              <FAQSection />
               <Contact />
               <Footer />
             </div>

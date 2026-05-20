@@ -48,8 +48,8 @@ const defaultFeatures: Feature[] = [
       'Auto-Sync When Back Online',
       'Zero Data Loss',
     ],
-    imageSrc: '/home-about-2.png',
-    imageAlt: 'SlateX offline mode indicator',
+    imageSrc: '/kitchen-1.webp',
+    imageAlt: 'Kitchen staff working with SlateX offline mode',
   },
   {
     id: '3',
@@ -66,8 +66,8 @@ const defaultFeatures: Feature[] = [
       'House Accounts',
       'Server Assignment',
     ],
-    imageSrc: '/home-about-3.png',
-    imageAlt: 'SlateX drag and drop table layout',
+    imageSrc: '/Dine-In.webp',
+    imageAlt: 'SlateX dine-in table management',
   },
   {
     id: '4',
@@ -84,8 +84,8 @@ const defaultFeatures: Feature[] = [
       'Caller ID Integration',
       'AI Loyalty Program (Coming Soon)',
     ],
-    imageSrc: '/home-about-4.png',
-    imageAlt: 'SlateX AI promoter dashboard',
+    imageSrc: '/AI-Online_Promotor.webp',
+    imageAlt: 'SlateX AI Online Promoter dashboard',
   },
   {
     id: '5',
@@ -177,20 +177,32 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
             <style>{`
               @keyframes float {
                 0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-14px); }
+                50%       { transform: translateY(-14px); }
               }
-              .img-float { animation: float 5s ease-in-out infinite; }
+              .img-float-0 { animation: float 5.0s ease-in-out infinite 0.0s; }
+              .img-float-1 { animation: float 5.4s ease-in-out infinite 0.8s; }
+              .img-float-2 { animation: float 4.8s ease-in-out infinite 1.6s; }
+              .img-float-3 { animation: float 5.2s ease-in-out infinite 0.4s; }
+              .img-float-4 { animation: float 4.6s ease-in-out infinite 1.2s; }
+              .img-float-5 { animation: float 5.6s ease-in-out infinite 2.0s; }
             `}</style>
           )}
+
           <img
             src={feature.imageSrc}
             alt={feature.imageAlt}
-            className={`relative w-full h-auto object-contain${index === 0 ? ' img-float' : ''}`}
+            className={`relative w-full h-auto object-contain img-float-${index}`}
             style={{
               mixBlendMode: 'multiply',
-              ...(index === 0 && {
-                filter: 'drop-shadow(0 32px 48px rgba(249,110,77,0.18)) drop-shadow(0 8px 20px rgba(99,102,241,0.10))',
-              }),
+              filter: index === 0
+                ? 'drop-shadow(0 32px 48px rgba(249,110,77,0.18)) drop-shadow(0 8px 20px rgba(99,102,241,0.10))'
+                : index === 1
+                ? 'drop-shadow(0 24px 40px rgba(139,92,246,0.20)) drop-shadow(0 6px 16px rgba(139,92,246,0.10))'
+                : index === 2
+                ? 'drop-shadow(0 24px 40px rgba(236,72,153,0.18)) drop-shadow(0 6px 16px rgba(249,168,212,0.12))'
+                : index === 3
+                ? 'drop-shadow(0 24px 40px rgba(56,189,248,0.22)) drop-shadow(0 6px 16px rgba(14,165,233,0.14))'
+                : undefined,
             }}
           />
         </div>

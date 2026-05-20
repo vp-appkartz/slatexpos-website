@@ -432,17 +432,17 @@ export const quickServiceRestaurantData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/qsr/qsr-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamlined order management, payment processing, inventory management, and reporting. Discover the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/qsr/qsr-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our digital display system that shows real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/qsr/qsr-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, using automated loyalty reward points to customers for effortless use and increased customer retention."
       }
@@ -623,17 +623,17 @@ export const casualDiningData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/cd/cd-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamlined order management, payment processing, inventory management, and reporting. Discover the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/cd/cd-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our digital display system that shows real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/cd/cd-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, using automated loyalty reward points to customers for effortless use and increased customer retention."
       }
@@ -752,17 +752,17 @@ export const fineDiningData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/fsr/fsr-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Premium POS solution designed for fine dining with advanced features for complex menu management, service coordination, and guest experience enhancement."
       },
       {
-        image: "/category/fsr/fsr-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Sophisticated kitchen management with course timing, special preparation tracking, and seamless communication between front-of-house and kitchen staff."
       },
       {
-        image: "/category/fsr/fsr-wwo-3.png",
+        image: "/icons/Web Ordering.svg",
         title: "Guest Management System",
         description: "Comprehensive guest relationship management with detailed profiles, preference tracking, and personalized service capabilities for memorable dining experiences."
       }
@@ -937,17 +937,17 @@ export const fastCasualData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/fc/fc-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/fc/fc-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/fc/fc-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
       }
@@ -1103,17 +1103,17 @@ export const foodTrucksData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/ft/ft-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/ft/ft-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/ft/ft-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
       }
@@ -1286,17 +1286,17 @@ export const fullServicesRestaurantData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/fsr/fsr-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/fsr/fsr-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/fsr/fsr-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to payments for effortless use and rewards."
       }
@@ -1453,17 +1453,17 @@ export const pizzeriaData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/pizza/pizza-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/pizza/pizza-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our display system that shows real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/pizza/pizza-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
       }
@@ -1619,17 +1619,17 @@ export const cafeBakeryData: CategoryPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/category/cafe/cafe-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Streamline order management, payment processing, inventory tracking, reporting, and more with the easy-to-use, all-in-one SlateX restaurant POS system."
       },
       {
-        image: "/category/cafe/cafe-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Boost speed, accuracy, and communication in the kitchen with our display system, showing real-time orders to staff for seamless tracking."
       },
       {
-        image: "/category/cafe/cafe-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
       }

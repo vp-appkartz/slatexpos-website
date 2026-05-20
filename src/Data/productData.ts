@@ -267,22 +267,22 @@ export const restaurantPOSData: ProductPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/products/rps/wwo-rps-1.png",
+        image: "/icons/Reporting App.svg",
         title: "Data Driven Decision-Making",
         description: "Discover your best-selling items, track sales patterns and customer preferences, and uncover actionable insights with advanced analytics and reporting."
       },
       {
-        image: "/products/rps/wwo-rps-2.png",
+        image: "/icons/Reporting App.svg",
         title: "50+ Detail Reports",
         description: "Get access to 50+ important questions with the power of dashboard and visualized analytics. Our restaurant POS system for your growth journey."
       },
       {
-        image: "/products/rps/wwo-rps-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Customer Loyalty",
         description: "Build long-term relationships effortlessly with the varied features of the loyalty program to capture, retain and return customer."
       },
       {
-        image: "/products/rps/wwo-rps-4.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Inventory Control",
         description: "Prevent overselling and spoil with smart inventory till software, ensuring optimal stock levels and maintaining cost profitability and productivity."
       }
@@ -997,22 +997,22 @@ export const mobileOrderingData: ProductPageData = {
     subheading: "Comprehensive Backend & Enterprise Reporting",
     items: [
       {
-        image: "/products/mobile/mobile-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Restaurant POS System",
         description: "Integrated with the POS, track order progress and streamline the cooking operations and keep track of the item on the menu. Also have real report of the menu sales."
       },
       {
-        image: "/products/mobile/mobile-wwo-2.png",
+        image: "/icons/Kitchen Display System.svg",
         title: "Kitchen Display System",
         description: "Receive custom order entries on kitchen display within unified kitchen operations in the kitchen. View all order details and food on the order display screen and serve hot food on time."
       },
       {
-        image: "/products/mobile/mobile-wwo-3.png",
+        image: "/icons/Loyalty & Promotions.svg",
         title: "Loyalty & Promotions",
         description: "Integrated with the POS, track online business and streamline the customer loyalty business and keep track of the loyal customer. Also have real report of the loyalty rewards."
       },
       {
-        image: "/products/mobile/mobile-wwo-1.png",
+        image: "/icons/Restuarant POS System.svg",
         title: "Analytics & Reporting",
         description: "Comprehensive analytics dashboard with real-time insights into customer behavior, order patterns, revenue trends, and app performance metrics to drive business growth."
       }

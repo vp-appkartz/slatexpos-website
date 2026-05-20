@@ -144,12 +144,12 @@ const HardwarePage: React.FC = () => {
         title={data.testimonials?.title}
         subtitle={data.testimonials?.subtitle}
       />
+      <FAQSection faqs={data.faqSection.faqs} />
       <Contact
         title={contactData?.title}
         description={contactData?.description}
       // image={contactData?.image} // Uncomment if image is available in CTAData
       />
-      <FAQSection faqs={data.faqSection.faqs} />
     </>
   );
 };

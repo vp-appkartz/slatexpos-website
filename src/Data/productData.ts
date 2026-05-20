@@ -290,50 +290,11 @@ export const restaurantPOSData: ProductPageData = {
   },
   faqSection: {
     faqs: [
-      {
-        question: "What is a restaurant POS system?",
-        answer: "A restaurant POS system is a digital tool that combines hardware and software to streamline operations and enhance customer experience. It handles tasks ranging from taking orders and processing payments to managing inventory, tracking sales, and generating sales and analytics reports. By automating these processes, POS systems boost efficiency, reduce errors, and provide valuable insights for informed decision-making. The Restaurant POS hardware typically comprises of Point of Sale terminals, customer facing displays, kitchen display system, receipt printers, kitchen printers, cash drawers, and payment processors."
-      },
-      {
-        question: "How to choose the best restaurant POS system?",
-        answer: "Make sure that the new restaurant POS system that you select has a user-friendly interface, robust reporting and analytics tool, sound inventory management features, order management, reliable payment processing, effortless employee management. Most importantly the POS solution should help you in building loyal relationships with your customers. Additionally, the cost, the hardware compatibility, customer support, scalability and security of the system are also an important factor while choosing the right POS solution for your restaurant."
-      },
-      {
-        question: "What hardware is required to use SlateX POS? Does SlateX POS offer hardware?",
-        answer: "SlateX Restaurant POS is a Cloud Based POS system that works with Android POS Terminals and Android tablets. It is integrated with EPSON receipt printer. We provide several restaurant POS hardware options per your requirement. Our startup kit includes 15.6″ Android POS terminal with 10″ customer display, a cash drawer, a credit card terminal and two printers – a receipt printer and a kitchen printer."
-      },
-      {
-        question: "Does SlateX Restaurant POS help manage multiple locations easily?",
-        answer: "Yes, SlateX is designed for single and multilocation restaurants both. Its centralized control panel simplifies operations, making it ideal for franchise management. By integrating powerful sales and marketing tools, SlateX restaurant software streamlines order processing, reduces operational complexity, and drives overall business growth."
-      },
-      {
-        question: "Does SlateX restaurant POS work offline if the internet goes down?",
-        answer: "Yes, SlateX POS works offline so don’t worry about connectivity issues. All transactions are stored locally and synced to the cloud when you’re back online."
-      },
-      {
-        question: "What makes SlateX POS different?",
-        answer: "SlateX POS is designed and customized as per the feedback and inputs from restaurant owners and people in the industry for quite some time. Our main goal is to reduce complexity, offer quick turnaround and increase sales. The solutions in the system are quick, user-friendly and easy to use compared to other POS solutions out there. You don’t need to uproot your existing setup and there is no complex installation or training needed. The team at SlateX POS is easily available to answer any questions you might have."
-      },
-      {
-        question: "How fast can I implement SlateX POS in my restaurant?",
-        answer: "Setting up and installing SlateX POS takes few minutes only, provided that all hardware and network configurations are already completed. You can start accepting cash payments immediately. For credit card, the payment processor might take 2-3 days for approval."
-      },
-      {
-        question: "Does SlateX POS offer 3rd Party online order integration?",
-        answer: "Yes, SlateX POS helps you get all the orders in one place. We offer integration with UberEats, DoorDash, Grubhub, SkipTheDishes and many more."
-      },
-      {
-        question: "What support do you offer?",
-        answer: "There is no complex installation or support required while using SlateX POS. We have dedicated support available for menu programming, hardware setup and ongoing tech queries. For any more information, you can reach us at support@slatexpos.com"
-      },
-      {
-        question: "For which countries is SlateX POS service available?",
-        answer: "SlateX POS is designed considering Global standards. It can easily be implemented at any restaurant globally. For payment processing, we have integrations available across United States, Canada and United Kingdom."
-      },
-      {
-        question: "What are your pricing plans?",
-        answer: "SlateX POS has several customized packages available based on your needs. Reach us out at info@slatexpos.com to learn more."
-      }
+      { question: "Does SlateX POS work if my internet goes down?", answer: "Yes. SlateX has full offline functionality — orders, payments, and kitchen tickets continue without interruption. Everything syncs automatically the moment your connection is restored. You never lose a sale." },
+      { question: "Do I need to buy new hardware to use SlateX?", answer: "No. SlateX runs on any Android tablet or device you already own. No proprietary hardware purchase required. Our startup kit is also available if you need a complete setup from scratch." },
+      { question: "Can SlateX manage multiple restaurant locations?", answer: "Yes. SlateX centralises menus, reporting, and settings across all your locations. Update an item across every store in seconds and view unified sales reports from one dashboard." },
+      { question: "How quickly can I get SlateX running in my restaurant?", answer: "Most restaurants are up and running within 1–2 weeks including hardware setup, menu programming, and staff training. Our onboarding team handles everything so your team hits the ground running." },
+      { question: "Does SlateX integrate with third-party delivery platforms?", answer: "Yes. SlateX integrates with UberEats, DoorDash, SkipTheDishes, Grubhub, and more — all orders land on one screen, no extra tablet needed." },
     ]
   }
 };
@@ -459,30 +420,11 @@ export const kitchenDisplayData: ProductPageData = {
   },
   faqSection: {
     faqs: [
-      {
-        question: "How do I get started with SlateX POS Kitchen Display System?",
-        answer: "SlateX POS is fully integrated and works seamlessly with orders from any mode, be it dine-in, takeaway, delivery, or third-party orders. Reach out to us and one of our team members will get in touch to take this further. Upon subscription, we will assist you with the setup to get started."
-      },
-      {
-        question: "What kind of hardware is required to use the kitchen display system of SlateX POS?",
-        answer: "The kitchen display with SlateX restaurant POS works with Android hardware. We provide screen sizes of 10″, 15.6″, or 21.5″ for your kitchen display needs."
-      },
-      {
-        question: "Can SlateX restaurant POS kitchen display be used wirelessly?",
-        answer: "Yes, SlateX restaurant POS can be used wirelessly, though we recommend you use a wired connection to the router for a smoother experience."
-      },
-      {
-        question: "Do I need an internet connection all the time to use SlateX restaurant POS kitchen display?",
-        answer: "You can use our kitchen display system offline as well. Once the internet is back up and running, we restore and sync the backup."
-      },
-      {
-        question: "What reporting and analytics are available to use your kitchen display?",
-        answer: "Along with getting details on average number of tickets, detailed order information, and bump times, the most important report we offer is the ‘Item Delay Analysis’ report. This report provides detailed information on delays in item preparation, allowing for the identification and correction of kitchen workflow inefficiencies to improve overall output."
-      },
-      {
-        question: "What if I need multiple KDS restaurant stations?",
-        answer: "Yes, you can easily set up multiple KDS stations with SlateX restaurant POS and define each as prep or expo KDS as per your requirements."
-      }
+      { question: "Does the kitchen display work if the internet goes down?", answer: "Yes. SlateX KDS continues to display and update orders offline. Once connectivity is restored, everything syncs automatically — no missed tickets, no kitchen confusion." },
+      { question: "Can I set up multiple KDS stations for different kitchen sections?", answer: "Yes. You can configure multiple KDS screens as prep or expo stations. Each screen only shows the items relevant to that station — grill sees grill, fryer sees fryer." },
+      { question: "What screen sizes are available for the kitchen display?", answer: "SlateX KDS works on Android screens of any size. We offer purpose-built display options in 10″, 15.6″, and 21.5″ to suit counter space and kitchen visibility needs." },
+      { question: "What analytics does the KDS provide?", answer: "SlateX KDS tracks average ticket times, bump times, and our Item Delay Analysis report — pinpointing exactly which items are slowing down your kitchen so you can fix bottlenecks before they hurt service." },
+      { question: "Can the KDS be used wirelessly?", answer: "Yes, the KDS works wirelessly over your restaurant Wi-Fi. For high-volume kitchens we recommend a wired ethernet connection for maximum reliability during peak service." },
     ]
   }
 
@@ -896,46 +838,11 @@ export const webOrderingData: ProductPageData = {
   },
   faqSection: {
     faqs: [
-      {
-        question: "How much does Online Ordering cost?",
-        answer: "SlateX POS online ordering system comes with different plans that also include your own branded app as well as integration with DoorDash Drive. Reach us at info@slatexpos.com to get a customized quote based on your needs."
-      },
-      {
-        question: "How do I get started with SlateX POS online ordering system?",
-        answer: "Once you have subscribed or opted to have our online ordering restaurant system, we set up your account to provide you with the online ordering website and branded mobile app. If you are already using our POS solution, you can use the same menu and map it with the online ordering solution. We also offer a mobile app that you can offer to your customers to place orders directly."
-      },
-      {
-        question: "Can I use SlateX POS if I am using a different POS?",
-        answer: "Yes, you can use it. SlateX POS online ordering can be used with other POS solutions easily."
-      },
-      {
-        question: "Is there a contract or a commitment to use SlateX POS online ordering system?",
-        answer: "There is no contract or commitment to use the SlateX POS online ordering restaurant system. It is an annual subscription and you are free to cancel it anytime you need."
-      },
-      {
-        question: "Do I need to pay card fees since SlateX POS states it offers zero commission online ordering?",
-        answer: "The online ordering restaurant system with SlateX does not charge any commission fees. However, please note that card processing fees will still apply."
-      },
-      {
-        question: "How will I get payments on orders through my website?",
-        answer: "We are partnered with Elavon for payment processing, and all payments will be deposited directly into your bank account in accordance with the payment gateway’s policies."
-      },
-      {
-        question: "Do you provide domain service as well?",
-        answer: "Yes, we can provide your domain service at additional cost."
-      },
-      {
-        question: "Do I need hosting for online ordering?",
-        answer: "No, you do not need hosting if you are going only for the online ordering website."
-      },
-      {
-        question: "Can customers schedule orders in advance?",
-        answer: "Yes, with the online ordering of SlateX POS, customers can place orders in advance and schedule a convenient pickup time. This is great for big orders and special events."
-      },
-      {
-        question: "Can you help me design a marketing website?",
-        answer: "Our team of skilled developers and designers are well equipped in creating customized websites and apps tailored to meet your specific needs. We provide a fixed cost based on your specific requirements and are available to offer the service whenever you need them. Reach us at info@slatexpos.com to know more or to schedule a quick call."
-      }
+      { question: "Does SlateX charge commission on online orders?", answer: "Zero commission. Every dollar from an online order goes directly to you. Standard card processing fees apply, but there are no platform commissions or per-order charges from SlateX." },
+      { question: "Do online orders go to a separate tablet?", answer: "No. Online orders land directly on your existing SlateX POS — same screen, same kitchen tickets, same workflow. No extra device, no manual re-entry." },
+      { question: "Can customers schedule orders for a future time?", answer: "Yes. Customers can place orders in advance and choose a pickup or delivery time. Perfect for lunch pre-orders, large group orders, and special event catering." },
+      { question: "Is there a contract or lock-in period?", answer: "No long-term contracts. SlateX Online Ordering is an annual subscription with no commitment. You can cancel any time — though most restaurants never do." },
+      { question: "How do I receive payments from online orders?", answer: "Payments are processed securely and deposited directly into your bank account through our payment processing partner. No middleman holding your funds." },
     ]
   }
 
@@ -1113,50 +1020,11 @@ export const mobileOrderingData: ProductPageData = {
   },
   faqSection: {
     faqs: [
-      {
-        question: "Will I get the app in my logo and branding?",
-        answer: "Yes, the app will be fully customized with your logo, branding, and color scheme. We provide a white-label solution, so you can make the app look and feel like it’s entirely your own. This ensures your restaurant’s identity is maintained throughout the customer’s experience."
-      },
-      {
-        question: "Is the loyalty program integrated in the app?",
-        answer: "Yes, the loyalty program is integrated into the app. Customers can earn points with each order, which can be redeemed for discounts or rewards. You can customize the program to fit your business goals, including point structures, reward types, and thresholds for earning rewards."
-      },
-      {
-        question: "How can we access data on orders of Mobile App?",
-        answer: "You can access detailed order data through the SlateXPOS backend. This includes customer orders, transaction details, order status, and more. The dashboard is designed to give you full visibility into sales trends, customer preferences, and order history, allowing you to make data-driven decisions."
-      },
-      {
-        question: "How do I manage promotions or discounts?",
-        answer: "Manage promotions and discounts easily with our admin panel. You can create and schedule promotions, such as percentage discounts, fixed-price discounts, or free items with orders over a certain amount. You can also target specific customer groups and adjust the promotion based on factors like time of day or order size."
-      },
-      {
-        question: "Can I set different delivery charges based on distance or location?",
-        answer: "Yes, you can set different delivery charges based on distance or location. The app allows you to define custom delivery fees depending on the customer’s proximity to your restaurant, ensuring you can cover delivery costs effectively. You can also set fees for specific zones or neighborhoods, offering flexibility for various delivery scenarios."
-      },
-      {
-        question: "How are refunds and cancellations handled?",
-        answer: "Refunds and cancellations are managed through SlateXPOS. If an order needs to be canceled or refunded, you can easily process the request from the POS directly. The system notifies the customers of any changes to their orders, making the process smooth and transparent."
-      },
-      {
-        question: "Is it safe to pay online?",
-        answer: "Yes, our payment gateway is secure and uses encryption to protect the financial information of your customers."
-      },
-      {
-        question: "Can the customer save their payment information for future orders?",
-        answer: "Yes, they can securely save their payment information for faster checkout."
-      },
-      {
-        question: "How can the customer use a promo code or discount?",
-        answer: "During checkout, they’ll see a field to enter the promo code. They can enter the code and tap ‘Apply’."
-      },
-      {
-        question: "Can customers access their order history?",
-        answer: "Yes, they can view the order history in the ‘Recent Orders’ section of the app. They can also reorder from this section."
-      },
-      {
-        question: "Can the customers schedule an order for later?",
-        answer: "Yes, the app allows them to schedule orders for a specific date and time from the ‘Check Out’ page where they can select ‘Later’ and choose their preferred date and time."
-      }
+      { question: "Will the app have my restaurant’s branding?", answer: "Yes. Your app is fully white-labelled with your logo, colours, and brand identity. Customers see your brand from the App Store listing all the way through checkout — not SlateX." },
+      { question: "Is the loyalty program built into the app?", answer: "Yes. Customers earn and redeem loyalty points directly through the app on every order. You control the point structure, reward thresholds, and redemption rules from your dashboard." },
+      { question: "Can customers schedule orders for a later time?", answer: "Yes. Customers can select a future pickup or delivery time during checkout — great for pre-ordering, lunch rushes, and large group orders." },
+      { question: "How do I manage app promotions and discounts?", answer: "From your admin panel you can create, schedule, and target promotions — percentage discounts, fixed savings, free items on qualifying orders, and time-based offers like happy hour deals." },
+      { question: "How are refunds and cancellations handled?", answer: "All refunds and cancellations are managed directly through your SlateX POS. The customer is notified automatically, and the transaction is updated in real time — no manual follow-up needed." },
     ]
   }
 };
@@ -1311,30 +1179,11 @@ export const loyaltyPromotionData: ProductPageData = {
   },
   faqSection: {
     faqs: [
-      {
-        question: "How does the loyalty program work?",
-        answer: "Our program is customizable and can work according to customer preferences. The most simple way is where customers earn per dollar spent. An automatic slatex poser is generated through those points once it has reached a minimum threshold."
-      },
-      {
-        question: "How do customers sign up for the loyalty program?",
-        answer: "Customers’ phone number is linked to their loyalty account. They can enroll in-store, online, or with a QR code. We also offer an auto enrollment option."
-      },
-      {
-        question: "Can the loyalty program be used across multiple locations?",
-        answer: "Yes, the loyalty program can be used across multiple locations easily. All the points and slatex posers work in sync for customers even if they order across multiple locations of the same restaurant."
-      },
-      {
-        question: "Is the loyalty program integrated with your POS system?",
-        answer: "Yes, our loyalty program is seamlessly integrated with our POS system for efficient point tracking and redemption."
-      },
-      {
-        question: "Can customers earn and redeem rewards through online orders?",
-        answer: "Yes, the SlateX POS loyalty integrates with SlateX POS Online Ordering, so customers can earn and redeem rewards when placing orders at the restaurant or online."
-      },
-      {
-        question: "Are there any additional charges for SMS or email marketing campaigns?",
-        answer: "Yes, we have very competitive rates for SMS. For more details reach us at info@slatexpos.com"
-      }
+      { question: "How do customers sign up for the loyalty program?", answer: "Sign-up is frictionless — customers link their phone number in-store, online, or via QR code. We also offer auto-enrollment so every customer is opted in automatically at checkout." },
+      { question: "Does loyalty work across multiple locations?", answer: "Yes. Points earned at any of your locations are pooled into one account. Customers can redeem rewards at whichever location they visit — no confusion, no limitations." },
+      { question: "Can customers earn and redeem points on online orders?", answer: "Yes. The loyalty program integrates fully with SlateX Online Ordering and the branded mobile app. Points work the same whether a customer orders in-store or online." },
+      { question: "Is the loyalty program built into the POS or a separate system?", answer: "It’s fully built into SlateX POS. No third-party integration, no separate app for staff. Points are tracked and redeemed right at the point of sale in one tap." },
+      { question: "Can I run BOGOs, combo deals, and happy hour promotions?", answer: "Yes. SlateX includes a full promotions engine — buy-one-get-one, combo pricing, scheduled happy hour discounts, and gift cards. All automated, all running without staff needing to remember anything." },
     ]
   }
 };

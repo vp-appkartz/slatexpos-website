@@ -193,13 +193,13 @@ const DynamicProductPage: React.FC = () => {
         items={sharedData?.testimonials?.items}
       />
 
+      <FAQSection
+        faqs={productData.faqSection.faqs}
+      />
       <Contact
         title={sharedData?.cta?.title}
         description={sharedData?.cta?.description}
         image={sharedData?.cta?.image}
-      />
-      <FAQSection
-        faqs={productData.faqSection.faqs}
       />
     </>
   );

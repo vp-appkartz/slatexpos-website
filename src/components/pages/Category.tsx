@@ -143,12 +143,12 @@ const DynamicCategoryPage: React.FC = () => {
         items={categoryData.testimonialSection?.items}
       />
 
+      <FAQSection faqs={categoryData.faqSection?.faqs} />
       <Contact
         title={categoryData.ctaSection?.title}
         description={categoryData.ctaSection?.description}
         image={categoryData.ctaSection?.image}
       />
-      <FAQSection faqs={categoryData.faqSection?.faqs} />
     </>
   );
 };

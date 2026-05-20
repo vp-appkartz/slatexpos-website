@@ -20,6 +20,7 @@ import FreeTrial from "./components/Common/BlackSection";
 import Testimonials from "./components/Common/Testimonials";
 import Hardware from "./components/Common/Hardware";
 import FAQSection from "./components/Common/Faq";
+import ScrollFab from "./components/Common/ScrollFab";
 import Industries from "./components/pages/Ind";
 import Pricing from "./components/pages/Pricing";
 import DynamicProductPage from "./components/pages/Products";
@@ -292,6 +293,7 @@ function App() {
         <PricingProvider>
           <Router>
             <ScrollToTop />
+            <ScrollFab />
             <AppContent />
           </Router>
         </PricingProvider>

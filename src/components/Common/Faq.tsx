@@ -170,7 +170,10 @@ const FAQSection: React.FC<FAQSectionProps> = ({
     new Set(faqs.map(f => f.category).filter(Boolean))
   ) as string[];
 
-  const filtered = faqs.filter(f => f.category === activeCategory);
+  // If no categories exist, show all items; otherwise filter by active tab
+  const filtered = categories.length === 0
+    ? faqs
+    : faqs.filter(f => f.category === activeCategory);
 
   const handleTabChange = (cat: string) => {
     setActiveCategory(cat);

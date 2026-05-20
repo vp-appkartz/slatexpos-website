@@ -447,6 +447,15 @@ export const quickServiceRestaurantData: CategoryPageData = {
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, using automated loyalty reward points to customers for effortless use and increased customer retention."
       }
     ]
+  },
+  faqSection: {
+    faqs: [
+      { question: "Can SlateX handle high-volume QSR rushes?", answer: "Absolutely. SlateX is purpose-built for speed. Orders fire to the kitchen display instantly, payments process in seconds, and offline mode keeps you running even when the internet drops — no slowdowns during peak hours." },
+      { question: "Does SlateX support self-order kiosks?", answer: "Yes. SlateX integrates with self-order kiosks so customers can place orders themselves, reducing wait times and freeing your team to focus on food and service." },
+      { question: "How does online ordering work for QSRs?", answer: "SlateX includes a zero-commission branded online ordering page. Orders land directly on your POS — no extra tablet, no manual re-entry, no third-party fees eating into your margins." },
+      { question: "Can I manage multiple QSR locations from one account?", answer: "Yes. SlateX centralises reporting, menus, and settings across all locations. You can update a menu item across every store in seconds from the owner dashboard." },
+      { question: "Does SlateX support loyalty programs for quick-service?", answer: "Yes. SlateX includes an automated loyalty and promotions engine — points, BOGOs, combo deals, and happy-hour discounts — all managed from one place without extra hardware or apps." },
+    ]
   }
 };
 
@@ -630,7 +639,15 @@ export const casualDiningData: CategoryPageData = {
       }
     ]
   },
-
+  faqSection: {
+    faqs: [
+      { question: "Can SlateX handle large parties and split bills?", answer: "Yes. SlateX makes splitting easy — divide a bill by item, by seat, or split evenly across any number of guests. No awkward moments at the table." },
+      { question: "How does table management work in a casual dining setting?", answer: "SlateX includes a drag-and-drop visual floor plan. Hosts can assign tables, servers can see their section at a glance, and managers can track turn times and occupancy in real time." },
+      { question: "Does SlateX support course-by-course ordering?", answer: "Yes. Servers can fire courses independently — send appetisers to the kitchen while holding mains — so your kitchen workflow matches your front-of-house pacing." },
+      { question: "Can I run happy hour discounts automatically?", answer: "Yes. Schedule time-based pricing rules for any item or category. SlateX activates and deactivates happy hour prices automatically — no manual overrides needed." },
+      { question: "What if the internet goes down during service?", answer: "SlateX keeps running fully offline. Orders process, kitchen tickets print, and payments go through. Everything syncs to the cloud the moment connectivity returns." },
+    ]
+  }
 };
 
 // Additional categories can be added here (Fine Dining, Fast Casual, etc.)
@@ -751,7 +768,15 @@ export const fineDiningData: CategoryPageData = {
       }
     ]
   },
-
+  faqSection: {
+    faqs: [
+      { question: "Can SlateX support a complex fine-dining menu with modifiers?", answer: "Yes. SlateX handles multi-level modifiers, preparation notes, allergen flags, and wine pairings — giving your servers all the detail they need tableside without printing a novel." },
+      { question: "How does SlateX handle reservations and waitlists?", answer: "SlateX integrates with your reservation system and gives hosts a real-time floor view — so they always know which tables are turning, who's waiting, and how to seat efficiently." },
+      { question: "Can I track covers and average spend per table?", answer: "Yes. SlateX reporting breaks down sales by cover, by server, by time period, and by menu item — giving you the visibility to manage margins and staffing intelligently." },
+      { question: "Does SlateX support private dining and events?", answer: "Yes. You can create dedicated floor plans for private rooms, manage event menus separately, and run deposits or pre-authorisations for large party bookings." },
+      { question: "How does auto-gratuity work?", answer: "Set any gratuity percentage for any party size. SlateX applies it automatically to qualifying cheques and clearly shows it on the guest's bill — no staff error, no awkward conversations." },
+    ]
+  }
 };
 
 export const fastCasualData: CategoryPageData = {
@@ -928,7 +953,15 @@ export const fastCasualData: CategoryPageData = {
       }
     ]
   },
-
+  faqSection: {
+    faqs: [
+      { question: "Does SlateX support online ordering for fast casual?", answer: "Yes. SlateX includes a zero-commission branded ordering page. Customers order online, pay upfront, and tickets fire straight to your kitchen — no extra tablet, no third-party fees." },
+      { question: "Can SlateX handle a counter-service and table-service hybrid?", answer: "Yes. SlateX supports both modes simultaneously — counter staff ring in walk-up orders while servers handle seated guests, all on the same system." },
+      { question: "How do kiosk integrations work?", answer: "Self-order kiosks connect directly to SlateX. Customers customise their order, pay at the kiosk, and the ticket appears on your kitchen display instantly — no staff intervention needed." },
+      { question: "Can I manage modifiers for build-your-own meals?", answer: "Yes. SlateX handles unlimited modifiers and nested options — perfect for build-your-own bowls, burritos, burgers, or any customisable menu format." },
+      { question: "What reporting does SlateX give fast-casual operators?", answer: "You get item-level sales, modifier popularity, hourly transaction trends, server performance, and cash reconciliation — all accessible from any device, any time." },
+    ]
+  }
 };
 
 export const foodTrucksData: CategoryPageData = {
@@ -1086,7 +1119,15 @@ export const foodTrucksData: CategoryPageData = {
       }
     ]
   },
-
+  faqSection: {
+    faqs: [
+      { question: "Does SlateX work without a stable internet connection on the road?", answer: "Yes. SlateX is built for offline operation — perfect for food trucks at festivals, markets, or anywhere connectivity is unreliable. Orders and payments process locally and sync when you reconnect." },
+      { question: "What hardware do I need for a food truck?", answer: "SlateX runs on any Android tablet or phone — no proprietary hardware. A single tablet, a Bluetooth receipt printer, and a card reader is all most food trucks need to get going." },
+      { question: "Can I accept card payments offline?", answer: "Yes. SlateX processes card payments offline and queues them for settlement when connectivity returns. You never have to turn away a customer because the internet is slow." },
+      { question: "Can I switch between locations or events easily?", answer: "Yes. SlateX lets you manage multiple trading locations from one account. Switch menus, tax rates, or floor plans between locations in seconds — ideal for trucks that move daily." },
+      { question: "How quickly can I set up SlateX for a new event?", answer: "You can be up and running in under 30 minutes. Download the app, log in, and your menu is ready. No technician needed, no complex installation — just open and trade." },
+    ]
+  }
 };
 
 export const fullServicesRestaurantData: CategoryPageData = {
@@ -1261,7 +1302,15 @@ export const fullServicesRestaurantData: CategoryPageData = {
       }
     ]
   },
-
+  faqSection: {
+    faqs: [
+      { question: "How does SlateX manage full-service floor operations?", answer: "SlateX includes a drag-and-drop floor plan, server assignments, table status tracking, and cover counts — giving your front-of-house team total visibility from any device." },
+      { question: "Does SlateX support tableside ordering and payment?", answer: "Yes. Servers can take orders and process payments right at the table using the SlateX Go mobile app — faster turns, fewer trips to the terminal, happier guests." },
+      { question: "Can I track server performance and tips?", answer: "Yes. SlateX reports on sales, tip amounts, and covers by server — giving you the data to reward top performers and identify coaching opportunities." },
+      { question: "Does SlateX integrate with reservation systems?", answer: "Yes. SlateX works alongside your reservation platform, so hosts can greet arriving guests and seat them directly without re-entering any information." },
+      { question: "What happens if a server needs to transfer a table mid-shift?", answer: "Table transfers take two taps in SlateX. The new server immediately sees the full order history, open items, and any special notes — zero handoff friction." },
+    ]
+  }
 };
 
 export const pizzeriaData: CategoryPageData = {
@@ -1419,6 +1468,15 @@ export const pizzeriaData: CategoryPageData = {
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
       }
     ]
+  },
+  faqSection: {
+    faqs: [
+      { question: "Does SlateX support half-and-half pizza toppings?", answer: "Yes. SlateX handles split toppings, crust variations, size-based pricing, and unlimited modifier combinations — so your staff can ring in any custom pizza in seconds." },
+      { question: "Can I manage delivery zones and driver dispatch through SlateX?", answer: "Yes. SlateX includes delivery management tools — zone-based pricing, order tracking, and driver assignment — so you can run delivery without a third-party platform eating your margins." },
+      { question: "How does online pizza ordering work?", answer: "SlateX gives you a branded online ordering page at zero commission. Customers build their pizza, check out, and the order appears on your kitchen display automatically." },
+      { question: "Can I set different prices for dine-in, takeout, and delivery?", answer: "Yes. SlateX supports separate pricing tiers by order type — so your delivery prices can reflect packaging and service costs without changing your in-store menu." },
+      { question: "Does SlateX track ingredient usage for pizza operations?", answer: "Yes. SlateX inventory tracking monitors ingredient depletion in real time — so you always know when dough, cheese, or toppings are running low before service starts." },
+    ]
   }
 };
 
@@ -1575,6 +1633,15 @@ export const cafeBakeryData: CategoryPageData = {
         title: "Loyalty & Promotion",
         description: "The loyalty program seamlessly integrates with the POS, kiosk, online ordering, and mobile app, automatically linking reward points to customers for effortless use and rewards."
       }
+    ]
+  },
+  faqSection: {
+    faqs: [
+      { question: "Can SlateX handle the morning rush at a busy café?", answer: "Yes. SlateX is built for speed — baristas can ring in complex drink orders with modifiers in seconds, kitchen tickets print instantly, and the line keeps moving." },
+      { question: "How does SlateX handle bakery inventory?", answer: "SlateX tracks ingredient and product depletion in real time. Set low-stock alerts for baked goods and ingredients so you always know what to prep before the next rush." },
+      { question: "Does SlateX support loyalty punch cards or rewards?", answer: "Yes. SlateX includes a built-in loyalty program — digital punch cards, points, and automatic rewards — so you can keep regulars coming back without a separate app." },
+      { question: "Can I manage seasonal menus and daily specials easily?", answer: "Yes. You can update, hide, or feature any menu item in seconds. Set scheduled availability windows for seasonal items or daily specials that turn on and off automatically." },
+      { question: "Does SlateX work for café locations with limited counter space?", answer: "Yes. SlateX runs on any Android tablet — even a compact 8-inch device. No bulky hardware, no proprietary terminals. Just mount a tablet and you're ready to serve." },
     ]
   }
 };

@@ -268,22 +268,12 @@ export const hardwareData: HardwarePageData = {
   },
   faqSection: {
     faqs: [
-      {
-        question: "Is SlateX hardware compatible with my existing setup?",
-        answer: "SlateX hardware is designed for seamless integration. Our team will assess your needs and ensure compatibility or provide upgrade recommendations."
-      },
-      {
-        question: "What warranty is included?",
-        answer: "All SlateX hardware comes with a standard 1-year warranty, with extended coverage available."
-      },
-      {
-        question: "Can I purchase hardware separately?",
-        answer: "Yes, you can purchase hardware as a bundle or individually to fit your restaurant's requirements."
-      },
-      {
-        question: "Do you offer on-site installation?",
-        answer: "Yes, we offer professional on-site installation and training to ensure a smooth launch."
-      }
+      { question: "Do I need to buy SlateX hardware to use the POS?", answer: "No. SlateX runs on any Android tablet or device you already own — no proprietary hardware purchase required. You can start running your POS today on hardware you already have." },
+      { question: "What hardware bundles does SlateX offer?", answer: "SlateX offers starter kits that include an Android POS terminal, customer-facing display, cash drawer, receipt printer, kitchen printer, and card terminal — everything you need to open day one." },
+      { question: "What warranty is included with SlateX hardware?", answer: "All SlateX hardware bundles come with a standard 1-year warranty. Extended coverage plans are available for restaurants that want added peace of mind." },
+      { question: "Is the hardware compatible with my existing printers and cash drawer?", answer: "SlateX integrates with a wide range of EPSON and Star receipt printers and standard cash drawers. Our team will verify compatibility with your current setup before you commit." },
+      { question: "Do you offer on-site hardware installation?", answer: "Yes. Our team provides professional on-site installation, cabling, network configuration, and staff training — so your team is confident and operational from day one." },
+      { question: "Can I add more terminals as my restaurant grows?", answer: "Yes. SlateX is multi-device by design. Add terminals, handhelds, or kitchen displays any time — there is no per-device licensing fee, just connect and start using them." },
     ]
   }
 };

@@ -95,7 +95,7 @@ const Header: React.FC = () => {
         <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center">
           <Phone className="w-4 h-4 text-primary-300" />
         </div>
-        <h3 className="font-semibold text-gray-900 text-sm">Let's Talk</h3>
+        <h3 className="font-semibold text-gray-900 text-base">Let's Talk</h3>
       </div>
       <p className="text-sm text-gray-500 leading-relaxed mb-5">
         Have questions or need assistance? We're just a message away.
@@ -265,8 +265,8 @@ const Header: React.FC = () => {
                                 onClick={() => handleProductItemClick((item as any).slug || '')}>
                                 <ItemIcon image={item.image} title={item.title} />
                                 <div>
-                                  <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                                  <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                                  <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
+                                  <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                                 </div>
                               </div>
                             ))}
@@ -288,8 +288,8 @@ const Header: React.FC = () => {
                                   onClick={() => handleProductItemClick((item as any).slug || '')}>
                                   <ItemIcon image={item.image} title={item.title} />
                                   <div>
-                                    <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                                    <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                                    <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
+                                    <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                                   </div>
                                 </div>
                               ))}
@@ -303,8 +303,8 @@ const Header: React.FC = () => {
                                   onClick={() => handleProductItemClick((item as any).slug || '')}>
                                   <ItemIcon image={item.image} title={item.title} />
                                   <div>
-                                    <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                                    <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                                    <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
+                                    <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                                   </div>
                                 </div>
                               ))}
@@ -341,8 +341,8 @@ const Header: React.FC = () => {
                             onClick={() => handleCategoryItemClick(item.title, (item as any).slug)}>
                             <ItemIcon image={item.image} title={item.title} />
                             <div>
-                              <h4 className="font-semibold text-sm text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                              <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                              <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
+                              <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                             </div>
                           </div>
                         ))}

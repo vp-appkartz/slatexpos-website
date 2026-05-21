@@ -32,7 +32,6 @@ function Pricing() {
       <Hardware
         title={sharedData?.hardware?.title}
         subtitle={sharedData?.hardware?.subtitle}
-        items={sharedData?.hardware?.items}
       />
       <Testimonials
         title={sharedData?.testimonials?.title}

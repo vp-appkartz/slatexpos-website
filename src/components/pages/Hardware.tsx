@@ -126,7 +126,6 @@ const HardwarePage: React.FC = () => {
       <Hardware
         title={data.hardwareShowcase?.title}
         subtitle={data.hardwareShowcase?.subtitle}
-        items={data.hardwareShowcase?.items}
       />
 
       <BlackSection

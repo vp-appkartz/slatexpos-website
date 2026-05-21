@@ -176,7 +176,6 @@ const DynamicProductPage: React.FC = () => {
       <Hardware
         title={sharedData?.hardware?.title}
         subtitle={sharedData?.hardware?.subtitle}
-        items={sharedData?.hardware?.items}
       />
 
       <BlackSection

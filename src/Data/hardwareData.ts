@@ -227,21 +227,21 @@ export const hardwareData: HardwarePageData = {
         title: "SlateX Station",
         description:
           "Dual Side display terminal streamlines high‑volume ordering and promotes upsells right at the counter. Built for restaurants, cafés, and quick‑serve chains, it offers rock‑solid performance when every second counts.",
-        image: "/slatex-terminal.png",
+        image: "/SlateX Station.webp",
       },
       {
         id: 2,
         title: "SlateX Tab",
         description:
           "Lightweight 11″ Android tablet delivers full POS capabilities wherever your guests choose to sit. Ideal for food trucks, pop‑ups, and casual dining, it lets servers take orders and accept payments instantly at the table.",
-        image: "/slatex-tablet.png",
+        image: "/SlateX Tab.webp",
       },
       {
         id: 3,
         title: "SlateX Go",
         description:
           "A fully powered handheld terminal that lets you take orders and process payments from anywhere—tableside, curbside, or on delivery. It delivers secure, encrypted transactions, tip prompts, and digital receipts in a rugged, all‑day battery design",
-        image: "/slatex-go.png",
+        image: "/SlateX Go.webp",
       },
     ],
     solutions: [

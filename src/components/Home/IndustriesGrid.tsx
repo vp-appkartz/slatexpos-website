@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 /* ─── Scroll reveal ────────────────────────────────────────────── */
 function useReveal(threshold = 0.08) {
@@ -271,11 +270,10 @@ const BentoCard: React.FC<{ card: Card; delay: number }> = ({ card, delay }) => 
 /* ─── Main section ──────────────────────────────────────────────── */
 const IndustriesGrid: React.FC = () => {
   const { ref, visible } = useReveal();
-  const navigate = useNavigate();
 
   return (
     <section className="relative overflow-hidden">
-      <div className="py-20 lg:py-28">
+      <div className="pt-20 pb-10 lg:pt-28 lg:pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* ── Header ── */}
@@ -317,26 +315,6 @@ const IndustriesGrid: React.FC = () => {
             ))}
           </div>
 
-          {/* ── CTA ── */}
-          <div
-            className="text-center mt-10"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(16px)',
-              transition: 'opacity 0.7s ease-out 0.4s, transform 0.7s ease-out 0.4s',
-            }}
-          >
-            <button
-              onClick={() => navigate('/industries')}
-              className="inline-flex items-center gap-2 bg-white border border-gray-300
-                hover:border-gray-500 text-gray-600 hover:text-gray-900 font-semibold
-                rounded-full px-7 py-3 text-base shadow-sm hover:shadow-md
-                hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
-            >
-              Find your industry
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </div>
 
         </div>
       </div>

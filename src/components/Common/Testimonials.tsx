@@ -125,7 +125,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
       image: '',
       text: "Managing dine-in, takeout, and sweets counters together used to be stressful. With SlateX POS, we've streamlined everything under one roof. The weighing scale integration is something no other POS at this price offers.",
       logo: 'Royal Sweets & Restaurant',
-      logoSubtext: 'Brandon, MB · Canada',
+      logoSubtext: 'Edmonton, AB · Canada',
     },
     {
       id: 4,
@@ -148,7 +148,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
   const regions = [
     { label: 'Edmonton, AB',  flag: '🍁' },
     { label: 'Vancouver, BC', flag: '🍁' },
-    { label: 'Brandon, MB',   flag: '🍁' },
+    { label: 'Calgary, AB',   flag: '🍁' },
     { label: 'United States', flag: '🇺🇸' },
   ];
 

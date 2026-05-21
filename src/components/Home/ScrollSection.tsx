@@ -101,7 +101,7 @@ const defaultFeatures: Feature[] = [
       'Scheduled & Future Orders',
       'Branded Ordering Page',
     ],
-    imageSrc: '/home-about-3.png',
+    imageSrc: '/Online ordering.webp',
     imageAlt: 'SlateX online ordering interface',
   },
   {
@@ -119,7 +119,7 @@ const defaultFeatures: Feature[] = [
       'Access from Any Device',
       'Owner Reporting App',
     ],
-    imageSrc: '/home-about-5.png',
+    imageSrc: '/reporting.webp',
     imageAlt: 'SlateX reports dashboard',
   },
 ];
@@ -194,6 +194,10 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
             className={`relative w-full h-auto object-contain img-float-${index}`}
             style={{
               mixBlendMode: 'multiply',
+              ...(index === 4 || index === 5 ? {
+                border: '3px solid white',
+                borderRadius: '20px',
+              } : {}),
               filter: index === 0
                 ? 'drop-shadow(0 32px 48px rgba(249,110,77,0.18)) drop-shadow(0 8px 20px rgba(99,102,241,0.10))'
                 : index === 1
@@ -202,6 +206,10 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
                 ? 'drop-shadow(0 24px 40px rgba(236,72,153,0.18)) drop-shadow(0 6px 16px rgba(249,168,212,0.12))'
                 : index === 3
                 ? 'drop-shadow(0 24px 40px rgba(56,189,248,0.22)) drop-shadow(0 6px 16px rgba(14,165,233,0.14))'
+                : index === 4
+                ? 'drop-shadow(0 24px 40px rgba(234,179,8,0.20)) drop-shadow(0 6px 16px rgba(234,179,8,0.12))'
+                : index === 5
+                ? 'drop-shadow(0 24px 40px rgba(239,68,68,0.20)) drop-shadow(0 6px 16px rgba(239,68,68,0.12))'
                 : undefined,
             }}
           />

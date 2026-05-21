@@ -25,7 +25,7 @@ const defaultProps: Required<Omit<BlackSectionProps, 'onButtonClick' | 'classNam
     "Works on Any Android Device",
     "Full Offline Mode",
     "One Monthly Fee",
-    "Canadian-First Support"
+    "Dedicated Local Support"
   ]
 };
 

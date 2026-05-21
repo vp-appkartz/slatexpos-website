@@ -108,7 +108,7 @@ const Hero = () => {
 
           {/* Eyebrow */}
           <p className="relative text-sm font-bold tracking-widest uppercase text-orange-500 mb-5 pt-6">
-            Restaurant POS · Canada
+            Restaurant POS
           </p>
 
           {/* Headline */}

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, Bot } from 'lucide-react';
+import { useDemoModal } from '../../contexts/DemoModalContext';
 
 /* ─── Scroll reveal ────────────────────────────────────────────── */
 function useReveal(threshold = 0.1) {
@@ -25,6 +26,7 @@ interface HardwareProps {
 }
 
 const Hardware: React.FC<HardwareProps> = (props) => {
+  const { openDemoModal } = useDemoModal();
   const { ref: headerRef, visible: headerVisible } = useReveal(0.2);
   const { ref: cardsRef,  visible: cardsVisible  } = useReveal(0.1);
   const { ref: csRef,     visible: csVisible     } = useReveal(0.1);
@@ -222,7 +224,8 @@ const Hardware: React.FC<HardwareProps> = (props) => {
               Sign up to get early access.
             </p>
             <button
-              className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600
+              onClick={openDemoModal}
+            className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600
                 text-white font-semibold rounded-full px-8 py-3.5 text-base
                 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0
                 transition-all duration-200"

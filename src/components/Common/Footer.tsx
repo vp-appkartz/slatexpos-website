@@ -114,7 +114,7 @@ const Footer = () => {
               {defaultProductLinks.map((p) => (
                 <li key={p.url}>
                   <a href={getProductUrl(p.url)}
-                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base">
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base font-medium">
                     {p.name}
                   </a>
                 </li>
@@ -129,7 +129,7 @@ const Footer = () => {
               {defaultIndustryLinks.map((i) => (
                 <li key={i.name}>
                   <a href={getIndustryUrl(i.url)}
-                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base">
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base font-medium">
                     {i.name}
                   </a>
                 </li>
@@ -144,7 +144,7 @@ const Footer = () => {
               {defaultCompanyLinks.map((c) => (
                 <li key={c.name}>
                   <a href={c.url}
-                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base">
+                    className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base font-medium">
                     {c.name}
                   </a>
                 </li>
@@ -159,9 +159,9 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
           <div className="flex gap-4">
-            <a href="/privacy"  className="text-sm text-gray-400 hover:text-gray-600 transition-colors">Privacy</a>
-            <a href="/terms"    className="text-sm text-gray-400 hover:text-gray-600 transition-colors">Terms</a>
-            <a href="/security" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">Security</a>
+            <a href="/privacy"  className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Privacy</a>
+            <a href="/terms"    className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Terms</a>
+            <a href="/security" className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Security</a>
           </div>
         </div>
       </div>

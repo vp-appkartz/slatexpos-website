@@ -1,6 +1,6 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -112,10 +112,10 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {defaultProductLinks.map((p) => (
                 <li key={p.url}>
-                  <a href={getProductUrl(p.url)}
+                  <Link to={getProductUrl(p.url)}
                     className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base font-medium">
                     {p.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -127,10 +127,10 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {defaultIndustryLinks.map((i) => (
                 <li key={i.name}>
-                  <a href={getIndustryUrl(i.url)}
+                  <Link to={getIndustryUrl(i.url)}
                     className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base font-medium">
                     {i.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -142,10 +142,10 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {defaultCompanyLinks.map((c) => (
                 <li key={c.name}>
-                  <a href={c.url}
+                  <Link to={c.url}
                     className="text-gray-500 hover:text-orange-500 transition-colors duration-200 text-base font-medium">
                     {c.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -158,7 +158,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
           <div className="flex gap-4">
-            <a href="/privacy"  className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Privacy</a>
+            <Link to="/privacy" className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Privacy</Link>
           </div>
         </div>
       </div>

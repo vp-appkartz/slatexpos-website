@@ -73,7 +73,7 @@ const Privacy: React.FC = () => {
         keywords="SlateX POS privacy policy, POS security, merchant privacy, Canada POS privacy"
       />
 
-      <div className="min-h-screen py-16 sm:py-24 relative overflow-hidden font-gilroy">
+      <div className="min-h-screen pt-32 pb-16 sm:pt-40 sm:pb-24 relative overflow-hidden font-gilroy">
         {/* Glow orbs */}
         <div className="absolute top-1/4 left-10 w-96 h-96 rounded-full pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(249,110,77,0.05) 0%, transparent 70%)', filter: 'blur(80px)' }} />

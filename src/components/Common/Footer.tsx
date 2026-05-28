@@ -28,7 +28,6 @@ const Footer = () => {
   ];
 
   const defaultCompanyLinks = [
-    { name: "About Us",  url: "/about" },
     { name: "Hardware",  url: "/hardware" },
     { name: "Pricing",   url: "/pricing" },
     { name: "Career",    url: "/career" },
@@ -160,8 +159,6 @@ const Footer = () => {
           <p className="text-sm text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
           <div className="flex gap-4">
             <a href="/privacy"  className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Privacy</a>
-            <a href="/terms"    className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Terms</a>
-            <a href="/security" className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Security</a>
           </div>
         </div>
       </div>

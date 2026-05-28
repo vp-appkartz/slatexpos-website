@@ -29,6 +29,7 @@ import HardwarePage from "./components/pages/Hardware";
 import BlogList from "./components/pages/BlogList";
 import BlogDetails from "./components/pages/BlogDetails";
 import Privacy from "./components/pages/Privacy";
+import Career from "./components/pages/Career";
 
 // Admin imports
 import { AuthProvider } from "./contexts/AuthContext";
@@ -160,6 +161,17 @@ const AppContent = () => {
             <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fff8f3 0%, #f9f9fb 30%, #f3f0ff 62%, #f9f9fb 82%, #fff8f3 100%)' }}>
               <Header />
               <Privacy />
+              <Footer />
+            </div>
+          }
+        />
+
+        <Route
+          path="/career"
+          element={
+            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fff8f3 0%, #f9f9fb 30%, #f3f0ff 62%, #f9f9fb 82%, #fff8f3 100%)' }}>
+              <Header />
+              <Career />
               <Footer />
             </div>
           }

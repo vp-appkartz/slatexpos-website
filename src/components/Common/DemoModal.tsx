@@ -16,6 +16,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     phone: '',
     company: '',
     message: '',
+    botField: '', // Hidden honeypot field for spam bots
   });
   const [submitting, setSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -51,6 +52,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         phone: '',
         company: '',
         message: '',
+        botField: '',
       });
       setShowSuccess(false);
       setError(null);
@@ -78,6 +80,18 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
+
+    // Honeypot check: If a bot filled out the hidden field, silently reject but pretend it succeeded
+    if (form.botField) {
+      console.log('Bot detected. Silently discarding submission.');
+      setShowSuccess(true);
+      setTimeout(() => {
+        onClose();
+        setShowSuccess(false);
+      }, 2200);
+      setSubmitting(false);
+      return;
+    }
 
     // Basic validation
     if (
@@ -148,6 +162,18 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               Schedule your 15-minute demo now
             </h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
+              {/* Honeypot field - Hidden from real users, visible to spam bots */}
+              <div style={{ display: 'none' }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="botField"
+                  value={form.botField}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0">
                 <input
                   type="text"

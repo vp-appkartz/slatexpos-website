@@ -9,15 +9,15 @@ import { useDemoModal } from "../../contexts/DemoModalContext";
 ────────────────────────────────────────────────────────────────────── */
 const CHIPS = [
   /* ── Products — left side, staggered inward ── */
-  { src: "/icons/Restuarant POS System.svg",          label: "Restaurant POS",   top: 148, side: "left",  offset: "1.5%",  delay: "0.0s", dur: "4.7s" },
-  { src: "/icons/Kitchen Display System.svg",         label: "Kitchen Display",  top: 230, side: "left",  offset: "9%",    delay: "1.2s", dur: "5.1s" },
-  { src: "/icons/Web Ordering.svg",                   label: "Web Ordering",     top: 316, side: "left",  offset: "2.5%",  delay: "0.5s", dur: "4.9s" },
-  { src: "/icons/Loyalty & Promotions.svg",           label: "Loyalty",          top: 390, side: "left",  offset: "11%",   delay: "1.8s", dur: "5.3s" },
+  { src: "/icons/Restuarant POS System.svg",          label: "Restaurant POS",   top: 175, side: "left",  offset: "1.5%",  delay: "0.0s", dur: "4.7s" },
+  { src: "/icons/Kitchen Display System.svg",         label: "Kitchen Display",  top: 265, side: "left",  offset: "5.5%",  delay: "1.2s", dur: "5.1s" },
+  { src: "/icons/Web Ordering.svg",                   label: "Web Ordering",     top: 355, side: "left",  offset: "2.0%",  delay: "0.5s", dur: "4.9s" },
+  { src: "/icons/Loyalty & Promotions.svg",           label: "Loyalty",          top: 445, side: "left",  offset: "6.0%",  delay: "1.8s", dur: "5.3s" },
   /* ── Industries — right side, staggered inward ── */
-  { src: "/icons/Quick Serve Resturants (QSR).svg",   label: "Quick Service",    top: 142, side: "right", offset: "2%",    delay: "0.7s", dur: "5.0s" },
-  { src: "/icons/Casual Dining.svg",                  label: "Casual Dining",    top: 225, side: "right", offset: "10%",   delay: "0.2s", dur: "4.6s" },
-  { src: "/icons/Pizzeria.svg",                       label: "Pizzeria",         top: 310, side: "right", offset: "3%",    delay: "1.4s", dur: "5.2s" },
-  { src: "/icons/Branded Mobile App.svg",             label: "Mobile App",       top: 385, side: "right", offset: "12%",   delay: "0.9s", dur: "4.8s" },
+  { src: "/icons/Quick Serve Resturants (QSR).svg",   label: "Quick Service",    top: 170, side: "right", offset: "1.5%",  delay: "0.7s", dur: "5.0s" },
+  { src: "/icons/Casual Dining.svg",                  label: "Casual Dining",    top: 260, side: "right", offset: "5.5%",  delay: "0.2s", dur: "4.6s" },
+  { src: "/icons/Pizzeria.svg",                       label: "Pizzeria",         top: 350, side: "right", offset: "2.0%",  delay: "1.4s", dur: "5.2s" },
+  { src: "/icons/Branded Mobile App.svg",             label: "Mobile App",       top: 440, side: "right", offset: "6.0%",  delay: "0.9s", dur: "4.8s" },
 ];
 
 /* ── Hero ──────────────────────────────────────────────────────────── */
@@ -55,7 +55,7 @@ const Hero = () => {
             return (
               <div
                 key={i}
-                className="absolute flex items-center gap-2"
+                className="absolute flex items-center gap-3 group pointer-events-auto cursor-pointer select-none"
                 style={{
                   top: c.top,
                   ...(isLeft ? { left: c.offset } : { right: c.offset }),
@@ -65,25 +65,33 @@ const Hero = () => {
               >
                 {/* Right chips: label first, then icon */}
                 {!isLeft && (
-                  <span className="text-[13px] font-semibold text-gray-700 whitespace-nowrap">
+                  <span className="text-sm font-bold text-gray-800 tracking-wide whitespace-nowrap transition-colors duration-200 group-hover:text-orange-500 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
                     {c.label}
                   </span>
                 )}
                 <div
-                  className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
+                  className="w-[52px] h-[52px] rounded-2xl flex-shrink-0 flex items-center justify-center border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
                   style={{
-                    background: "rgba(255,255,255,0.90)",
+                    background: "rgba(255,255,255,0.92)",
                     backdropFilter: "blur(12px)",
                     WebkitBackdropFilter: "blur(12px)",
-                    border: "1px solid rgba(255,255,255,0.95)",
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1)",
+                    borderColor: "rgba(255,255,255,0.95)",
+                    boxShadow: "0 6px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(249,115,22,0.3)";
+                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(249,115,22,0.15), inset 0 1px 0 rgba(255,255,255,1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.95)";
+                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)";
                   }}
                 >
-                  <img src={c.src} alt={c.label} className="w-6 h-6 object-contain" />
+                  <img src={c.src} alt={c.label} className="w-[30px] h-[30px] object-contain transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 {/* Left chips: icon first, then label */}
                 {isLeft && (
-                  <span className="text-[13px] font-semibold text-gray-700 whitespace-nowrap">
+                  <span className="text-sm font-bold text-gray-800 tracking-wide whitespace-nowrap transition-colors duration-200 group-hover:text-orange-500 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
                     {c.label}
                   </span>
                 )}

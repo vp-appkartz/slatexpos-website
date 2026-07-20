@@ -231,16 +231,11 @@ const Testimonial: React.FC<TestimonialsData> = ({
           maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
         }}
       >
-          <div className="flex gap-4 sm:gap-6 animate-marquee">
-            {[...activeItems, ...activeItems].filter(Boolean).map((t, idx) => (
-              <TestimonialCard key={`${t?.id || idx}-${idx}`} t={t} />
-            ))}
-          </div>
-          <div className="flex gap-4 sm:gap-6 animate-marquee" aria-hidden="true">
-            {[...activeItems, ...activeItems].filter(Boolean).map((t, idx) => (
-              <TestimonialCard key={`dup-${t?.id || idx}-${idx}`} t={t} />
-            ))}
-          </div>
+        <div className="testimonial-track flex gap-5 w-max py-4 px-4">
+          {looped.filter(Boolean).map((t, idx) => (
+            <TestimonialCard key={`${t?.id || idx}-${idx}`} t={t} />
+          ))}
+        </div>
       </div>
 
     </section>

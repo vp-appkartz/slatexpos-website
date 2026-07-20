@@ -6,7 +6,7 @@ export default defineConfig({
   base: '/',
   plugins: [react()],
   server: {
-    port: 3006,
+    port: 3012,
   },
   optimizeDeps: {
     exclude: ['lucide-react'],

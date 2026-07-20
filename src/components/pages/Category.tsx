@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { Zap, Monitor, CreditCard, BarChart3, Users, Utensils, Clock, Coffee, ChefHat } from 'lucide-react';
 import HeroSection from '../Common/HeroSection';
 import NumberSpeaks from '../Common/StatData';
@@ -43,12 +43,12 @@ const DynamicCategoryPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Category Not Found</h1>
           <p className="text-gray-600 mb-8">The category you're looking for doesn't exist.</p>
-          <a
-            href="/"
-            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors"
+          <Link
+            to="/"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors inline-block"
           >
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     );

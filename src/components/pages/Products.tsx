@@ -71,9 +71,39 @@ const DynamicProductPage: React.FC = () => {
     setProductData(staticData);
 
     // Subscribe to Firebase updates
-    const unsubscribe = subscribeToProductData(slug, (data) => {
-      if (data) {
-        setProductData(data);
+    const unsubscribe = subscribeToProductData(slug, (liveData) => {
+      if (liveData) {
+        setProductData(prev => {
+          const baseData = staticData || prev || {} as ProductPageData;
+          return {
+            ...baseData,
+            ...liveData,
+            meta: {
+              ...baseData.meta,
+              ...liveData.meta
+            },
+            heroSection: {
+              ...baseData.heroSection,
+              ...liveData.heroSection
+            },
+            scrollSection: {
+              ...baseData.scrollSection,
+              ...liveData.scrollSection
+            },
+            keyFeatures: {
+              ...baseData.keyFeatures,
+              ...liveData.keyFeatures
+            },
+            blackCardSection: {
+              ...baseData.blackCardSection,
+              ...liveData.blackCardSection
+            },
+            faqSection: {
+              ...baseData.faqSection,
+              ...liveData.faqSection
+            }
+          } as ProductPageData;
+        });
       }
     });
 
@@ -108,7 +138,7 @@ const DynamicProductPage: React.FC = () => {
     return {
       heroTitle: productData.scrollSection.heroTitle,
       heroSubtitle: productData.scrollSection.heroSubtitle,
-      sections: (productData.scrollSection.sections || []).map(section => ({
+      sections: (productData.scrollSection.sections || []).filter(Boolean).map(section => ({
         ...section,
         icon: getIcon(section.icon || '')
       }))

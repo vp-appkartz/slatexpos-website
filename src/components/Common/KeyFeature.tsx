@@ -76,7 +76,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 lg:gap-16 ${gridClassName}`}
         >
-          {features?.map((feature, index) => {
+          {features?.filter(Boolean).map((feature, index) => {
             // Only add AOS attributes on md and up
             const aosType = aosAnimations[index % aosAnimations.length];
             const aosDelay = 200 + index * 120;

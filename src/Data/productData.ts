@@ -155,7 +155,7 @@ export const restaurantPOSData: ProductPageData = {
         bgColor: 'bg-orange-500',
         bgGradient: 'from-orange-400 to-orange-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/rps/rps-about-1.png',
+        imageSrc: '/rps-fe.png',
         imageAlt: 'Reliable POS System',
         bulletPoints: [
           { text: 'Customer Display', highlight: true },

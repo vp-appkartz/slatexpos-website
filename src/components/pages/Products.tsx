@@ -11,7 +11,7 @@ import BlackSection from '../Common/BlackSection';
 import Testimonial from '../Common/Testimonials';
 import Contact from '../Common/CTA';
 import { getProductData as getStaticProductData, ProductPageData } from '../../Data/productData';
-import { subscribeToProductData, subscribeToHeroPageData } from '../../services/firestoreService';
+
 import FAQSection from '../Common/Faq';
 
 import ScrollSection from '../Home/ScrollSection';
@@ -48,66 +48,15 @@ const DynamicProductPage: React.FC = () => {
   const [sharedData, setSharedData] = React.useState<any>(null);
 
   useEffect(() => {
-    // Subscribe to Hero/Global data for shared sections
-    // Ensure subscribeToHeroPageData is imported
-    const unsubscribeHero = subscribeToHeroPageData((docData) => {
-      if (docData) {
-        setSharedData(docData);
-      }
-    });
-    return () => unsubscribeHero();
-  }, []);
-
-  useEffect(() => {
     const el = document.scrollingElement || document.documentElement;
     el.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 
   useEffect(() => {
     if (!slug) return;
-
-    // Load static data first
+    // Load static data
     const staticData = getStaticProductData(slug);
     setProductData(staticData);
-
-    // Subscribe to Firebase updates
-    const unsubscribe = subscribeToProductData(slug, (liveData) => {
-      if (liveData) {
-        setProductData(prev => {
-          const baseData = staticData || prev || {} as ProductPageData;
-          return {
-            ...baseData,
-            ...liveData,
-            meta: {
-              ...baseData.meta,
-              ...liveData.meta
-            },
-            heroSection: {
-              ...baseData.heroSection,
-              ...liveData.heroSection
-            },
-            scrollSection: {
-              ...baseData.scrollSection,
-              ...liveData.scrollSection
-            },
-            keyFeatures: {
-              ...baseData.keyFeatures,
-              ...liveData.keyFeatures
-            },
-            blackCardSection: {
-              ...baseData.blackCardSection,
-              ...liveData.blackCardSection
-            },
-            faqSection: {
-              ...baseData.faqSection,
-              ...liveData.faqSection
-            }
-          } as ProductPageData;
-        });
-      }
-    });
-
-    return () => unsubscribe();
   }, [slug]);
 
   if (!slug) {

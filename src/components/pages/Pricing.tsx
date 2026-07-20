@@ -6,19 +6,7 @@ import FreeTrial from '../Common/BlackSection'
 import Contact from '../Common/CTA'
 import Testimonials from '../Common/Testimonials';
 import SEO from '../Common/SEO';
-import { subscribeToHeroPageData } from '../../services/firestoreService';
-
 function Pricing() {
-  const [sharedData, setSharedData] = useState<any>(null);
-
-  useEffect(() => {
-    const unsubscribe = subscribeToHeroPageData((docData) => {
-      if (docData) {
-        setSharedData(docData);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
 
   return (
     <>
@@ -29,20 +17,10 @@ function Pricing() {
       />
       <PricingComponent />
       <ComparePlanComponent />
-      <Hardware
-        title={sharedData?.hardware?.title}
-        subtitle={sharedData?.hardware?.subtitle}
-      />
-      <Testimonials
-        title={sharedData?.testimonials?.title}
-        subtitle={sharedData?.testimonials?.subtitle}
-        items={sharedData?.testimonials?.items}
-      />
-      <Contact
-        title={sharedData?.cta?.title}
-        description={sharedData?.cta?.description}
-        image={sharedData?.cta?.image}
-      />
+      <Hardware />
+      <Testimonials />
+      <FreeTrial />
+      <Contact />
     </>
   )
 }

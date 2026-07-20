@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import Contact from "../Common/CTA";
-import { getBlogBySlug } from "../../services/blogService";
+
 import { BlogPost } from "../../types/blog";
 import SEO from "../Common/SEO";
 import { staticBlogPosts } from "../../Data/blogData";
@@ -129,16 +129,16 @@ const BlogDetails = () => {
     if (slug) fetchBlog();
   }, [slug]);
 
-  const fetchBlog = async () => {
+  const fetchBlog = () => {
     try {
       setLoading(true);
       setError(null);
-      // First try static data (instant, no round-trip)
       const local = staticBlogPosts.find((b) => b.slug === slug);
-      if (local) { setBlog(local); setLoading(false); return; }
-      const data = await getBlogBySlug(slug!);
-      if (data) { setBlog(data); }
-      else      { setError("Blog post not found."); }
+      if (local) {
+        setBlog(local);
+      } else {
+        setError("Blog post not found.");
+      }
     } catch {
       setBlog(staticBlogDetails);
     } finally {

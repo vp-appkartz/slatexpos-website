@@ -6,9 +6,7 @@ import BlackSection from "../Common/BlackSection";
 import Testimonial from "../Common/Testimonials";
 import Contact from "../Common/CTA";
 import FAQSection from "../Common/Faq";
-// import { useHardwarePage } from "../../contexts/HardwarePageContext"; // Removed in favor of direct subscription
 import { hardwareData as initialData, HardwarePageData } from '../../Data/hardwareData';
-import { subscribeToHardwarePageData, subscribeToHeroPageData } from '../../services/firestoreService';
 import ScrollSection from "../Home/ScrollSection";
 import { Monitor, Smartphone, Tablet } from "lucide-react";
 import SEO from "../Common/SEO";
@@ -16,46 +14,6 @@ import SEO from "../Common/SEO";
 const HardwarePage: React.FC = () => {
   const [data, setData] = useState<HardwarePageData>(initialData);
   const [contactData, setContactData] = useState<any>(null);
-
-  useEffect(() => {
-    // Subscribe to Hardware Page specific data
-    const unsubscribeHardware = subscribeToHardwarePageData((docData) => {
-      if (docData) {
-        setData((prev) => ({
-          ...prev,
-          ...docData as any
-        }));
-      }
-    });
-
-    // Subscribe to Hero Page data (for shared sections: Hardware, BlackSection, Testimonial, Contact)
-    const unsubscribeHero = subscribeToHeroPageData((docData) => {
-      if (docData) {
-        setData((prev) => ({
-          ...prev,
-          // Update shared sections
-          blackSection: docData.blackSection || prev.blackSection,
-          testimonials: docData.testimonials || prev.testimonials,
-          // Update Hardware Showcase items and solutions from Hero data if available
-          hardwareShowcase: {
-            ...prev.hardwareShowcase,
-            items: docData.hardware?.items || prev.hardwareShowcase.items,
-            solutions: docData.hardware?.solutions || prev.hardwareShowcase.solutions
-          }
-        }));
-
-        // Set Contact/CTA data
-        if (docData.cta) {
-          setContactData(docData.cta);
-        }
-      }
-    });
-
-    return () => {
-      unsubscribeHardware();
-      unsubscribeHero();
-    };
-  }, []);
 
   const transformedSections = data.productSections.map((product, index) => {
     // Assign icons based on product type

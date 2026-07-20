@@ -1,9 +1,12 @@
 import React from 'react';
 import { Check } from 'lucide-react';
-import { usePricing } from '../../contexts/PricingContext';
+import { initialPricingPlans as plans } from '../../Data/pricingData';
 
 const PricingComponent = () => {
-    const { plans, heroSection } = usePricing();
+    const heroSection = {
+        title: "Simple, transparent pricing",
+        subtitle: "No hidden fees. No surprise charges. Just the features you need to grow."
+    };
 
     return (
         <div

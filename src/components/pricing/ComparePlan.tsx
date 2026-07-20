@@ -1,9 +1,11 @@
 import { Check, X, Info } from 'lucide-react';
-import { usePricing } from '../../contexts/PricingContext';
-import { ComparisonFeature } from '../../Data/pricingData';
+import { ComparisonFeature, initialPricingPlans as plans, initialCompareFeatures as compareFeatures } from '../../Data/pricingData';
 
 const ComparePlanComponent = () => {
-    const { plans, compareFeatures, compareSection } = usePricing();
+    const compareSection = {
+        title: "Compare Plans",
+        subtitle: "See all the features included in each plan to find the perfect fit for your business."
+    };
 
     const renderFeatureValue = (feature: ComparisonFeature, planId: string) => {
         // @ts-ignore - Dynamic access based on plan ID

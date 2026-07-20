@@ -145,19 +145,13 @@ const BlogSection = () => {
   useEffect(() => { fetchBlogs(); }, [selectedCategory]);
   useEffect(() => { filterBlogs(); }, [blogs, search]);
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = () => {
     setLoading(true);
     try {
-      const { getAllBlogs } = await import("../../services/blogService");
-      const all = await getAllBlogs();
-      // Merge: static posts always show; add any Firebase-only posts on top
-      const staticSlugs = new Set(staticBlogPosts.map((b) => b.slug));
-      const firebaseOnly = all.filter((b) => b.published && !staticSlugs.has(b.slug));
-      const merged = [...staticBlogPosts, ...firebaseOnly];
       const filtered =
         selectedCategory === "All"
-          ? merged
-          : merged.filter((b) => b.category === selectedCategory);
+          ? staticBlogPosts
+          : staticBlogPosts.filter((b) => b.category === selectedCategory);
       setBlogs(filtered);
     } catch {
       setBlogs(fallback());

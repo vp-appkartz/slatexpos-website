@@ -185,7 +185,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
           <img
             src={feature.imageSrc}
             alt={feature.imageAlt}
-            className={`relative w-full h-auto object-contain img-float-${index}`}
+            className={`relative w-full h-auto object-contain mix-blend-darken img-float-${index}`}
             style={{
               ...(index === 4 || index === 5 ? {
                 border: '3px solid white',

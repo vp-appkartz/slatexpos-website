@@ -156,18 +156,12 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
     <div
       ref={ref}
       className={`flex flex-col gap-10 items-center py-8 lg:py-12 ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0px)' : 'translateY(60px)',
-        transition: `opacity 0.8s ease-out, transform 0.8s ease-out`,
-        transitionDelay: visible ? '0ms' : '0ms',
-      }}
     >
       {/* ── Image ── */}
       <div className="w-full lg:w-1/2 flex-shrink-0"
         style={{
           opacity: visible ? 1 : 0,
-          transform: visible ? 'translateX(0px) scale(1)' : `translateX(${reverse ? '40px' : '-40px'}) scale(0.96)`,
+          transform: visible ? 'translateY(0px) translateX(0px) scale(1)' : `translateY(60px) translateX(${reverse ? '40px' : '-40px'}) scale(0.96)`,
           transition: 'opacity 0.9s ease-out, transform 0.9s ease-out',
           transitionDelay: visible ? '100ms' : '0ms',
         }}
@@ -193,24 +187,10 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
             alt={feature.imageAlt}
             className={`relative w-full h-auto object-contain img-float-${index}`}
             style={{
-              mixBlendMode: 'multiply',
               ...(index === 4 || index === 5 ? {
                 border: '3px solid white',
                 borderRadius: '20px',
               } : {}),
-              filter: index === 0
-                ? 'drop-shadow(0 32px 48px rgba(249,110,77,0.18)) drop-shadow(0 8px 20px rgba(99,102,241,0.10))'
-                : index === 1
-                ? 'drop-shadow(0 24px 40px rgba(139,92,246,0.20)) drop-shadow(0 6px 16px rgba(139,92,246,0.10))'
-                : index === 2
-                ? 'drop-shadow(0 24px 40px rgba(236,72,153,0.18)) drop-shadow(0 6px 16px rgba(249,168,212,0.12))'
-                : index === 3
-                ? 'drop-shadow(0 24px 40px rgba(56,189,248,0.22)) drop-shadow(0 6px 16px rgba(14,165,233,0.14))'
-                : index === 4
-                ? 'drop-shadow(0 24px 40px rgba(234,179,8,0.20)) drop-shadow(0 6px 16px rgba(234,179,8,0.12))'
-                : index === 5
-                ? 'drop-shadow(0 24px 40px rgba(239,68,68,0.20)) drop-shadow(0 6px 16px rgba(239,68,68,0.12))'
-                : undefined,
             }}
           />
         </div>
@@ -221,7 +201,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
         className={`w-full lg:w-1/2 ${reverse ? 'lg:pr-8 xl:pr-16' : 'lg:pl-8 xl:pl-16'}`}
         style={{
           opacity: visible ? 1 : 0,
-          transform: visible ? 'translateX(0px)' : `translateX(${reverse ? '-40px' : '40px'})`,
+          transform: visible ? 'translateY(0px) translateX(0px)' : `translateY(60px) translateX(${reverse ? '-40px' : '40px'})`,
           transition: 'opacity 0.9s ease-out, transform 0.9s ease-out',
           transitionDelay: visible ? '200ms' : '0ms',
         }}

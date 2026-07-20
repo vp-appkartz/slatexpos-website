@@ -108,9 +108,9 @@ const DynamicProductPage: React.FC = () => {
     return {
       heroTitle: productData.scrollSection.heroTitle,
       heroSubtitle: productData.scrollSection.heroSubtitle,
-      sections: productData.scrollSection.sections.map(section => ({
+      sections: (productData.scrollSection.sections || []).map(section => ({
         ...section,
-        icon: getIcon(section.icon)
+        icon: getIcon(section.icon || '')
       }))
     };
   };
@@ -140,11 +140,13 @@ const DynamicProductPage: React.FC = () => {
         backgroundImage={productData.heroSection.backgroundImage}
       />
 
-      <NumberSpeaks
-        title={productData.numberSpeaks.title}
-        subtitle={productData.numberSpeaks.subtitle}
-        stats={productData.numberSpeaks.stats}
-      />
+      {productData.numberSpeaks && (
+        <NumberSpeaks
+          title={productData.numberSpeaks.title}
+          subtitle={productData.numberSpeaks.subtitle}
+          stats={productData.numberSpeaks.stats}
+        />
+      )}
 
       {/* Conditionally render ScrollSection only if product has scroll section data */}
       {scrollSectionData && (
@@ -192,9 +194,11 @@ const DynamicProductPage: React.FC = () => {
         items={sharedData?.testimonials?.items}
       />
 
-      <FAQSection
-        faqs={productData.faqSection.faqs?.slice(0, 5)}
-      />
+      {productData.faqSection && (
+        <FAQSection
+          faqs={productData.faqSection.faqs?.slice(0, 5)}
+        />
+      )}
       <Contact
         title={sharedData?.cta?.title}
         description={sharedData?.cta?.description}

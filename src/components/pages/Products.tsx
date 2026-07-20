@@ -1,7 +1,7 @@
 // DynamicProductPage.tsx - Main dynamic product page component
 
 import React, { useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import HeroSection from '../Common/HeroSection';
 import NumberSpeaks from '../Common/StatData';
 import KeyFeatures from '../Common/KeyFeature';
@@ -90,12 +90,12 @@ const DynamicProductPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Product Not Found</h1>
           <p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
-          <a
-            href="/"
-            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors"
+          <Link
+            to="/"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors inline-block"
           >
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -122,22 +122,22 @@ const DynamicProductPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={productData.meta?.title || productData.heroSection.title}
-        description={productData.meta?.description || productData.heroSection.description}
+        title={productData.meta?.title || productData.heroSection?.title || ''}
+        description={productData.meta?.description || productData.heroSection?.description || ''}
         keywords={productData.meta?.keywords}
       />
       <HeroSection
-        title={productData.heroSection.title}
-        description={productData.heroSection.description}
-        buttonText={productData.heroSection.buttonText}
-        mainImage={productData.heroSection.mainImage}
-        mainImageAlt={productData.heroSection.mainImageAlt}
-        deviceImage={productData.heroSection.deviceImage}
-        deviceImageAlt={productData.heroSection.deviceImageAlt}
-        deviceTitle={productData.heroSection.deviceTitle}
-        deviceDescription={productData.heroSection.deviceDescription}
-        backgroundText={productData.heroSection.backgroundText}
-        backgroundImage={productData.heroSection.backgroundImage}
+        title={productData.heroSection?.title || ''}
+        description={productData.heroSection?.description || ''}
+        buttonText={productData.heroSection?.buttonText || ''}
+        mainImage={productData.heroSection?.mainImage || ''}
+        mainImageAlt={productData.heroSection?.mainImageAlt || ''}
+        deviceImage={productData.heroSection?.deviceImage}
+        deviceImageAlt={productData.heroSection?.deviceImageAlt}
+        deviceTitle={productData.heroSection?.deviceTitle}
+        deviceDescription={productData.heroSection?.deviceDescription}
+        backgroundText={productData.heroSection?.backgroundText || ''}
+        backgroundImage={productData.heroSection?.backgroundImage}
       />
 
       {productData.numberSpeaks && (

@@ -119,17 +119,8 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* ── Right Column: Abstract 3D & Floating Cards Layout ── */}
+          {/* ── Right Column: Abstract Floating Cards Layout ── */}
           <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[450px] sm:h-[550px] lg:h-[650px] flex items-center justify-center">
-            
-            {/* Background 3D Abstract Shapes */}
-            <div className="absolute top-[5%] right-[0%] w-32 h-32 md:w-48 md:h-48 opacity-90 animate-float-card" style={{ zIndex: 0 }}>
-              <img src="/3d-shapes/purple_torus.png" alt="3D Torus" className="w-full h-full object-contain mix-blend-multiply" />
-            </div>
-            
-            <div className="absolute bottom-[5%] left-[0%] w-40 h-40 md:w-56 md:h-56 opacity-80 animate-float-card-reverse" style={{ zIndex: 0 }}>
-              <img src="/3d-shapes/orange_helix.png" alt="3D Helix" className="w-full h-full object-contain mix-blend-multiply" />
-            </div>
             
             {/* Vector Accent / Squiggles */}
             <svg className="absolute top-[25%] left-[-5%] w-24 h-12 text-primary-400 opacity-80" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,27 +154,27 @@ const Hero = () => {
               })}
             </div>
 
-            {/* Floating Foreground UI Cards */}
+            {/* Floating Foreground UI Cards (Glassmorphism) */}
             <div className="absolute top-[20%] left-[-15%] sm:left-[-10%] z-30 animate-float-card">
-              <div className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                <div className="bg-green-100 text-green-600 rounded-full p-2 shadow-inner">
+              <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+                <div className="bg-green-500/20 text-green-700 rounded-full p-2 backdrop-blur-md">
                   <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-500 font-semibold uppercase tracking-wider">Payment Success</p>
-                  <p className="text-sm sm:text-base font-bold text-gray-900">$42.50</p>
+                  <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">Payment Success</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50</p>
                 </div>
               </div>
             </div>
 
             <div className="absolute bottom-[20%] right-[-10%] sm:right-[-5%] z-30 animate-float-card-reverse">
-              <div className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md ring-4 ring-white/50">
+              <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-500 font-semibold uppercase tracking-wider">New Order Ready</p>
-                  <p className="text-sm sm:text-base font-bold text-gray-900">Table 4</p>
+                  <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">New Order Ready</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">Table 4</p>
                 </div>
               </div>
             </div>

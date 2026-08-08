@@ -19,7 +19,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((current) => (current + 1) % MOCKUPS.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -145,27 +145,27 @@ const Hero = () => {
               })}
             </div>
 
-            {/* Foreground UI Notifications (Dark Mode Glassmorphism) */}
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
-              <div className="bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 shadow-[0_20px_40px_rgba(0,0,0,0.4)] rounded-2xl p-3 pr-8 flex items-center gap-4 text-white">
+            {/* Foreground UI Notifications (Light Glassmorphism) */}
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 ? 'opacity-100 translate-y-0 scale-100 delay-500' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+              <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">SlateX POS</p>
-                  <p className="text-sm sm:text-base font-extrabold text-white">Table 4: Order Placed</p>
+                  <p className="text-[10px] sm:text-xs text-gray-700 font-bold uppercase tracking-wider">SlateX POS</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">Table 4: Order Placed</p>
                 </div>
               </div>
             </div>
 
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
-              <div className="bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 shadow-[0_20px_40px_rgba(0,0,0,0.4)] rounded-2xl p-3 pr-8 flex items-center gap-4 text-white">
-                <div className="bg-green-500/20 text-green-400 rounded-full p-2 border border-green-500/30 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 ? 'opacity-100 translate-y-0 scale-100 delay-500' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+              <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
+                <div className="bg-green-500 text-white rounded-full p-2 shadow-md flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">Payment Received</p>
-                  <p className="text-sm sm:text-base font-extrabold text-white">$42.50 via Tap</p>
+                  <p className="text-[10px] sm:text-xs text-gray-700 font-bold uppercase tracking-wider">Payment Received</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50 via Tap</p>
                 </div>
               </div>
             </div>

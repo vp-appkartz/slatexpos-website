@@ -145,27 +145,27 @@ const Hero = () => {
               })}
             </div>
 
-            {/* Floating Foreground UI Cards (Glassmorphism) */}
-            <div className={`absolute top-[20%] left-[-15%] sm:left-[-10%] z-30 animate-float-card transition-all duration-[1000ms] ${activeIndex === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-              <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+            {/* Foreground UI Notifications */}
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+              <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">New Order Ready</p>
-                  <p className="text-sm sm:text-base font-extrabold text-gray-900">Table 4</p>
+                  <p className="text-[10px] sm:text-xs text-gray-700 font-bold uppercase tracking-wider">SlateX POS</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">Table 4: New Order</p>
                 </div>
               </div>
             </div>
 
-            <div className={`absolute top-[20%] left-[-15%] sm:left-[-10%] z-30 animate-float-card-reverse transition-all duration-[1000ms] ${activeIndex === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-              <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                <div className="bg-green-500/20 text-green-700 rounded-full p-2 backdrop-blur-md">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+              <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
+                <div className="bg-green-500 text-white rounded-full p-2 shadow-md flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">Payment Success</p>
-                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50</p>
+                  <p className="text-[10px] sm:text-xs text-gray-700 font-bold uppercase tracking-wider">Payment Received</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50 via Tap</p>
                 </div>
               </div>
             </div>

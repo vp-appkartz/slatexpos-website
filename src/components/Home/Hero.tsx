@@ -104,64 +104,46 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* ── Right Column: Apple-Style Isometric 3D Stack (Transparent Hardware) ── */}
-          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center" style={{ perspective: '2000px' }}>
+          {/* ── Right Column: Expanding Media Window ── */}
+          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center group">
             
+            {/* Glowing Aura that expands and intensifies on hover */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] bg-gradient-to-tr from-primary-400 via-orange-400 to-purple-500 blur-[70px] opacity-30 group-hover:opacity-60 group-hover:w-[90%] group-hover:h-[90%] transition-all duration-1000 ease-out -z-10 rounded-full" />
+            
+            {/* The Main Media Container (Card Removed) */}
             <div 
-              className="relative w-full max-w-[90%] sm:max-w-[85%] aspect-[16/10] animate-float-subtle"
-              style={{ transformStyle: 'preserve-3d', transform: 'rotateY(-24deg) rotateX(12deg) rotateZ(6deg)' }}
+              className="relative w-full max-w-[95%] aspect-[16/10] transition-all duration-700 ease-out group-hover:scale-[1.03] cursor-pointer"
+              onClick={openDemoModal}
             >
               {MOCKUPS.map((mockup, index) => {
-                const offset = (index - activeIndex + MOCKUPS.length) % MOCKUPS.length;
+                const isActive = index === activeIndex;
                 
-                // Calculate dynamic positioning for the isometric stack
-                let transform = '';
-                let opacity = '0';
-                let zIndex = 0;
-                
-                if (offset === 0) {
-                  // Front (Active)
-                  transform = 'translateZ(120px) translateX(-30px) translateY(-15px)';
-                  opacity = '1';
-                  zIndex = 30;
-                } else if (offset === 1) {
-                  // Middle (Next in line)
-                  transform = 'translateZ(0px) translateX(20px) translateY(0px)';
-                  opacity = '0.65';
-                  zIndex = 20;
-                } else if (offset === 2) {
-                  // Back (Waiting)
-                  transform = 'translateZ(-120px) translateX(70px) translateY(15px)';
-                  opacity = '0.25';
-                  zIndex = 10;
-                }
-
                 return (
                   <div 
                     key={`${mockup}-${index}`}
-                    // Removed background, border, and overflow-hidden so transparent hardware PNGs float cleanly
-                    className="absolute inset-0 flex items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.25, 1, 0.5, 1) cursor-pointer"
-                    style={{
-                      transform,
-                      opacity,
-                      zIndex,
-                      filter: `drop-shadow(${offset === 0 ? '-20px 20px 30px rgba(0,0,0,0.15)' : '-10px 10px 20px rgba(0,0,0,0.05)'})`,
-                    }}
-                    onClick={openDemoModal}
+                    className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-out ${isActive ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-105'}`}
                   >
                     <img
                       src={mockup}
-                      alt="SlateX Hardware"
-                      // object-contain ensures transparent physical devices aren't cropped
-                      className="w-full h-full object-contain"
+                      alt="SlateX UI Mockup"
+                      className="w-full h-full object-contain p-2 sm:p-4 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
                   </div>
                 );
               })}
+              
+              {/* Modern Carousel Indicators */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+                {MOCKUPS.map((_, i) => (
+                  <button
+                    key={`indicator-${i}`}
+                    onClick={(e) => { e.stopPropagation(); setActiveIndex(i); }}
+                    className={`h-2 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-8 bg-primary-500 shadow-sm' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Glowing background behind the hardware stack */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-gradient-to-tr from-primary-300/40 via-orange-400/20 to-purple-500/30 blur-[80px] -z-10 rounded-full mix-blend-multiply"></div>
           </div>
 
         </div>

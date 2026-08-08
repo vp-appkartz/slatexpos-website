@@ -4,10 +4,12 @@ import LogoSlider from "../Common/LogoSlider";
 import { useDemoModal } from "../../contexts/DemoModalContext";
 import { CheckCircle2, Star } from "lucide-react";
 
+// Use transparent hardware mockup PNGs here.
+// They will automatically inherit the 3D perspective and depth-of-field blur.
 const MOCKUPS = [
-  "/Homescreen-Restraurantpos.webp",
-  "/kitchen-1.webp",
-  "/reporting.webp"
+  "/Homescreen-Restraurantpos.webp", // Replace with transparent hardware image
+  "/kitchen-1.webp",                 // Replace with transparent hardware image
+  "/reporting.webp"                  // Replace with transparent hardware image
 ];
 
 const Hero = () => {
@@ -102,7 +104,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* ── Right Column: Apple-Style Isometric 3D Stack ── */}
+          {/* ── Right Column: Apple-Style Isometric 3D Stack (Transparent Hardware) ── */}
           <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center" style={{ perspective: '2000px' }}>
             
             <div 
@@ -141,31 +143,28 @@ const Hero = () => {
                 return (
                   <div 
                     key={mockup}
-                    className="absolute inset-0 flex items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.25, 1, 0.5, 1) cursor-pointer rounded-2xl overflow-hidden"
+                    // Removed background, border, and overflow-hidden so transparent hardware PNGs float cleanly
+                    className="absolute inset-0 flex items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.25, 1, 0.5, 1) cursor-pointer"
                     style={{
                       transform,
                       opacity,
                       zIndex,
-                      filter: `blur(${blur})`,
-                      boxShadow: offset === 0 ? '-25px 35px 60px -15px rgba(249,115,22,0.25), -10px 15px 30px -10px rgba(0,0,0,0.2)' : '-10px 15px 30px -10px rgba(0,0,0,0.1)',
-                      border: '1px solid rgba(255,255,255,0.7)',
-                      background: 'rgba(255,255,255,0.1)'
+                      filter: `blur(${blur}) drop-shadow(${offset === 0 ? '-20px 20px 30px rgba(0,0,0,0.15)' : '-10px 10px 20px rgba(0,0,0,0.05)'})`,
                     }}
                     onClick={openDemoModal}
                   >
                     <img
                       src={mockup}
-                      alt="SlateX UI Mockup"
-                      className="w-full h-full object-cover object-top"
+                      alt="SlateX Hardware"
+                      // object-contain ensures transparent physical devices aren't cropped
+                      className="w-full h-full object-contain"
                     />
-                    {/* Glass/Glare overlay to enhance 3D feel */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/30 pointer-events-none" />
                   </div>
                 );
               })}
             </div>
 
-            {/* Glowing background behind images */}
+            {/* Glowing background behind the hardware stack */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-gradient-to-tr from-primary-300/40 via-orange-400/20 to-purple-500/30 blur-[80px] -z-10 rounded-full mix-blend-multiply"></div>
           </div>
 

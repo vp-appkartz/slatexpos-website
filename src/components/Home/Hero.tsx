@@ -106,9 +106,6 @@ const Hero = () => {
           {/* ── Right Column: Expanding Media Window ── */}
           <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center group">
             
-            {/* Glowing Aura that expands and intensifies on hover */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] bg-gradient-to-tr from-primary-400 via-orange-400 to-purple-500 blur-[70px] opacity-30 group-hover:opacity-60 group-hover:w-[90%] group-hover:h-[90%] transition-all duration-1000 ease-out -z-10 rounded-full" />
-            
             {/* The Main Media Container (Card Removed) */}
             <div 
               className="relative w-full max-w-[115%] scale-105 sm:scale-110 lg:scale-[1.2] aspect-[16/10] transition-all duration-700 ease-out group-hover:scale-[1.08] sm:group-hover:scale-[1.13] lg:group-hover:scale-[1.23] cursor-pointer"
@@ -120,7 +117,7 @@ const Hero = () => {
                 return (
                   <div 
                     key={`${mockup}-${index}`}
-                    className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-out ${isActive ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-105'}`}
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-[1500ms] ease-in-out ${isActive ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                   >
                     <img
                       src={mockup}

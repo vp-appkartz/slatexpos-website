@@ -35,6 +35,31 @@ const Hero = () => {
           animation: float-subtle 8s ease-in-out infinite;
           transform-style: preserve-3d;
         }
+
+        /* Video Choreography Keyframes */
+        @keyframes touch-tap {
+          0%, 15%   { opacity: 0; transform: scale(1.5) translateZ(0); }
+          25%, 35%  { opacity: 0.8; transform: scale(1) translateZ(0); } /* Hovering over button */
+          40%       { opacity: 1; transform: scale(0.6) translateZ(0); box-shadow: 0 0 20px rgba(59,130,246,1); } /* The Tap */
+          45%, 100% { opacity: 0; transform: scale(1) translateZ(0); }
+        }
+        .animate-touch-tap { animation: touch-tap 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+        @keyframes card-slide {
+          0%, 15%   { opacity: 0; transform: translate(50px, -50px) rotate(-15deg); }
+          25%, 35%  { opacity: 1; transform: translate(0px, 0px) rotate(-5deg); } /* Approach */
+          40%       { opacity: 1; transform: translate(-10px, 10px) rotate(0deg); } /* Tap screen */
+          45%, 100% { opacity: 0; transform: translate(-20px, 20px) rotate(5deg); } /* Pull away */
+        }
+        .animate-card-slide { animation: card-slide 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+        @keyframes ripple {
+          0%, 39%   { opacity: 0; transform: scale(0.5); border-width: 4px; }
+          40%       { opacity: 1; transform: scale(1); border-width: 4px; }
+          50%       { opacity: 0; transform: scale(4); border-width: 0px; }
+          100%      { opacity: 0; transform: scale(4); border-width: 0px; }
+        }
+        .animate-ripple { animation: ripple 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
         
         @keyframes float-card {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -140,13 +165,42 @@ const Hero = () => {
                       alt="SlateX Hardware"
                       className="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
+
+                    {/* Interaction Overlay for Slide 0 (Order Placed) */}
+                    {index === 0 && isActive && (
+                      <div className="absolute top-[65%] left-[55%] sm:top-[70%] sm:left-[50%] z-20 pointer-events-none">
+                        {/* The glowing touch indicator */}
+                        <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary-500/30 border-2 border-primary-400 rounded-full animate-touch-tap flex items-center justify-center backdrop-blur-[2px]">
+                          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-primary-300 rounded-full shadow-[0_0_10px_#fff]"></div>
+                        </div>
+                        {/* The ripple effect on tap */}
+                        <div className="absolute inset-0 rounded-full border-primary-400 animate-ripple"></div>
+                      </div>
+                    )}
+
+                    {/* Interaction Overlay for Slide 1 (Payment Received) */}
+                    {index === 1 && isActive && (
+                      <div className="absolute top-[35%] left-[70%] sm:top-[40%] sm:left-[65%] z-20 pointer-events-none">
+                        {/* The animated credit card */}
+                        <div className="animate-card-slide w-14 h-9 sm:w-20 sm:h-12 bg-slate-800 rounded-md sm:rounded-lg border border-slate-600 shadow-xl flex items-center px-1 sm:px-2 transform origin-bottom-right">
+                          <div className="w-2 h-1.5 sm:w-4 sm:h-3 bg-yellow-500/80 rounded-[1px] sm:rounded-[2px]"></div>
+                          <div className="ml-auto flex gap-0.5 sm:gap-1 opacity-60">
+                            <div className="w-0.5 h-2 sm:w-1 sm:h-4 bg-white/40 rounded-full"></div>
+                            <div className="w-0.5 h-2 sm:w-1 sm:h-4 bg-white/40 rounded-full"></div>
+                            <div className="w-0.5 h-2 sm:w-1 sm:h-4 bg-white/40 rounded-full"></div>
+                          </div>
+                        </div>
+                        {/* The NFC ripple effect on tap */}
+                        <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-12 h-12 sm:w-20 sm:h-20 rounded-full border-green-400 animate-ripple"></div>
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </div>
 
             {/* Foreground UI Notifications (Light Glassmorphism) */}
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 ? 'opacity-100 translate-y-0 scale-100 delay-500' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 ? 'opacity-100 translate-y-0 scale-100 delay-[2500ms]' : 'opacity-0 -translate-y-8 scale-95 delay-0 pointer-events-none'}`}>
               <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
@@ -158,7 +212,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 ? 'opacity-100 translate-y-0 scale-100 delay-500' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 ? 'opacity-100 translate-y-0 scale-100 delay-[2500ms]' : 'opacity-0 -translate-y-8 scale-95 delay-0 pointer-events-none'}`}>
               <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="bg-green-500 text-white rounded-full p-2 shadow-md flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
                   <CheckCircle2 className="w-6 h-6" />

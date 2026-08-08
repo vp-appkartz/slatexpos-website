@@ -6,14 +6,14 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const defaultProductLinks = [
-    { name: "Restaurant POS System", url: "restaurant-pos-system" },
-    { name: "Kitchen Display",       url: "kitchen-display" },
-    { name: "Payment Processing",    url: "payment-processing" },
-    { name: "Reporting App",         url: "reporting-app" },
-    { name: "Web Ordering",          url: "web-ordering" },
-    { name: "Branded Mobile App",    url: "mobile-ordering" },
-    { name: "Loyalty & Promotion",   url: "loyalty-promotion" },
-    { name: "Gift Card",             url: "gift-card" },
+    { name: "Android Restaurant POS System", url: "android-restaurant-pos" },
+    { name: "Kitchen Display System (KDS)",  url: "kitchen-display-system-kds" },
+    { name: "Integrated Card Processing",    url: "payment-processing" },
+    { name: "POS Analytics & Reporting",     url: "reporting-analytics" },
+    { name: "Direct Web Ordering",           url: "zero-commission-online-ordering" },
+    { name: "Branded Mobile App",            url: "branded-mobile-app" },
+    { name: "AI Loyalty & Marketing",        url: "ai-restaurant-marketing" },
+    { name: "Digital & Physical Gift Cards", url: "gift-cards" },
   ];
 
   const defaultIndustryLinks = [
@@ -43,7 +43,7 @@ const Footer = () => {
 
   const description = "Serve up seamless service with SlateX POS — your all-in-one companion for menus, orders, and payments, complete with offline sync, cloud backups, and 24/7 support.";
 
-  const getProductUrl  = (url: string) => url.startsWith('/') ? url : `/products/${url}`;
+  const getProductUrl  = (url: string) => url.startsWith('/') ? url : `/features/${url}`;
   const getIndustryUrl = (url: string) => url.startsWith('/') ? url : `/categories/${url}`;
 
   return (

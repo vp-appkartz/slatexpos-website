@@ -95,6 +95,17 @@ const AppContent = () => {
         />
 
         <Route
+          path="/features/:slug"
+          element={
+            <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fff8f3 0%, #f9f9fb 30%, #f3f0ff 62%, #f9f9fb 82%, #fff8f3 100%)' }}>
+              <Header />
+              <DynamicProductPage />
+              <Footer />
+            </div>
+          }
+        />
+
+        <Route
           path="/categories/:slug"
           element={
             <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fff8f3 0%, #f9f9fb 30%, #f3f0ff 62%, #f9f9fb 82%, #fff8f3 100%)' }}>

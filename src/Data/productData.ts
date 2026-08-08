@@ -102,7 +102,7 @@ export interface ProductPageData {
 }
 
 export const restaurantPOSData: ProductPageData = {
-  slug: "restaurant-pos-system",
+  slug: "android-restaurant-pos",
   meta: {
     title: "Restaurant POS System",
     description: "Manage, Operate orders, payments, and operations with ease, in an all-in-one, intuitive POS system.",
@@ -300,7 +300,7 @@ export const restaurantPOSData: ProductPageData = {
 };
 
 export const kitchenDisplayData: ProductPageData = {
-  slug: "kitchen-display",
+  slug: "kitchen-display-system-kds",
   heroSection: {
     title: "Kitchen Display System",
     description: "Optimize kitchen efficiency with real-time digital order tracking and management.",
@@ -571,7 +571,7 @@ export const paymentProcessingData: ProductPageData = {
 };
 
 export const reportingAppData: ProductPageData = {
-  slug: "reporting-app",
+  slug: "reporting-analytics",
   heroSection: {
     title: "Reporting App",
     description:
@@ -692,7 +692,7 @@ export const reportingAppData: ProductPageData = {
 
 
 export const webOrderingData: ProductPageData = {
-  slug: "web-ordering",
+  slug: "zero-commission-online-ordering",
   heroSection: {
     title: "Web Ordering System",
     description: "Empower your business with a robust web-based ordering platform tailored for desktop and tablet users.",
@@ -849,7 +849,7 @@ export const webOrderingData: ProductPageData = {
 };
 
 export const mobileOrderingData: ProductPageData = {
-  slug: "mobile-ordering",
+  slug: "branded-mobile-app",
   heroSection: {
     title: "Branded Mobile App",
     description: "Order a custom mobile app for convenient ordering, seamless and direct engagement.",
@@ -1030,7 +1030,7 @@ export const mobileOrderingData: ProductPageData = {
 };
 
 export const loyaltyPromotionData: ProductPageData = {
-  slug: "loyalty-promotion",
+  slug: "ai-restaurant-marketing",
   heroSection: {
     title: "Loyalty & Promotion",
     description: "Drive repeat business with tailored loyalty programs and automated promotions.",
@@ -1192,7 +1192,7 @@ export const loyaltyPromotionData: ProductPageData = {
 
 // ── Gift Card ──────────────────────────────────────────────────────────────────
 export const giftCardData: ProductPageData = {
-  slug: "gift-card",
+  slug: "gift-cards",
   meta: {
     title: "Digital & Physical Gift Cards | SlateX POS",
     description: "Boost revenue and drive new customers with branded digital and physical gift cards fully integrated into your SlateX POS.",
@@ -1281,14 +1281,14 @@ export const giftCardData: ProductPageData = {
 
 // Centralized product data registry
 export const productRegistry: Record<string, ProductPageData> = {
-  "restaurant-pos-system": restaurantPOSData,
-  "kitchen-display": kitchenDisplayData,
+  "android-restaurant-pos": restaurantPOSData,
+  "kitchen-display-system-kds": kitchenDisplayData,
   "payment-processing": paymentProcessingData,
-  "reporting-app": reportingAppData,
-  "web-ordering": webOrderingData,
-  "mobile-ordering": mobileOrderingData,
-  "loyalty-promotion": loyaltyPromotionData,
-  "gift-card": giftCardData,
+  "reporting-analytics": reportingAppData,
+  "zero-commission-online-ordering": webOrderingData,
+  "branded-mobile-app": mobileOrderingData,
+  "ai-restaurant-marketing": loyaltyPromotionData,
+  "gift-cards": giftCardData,
   // Add more products here as you create them
 };
 

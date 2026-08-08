@@ -40,7 +40,7 @@ const Header: React.FC = () => {
 
   const handleDropdownClick    = (n: string) => setActiveDropdown(activeDropdown === n ? null : n);
   const handleMobileDropdown   = (n: string) => setMobileDropdown(mobileDropdown === n ? null : n);
-  const handleProductItemClick = (slug: string) => { setActiveDropdown(null); setIsMenuOpen(false); navigate(`/products/${slug}`); };
+  const handleProductItemClick = (slug: string) => { setActiveDropdown(null); setIsMenuOpen(false); navigate(`/features/${slug}`); };
   const handleCategoryItemClick = (title: string, slug?: string) => {
     const resolved = slug || title.toLowerCase().replace(/&/g,'and').replace(/[()]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
     setActiveDropdown(null); setIsMenuOpen(false); navigate(`/categories/${resolved}`);
@@ -51,24 +51,24 @@ const Header: React.FC = () => {
     {
       title: 'Restaurant Operations',
       items: [
-        { image: '/icons/Restuarant POS System.svg',    title: 'Restaurant POS System',  description: 'All-in-one POS for orders, payments & operations.',         slug: 'restaurant-pos-system' },
-        { image: '/icons/Kitchen Display System.svg',   title: 'Kitchen Display',         description: 'Real-time digital order tracking for your kitchen.',         slug: 'kitchen-display' },
-        { image: '/icons/Payment Processing.svg',       title: 'Payment Processing',      description: 'Accept all major payment types, fast & secure.',             slug: 'payment-processing' },
-        { image: '/icons/Reporting App.svg',            title: 'Reporting App',           description: 'Powerful insights into sales & performance.',                slug: 'reporting-app' },
+        { image: '/icons/Restuarant POS System.svg',    title: 'Android Restaurant POS System',  description: 'Cloud-based Android POS for orders, payments & offline operations.',         slug: 'android-restaurant-pos' },
+        { image: '/icons/Kitchen Display System.svg',   title: 'Kitchen Display System (KDS)',  description: 'Real-time digital ticket tracking and bump-screen workflows.',         slug: 'kitchen-display-system-kds' },
+        { image: '/icons/Payment Processing.svg',       title: 'Integrated Card Processing',description: 'Accept Interac, contactless & chip cards with low flat rates.',             slug: 'payment-processing' },
+        { image: '/icons/Reporting App.svg',            title: 'POS Analytics & Reporting', description: 'Real-time sales insights, labor tracking & inventory control.',                slug: 'reporting-analytics' },
       ],
     },
     {
       title: 'Customer Interaction',
       items: [
-        { image: '/icons/Web Ordering.svg',             title: 'Web Ordering',            description: 'Zero-commission orders from your branded website.',          slug: 'web-ordering' },
-        { image: '/icons/Branded Mobile App.svg',       title: 'Branded Mobile App',      description: 'Custom app for ordering, rewards & direct engagement.',      slug: 'mobile-ordering' },
+        { image: '/icons/Web Ordering.svg',             title: 'Direct Web Ordering',     description: '0% commission online ordering directly from your website.',          slug: 'zero-commission-online-ordering' },
+        { image: '/icons/Branded Mobile App.svg',       title: 'Branded Mobile App',      description: 'Custom iPhone & Android apps for mobile ordering and rewards.',      slug: 'branded-mobile-app' },
       ],
     },
     {
       title: 'Marketing Operations',
       items: [
-        { image: '/icons/Loyalty & Promotions.svg',     title: 'Loyalty & Promotion',     description: 'Tailored loyalty programs & automated promotions.',          slug: 'loyalty-promotion' },
-        { image: '/icons/Giftcard.svg',                 title: 'Gift Card',               description: 'Digital & physical gift cards to boost revenue.',            slug: 'gift-card' },
+        { image: '/icons/Loyalty & Promotions.svg',     title: 'AI Loyalty & Marketing',  description: 'Automated SMS promotions, customer retention & rewards.',          slug: 'ai-restaurant-marketing' },
+        { image: '/icons/Giftcard.svg',                 title: 'Digital & Physical Gift Cards', description: 'Boost cash flow with online and in-store gift card sales.',       slug: 'gift-cards' },
       ],
     },
   ];
@@ -97,7 +97,7 @@ const Header: React.FC = () => {
         </div>
         <h3 className="font-semibold text-gray-900 text-base">Let's Talk</h3>
       </div>
-      <p className="text-sm text-gray-500 leading-relaxed mb-5">
+      <p className="text-base text-gray-500 leading-relaxed mb-5">
         Have questions or need assistance? We're just a message away.
       </p>
       <button
@@ -133,9 +133,9 @@ const Header: React.FC = () => {
                 <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-center">
                   <div className="relative dropdown-container">
                     <button onClick={() => handleDropdownClick('products')}
-                      className="text-black text-lg font-medium flex items-center gap-1 py-2">
-                      Products
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
+                      className="text-black text-sm xl:text-base font-medium flex items-center gap-1 py-2">
+                      Features
+                      <ChevronDown className={`w-3 h-3 xl:w-4 xl:h-4 transition-transform duration-200 ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
                     </button>
                   </div>
                   <div className="relative dropdown-container">
@@ -178,7 +178,7 @@ const Header: React.FC = () => {
                     <div>
                       <button onClick={() => handleMobileDropdown('products')}
                         className="text-gray-700 hover:bg-gray-50 flex items-center justify-between py-3 px-4 rounded-lg w-full font-medium">
-                        Products
+                        Features
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === 'products' ? 'rotate-180' : ''}`} />
                       </button>
                       {mobileDropdown === 'products' && (

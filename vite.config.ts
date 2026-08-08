@@ -3,11 +3,11 @@ import react from '@vitejs/plugin-react';
 import prerender from 'vite-plugin-prerender';
 import path from 'path';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  base: '/',
-  plugins: [
-    react(),
+const isVercel = process.env.VERCEL === '1';
+const plugins: any[] = [react()];
+
+if (!isVercel) {
+  plugins.push(
     prerender({
       staticDir: path.join(__dirname, 'dist'),
       routes: [
@@ -16,14 +16,19 @@ export default defineConfig({
         '/hardware',
         '/privacy',
         '/career',
-        // Add more dynamic routes here as needed (e.g. /products/offline-pos)
       ],
       renderer: new prerender.PuppeteerRenderer({
         renderAfterElementExists: '#root',
         maxConcurrentRoutes: 4,
       }),
-    }),
-  ],
+    })
+  );
+}
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: '/',
+  plugins,
   server: {
     port: 3012,
   },

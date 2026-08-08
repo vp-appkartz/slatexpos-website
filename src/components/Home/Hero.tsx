@@ -112,7 +112,7 @@ const Hero = () => {
             
             {/* The Main Media Container (Card Removed) */}
             <div 
-              className="relative w-full max-w-[95%] aspect-[16/10] transition-all duration-700 ease-out group-hover:scale-[1.03] cursor-pointer"
+              className="relative w-full max-w-[115%] scale-105 sm:scale-110 lg:scale-[1.2] aspect-[16/10] transition-all duration-700 ease-out group-hover:scale-[1.08] sm:group-hover:scale-[1.13] lg:group-hover:scale-[1.23] cursor-pointer"
               onClick={openDemoModal}
             >
               {MOCKUPS.map((mockup, index) => {
@@ -125,23 +125,12 @@ const Hero = () => {
                   >
                     <img
                       src={mockup}
-                      alt="SlateX UI Mockup"
-                      className="w-full h-full object-contain p-2 sm:p-4 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                      alt="SlateX Hardware"
+                      className="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
                   </div>
                 );
               })}
-              
-              {/* Modern Carousel Indicators */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
-                {MOCKUPS.map((_, i) => (
-                  <button
-                    key={`indicator-${i}`}
-                    onClick={(e) => { e.stopPropagation(); setActiveIndex(i); }}
-                    className={`h-2 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-8 bg-primary-500 shadow-sm' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
-                  />
-                ))}
-              </div>
             </div>
 
           </div>

@@ -8,8 +8,7 @@ import { CheckCircle2, Star } from "lucide-react";
 // They will automatically inherit the 3D perspective and depth-of-field blur.
 const MOCKUPS = [
   "/slatex-terminal-1-hero.png", 
-  "/slatex-terminal--2-hero.png", 
-  "/slatex-terminal-1-hero.png" // Repeated to maintain the stunning 3-stage 3D architecture
+  "/slatex-terminal--2-hero.png"
 ];
 
 const Hero = () => {

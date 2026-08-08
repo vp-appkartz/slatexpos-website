@@ -2,174 +2,176 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoSlider from "../Common/LogoSlider";
 import { useDemoModal } from "../../contexts/DemoModalContext";
+import { CheckCircle2, Star } from "lucide-react";
 
-/* ── Scattered floating chips ─────────────────────────────────────────
-   top = px from section top  |  left/right = % of section width
-   Mix of products (left) and industries (right), varied depth offsets
-────────────────────────────────────────────────────────────────────── */
+/* ── Scattered floating chips ───────────────────────────────────────── */
 const CHIPS = [
-  /* ── Products — left side, staggered inward ── */
-  { src: "/icons/Restuarant POS System.svg",          label: "Restaurant POS",   top: 175, side: "left",  offset: "1.5%",  delay: "0.0s", dur: "4.7s" },
-  { src: "/icons/Kitchen Display System.svg",         label: "Kitchen Display",  top: 265, side: "left",  offset: "5.5%",  delay: "1.2s", dur: "5.1s" },
-  { src: "/icons/Web Ordering.svg",                   label: "Web Ordering",     top: 355, side: "left",  offset: "2.0%",  delay: "0.5s", dur: "4.9s" },
-  { src: "/icons/Loyalty & Promotions.svg",           label: "Loyalty",          top: 445, side: "left",  offset: "6.0%",  delay: "1.8s", dur: "5.3s" },
-  /* ── Industries — right side, staggered inward ── */
-  { src: "/icons/Quick Serve Resturants (QSR).svg",   label: "Quick Service",    top: 170, side: "right", offset: "1.5%",  delay: "0.7s", dur: "5.0s" },
-  { src: "/icons/Casual Dining.svg",                  label: "Casual Dining",    top: 260, side: "right", offset: "5.5%",  delay: "0.2s", dur: "4.6s" },
-  { src: "/icons/Pizzeria.svg",                       label: "Pizzeria",         top: 350, side: "right", offset: "2.0%",  delay: "1.4s", dur: "5.2s" },
-  { src: "/icons/Branded Mobile App.svg",             label: "Mobile App",       top: 440, side: "right", offset: "6.0%",  delay: "0.9s", dur: "4.8s" },
+  { src: "/icons/Restuarant POS System.svg",          label: "Restaurant POS",   pos: "top-[-5%] left-[-10%]",  delay: "0.0s", dur: "4.7s" },
+  { src: "/icons/Kitchen Display System.svg",         label: "Kitchen Display",  pos: "top-[30%] left-[-15%]",  delay: "1.2s", dur: "5.1s" },
+  { src: "/icons/Web Ordering.svg",                   label: "Web Ordering",     pos: "bottom-[15%] left-[-8%]", delay: "0.5s", dur: "4.9s" },
+  { src: "/icons/Quick Serve Resturants (QSR).svg",   label: "Quick Service",    pos: "top-[5%] right-[-10%]", delay: "0.7s", dur: "5.0s" },
+  { src: "/icons/Loyalty & Promotions.svg",           label: "Loyalty",          pos: "top-[40%] right-[-15%]", delay: "1.8s", dur: "5.3s" },
+  { src: "/icons/Pizzeria.svg",                       label: "Pizzeria",         pos: "bottom-[10%] right-[-5%]", delay: "1.4s", dur: "5.2s" },
 ];
 
-/* ── Hero ──────────────────────────────────────────────────────────── */
 const Hero = () => {
   const { openDemoModal } = useDemoModal();
   const navigate = useNavigate();
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden bg-gradient-to-b from-orange-50/50 to-white min-h-[90vh] flex flex-col justify-center">
       {/* Keyframes */}
       <style>{`
         @keyframes hero-float {
           0%, 100% { transform: translateY(0px);   }
-          50%       { transform: translateY(-10px); }
+          50%       { transform: translateY(-15px); }
         }
         @keyframes hero-chip-in {
           from { opacity: 0; transform: translateY(16px) scale(0.88); }
           to   { opacity: 1; transform: translateY(0px)  scale(1);    }
         }
+        .animate-hero-float {
+          animation: hero-float 6s ease-in-out infinite;
+        }
+        .tablet-mockup {
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #1f2937, 0 0 0 14px #374151;
+        }
       `}</style>
 
       {/* Glow orbs */}
-      <div className="absolute -top-32 right-0 w-[560px] h-[560px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(251,146,60,0.10) 0%, transparent 65%)", filter: "blur(48px)" }} />
-      <div className="absolute top-1/2 -left-32 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(99,102,246,0.07) 0%, transparent 70%)", filter: "blur(40px)" }} />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-60"
+        style={{ background: "radial-gradient(circle, rgba(251,146,60,0.15) 0%, transparent 70%)", filter: "blur(60px)" }} />
+      <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full pointer-events-none opacity-50"
+        style={{ background: "radial-gradient(circle, rgba(99,102,246,0.08) 0%, transparent 70%)", filter: "blur(60px)" }} />
 
-      {/* ── Text section — chips are absolutely positioned inside ── */}
-      <section className="relative pt-28 sm:pt-32 lg:pt-36 pb-12 text-center px-4">
+      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+          
+          {/* ── Left Column: Text & CTAs ── */}
+          <div className="relative z-10 lg:col-span-5 text-center lg:text-left mx-auto lg:mx-0 w-full">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100/50 border border-orange-200 text-primary-300 text-sm font-bold tracking-wide uppercase mb-6 backdrop-blur-sm shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-300"></span>
+              </span>
+              Next-Gen Restaurant POS
+            </div>
 
-        {/* Scattered chips — desktop only */}
-        <div className="hidden xl:block pointer-events-none">
-          {CHIPS.map((c, i) => {
-            const isLeft = c.side === "left";
-            return (
-              <div
-                key={i}
-                className="absolute flex items-center gap-3 group pointer-events-auto cursor-pointer select-none"
-                style={{
-                  top: c.top,
-                  ...(isLeft ? { left: c.offset } : { right: c.offset }),
-                  animation: `hero-chip-in 0.65s cubic-bezier(0.22,1,0.36,1) ${c.delay} both,
-                              hero-float   ${c.dur}  ease-in-out            ${c.delay} infinite`,
-                }}
+            {/* Headline */}
+            <h1 className="font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
+              The POS That <br className="hidden lg:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-orange-500">
+                Just Works.
+              </span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="font-medium text-gray-500 leading-relaxed mb-8 text-lg sm:text-xl max-w-lg mx-auto lg:mx-0">
+              Cloud-based. Android-powered. Works offline.
+              One flat monthly fee — on hardware you may already own.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+              <button
+                onClick={openDemoModal}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-300 hover:bg-orange-600 text-white font-bold rounded-xl px-8 py-4 text-lg shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Right chips: label first, then icon */}
-                {!isLeft && (
-                  <span className="text-sm font-bold text-gray-800 tracking-wide whitespace-nowrap transition-colors duration-200 group-hover:text-orange-500 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-                    {c.label}
-                  </span>
-                )}
-                <div
-                  className="w-[52px] h-[52px] rounded-2xl flex-shrink-0 flex items-center justify-center border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-                  style={{
-                    background: "rgba(255,255,255,0.92)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
-                    borderColor: "rgba(255,255,255,0.95)",
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(249,115,22,0.3)";
-                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(249,115,22,0.15), inset 0 1px 0 rgba(255,255,255,1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.95)";
-                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)";
-                  }}
-                >
-                  <img src={c.src} alt={c.label} className="w-[30px] h-[30px] object-contain transition-transform duration-300 group-hover:scale-110" />
-                </div>
-                {/* Left chips: icon first, then label */}
-                {isLeft && (
-                  <span className="text-sm font-bold text-gray-800 tracking-wide whitespace-nowrap transition-colors duration-200 group-hover:text-orange-500 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-                    {c.label}
-                  </span>
-                )}
+                Book a Free Demo
+              </button>
+              <button
+                onClick={() => navigate("/pricing")}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 font-bold rounded-xl px-8 py-4 text-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              >
+                See Pricing
+              </button>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-sm font-semibold text-gray-600">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-green-500" />
+                No hardware lock-in
               </div>
-            );
-          })}
-        </div>
-
-        {/* ── Text content with subtle glass backdrop ── */}
-        <div className="relative z-10 inline-block w-full max-w-3xl mx-auto">
-          {/* Glass background behind text */}
-          <div
-            className="absolute inset-x-0 inset-y-0 -mx-8 sm:-mx-12 rounded-3xl pointer-events-none"
-            style={{
-              background: "rgba(255,255,255,0.52)",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-              border: "1px solid rgba(255,255,255,0.70)",
-              boxShadow: "0 8px 40px rgba(249,110,77,0.06), 0 2px 12px rgba(0,0,0,0.04)",
-            }}
-          />
-
-          {/* Eyebrow */}
-          <p className="relative text-sm font-bold tracking-widest uppercase text-orange-500 mb-5 pt-6">
-            Restaurant POS
-          </p>
-
-          {/* Headline */}
-          <h1
-            className="relative font-extrabold text-gray-900 leading-tight tracking-tight mb-5 mx-auto"
-            style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)", wordBreak: "break-word" }}
-          >
-            The POS That{" "}
-            <span className="text-primary-300">Just Works.</span>
-          </h1>
-
-          {/* Subheadline */}
-          <p
-            className="relative font-medium text-gray-500 leading-relaxed max-w-xl mx-auto mb-8 whitespace-pre-line"
-            style={{ fontSize: "clamp(1rem, 1.6vw, 1.2rem)" }}
-          >
-            {"Cloud-based. Android-powered. Works offline.\nOne flat monthly fee — on hardware you may already own."}
-          </p>
-
-          {/* CTAs */}
-          <div className="relative flex flex-wrap items-center justify-center gap-3 sm:gap-4 pb-6">
-            <button
-              onClick={openDemoModal}
-              className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600 text-white font-bold rounded-full px-7 py-3 text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
-            >
-              Book a Free Demo
-            </button>
-            <button
-              onClick={() => navigate("/pricing")}
-              className="inline-flex items-center gap-2 border border-gray-300 hover:border-gray-500 text-gray-700 hover:text-gray-900 font-bold rounded-full px-7 py-3 text-base hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
-            >
-              See Pricing
-            </button>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-green-500" />
+                Zero monthly fees
+              </div>
+              <div className="flex items-center gap-1.5 mt-1 sm:mt-0">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <span>4.9/5 Reviews</span>
+              </div>
+            </div>
           </div>
+
+          {/* ── Right Column: Interactive Mockup ── */}
+          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 xl:pl-10">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] animate-hero-float">
+              
+              {/* Tablet Frame */}
+              <div className="absolute inset-0 bg-white rounded-[2rem] tablet-mockup overflow-hidden z-20 flex flex-col transition-transform duration-500 hover:scale-[1.02]">
+                {/* Camera dot */}
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gray-800 z-30"></div>
+                
+                {/* Screen Content */}
+                <div className="flex-1 mt-7 mx-2.5 mb-2.5 bg-gray-100 rounded-[1.2rem] overflow-hidden border border-gray-200 relative group cursor-pointer" onClick={openDemoModal}>
+                  <img
+                    src="/Homescreen-Restraurantpos.webp"
+                    alt="SlateX POS Dashboard Interface"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Subtle glare effect over screen */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/30 pointer-events-none" />
+                  
+                  {/* Play/Interact Overlay on hover */}
+                  <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="bg-white text-gray-900 font-bold px-6 py-3 rounded-full shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      Explore the POS
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative floating chips around the tablet (hidden on very small screens) */}
+              <div className="hidden sm:block absolute inset-0 z-30 pointer-events-none">
+                {CHIPS.map((c, i) => (
+                  <div
+                    key={i}
+                    className={`absolute flex items-center justify-center group pointer-events-auto cursor-pointer ${c.pos}`}
+                    style={{
+                      animation: `hero-chip-in 0.6s cubic-bezier(0.22,1,0.36,1) ${c.delay} both,
+                                  hero-float ${c.dur} ease-in-out ${c.delay} infinite`,
+                    }}
+                  >
+                    <div
+                      className="w-14 h-14 rounded-2xl flex-shrink-0 flex items-center justify-center border transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 bg-white/80 backdrop-blur-md border-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.25)] hover:border-orange-200 hover:bg-white"
+                    >
+                      <img src={c.src} alt={c.label} className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110" />
+                    </div>
+                    {/* Tooltip-style label on hover */}
+                    <span className="absolute opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-xs font-bold bg-gray-900 text-white px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xl -top-10 left-1/2 -translate-x-1/2 pointer-events-none">
+                      {c.label}
+                      <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Abstract decorative elements behind tablet */}
+              <div className="absolute -inset-16 bg-gradient-to-tr from-primary-300/30 via-orange-400/10 to-purple-500/20 blur-3xl -z-10 rounded-[3rem]"></div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* ── Hero image ── */}
-      <div className="relative w-full">
-        <img
-          src="/hero-home.webp"
-          alt="Restaurant staff using SlateX POS"
-          className="w-full object-cover object-top"
-          style={{ maxHeight: "620px" }}
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent 0%, #fff8f3 100%)" }}
-        />
-      </div>
-
       {/* ── Logo slider ── */}
-      <div className="pb-8">
+      <div className="pt-4 pb-8 relative z-20">
         <LogoSlider />
       </div>
     </div>

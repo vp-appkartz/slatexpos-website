@@ -102,51 +102,64 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* ── Right Column: Dynamic Abstract UI Showcase ── */}
-          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-8 lg:mt-0 lg:pl-10 h-[350px] sm:h-[450px] lg:h-[550px] perspective-[1500px]">
+          {/* ── Right Column: Apple-Style Isometric 3D Stack ── */}
+          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center" style={{ perspective: '2000px' }}>
             
-            <div className="absolute inset-0 flex items-center justify-center animate-float-subtle w-full h-full">
+            <div 
+              className="relative w-full max-w-[90%] sm:max-w-[85%] aspect-[16/10] animate-float-subtle"
+              style={{ transformStyle: 'preserve-3d', transform: 'rotateY(-24deg) rotateX(12deg) rotateZ(6deg)' }}
+            >
               {MOCKUPS.map((mockup, index) => {
-                const isActive = index === activeIndex;
+                const offset = (index - activeIndex + MOCKUPS.length) % MOCKUPS.length;
                 
-                // Calculate dynamic positioning for a clean crossfade effect
-                let transform = 'scale(1.05) translateY(10px)';
+                // Calculate dynamic positioning for the isometric stack
+                let transform = '';
                 let opacity = '0';
-                let zIndex = 10;
+                let zIndex = 0;
+                let blur = '0px';
                 
-                if (isActive) {
-                  transform = 'scale(1) translateY(0px)';
+                if (offset === 0) {
+                  // Front (Active)
+                  transform = 'translateZ(120px) translateX(-30px) translateY(-15px)';
                   opacity = '1';
                   zIndex = 30;
+                  blur = '0px';
+                } else if (offset === 1) {
+                  // Middle (Next in line)
+                  transform = 'translateZ(0px) translateX(20px) translateY(0px)';
+                  opacity = '0.65';
+                  zIndex = 20;
+                  blur = '3px';
+                } else if (offset === 2) {
+                  // Back (Waiting)
+                  transform = 'translateZ(-120px) translateX(70px) translateY(15px)';
+                  opacity = '0.25';
+                  zIndex = 10;
+                  blur = '6px';
                 }
 
                 return (
                   <div 
                     key={mockup}
-                    className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out cursor-pointer ${isActive ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                    className="absolute inset-0 flex items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.25, 1, 0.5, 1) cursor-pointer rounded-2xl overflow-hidden"
                     style={{
                       transform,
                       opacity,
                       zIndex,
+                      filter: `blur(${blur})`,
+                      boxShadow: offset === 0 ? '-25px 35px 60px -15px rgba(249,115,22,0.25), -10px 15px 30px -10px rgba(0,0,0,0.2)' : '-10px 15px 30px -10px rgba(0,0,0,0.1)',
+                      border: '1px solid rgba(255,255,255,0.7)',
+                      background: 'rgba(255,255,255,0.1)'
                     }}
                     onClick={openDemoModal}
                   >
-                    <div 
-                      className="relative w-full max-w-[90%] aspect-[16/10] rounded-2xl overflow-hidden bg-gray-50/50 backdrop-blur-sm"
-                      style={{
-                        boxShadow: isActive ? '0 30px 60px -15px rgba(249,115,22,0.25), 0 -5px 30px -5px rgba(99,102,246,0.1)' : 'none',
-                        border: '1px solid rgba(255,255,255,0.4)',
-                        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
-                        WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)'
-                      }}
-                    >
-                      <img
-                        src={mockup}
-                        alt="SlateX UI Mockup"
-                        className="w-full h-full object-cover object-top"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/20 pointer-events-none" />
-                    </div>
+                    <img
+                      src={mockup}
+                      alt="SlateX UI Mockup"
+                      className="w-full h-full object-cover object-top"
+                    />
+                    {/* Glass/Glare overlay to enhance 3D feel */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/30 pointer-events-none" />
                   </div>
                 );
               })}

@@ -7,9 +7,9 @@ import { CheckCircle2, Star } from "lucide-react";
 // Use transparent hardware mockup PNGs here.
 // They will automatically inherit the 3D perspective and depth-of-field blur.
 const MOCKUPS = [
-  "/Homescreen-Restraurantpos.webp", // Replace with transparent hardware image
-  "/kitchen-1.webp",                 // Replace with transparent hardware image
-  "/reporting.webp"                  // Replace with transparent hardware image
+  "/slatex-terminal-1-hero.png", 
+  "/slatex-terminal--2-hero.png", 
+  "/slatex-terminal-1-hero.png" // Repeated to maintain the stunning 3-stage 3D architecture
 ];
 
 const Hero = () => {
@@ -118,38 +118,34 @@ const Hero = () => {
                 let transform = '';
                 let opacity = '0';
                 let zIndex = 0;
-                let blur = '0px';
                 
                 if (offset === 0) {
                   // Front (Active)
                   transform = 'translateZ(120px) translateX(-30px) translateY(-15px)';
                   opacity = '1';
                   zIndex = 30;
-                  blur = '0px';
                 } else if (offset === 1) {
                   // Middle (Next in line)
                   transform = 'translateZ(0px) translateX(20px) translateY(0px)';
                   opacity = '0.65';
                   zIndex = 20;
-                  blur = '3px';
                 } else if (offset === 2) {
                   // Back (Waiting)
                   transform = 'translateZ(-120px) translateX(70px) translateY(15px)';
                   opacity = '0.25';
                   zIndex = 10;
-                  blur = '6px';
                 }
 
                 return (
                   <div 
-                    key={mockup}
+                    key={`${mockup}-${index}`}
                     // Removed background, border, and overflow-hidden so transparent hardware PNGs float cleanly
                     className="absolute inset-0 flex items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.25, 1, 0.5, 1) cursor-pointer"
                     style={{
                       transform,
                       opacity,
                       zIndex,
-                      filter: `blur(${blur}) drop-shadow(${offset === 0 ? '-20px 20px 30px rgba(0,0,0,0.15)' : '-10px 10px 20px rgba(0,0,0,0.05)'})`,
+                      filter: `drop-shadow(${offset === 0 ? '-20px 20px 30px rgba(0,0,0,0.15)' : '-10px 10px 20px rgba(0,0,0,0.05)'})`,
                     }}
                     onClick={openDemoModal}
                   >

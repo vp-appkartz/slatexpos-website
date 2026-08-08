@@ -146,19 +146,7 @@ const Hero = () => {
             </div>
 
             {/* Floating Foreground UI Cards (Glassmorphism) */}
-            <div className="absolute top-[20%] left-[-15%] sm:left-[-10%] z-30 animate-float-card">
-              <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                <div className="bg-green-500/20 text-green-700 rounded-full p-2 backdrop-blur-md">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
-                <div>
-                  <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">Payment Success</p>
-                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute bottom-[20%] right-[-10%] sm:right-[-5%] z-30 animate-float-card-reverse">
+            <div className={`absolute top-[20%] left-[-15%] sm:left-[-10%] z-30 animate-float-card transition-all duration-[1000ms] ${activeIndex === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
               <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
@@ -166,6 +154,18 @@ const Hero = () => {
                 <div>
                   <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">New Order Ready</p>
                   <p className="text-sm sm:text-base font-extrabold text-gray-900">Table 4</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={`absolute top-[20%] left-[-15%] sm:left-[-10%] z-30 animate-float-card-reverse transition-all duration-[1000ms] ${activeIndex === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+              <div className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-3 sm:p-4 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+                <div className="bg-green-500/20 text-green-700 rounded-full p-2 backdrop-blur-md">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div>
+                  <p className="text-[10px] sm:text-xs text-gray-600 font-bold uppercase tracking-wider">Payment Success</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50</p>
                 </div>
               </div>
             </div>

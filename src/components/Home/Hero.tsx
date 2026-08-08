@@ -121,15 +121,6 @@ const Hero = () => {
 
           {/* ── Right Column: Abstract Floating Cards Layout ── */}
           <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[450px] sm:h-[550px] lg:h-[650px] flex items-center justify-center">
-            
-            {/* Vector Accent / Squiggles */}
-            <svg className="absolute top-[25%] left-[-5%] w-24 h-12 text-primary-400 opacity-80" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 20 Q 20 5, 35 20 T 65 20 T 95 20" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-            </svg>
-
-            <svg className="absolute bottom-[15%] right-[5%] w-12 h-12 text-purple-400 opacity-60 animate-[spin_12s_linear_infinite]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z" fill="currentColor" />
-            </svg>
 
             {/* The Main Media Container */}
             <div 

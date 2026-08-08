@@ -34,10 +34,18 @@ import Career from "./components/pages/Career";
 
 import { DemoModalProvider } from "./contexts/DemoModalContext";
 
+import { SEO } from "./components/seo/SEO";
+import { SchemaScript } from "./components/seo/SchemaScript";
+import { Analytics } from "./components/seo/Analytics";
+
 // ── Route-aware shell ────────────────────────────────────────────────────────
 const AppContent = () => {
   return (
     <div>
+      <SEO />
+      <SchemaScript type="Organization" />
+      <SchemaScript type="SoftwareApplication" />
+      <Analytics />
       <Routes>
         {/* ── Public Routes ── */}
         <Route

@@ -1,0 +1,13 @@
+diff --git a/node_modules/vite-plugin-prerender/dist/index.mjs b/node_modules/vite-plugin-prerender/dist/index.mjs
+index 8fc0df9..4afd7f0 100644
+--- a/node_modules/vite-plugin-prerender/dist/index.mjs
++++ b/node_modules/vite-plugin-prerender/dist/index.mjs
+@@ -2,6 +2,8 @@ import path from 'path';
+ import Debug from 'debug';
+ import fs from 'fs';
+ import chalk from 'chalk';
++import { createRequire } from 'module';
++const require = createRequire(import.meta.url);
+ 
+ const Prerenderer = require("@prerenderer/prerenderer");
+ const PuppeteerRenderer = require("@prerenderer/renderer-puppeteer");

@@ -108,32 +108,22 @@ const Hero = () => {
             <div className="absolute inset-0 flex items-center justify-center animate-float-subtle w-full h-full">
               {MOCKUPS.map((mockup, index) => {
                 const isActive = index === activeIndex;
-                const isPrev = index === (activeIndex - 1 + MOCKUPS.length) % MOCKUPS.length;
-                const isNext = index === (activeIndex + 1) % MOCKUPS.length;
                 
-                // Calculate dynamic positioning for a beautiful, depth-based stacking effect
-                let transform = 'translateZ(-200px) translateY(20px) rotateX(15deg) scale(0.8)';
+                // Calculate dynamic positioning for a clean crossfade effect
+                let transform = 'scale(1.05) translateY(10px)';
                 let opacity = '0';
-                let zIndex = 0;
+                let zIndex = 10;
                 
                 if (isActive) {
-                  transform = 'translateZ(50px) translateY(0px) rotateX(0deg) scale(1)';
+                  transform = 'scale(1) translateY(0px)';
                   opacity = '1';
                   zIndex = 30;
-                } else if (isPrev) {
-                  transform = 'translateZ(-100px) translateY(-40px) translateX(-40px) rotateX(5deg) scale(0.9)';
-                  opacity = '0.3';
-                  zIndex = 20;
-                } else if (isNext) {
-                  transform = 'translateZ(-100px) translateY(40px) translateX(40px) rotateX(5deg) scale(0.9)';
-                  opacity = '0.3';
-                  zIndex = 10;
                 }
 
                 return (
                   <div 
                     key={mockup}
-                    className="absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out cursor-pointer"
+                    className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out cursor-pointer ${isActive ? 'pointer-events-auto' : 'pointer-events-none'}`}
                     style={{
                       transform,
                       opacity,

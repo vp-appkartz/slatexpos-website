@@ -34,7 +34,7 @@ const Hero = () => {
   }, [activeIndex]);
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-orange-50/50 to-white min-h-[90vh] flex flex-col justify-center">
+    <div className="relative overflow-hidden bg-gradient-to-b from-orange-50/80 via-orange-50/30 to-transparent pb-4 lg:pb-8 flex flex-col justify-center">
       {/* Keyframes */}
       <style>{`
         @keyframes float-subtle {
@@ -71,6 +71,41 @@ const Hero = () => {
         }
         .animate-ripple { animation: ripple 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
         
+        @keyframes gradient-x {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 4s ease-in-out infinite;
+          background-size: 200% auto;
+        }
+
+        @keyframes text-shine {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-text-shine {
+          background: linear-gradient(
+            110deg,
+            #242157 35%,
+            #8b7bb1 50%,
+            #242157 65%
+          );
+          background-size: 200% auto;
+          color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+          animation: text-shine 5s ease-in-out infinite;
+        }
+        
         @keyframes float-card {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50%      { transform: translateY(-12px) rotate(3deg); }
@@ -98,68 +133,64 @@ const Hero = () => {
       <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full pointer-events-none opacity-50"
         style={{ background: "radial-gradient(circle, rgba(99,102,246,0.08) 0%, transparent 70%)", filter: "blur(60px)" }} />
 
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center w-full">
+      <section className="relative pt-28 lg:pt-32 pb-0 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex items-center z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
           
           {/* ── Left Column: Text & CTAs ── */}
-          <div className="relative z-20 lg:col-span-5 text-center lg:text-left mx-auto lg:mx-0 w-full">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100/50 border border-orange-200 text-primary-300 text-sm font-bold tracking-wide uppercase mb-6 backdrop-blur-sm shadow-sm">
-              <span className="relative flex h-2 w-2">
+          <div className="relative z-20 lg:col-span-6 text-center lg:text-left mx-auto lg:mx-0 w-full">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100/50 border border-orange-200 text-primary-300 text-xs sm:text-sm font-bold tracking-wide uppercase mb-6 backdrop-blur-sm shadow-sm">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-300"></span>
               </span>
-              Next-Gen Restaurant POS
+              LIGHTNING-FAST, FULLY FEATURED, AFFORDABLE POS
             </div>
 
             <h1 className="font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
-              The POS That <br className="hidden lg:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-orange-500">
-                Just Works.
+              The POS Built for{' '}
+              <span className="inline-block mt-2 lg:mt-0 animate-text-shine">
+                Speed, Performance, and Savings.
               </span>
             </h1>
 
             <p className="font-medium text-gray-500 leading-relaxed mb-8 text-lg sm:text-xl max-w-lg mx-auto lg:mx-0">
-              Cloud-based. Android-powered. Works offline.
-              One flat monthly fee — on hardware you may already own.
+              SlateX POS delivers cloud-powered reliability to help run your business smoothly. Choose our custom hardware packages or bring your own with zero proprietary lock-ins, wholesale processing rates, and 24/7 dedicated support.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+            <div className="flex flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-6 w-full">
               <button
                 onClick={openDemoModal}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-300 hover:bg-orange-600 text-white font-bold rounded-xl px-8 py-4 text-lg shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300"
+                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-primary-300 hover:bg-orange-600 text-white font-bold rounded-xl px-2 sm:px-8 py-3.5 sm:py-4 text-[15px] sm:text-lg shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300 whitespace-nowrap"
               >
                 Book a Free Demo
               </button>
               <button
-                onClick={() => navigate("/pricing")}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 font-bold rounded-xl px-8 py-4 text-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                onClick={() => navigate('/pricing')}
+                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-white hover:bg-gray-50 text-gray-900 font-bold rounded-xl px-2 sm:px-8 py-3.5 sm:py-4 text-[15px] sm:text-lg border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 whitespace-nowrap"
               >
                 See Pricing
               </button>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-sm font-semibold text-gray-600">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-500" />
-                No hardware lock-in
+            {/* Trust Signals - Premium Pill Tags */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs sm:text-sm font-bold text-gray-700">
+              <div className="flex items-center gap-1.5 px-3.5 py-2 bg-white rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                <span>No Hardware Lock-In</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-500" />
-                Zero monthly fees
+              <div className="flex items-center gap-1.5 px-3.5 py-2 bg-white rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                <span>Wholesale Processing</span>
               </div>
-              <div className="flex items-center gap-1.5 mt-1 sm:mt-0">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <span>4.9/5 Reviews</span>
+              <div className="flex items-center gap-1.5 px-3.5 py-2 bg-white rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                <span>24/7 Dedicated Support</span>
               </div>
             </div>
           </div>
 
           {/* ── Right Column: Abstract Floating Cards Layout ── */}
-          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-7 mt-12 lg:mt-0 lg:pl-10 h-[450px] sm:h-[550px] lg:h-[650px] flex items-center justify-center">
+          <div className="relative z-10 w-full max-w-2xl mx-auto lg:col-span-6 mt-6 lg:mt-0 lg:pl-10 h-[320px] sm:h-[450px] lg:h-[650px] flex items-center justify-center">
 
             {/* The Main Media Container */}
             <div 
@@ -231,7 +262,7 @@ const Hero = () => {
             </div>
 
             {/* Foreground UI Notifications (Light Glassmorphism) */}
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 && showNotification ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+            <div className={`absolute top-2 right-2 sm:top-[10%] sm:right-[5%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 && showNotification ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
               <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
@@ -243,7 +274,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 && showNotification ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
+            <div className={`absolute top-2 right-2 sm:top-[10%] sm:right-[5%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 && showNotification ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
               <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="bg-green-500 text-white rounded-full p-2 shadow-md flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
                   <CheckCircle2 className="w-6 h-6" />

@@ -11,9 +11,9 @@ interface SEOProps {
 
 const DEFAULT_SEO = {
   siteName: 'SlateX POS',
-  defaultTitle: 'Cloud Android Restaurant POS System Canada | SlateX POS',
+  defaultTitle: 'SlateX POS | Fast, High-Performance & Affordable Cloud POS',
   defaultDescription:
-    "SlateX is Canada's premier Android restaurant POS system featuring zero mandatory hardware lock-in, wholesale payment processing rates, unbreakable offline reliability, built-in enterprise features, and zero-commission online ordering.",
+    "SlateX POS: Built for speed, performance, and savings. Flexible hardware options, zero lock-ins, wholesale rates, and 24/7 support. Get a free demo!",
   canonicalBase: 'https://slatexpos.com',
   defaultOgImage: 'https://slatexpos.com/images/og-main.jpg',
 };

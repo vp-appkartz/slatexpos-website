@@ -133,9 +133,9 @@ const Header: React.FC = () => {
                 <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-center">
                   <div className="relative dropdown-container">
                     <button onClick={() => handleDropdownClick('products')}
-                      className="text-black text-sm xl:text-base font-medium flex items-center gap-1 py-2">
+                      className="text-black text-lg font-medium flex items-center gap-1 py-2">
                       Features
-                      <ChevronDown className={`w-3 h-3 xl:w-4 xl:h-4 transition-transform duration-200 ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
                     </button>
                   </div>
                   <div className="relative dropdown-container">

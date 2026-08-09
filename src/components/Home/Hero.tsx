@@ -7,14 +7,15 @@ import { CheckCircle2, Star } from "lucide-react";
 // Use transparent hardware mockup PNGs here.
 // They will automatically inherit the 3D perspective and depth-of-field blur.
 const MOCKUPS = [
-  "/slatex-terminal-1-hero.png", 
-  "/slatex-terminal--2-hero.png"
+  "/Slate-Hero-1.png", 
+  "/Slate-Hero-2.png"
 ];
 
 const Hero = () => {
   const { openDemoModal } = useDemoModal();
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,6 +23,15 @@ const Hero = () => {
     }, 6000);
     return () => clearInterval(interval);
   }, []);
+
+  // Sync notification popups with the 6s animation (tap happens around 2.4s)
+  useEffect(() => {
+    setShowNotification(false);
+    const timer = setTimeout(() => {
+      setShowNotification(true);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, [activeIndex]);
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-orange-50/50 to-white min-h-[90vh] flex flex-col justify-center">
@@ -39,24 +49,24 @@ const Hero = () => {
         /* Video Choreography Keyframes */
         @keyframes touch-tap {
           0%, 15%   { opacity: 0; transform: scale(1.5) translateZ(0); }
-          25%, 35%  { opacity: 0.8; transform: scale(1) translateZ(0); } /* Hovering over button */
-          40%       { opacity: 1; transform: scale(0.6) translateZ(0); box-shadow: 0 0 20px rgba(59,130,246,1); } /* The Tap */
+          25%, 35%  { opacity: 1; transform: scale(1) translateZ(0); } /* Hovering over button */
+          40%       { opacity: 1; transform: scale(0.7) translateZ(0); box-shadow: 0 0 30px rgba(249,115,22,0.8); } /* The Tap */
           45%, 100% { opacity: 0; transform: scale(1) translateZ(0); }
         }
         .animate-touch-tap { animation: touch-tap 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 
         @keyframes card-slide {
-          0%, 15%   { opacity: 0; transform: translate(50px, -50px) rotate(-15deg); }
-          25%, 35%  { opacity: 1; transform: translate(0px, 0px) rotate(-5deg); } /* Approach */
-          40%       { opacity: 1; transform: translate(-10px, 10px) rotate(0deg); } /* Tap screen */
-          45%, 100% { opacity: 0; transform: translate(-20px, 20px) rotate(5deg); } /* Pull away */
+          0%, 15%   { opacity: 0; transform: translate(70px, -70px) rotate(-15deg); }
+          25%, 35%  { opacity: 1; transform: translate(25px, -25px) rotate(-5deg); } /* Approach */
+          40%       { opacity: 1; transform: translate(15px, -15px) rotate(0deg); } /* Tap screen */
+          45%, 100% { opacity: 0; transform: translate(5px, -5px) rotate(5deg); } /* Pull away */
         }
         .animate-card-slide { animation: card-slide 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 
         @keyframes ripple {
           0%, 39%   { opacity: 0; transform: scale(0.5); border-width: 4px; }
           40%       { opacity: 1; transform: scale(1); border-width: 4px; }
-          50%       { opacity: 0; transform: scale(4); border-width: 0px; }
+          60%       { opacity: 0; transform: scale(3.5); border-width: 0px; }
           100%      { opacity: 0; transform: scale(4); border-width: 0px; }
         }
         .animate-ripple { animation: ripple 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
@@ -75,6 +85,10 @@ const Hero = () => {
         }
         .animate-float-card-reverse { 
           animation: float-card-reverse 7s ease-in-out infinite; 
+        }
+
+        @keyframes shimmer {
+          100% { transform: translateX(100%); }
         }
       `}</style>
 
@@ -168,30 +182,47 @@ const Hero = () => {
 
                     {/* Interaction Overlay for Slide 0 (Order Placed) */}
                     {index === 0 && isActive && (
-                      <div className="absolute top-[65%] left-[55%] sm:top-[70%] sm:left-[50%] z-20 pointer-events-none">
-                        {/* The glowing touch indicator */}
-                        <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary-500/30 border-2 border-primary-400 rounded-full animate-touch-tap flex items-center justify-center backdrop-blur-[2px]">
-                          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-primary-300 rounded-full shadow-[0_0_10px_#fff]"></div>
+                      <div className="absolute top-[66%] left-[65%] sm:top-[66%] sm:left-[65%] z-20 pointer-events-none -translate-x-1/2 -translate-y-1/2">
+                        {/* Premium glowing touch indicator */}
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full animate-touch-tap flex items-center justify-center relative">
+                          {/* Glass ring */}
+                          <div className="absolute inset-0 bg-white/30 backdrop-blur-md border border-white/70 rounded-full shadow-lg"></div>
+                          {/* Glowing orange core */}
+                          <div className="relative w-5 h-5 sm:w-7 sm:h-7 bg-gradient-to-tr from-orange-500 to-primary-400 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.9)] flex items-center justify-center">
+                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full shadow-inner"></div>
+                          </div>
                         </div>
-                        {/* The ripple effect on tap */}
-                        <div className="absolute inset-0 rounded-full border-primary-400 animate-ripple"></div>
                       </div>
                     )}
 
                     {/* Interaction Overlay for Slide 1 (Payment Received) */}
                     {index === 1 && isActive && (
-                      <div className="absolute top-[35%] left-[70%] sm:top-[40%] sm:left-[65%] z-20 pointer-events-none">
-                        {/* The animated credit card */}
-                        <div className="animate-card-slide w-14 h-9 sm:w-20 sm:h-12 bg-slate-800 rounded-md sm:rounded-lg border border-slate-600 shadow-xl flex items-center px-1 sm:px-2 transform origin-bottom-right">
-                          <div className="w-2 h-1.5 sm:w-4 sm:h-3 bg-yellow-500/80 rounded-[1px] sm:rounded-[2px]"></div>
-                          <div className="ml-auto flex gap-0.5 sm:gap-1 opacity-60">
-                            <div className="w-0.5 h-2 sm:w-1 sm:h-4 bg-white/40 rounded-full"></div>
-                            <div className="w-0.5 h-2 sm:w-1 sm:h-4 bg-white/40 rounded-full"></div>
-                            <div className="w-0.5 h-2 sm:w-1 sm:h-4 bg-white/40 rounded-full"></div>
+                      <div className="absolute top-[80%] left-[55%] sm:top-[78%] sm:left-[55%] z-20 pointer-events-none -translate-x-1/2 -translate-y-1/2">
+                        {/* The animated realistic credit card */}
+                        <div className="animate-card-slide w-24 h-16 sm:w-32 sm:h-20 bg-gradient-to-br from-slate-800 via-slate-900 to-black rounded-xl sm:rounded-2xl border border-slate-700 shadow-2xl flex flex-col justify-between p-2 sm:p-3 transform origin-bottom-right overflow-hidden relative">
+                          {/* Shimmer effect */}
+                          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite]"></div>
+                          
+                          <div className="flex justify-between items-start w-full relative z-10">
+                            {/* Chip */}
+                            <div className="w-5 h-4 sm:w-7 sm:h-5 bg-gradient-to-br from-yellow-200 to-yellow-500 rounded sm:rounded-md flex flex-col justify-evenly overflow-hidden border border-yellow-600/50">
+                              <div className="h-[1px] w-full bg-black/20"></div>
+                              <div className="h-[1px] w-full bg-black/20"></div>
+                            </div>
+                            {/* Contactless */}
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14c-.3-.8-.5-1.7-.5-2.6 0-.8.2-1.7.5-2.5M12 15.5c-.6-1.2-1-2.6-1-4.1s.4-2.9 1-4.1M15.5 17c-.9-1.7-1.4-3.6-1.4-5.6s.5-3.9 1.4-5.6"/></svg>
+                          </div>
+                          
+                          <div className="flex justify-between items-end w-full relative z-10">
+                            {/* Fake Card Number */}
+                            <div className="text-[6px] sm:text-[8px] text-white/40 tracking-widest font-mono font-medium">**** **** **** 4242</div>
+                            {/* Card Network Logo */}
+                            <div className="flex justify-end items-center -space-x-1 sm:-space-x-2">
+                              <div className="w-3 h-3 sm:w-5 sm:h-5 rounded-full bg-red-500/80 mix-blend-screen"></div>
+                              <div className="w-3 h-3 sm:w-5 sm:h-5 rounded-full bg-yellow-500/80 mix-blend-screen"></div>
+                            </div>
                           </div>
                         </div>
-                        {/* The NFC ripple effect on tap */}
-                        <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-12 h-12 sm:w-20 sm:h-20 rounded-full border-green-400 animate-ripple"></div>
                       </div>
                     )}
                   </div>
@@ -200,7 +231,7 @@ const Hero = () => {
             </div>
 
             {/* Foreground UI Notifications (Light Glassmorphism) */}
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 ? 'opacity-100 translate-y-0 scale-100 delay-[2500ms]' : 'opacity-0 -translate-y-8 scale-95 delay-0 pointer-events-none'}`}>
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 0 && showNotification ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
               <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-primary-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
                   T4
@@ -212,14 +243,14 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 ? 'opacity-100 translate-y-0 scale-100 delay-[2500ms]' : 'opacity-0 -translate-y-8 scale-95 delay-0 pointer-events-none'}`}>
+            <div className={`absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[15%] z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${activeIndex === 1 && showNotification ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-8 scale-95 pointer-events-none'}`}>
               <div className="bg-white/40 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-2xl p-3 pr-8 flex items-center gap-4">
                 <div className="bg-green-500 text-white rounded-full p-2 shadow-md flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="text-[10px] sm:text-xs text-gray-700 font-bold uppercase tracking-wider">Payment Received</p>
-                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$42.50 via Tap</p>
+                  <p className="text-sm sm:text-base font-extrabold text-gray-900">$15.00 via Tap</p>
                 </div>
               </div>
             </div>

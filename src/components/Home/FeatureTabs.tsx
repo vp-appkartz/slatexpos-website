@@ -17,6 +17,16 @@ const PILLARS = [
   { id: 'payments-admin', label: 'Payments & Admin' },
 ];
 
+const cycleBg = ['bg-orange-50', 'bg-sky-50', 'bg-emerald-50', 'bg-violet-50', 'bg-pink-50'];
+const cycleText = ['text-orange-600', 'text-sky-600', 'text-emerald-600', 'text-violet-600', 'text-pink-600'];
+const cycleShadow = [
+  'shadow-[inset_0_0_0_1px_rgba(249,114,21,0.25)]', 
+  'shadow-[inset_0_0_0_1px_rgba(14,165,233,0.25)]', 
+  'shadow-[inset_0_0_0_1px_rgba(16,185,129,0.25)]', 
+  'shadow-[inset_0_0_0_1px_rgba(139,92,246,0.25)]', 
+  'shadow-[inset_0_0_0_1px_rgba(236,72,153,0.25)]'
+];
+
 const FEATURES = {
   'front-of-house': [
     { title: 'Drag & Drop Table Layout', description: 'Design custom floor plans in seconds. Track open checks, monitor table status in real time, and speed up table turnover with intuitive touch controls.', icon: <LayoutDashboard className="w-5 h-5" /> },
@@ -168,13 +178,13 @@ const FeatureTabs: React.FC = () => {
             </h3>
             
             <div className="flex flex-row lg:flex-col gap-2 min-w-max lg:min-w-0">
-              {PILLARS.map((pillar) => (
+              {PILLARS.map((pillar, idx) => (
                 <button
                   key={pillar.id}
                   onClick={() => setActiveTab(pillar.id)}
                   className={`group relative text-left px-5 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-between snap-start ${
                     activeTab === pillar.id
-                      ? 'bg-primary-50 text-primary-500 shadow-[inset_0_0_0_1px_rgba(249,110,77,0.2)]'
+                      ? `${cycleBg[idx % 5]} ${cycleText[idx % 5]} ${cycleShadow[idx % 5]}`
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >

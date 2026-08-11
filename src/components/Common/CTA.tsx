@@ -156,35 +156,38 @@ const Contact: React.FC<ContactProps> = ({
 
               <div className="space-y-4 max-w-md mx-auto lg:mx-0 text-left pt-2" data-aos="fade-up" data-aos-delay="300">
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-3 h-3 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <p className="text-slate-600 text-[15px] sm:text-base leading-snug">
-                    <strong className="text-gray-900">Zero Hardware Costs:</strong> Works on your existing smartphones, tablets, or computers.
+                    <strong className="text-orange-500 text-lg mr-1">Zero Hardware Costs:</strong><br className="sm:hidden" />
+                    Works on your existing smartphones, tablets, or computers.
                   </p>
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-3 h-3 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <p className="text-slate-600 text-[15px] sm:text-base leading-snug">
-                    <strong className="text-gray-900">Customized Preview:</strong> We set up SlateX with your actual menu before the call.
+                    <strong className="text-emerald-500 text-lg mr-1">Customized Preview:</strong><br className="sm:hidden" />
+                    We set up SlateX with your actual menu before the call.
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-3 h-3 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-violet-100 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <p className="text-slate-600 text-[15px] sm:text-base leading-snug">
-                    <strong className="text-gray-900">No-Risk Guarantee:</strong> 100% free consultation, no commitment, and global availability.
+                    <strong className="text-violet-500 text-lg mr-1">No-Risk Guarantee:</strong><br className="sm:hidden" />
+                    100% free consultation, no commitment, and global availability.
                   </p>
                 </div>
               </div>

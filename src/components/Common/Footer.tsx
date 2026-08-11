@@ -75,28 +75,28 @@ const Footer = () => {
               className="h-8 sm:h-9 lg:h-10 mb-5 w-auto cursor-pointer"
               onClick={() => navigate('/')}
             />
-            <p className="leading-relaxed mb-8 max-w-sm text-slate-500 text-sm">
+            <p className="leading-relaxed mb-8 max-w-sm text-slate-600 text-[15px] sm:text-base font-medium">
               {description}
             </p>
 
             {/* Social icons */}
             <div className="flex space-x-3 mb-8">
               {[
-                { key: 'facebook',  Icon: Facebook  },
-                { key: 'twitter',   Icon: Twitter   },
-                { key: 'instagram', Icon: Instagram },
-                { key: 'linkedin',  Icon: Linkedin  },
-              ].map(({ key, Icon }) => (
+                { key: 'facebook',  Icon: Facebook,  color: 'text-[#1877F2]', hoverBg: 'hover:bg-[#1877F2]/10', hoverBorder: 'hover:border-[#1877F2]/30' },
+                { key: 'twitter',   Icon: Twitter,   color: 'text-[#1DA1F2]', hoverBg: 'hover:bg-[#1DA1F2]/10', hoverBorder: 'hover:border-[#1DA1F2]/30' },
+                { key: 'instagram', Icon: Instagram, color: 'text-[#E4405F]', hoverBg: 'hover:bg-[#E4405F]/10', hoverBorder: 'hover:border-[#E4405F]/30' },
+                { key: 'linkedin',  Icon: Linkedin,  color: 'text-[#0A66C2]', hoverBg: 'hover:bg-[#0A66C2]/10', hoverBorder: 'hover:border-[#0A66C2]/30' },
+              ].map(({ key, Icon, color, hoverBg, hoverBorder }) => (
                 <a
                   key={key}
                   href={socialLinks[key]}
-                  className="w-9 h-9 rounded-lg bg-white border border-gray-200 hover:border-orange-300 hover:bg-orange-50
-                    flex items-center justify-center transition-all duration-200 shadow-sm"
+                  className={`w-10 h-10 rounded-lg bg-white border border-gray-200 ${hoverBorder} ${hoverBg}
+                    flex items-center justify-center transition-all duration-200 shadow-sm group`}
                   aria-label={key}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Icon className="w-4 h-4 text-gray-500 hover:text-orange-500" />
+                  <Icon className={`w-5 h-5 ${color} opacity-80 group-hover:opacity-100 transition-opacity duration-200`} />
                 </a>
               ))}
             </div>
@@ -156,7 +156,7 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="relative border-t border-indigo-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-slate-500 text-sm">Built for Canadian restaurants. Powered by SlateX.</p>
+          <p className="text-slate-500 text-sm">Built for all types of restaurants. Powered by SlateX.</p>
           <div className="flex gap-4">
             <Link to="/privacy" className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Privacy</Link>
           </div>

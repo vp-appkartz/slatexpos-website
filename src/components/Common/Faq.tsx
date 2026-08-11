@@ -4,10 +4,17 @@ import DemoModal from './DemoModal';
 
 /* ─── Category → icon mapping ───────────────────────────────────── */
 const categoryIcons: Record<string, React.ReactNode> = {
-  General:  <HelpCircle className="w-4 h-4" />,
-  Hardware: <Monitor    className="w-4 h-4" />,
-  Features: <Zap        className="w-4 h-4" />,
-  Support:  <HeadphonesIcon className="w-4 h-4" />,
+  General:  <HelpCircle className="w-5 h-5" />,
+  Hardware: <Monitor    className="w-5 h-5" />,
+  Features: <Zap        className="w-5 h-5" />,
+  Support:  <HeadphonesIcon className="w-5 h-5" />,
+};
+
+const categoryIconColors: Record<string, string> = {
+  General:  'text-orange-500 group-hover:text-orange-600',
+  Hardware: 'text-sky-500 group-hover:text-sky-600',
+  Features: 'text-emerald-500 group-hover:text-emerald-600',
+  Support:  'text-violet-500 group-hover:text-violet-600',
 };
 
 /* ─── Types ─────────────────────────────────────────────────────── */
@@ -231,8 +238,8 @@ const FAQSection: React.FC<FAQSectionProps> = ({
                         }`}
                       style={activeCategory !== cat ? { backdropFilter: 'blur(12px)' } : {}}
                     >
-                      <span className={`transition-colors duration-200 ${activeCategory === cat ? 'text-white' : 'text-gray-400 group-hover:text-primary-300'}`}>
-                        {categoryIcons[cat] ?? <HelpCircle className="w-4 h-4" />}
+                      <span className={`transition-colors duration-200 ${activeCategory === cat ? 'text-white' : categoryIconColors[cat] || 'text-gray-400 group-hover:text-primary-300'}`}>
+                        {categoryIcons[cat] ?? <HelpCircle className="w-5 h-5" />}
                       </span>
                       {cat}
                     </button>

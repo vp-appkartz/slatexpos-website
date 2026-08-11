@@ -65,10 +65,10 @@ const Footer = () => {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
 
           {/* Brand column */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-4 lg:pr-10">
             <img
               src="/logo/slatex_logo.png"
               alt="SlateX POS"
@@ -107,9 +107,9 @@ const Footer = () => {
           </div>
 
           {/* Products */}
-          <div className="lg:col-span-1">
-            <h3 className="text-base font-bold text-gray-900 uppercase tracking-widest mb-5">Products</h3>
-            <ul className="space-y-2.5">
+          <div className="lg:col-span-3">
+            <h3 className="text-base font-bold text-gray-900 uppercase tracking-wider mb-6">Products</h3>
+            <ul className="space-y-3">
               {defaultProductLinks.map((p) => (
                 <li key={p.url}>
                   <Link to={getProductUrl(p.url)}
@@ -122,9 +122,9 @@ const Footer = () => {
           </div>
 
           {/* Industries */}
-          <div className="lg:col-span-1">
-            <h3 className="text-base font-bold text-gray-900 uppercase tracking-widest mb-5">Industries</h3>
-            <ul className="space-y-2.5">
+          <div className="lg:col-span-3">
+            <h3 className="text-base font-bold text-gray-900 uppercase tracking-wider mb-6">Industries</h3>
+            <ul className="space-y-3">
               {defaultIndustryLinks.map((i) => (
                 <li key={i.name}>
                   <Link to={getIndustryUrl(i.url)}
@@ -137,9 +137,9 @@ const Footer = () => {
           </div>
 
           {/* Company */}
-          <div className="lg:col-span-1">
-            <h3 className="text-base font-bold text-gray-900 uppercase tracking-widest mb-5">Company</h3>
-            <ul className="space-y-2.5">
+          <div className="lg:col-span-2">
+            <h3 className="text-base font-bold text-gray-900 uppercase tracking-wider mb-6">Company</h3>
+            <ul className="space-y-3">
               {defaultCompanyLinks.map((c) => (
                 <li key={c.name}>
                   <Link to={c.url}

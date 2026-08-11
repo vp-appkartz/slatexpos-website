@@ -117,49 +117,77 @@ const Contact: React.FC<ContactProps> = ({
     }
   };
 
-  const displayTitle = title || (
-    <>
-      Ready to Run Your Restaurant
-      <br />
-      on Your Terms?
-    </>
-  );
+  const displayTitle = title || "Take Control of Your Restaurant with SlateX";
 
-  const displayDescription = description || "Book a free demo. See SlateX in action on your device, with your menu. No commitment. No hardware purchase. Just a real conversation with a real person. We serve restaurants in Edmonton, Vancouver, Brandon, and across all of Canada.";
+  const displayDescription = description || "Experience modern, flexible restaurant management software built for your workflow. Book a custom demo featuring your actual menu on the devices you already own.";
 
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div
-          className="relative rounded-3xl overflow-hidden min-h-[500px] bg-cover bg-center"
-          style={{
-            backgroundImage: `url('${image || '/contact-bg.png'}')`,
-          }}
+          className="bg-slate-50/40 backdrop-blur-3xl rounded-[2rem] sm:rounded-[2.5rem] border border-white shadow-[0_30px_100px_-20px_rgba(0,0,0,0.15),inset_0_2px_4px_rgba(255,255,255,1),inset_0_-2px_4px_rgba(0,0,0,0.05)] overflow-hidden relative min-h-[500px]"
         >
-          {/* Overlay for better contrast on mobile */}
-          <div className="absolute inset-0 bg-black/30 lg:bg-transparent z-0"></div>
+          {/* Subtle Ambient Background Glow inside the slate */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-100/50 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
+          
           {/* Content Container */}
           <div className="relative z-10 grid lg:grid-cols-2 gap-8 p-6 md:p-8 lg:p-12 min-h-[500px]">
             {/* Left Content */}
             <div
-              className="text-white space-y-6 flex flex-col justify-center text-center lg:text-left"
+              className="space-y-6 flex flex-col justify-center text-center lg:text-left"
               data-aos="fade-right"
               data-aos-delay="120"
             >
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight"
                 data-aos="fade-down"
                 data-aos-delay="180"
               >
                 {displayTitle}
               </h2>
 
-              <p className="text-white/90 leading-relaxed max-w-md mx-auto lg:mx-0 text-slate-500 text-lg lg:text-xl font-medium"
+              <p className="leading-relaxed max-w-md mx-auto lg:mx-0 text-slate-500 text-lg lg:text-xl font-medium"
                 data-aos="fade-up"
                 data-aos-delay="260"
               >
                 {displayDescription}
               </p>
+
+              <div className="space-y-4 max-w-md mx-auto lg:mx-0 text-left pt-2" data-aos="fade-up" data-aos-delay="300">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-slate-600 text-[15px] sm:text-base leading-snug">
+                    <strong className="text-gray-900">Zero Hardware Costs:</strong> Works on your existing smartphones, tablets, or computers.
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-slate-600 text-[15px] sm:text-base leading-snug">
+                    <strong className="text-gray-900">Customized Preview:</strong> We set up SlateX with your actual menu before the call.
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-slate-600 text-[15px] sm:text-base leading-snug">
+                    <strong className="text-gray-900">No-Risk Guarantee:</strong> 100% free consultation, no commitment, and global availability.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Right Content - Form with white glassy background */}

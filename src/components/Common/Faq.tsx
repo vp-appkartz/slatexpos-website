@@ -17,6 +17,12 @@ const categoryIconColors: Record<string, string> = {
   Support:  'text-violet-500 group-hover:text-violet-600',
 };
 
+const cycleBgColors = ['bg-orange-500', 'bg-sky-500', 'bg-emerald-500', 'bg-violet-500'];
+const cycleTextColors = ['text-orange-500', 'text-sky-500', 'text-emerald-500', 'text-violet-500'];
+const cycleBorderColors = ['border-l-orange-500', 'border-l-sky-500', 'border-l-emerald-500', 'border-l-violet-500'];
+const cycleBgTint = ['bg-orange-50/40 border-orange-100', 'bg-sky-50/40 border-sky-100', 'bg-emerald-50/40 border-emerald-100', 'bg-violet-50/40 border-violet-100'];
+const cycleLightBg = ['bg-orange-100 text-orange-600', 'bg-sky-100 text-sky-600', 'bg-emerald-100 text-emerald-600', 'bg-violet-100 text-violet-600'];
+
 /* ─── Types ─────────────────────────────────────────────────────── */
 interface FAQItem {
   question: string;
@@ -106,12 +112,14 @@ const AccordionItem: React.FC<{
   index: number;
   isOpen: boolean;
   onToggle: () => void;
-}> = ({ faq, index, isOpen, onToggle }) => (
+}> = ({ faq, index, isOpen, onToggle }) => {
+  const cIndex = index % 4;
+  return (
   <div
-    className={`rounded-2xl border-l-4 border border-gray-100 bg-white transition-all duration-300 overflow-hidden
+    className={`rounded-2xl border-l-4 border-gray-100 bg-white transition-all duration-300 overflow-hidden
       ${isOpen
-        ? 'border-l-primary-300 bg-orange-50/40 border-orange-100 shadow-sm'
-        : 'border-l-transparent hover:border-l-orange-200 hover:border-gray-200 hover:shadow-sm'
+        ? `${cycleBorderColors[cIndex]} ${cycleBgTint[cIndex]} border-t border-r border-b shadow-sm`
+        : `border-transparent border hover:border-gray-200 hover:shadow-sm hover:${cycleBorderColors[cIndex]}`
       }`}
   >
     <button
@@ -122,7 +130,7 @@ const AccordionItem: React.FC<{
       {/* Number badge */}
       <span
         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-          ${isOpen ? 'bg-primary-300 text-white' : 'bg-gray-100 text-gray-400'}`}
+          ${isOpen ? `${cycleBgColors[cIndex]} text-white` : cycleLightBg[cIndex]}`}
       >
         {String(index + 1).padStart(2, '0')}
       </span>
@@ -130,7 +138,7 @@ const AccordionItem: React.FC<{
       {/* Question */}
       <span
         className={`flex-1 font-semibold text-base sm:text-lg leading-snug transition-colors duration-200
-          ${isOpen ? 'text-primary-300' : 'text-gray-900'}`}
+          ${isOpen ? cycleTextColors[cIndex] : 'text-gray-900'}`}
       >
         {faq.question}
       </span>
@@ -138,7 +146,7 @@ const AccordionItem: React.FC<{
       {/* Toggle icon */}
       <span
         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300
-          ${isOpen ? 'bg-primary-300 text-white' : 'bg-gray-100 text-gray-500'}`}
+          ${isOpen ? `${cycleBgColors[cIndex]} text-white` : cycleLightBg[cIndex]}`}
       >
         {isOpen
           ? <Minus className="w-4 h-4" />
@@ -146,6 +154,7 @@ const AccordionItem: React.FC<{
         }
       </span>
     </button>
+
 
     {/* Answer — CSS grid row trick for smooth height animation */}
     <div
@@ -159,7 +168,8 @@ const AccordionItem: React.FC<{
       </div>
     </div>
   </div>
-);
+  );
+};
 
 /* ─── Main section ───────────────────────────────────────────────── */
 const FAQSection: React.FC<FAQSectionProps> = ({

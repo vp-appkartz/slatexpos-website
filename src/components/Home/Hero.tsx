@@ -160,13 +160,13 @@ const Hero = () => {
             <div className="flex flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-6 w-full">
               <button
                 onClick={openDemoModal}
-                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-primary-300 hover:bg-orange-600 text-white font-bold rounded-xl px-2 sm:px-8 py-3.5 sm:py-4 text-[15px] sm:text-lg shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300 whitespace-nowrap"
+                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-primary-300 hover:bg-orange-600 text-white font-semibold rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 Book a Free Demo
               </button>
               <button
                 onClick={() => navigate('/pricing')}
-                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-white hover:bg-gray-50 text-gray-900 font-bold rounded-xl px-2 sm:px-8 py-3.5 sm:py-4 text-[15px] sm:text-lg border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 whitespace-nowrap"
+                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 See Pricing
               </button>

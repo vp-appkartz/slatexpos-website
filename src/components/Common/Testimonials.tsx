@@ -10,6 +10,7 @@ export interface TestimonialItem {
   text: string;
   logo: string;
   logoSubtext: string;
+  colorClass?: string;
 }
 export interface TestimonialsData {
   title?: string;
@@ -82,9 +83,9 @@ const TestimonialCard: React.FC<{ t: TestimonialItem }> = ({ t }) => (
         {t.name.charAt(0)}
       </div>
       <div className="min-w-0">
-        <p className="truncate text-slate-500 text-lg lg:text-xl font-medium">{t.name}</p>
-        <p className="truncate text-slate-500 text-lg lg:text-xl font-medium">{t.logo}</p>
-        <p className="flex items-center gap-1 mt-0.5 text-slate-500 text-lg lg:text-xl font-medium">
+        <p className={`truncate text-base font-semibold ${t.colorClass || 'text-gray-900'}`}>{t.name}</p>
+        <p className={`truncate text-base font-semibold ${t.colorClass || 'text-gray-900'}`}>{t.logo}</p>
+        <p className={`flex items-center gap-1 mt-0.5 text-base font-semibold ${t.colorClass || 'text-gray-900'}`}>
           {t.logoSubtext || t.position}
         </p>
       </div>
@@ -107,6 +108,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
       text: "SlateX gave us the flexibility we couldn't find anywhere else. We already had Android tablets — now they're our full POS system. The setup was fast and the team actually answered the phone when we needed help.",
       logo: 'Ghazal Fine Dine Experience',
       logoSubtext: 'Edmonton, AB · Canada',
+      colorClass: 'text-sky-600',
     },
     {
       id: 2,
@@ -116,6 +118,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
       text: "The offline mode alone was worth the switch. We've never lost an order since. Internet goes down, SlateX keeps going — everything syncs the moment we're back online.",
       logo: 'Vancouver Café',
       logoSubtext: 'Vancouver, BC · Canada',
+      colorClass: 'text-rose-600',
     },
     {
       id: 3,
@@ -125,6 +128,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
       text: "Managing dine-in, takeout, and sweets counters together used to be stressful. With SlateX POS, we've streamlined everything under one roof. The weighing scale integration is something no other POS at this price offers.",
       logo: 'Royal Sweets & Restaurant',
       logoSubtext: 'Edmonton, AB · Canada',
+      colorClass: 'text-emerald-600',
     },
     {
       id: 4,
@@ -134,6 +138,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
       text: "One monthly fee, no hardware invoice, and every feature included. We switched from Toast and saved thousands in the first year. SlateX is the real deal for Canadian restaurants.",
       logo: 'Bombay Street Tadka',
       logoSubtext: 'Edmonton, AB · Canada',
+      colorClass: 'text-violet-600',
     },
   ];
 

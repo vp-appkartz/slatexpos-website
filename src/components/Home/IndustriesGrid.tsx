@@ -100,18 +100,18 @@ const CarouselCard: React.FC<{ card: Card; delay: number }> = ({ card, delay }) 
   return (
     <div
       className="group relative overflow-hidden rounded-[2rem] bg-white border border-slate-200/50 flex-shrink-0 snap-start mr-6
-        w-[300px] h-[480px] sm:w-[360px] sm:h-[520px] lg:w-[420px] lg:h-[580px] flex flex-col
+        w-[300px] h-[580px] sm:w-[360px] sm:h-[600px] lg:w-[420px] lg:h-[620px] flex flex-col
         shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer hover:scale-[1.02]"
     >
       {/* Text Zone (Top) */}
-      <div className="p-8 pb-4 flex-1 z-10 flex flex-col">
+      <div className="p-6 sm:p-8 pb-4 flex-1 z-10 flex flex-col">
         <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">
           {card.tag}
         </span>
-        <h3 className={`font-extrabold text-3xl lg:text-4xl leading-tight mb-3 tracking-tight min-h-[76px] lg:min-h-[90px] ${card.colorClass || 'text-slate-900'}`}>
+        <h3 className={`font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight mb-3 tracking-tight min-h-[64px] sm:min-h-[76px] lg:min-h-[90px] ${card.colorClass || 'text-slate-900'}`}>
           {card.name}
         </h3>
-        <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
+        <p className="leading-relaxed text-slate-500 text-base sm:text-lg lg:text-xl font-medium">
           {card.description}
         </p>
       </div>
@@ -122,6 +122,8 @@ const CarouselCard: React.FC<{ card: Card; delay: number }> = ({ card, delay }) 
           <img
             src={card.image}
             alt={card.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
             onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3'; }}
           />

@@ -39,6 +39,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
       description:
         'Dual Side display terminal streamlines high‑volume ordering and promotes upsells right at the counter. Built for restaurants, cafés, and quick‑serve chains, it offers rock‑solid performance when every second counts.',
       image: '/SlateX Station.webp',
+      colorClass: 'text-sky-600',
     },
     {
       id: 2,
@@ -46,6 +47,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
       description:
         'Lightweight 10.1″ Android tablet delivers full POS capabilities wherever your guests choose to sit. Ideal for food trucks, pop‑ups, and casual dining, it lets servers take orders and accept payments instantly at the table.',
       image: '/SlateX Tab.webp',
+      colorClass: 'text-violet-600',
     },
     {
       id: 3,
@@ -53,6 +55,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
       description:
         'A fully powered handheld terminal that lets you take orders and process payments from anywhere — tableside, curbside, or on delivery. Secure, encrypted transactions and an all‑day battery design.',
       image: '/SlateX Pulse.png',
+      colorClass: 'text-orange-600',
     },
   ];
 
@@ -140,7 +143,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
 
                 <div className="h-28" />
 
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+                <h3 className={`text-2xl sm:text-3xl font-bold mb-3 ${item.colorClass || 'text-gray-900'}`}>
                   {item.title}
                 </h3>
                 <div className="w-8 h-0.5 bg-primary-300 rounded-full mb-4" />

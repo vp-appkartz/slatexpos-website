@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useDemoModal } from '../../contexts/DemoModalContext';
 
 export interface BlackSectionProps {
   title?: string;
@@ -42,6 +43,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   className = ""
 }) => {
   const [data] = useState({ title, description, buttonText, imageSrc, imageAlt, trustIndicators });
+  const { openDemoModal } = useDemoModal();
 
   useEffect(() => {
     AOS.init({ duration: 900, once: true, offset: 60, easing: "ease-in-out" });
@@ -89,7 +91,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             {data.buttonText && (
               <button
                 className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
-                onClick={onButtonClick}
+                onClick={onButtonClick || openDemoModal}
                 data-aos="zoom-in" data-aos-delay="340"
               >
                 {data.buttonText}

@@ -97,7 +97,7 @@ const Header: React.FC = () => {
         </div>
         <h3 className="font-semibold text-gray-900 text-base">Let's Talk</h3>
       </div>
-      <p className="leading-relaxed mb-5 text-slate-500 text-lg lg:text-xl font-medium">
+      <p className="leading-relaxed mb-5 text-slate-500 text-sm">
         Have questions or need assistance? We're just a message away.
       </p>
       <button
@@ -192,7 +192,7 @@ const Header: React.FC = () => {
                                   <ItemIcon image={item.image} title={item.title} />
                                   <div>
                                     <h5 className="font-semibold text-gray-900 text-sm">{item.title}</h5>
-                                    <p className="mt-0.5 text-slate-500 text-lg lg:text-xl font-medium">{item.description}</p>
+                                    <p className="mt-0.5 text-slate-500 text-sm">{item.description}</p>
                                   </div>
                                 </div>
                               ))}
@@ -217,7 +217,7 @@ const Header: React.FC = () => {
                               <ItemIcon image={item.image} title={item.title} />
                               <div>
                                 <h5 className="font-semibold text-gray-900 text-sm">{item.title}</h5>
-                                <p className="mt-0.5 text-slate-500 text-lg lg:text-xl font-medium">{item.description}</p>
+                                <p className="mt-0.5 text-slate-500 text-sm">{item.description}</p>
                               </div>
                             </div>
                           ))}
@@ -269,7 +269,7 @@ const Header: React.FC = () => {
                                 <ItemIcon image={item.image} title={item.title} />
                                 <div>
                                   <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                                  <p className="mt-0.5 leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">{item.description}</p>
+                                  <p className="mt-0.5 leading-relaxed text-slate-500 text-sm">{item.description}</p>
                                 </div>
                               </div>
                             ))}
@@ -292,7 +292,7 @@ const Header: React.FC = () => {
                                   <ItemIcon image={item.image} title={item.title} />
                                   <div>
                                     <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                                    <p className="mt-0.5 leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">{item.description}</p>
+                                    <p className="mt-0.5 leading-relaxed text-slate-500 text-sm">{item.description}</p>
                                   </div>
                                 </div>
                               ))}
@@ -307,7 +307,7 @@ const Header: React.FC = () => {
                                   <ItemIcon image={item.image} title={item.title} />
                                   <div>
                                     <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                                    <p className="mt-0.5 leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">{item.description}</p>
+                                    <p className="mt-0.5 leading-relaxed text-slate-500 text-sm">{item.description}</p>
                                   </div>
                                 </div>
                               ))}
@@ -345,7 +345,7 @@ const Header: React.FC = () => {
                             <ItemIcon image={item.image} title={item.title} />
                             <div>
                               <h4 className="font-semibold text-base text-gray-900 group-hover:text-primary-300 transition-colors">{item.title}</h4>
-                              <p className="mt-0.5 leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">{item.description}</p>
+                              <p className="mt-0.5 leading-relaxed text-slate-500 text-sm">{item.description}</p>
                             </div>
                           </div>
                         ))}

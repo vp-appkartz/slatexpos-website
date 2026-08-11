@@ -81,7 +81,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
   ];
 
   return (
-    <section className="relative py-20 lg:py-28 px-4 overflow-hidden">
+    <section className="relative pt-10 pb-20 lg:pt-16 lg:pb-28 px-4 overflow-hidden">
       <div className="max-w-6xl mx-auto space-y-24">
 
         {/* ══════════════════════════════════════════

@@ -146,7 +146,7 @@ const IndustriesGrid: React.FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#FAFAFA] pt-24 pb-20 lg:pt-32 lg:pb-32">
+    <section className="relative overflow-hidden bg-[#FAFAFA] pt-24 pb-10 lg:pt-32 lg:pb-12">
       
       {/* CSS to hide scrollbar but keep functionality */}
       <style dangerouslySetInnerHTML={{__html: `

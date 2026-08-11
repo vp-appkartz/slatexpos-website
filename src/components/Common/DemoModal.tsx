@@ -240,7 +240,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               )}
               <button
                 type="submit"
-                className={`w-full bg-primary-300 hover:bg-green-700 text-white font-semibold rounded-lg py-3 text-lg transition-all duration-200 mt-2 shadow-md ${submitting ? 'opacity-60 cursor-not-allowed' : ''}`}
+                className={`w-full inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 mt-2 ${submitting ? 'opacity-60 cursor-not-allowed' : ''}`}
                 disabled={submitting}
               >
                 {submitting ? 'Submitting...' : 'Schedule my demo'}

@@ -90,7 +90,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             </p>
             {data.buttonText && (
               <button
-                className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
                 onClick={onButtonClick || openDemoModal}
                 data-aos="zoom-in" data-aos-delay="340"
               >

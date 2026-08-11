@@ -102,9 +102,7 @@ const Header: React.FC = () => {
       </p>
       <button
         onClick={() => { setActiveDropdown(null); openDemoModal(); }}
-        className="bg-primary-300 hover:bg-orange-600 text-white px-5 py-3 rounded-xl
-          transition-all duration-200 font-semibold w-full text-sm
-          hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
+        className="w-full inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
       >
         Book a Free Demo
       </button>
@@ -153,10 +151,9 @@ const Header: React.FC = () => {
                 {/* Right actions */}
                 <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                   <button
-                    className="hidden sm:block relative group bg-white text-primary-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-primary-300 transition-all duration-300 font-semibold overflow-hidden hover:text-white text-sm lg:text-base"
+                    className="hidden sm:inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
                     onClick={() => openDemoModal()}
                   >
-                    <div className="absolute inset-0 bg-primary-300 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center" />
                     <span className="relative z-10">Get a Demo</span>
                   </button>
                   <button onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -234,8 +231,7 @@ const Header: React.FC = () => {
 
                     <div className="px-4 py-3">
                       <button onClick={() => openDemoModal()}
-                        className="relative group bg-white text-primary-300 px-6 py-3 rounded-full border border-primary-300 transition-all duration-300 font-semibold w-full overflow-hidden hover:text-white">
-                        <div className="absolute inset-0 bg-primary-300 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                         <span className="relative z-10">Get a Demo</span>
                       </button>
                     </div>

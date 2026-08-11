@@ -157,16 +157,16 @@ const Hero = () => {
               SlateX POS delivers cloud-powered reliability to help run your business smoothly. Choose our custom hardware packages or bring your own with zero proprietary lock-ins, wholesale processing rates, and 24/7 dedicated support.
             </p>
 
-            <div className="flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6 w-full">
+            <div className="flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6">
               <button
                 onClick={openDemoModal}
-                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-orange-50 hover:bg-orange-100 text-orange-600 font-semibold rounded-xl px-5 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base border border-orange-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-5 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 Book a Free Demo
               </button>
               <button
                 onClick={() => navigate('/pricing')}
-                className="flex-1 sm:w-auto inline-flex items-center justify-center gap-1 sm:gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-xl px-5 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-xl px-5 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 See Pricing
               </button>

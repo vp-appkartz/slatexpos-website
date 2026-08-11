@@ -272,7 +272,7 @@ const Contact: React.FC<ContactProps> = ({
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-fit bg-primary-300 hover:bg-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                        className={`w-fit inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                           }`}
                       >
                         {isSubmitting ? "Sending..." : "Get a Demo"}

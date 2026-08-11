@@ -213,7 +213,7 @@ const ComingSoon: React.FC = () => {
                         <span className="text-white">Soon</span>
                     </h1>
 
-                    <p className="text-base sm:text-lg md:text-xl max-w-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                    <p className="max-w-lg leading-relaxed text-slate-500 text-lg lg:text-xl font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>
                         We're putting the finishing touches on something incredible. SlateX POS — the all-in-one
                         restaurant &amp; retail solution — is about to go live.
                     </p>
@@ -225,7 +225,7 @@ const ComingSoon: React.FC = () => {
                 />
 
                 {/* ── Footer note ── */}
-                <p className="text-xs animate-fadeInUp animation-delay-800" style={{ color: 'rgba(255,255,255,0.25)' }}>
+                <p className="animate-fadeInUp animation-delay-800 text-slate-500 text-lg lg:text-xl font-medium" style={{ color: 'rgba(255,255,255,0.25)' }}>
                     © {new Date().getFullYear()} SlateX POS. All rights reserved.
                 </p>
             </div>

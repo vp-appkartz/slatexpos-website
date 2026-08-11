@@ -120,7 +120,7 @@ const FastCasualSection = () => {
               Built for Every Restaurant Type
             </h1>
 
-            <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="leading-relaxed mb-8 max-w-lg text-slate-500 text-lg lg:text-xl font-medium">
               From bustling quick-service counters to fine-dining rooms, SlateX
               POS adapts to your workflow — not the other way around. One
               platform, every service style.

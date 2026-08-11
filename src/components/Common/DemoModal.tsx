@@ -246,7 +246,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 {submitting ? 'Submitting...' : 'Schedule my demo'}
               </button>
             </form>
-            <p className="text-center text-gray-500 text-xs mt-6">
+            <p className="text-center mt-6 text-slate-500 text-lg lg:text-xl font-medium">
               We’ll tailor your demo to your immediate needs and answer all your questions. Get ready to see how it works!
             </p>
           </>
@@ -259,7 +259,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               </svg>
             </div>
             <h3 className="text-2xl font-semibold text-green-700 mb-2 text-center">Thank you!</h3>
-            <p className="text-center text-gray-700 mb-2">
+            <p className="text-center mb-2 text-slate-500 text-lg lg:text-xl font-medium">
               Your demo request has been received.<br />
               Our team will reach out to you soon.
             </p>

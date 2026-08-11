@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 /* ─── Scroll reveal ────────────────────────────────────────────── */
 function useReveal(threshold = 0.08) {
@@ -14,27 +14,11 @@ function useReveal(threshold = 0.08) {
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [threshold]);
   return { ref, visible };
 }
 
 /* ─── Data ─────────────────────────────────────────────────────── */
-/*
-  IMAGE SIZES — add these files to /public/industries/
-  ┌─────────────────────┬────────────────────┬──────────────────────────────────────────────┐
-  │ File                │ Size               │ Card slot                                    │
-  ├─────────────────────┼────────────────────┼──────────────────────────────────────────────┤
-  │ fine-dining.jpg     │ 800 × 600 px       │ Fine Dining  (hero, 2-col × 2-row)           │
-  │ qsr.jpg             │ 600 × 480 px       │ Quick Service (1-col × 1-row)                │
-  │ casual.jpg          │ 600 × 480 px       │ Casual Dining (1-col × 1-row)                │
-  │ cafe.jpg            │ 600 × 480 px       │ Café          (1-col × 1-row)                │
-  │ bakery.jpg          │ 600 × 480 px       │ Bakery        (1-col × 1-row)                │
-  │ pizza.jpg           │ 800 × 380 px       │ Pizza Store   (2-col × 1-row, wide)          │
-  │ sweets.jpg          │ 800 × 380 px       │ Sweets Shop   (2-col × 1-row, wide)          │
-  └─────────────────────┴────────────────────┴──────────────────────────────────────────────┘
-  Tip: shoot/crop landscape, focus subject centre — the card overlays the edges.
-*/
-
 interface Card {
   id: string;
   name: string;
@@ -42,282 +26,204 @@ interface Card {
   description: string;
   features: string[];
   image: string;
-  gradient: string;   /* elegant earth-tone fallback */
-  tagAccent: string;  /* colour used for tag text (on frosted white badge) */
-  col: string;
-  row: string;
-  minH: string;
+  colorClass?: string;
 }
 
 const cards: Card[] = [
   {
     id: 'fine-dining',
-    name: 'Fine Dining',
-    tag: 'Full Service',
-    description:
-      'Floor management, multi-course pacing, and polished guest experiences that match your standard.',
-    features: ['Drag & Drop Floor Designer', 'Course-by-Course Pacing', 'Dynamic Invoice Layout'],
-    image: '/Fullservices_Header.png',
-    gradient: 'linear-gradient(145deg, #b09878, #8c7660)',   /* warm champagne */
-    tagAccent: '#5c3c18',
-    col: 'lg:col-start-1 lg:col-end-3',
-    row: 'lg:row-start-1 lg:row-end-3',
-    minH: 'min-h-[320px]',
+    name: 'Full-Service & Fine Dining POS',
+    tag: 'Full-Service Restaurant POS',
+    description: 'Multi-course table pacing, custom floor plan management, and sleek mobile payments designed for high-end dining experiences.',
+    features: ['Drag & Drop Floor Designer', 'Course-by-Course Pacing'],
+    image: '/Industries/fine dining-1.png',
+    colorClass: 'text-rose-500',
   },
   {
     id: 'qsr',
-    name: 'Quick Service',
-    tag: 'QSR',
-    description:
-      'Speed, volume, and offline reliability built for your busiest rushes.',
+    name: 'Quick-Service & Fast Food POS',
+    tag: 'QSR POS System',
+    description: 'Lightning-fast order entry, dual-screen kitchen display sync, and offline processing mode built for high-volume rushes.',
     features: ['Offline Mode', 'Cash Management'],
-    image: '/qsr-hero.png',
-    gradient: 'linear-gradient(145deg, #b87258, #9a5a40)',   /* muted terracotta */
-    tagAccent: '#5c2810',
-    col: 'lg:col-start-3 lg:col-end-4',
-    row: 'lg:row-start-1 lg:row-end-2',
-    minH: 'min-h-[220px]',
+    image: '/Industries/QSR.png',
+    colorClass: 'text-blue-500',
   },
   {
     id: 'casual',
-    name: 'Casual Dining',
-    tag: 'Casual Fine Dine',
-    description:
-      'The right balance of speed and full-service flexibility.',
+    name: 'Casual Fine Dining POS',
+    tag: 'Casual Dining POS Software',
+    description: 'Flexible hybrid workflows that balance tableside ordering, rapid bill splitting, and fast counter checkout in one platform.',
     features: ['Multi-Device Sync', 'Caller ID'],
-    image: '/Casual_Header.png',
-    gradient: 'linear-gradient(145deg, #6a9878, #4e7a5c)',   /* eucalyptus sage */
-    tagAccent: '#1a4a28',
-    col: 'lg:col-start-4 lg:col-end-5',
-    row: 'lg:row-start-1 lg:row-end-2',
-    minH: 'min-h-[220px]',
+    image: '/Industries/casualdining.png',
+    colorClass: 'text-amber-500',
   },
   {
     id: 'cafe',
-    name: 'Café',
-    tag: 'Café & Coffee',
-    description:
-      'Multi-level modifiers, regulars recognition, and loyalty built right in.',
+    name: 'Café & Coffee Shop POS',
+    tag: 'Coffee Shop POS System',
+    description: 'Complex modifier mapping, rapid drink customization, line-busting handhelds, and built-in repeat customer loyalty.',
     features: ['Multi-Level Modifiers', 'Gift Cards'],
-    image: '/Bars_header.png',
-    gradient: 'linear-gradient(145deg, #8a6858, #6c5040)',   /* rich espresso */
-    tagAccent: '#3a1a0a',
-    col: 'lg:col-start-3 lg:col-end-4',
-    row: 'lg:row-start-2 lg:row-end-3',
-    minH: 'min-h-[220px]',
+    image: '/Industries/cafe.png',
+    colorClass: 'text-emerald-500',
   },
   {
     id: 'bakery',
-    name: 'Bakery',
-    tag: 'Bakery & Pastry',
-    description:
-      'Streamlined counter service for high-volume, fast-moving operations.',
+    name: 'Bakery & Sweets POS',
+    tag: 'Bakery POS Software',
+    description: 'Item-by-weight scale integration, custom matrix pricing, fast barcode scanning, and instant batch order tracking.',
     features: ['Quick Item Entry', 'Open Items'],
-    image: '/fc-hero.png',
-    gradient: 'linear-gradient(145deg, #b89460, #9c7840)',   /* warm honey */
-    tagAccent: '#5a3808',
-    col: 'lg:col-start-4 lg:col-end-5',
-    row: 'lg:row-start-2 lg:row-end-3',
-    minH: 'min-h-[220px]',
+    image: '/Industries/Sweets shop.png',
+    colorClass: 'text-purple-500',
   },
   {
     id: 'pizza',
-    name: 'Pizza Store',
-    tag: 'Pizzeria',
-    description:
-      'Custom modifiers, online ordering, and zero-commission delivery — all in one.',
-    features: ['Zero-Commission Online Orders', 'Custom Modifiers', 'Scheduled & Future Orders'],
-    image: '/fsr-hero.png',
-    gradient: 'linear-gradient(145deg, #a86050, #8a4838)',   /* clay / brick */
-    tagAccent: '#5a1c10',
-    col: 'lg:col-start-1 lg:col-end-3',
-    row: 'lg:row-start-3 lg:row-end-4',
-    minH: 'min-h-[190px]',
+    name: 'Pizza POS & Online Ordering',
+    tag: 'Pizzeria POS System',
+    description: 'Deep pizza modifier building (halves/quarters), caller ID phone integration, and zero-commission online delivery dispatch.',
+    features: ['Zero-Commission Online Orders', 'Custom Modifiers'],
+    image: '/Industries/Pizzashop.png',
+    colorClass: 'text-orange-500',
   },
   {
-    id: 'sweets',
-    name: 'Sweets Shop',
-    tag: 'Sweets & Desserts',
-    description:
-      'Gift cards, BOGOs, and loyalty programmes to keep your customers coming back.',
-    features: ['Gift Cards (Physical & Digital)', 'BOGO & Combo Deals', 'AI Loyalty Program'],
-    image: '/ft-hero.png',
-    gradient: 'linear-gradient(145deg, #a87890, #886070)',   /* dusty mauve */
-    tagAccent: '#4a1830',
-    col: 'lg:col-start-3 lg:col-end-5',
-    row: 'lg:row-start-3 lg:row-end-4',
-    minH: 'min-h-[190px]',
+    id: 'food-truck',
+    name: 'Food Truck POS & Mobile Ordering',
+    tag: 'Food Truck POS System',
+    description: 'Portable handheld checkout, cellular and offline payment reliability, line-busting speed, and instant digital receipt texting.',
+    features: ['Portable Handhelds', 'Offline Reliability'],
+    image: '/Industries/foodtruck.png',
+    colorClass: 'text-pink-500',
   },
 ];
 
-/* ─── Single bento card ─────────────────────────────────────────── */
-const BentoCard: React.FC<{ card: Card; delay: number }> = ({ card, delay }) => (
-  <div
-    className={`group relative overflow-hidden rounded-2xl cursor-pointer
-      ${card.col} ${card.row} ${card.minH}
-      shadow-md hover:shadow-2xl transition-all duration-500 hover:scale-[1.018] hover:z-10`}
-    style={{ background: card.gradient, transitionDelay: `${delay}ms` }}
-  >
-    {/* Background image */}
-    <div className="absolute inset-0">
-      <img
-        src={card.image}
-        alt={card.name}
-        className="w-full h-full object-cover object-center
-          transition-transform duration-700 ease-out group-hover:scale-110"
-        style={{ opacity: 0.62 }}
-        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-      />
-    </div>
-
-    {/* Bottom dark fade — keeps white text crisp over the image */}
+/* ─── Apple-Style Carousel Card ────────────────────────────────── */
+const CarouselCard: React.FC<{ card: Card; delay: number }> = ({ card, delay }) => {
+  return (
     <div
-      className="absolute inset-0 pointer-events-none"
-      style={{
-        background:
-          'linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.08) 100%)',
-      }}
-    />
-
-    {/* Subtle warm top vignette */}
-    <div
-      className="absolute inset-0 pointer-events-none"
-      style={{
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 40%)',
-      }}
-    />
-
-    {/* Hover: soft inner glow */}
-    <div
-      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-      style={{ boxShadow: 'inset 0 0 60px rgba(255,255,255,0.06)' }}
-    />
-
-    {/* ── Content ── */}
-    <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between">
-
-      {/* Top: frosted tag + arrow */}
-      <div className="flex items-start justify-between">
-        <span
-          className="text-[10px] font-bold tracking-widest uppercase rounded-full px-3 py-1"
-          style={{
-            background: 'rgba(255,255,255,0.22)',
-            color: '#ffffff',
-            border: '1px solid rgba(255,255,255,0.35)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-          }}
-        >
+      className="group relative overflow-hidden rounded-[2rem] bg-white border border-slate-200/50 flex-shrink-0 snap-start mr-6
+        w-[300px] h-[480px] sm:w-[360px] sm:h-[520px] lg:w-[420px] lg:h-[580px] flex flex-col
+        shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer hover:scale-[1.02]"
+    >
+      {/* Text Zone (Top) */}
+      <div className="p-8 pb-4 flex-1 z-10 flex flex-col">
+        <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">
           {card.tag}
         </span>
-
-        <span
-          className="w-8 h-8 rounded-full flex items-center justify-center
-            opacity-0 -translate-y-1
-            group-hover:opacity-100 group-hover:translate-y-0
-            transition-all duration-300"
-          style={{
-            background: 'rgba(255,255,255,0.22)',
-            border: '1px solid rgba(255,255,255,0.35)',
-            backdropFilter: 'blur(8px)',
-          }}
-        >
-          <ArrowUpRight className="w-3.5 h-3.5 text-white" />
-        </span>
-      </div>
-
-      {/* Bottom: name + description + pills */}
-      <div>
-        <h3 className="text-white font-bold text-xl sm:text-2xl leading-tight mb-2">
+        <h3 className={`font-extrabold text-3xl lg:text-4xl leading-tight mb-3 tracking-tight min-h-[76px] lg:min-h-[90px] ${card.colorClass || 'text-slate-900'}`}>
           {card.name}
         </h3>
-
-        {/* Description — semibold, base size, near-white for legibility */}
-        <p
-          className="text-base font-semibold leading-snug mb-3"
-          style={{ color: 'rgba(255,255,255,0.88)' }}
-        >
+        <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
           {card.description}
         </p>
-
-        {/* Feature pills — reveal on hover */}
-        <div
-          className="flex flex-wrap gap-1.5
-            translate-y-4 opacity-0
-            group-hover:translate-y-0 group-hover:opacity-100
-            transition-all duration-500 ease-out"
-        >
-          {card.features.map((f) => (
-            <span
-              key={f}
-              className="text-[11px] font-semibold rounded-full px-2.5 py-1"
-              style={{
-                background: 'rgba(255,255,255,0.18)',
-                color: 'rgba(255,255,255,0.92)',
-                border: '1px solid rgba(255,255,255,0.3)',
-                backdropFilter: 'blur(6px)',
-              }}
-            >
-              {f}
-            </span>
-          ))}
+      </div>
+      
+      {/* Image Zone (Bottom) */}
+      <div className="w-full relative px-6 pb-8 pt-4 h-[220px] sm:h-[240px] lg:h-[260px] flex-shrink-0">
+        <div className="w-full h-full rounded-3xl overflow-hidden shadow-sm border border-slate-200/80">
+          <img
+            src={card.image}
+            alt={card.name}
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+            onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3'; }}
+          />
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 /* ─── Main section ──────────────────────────────────────────────── */
 const IndustriesGrid: React.FC = () => {
   const { ref, visible } = useReveal();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const amount = direction === 'left' ? -420 : 420;
+      scrollContainerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="pt-20 pb-10 lg:pt-28 lg:pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-[#FAFAFA] pt-24 pb-20 lg:pt-32 lg:pb-32">
+      
+      {/* CSS to hide scrollbar but keep functionality */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .hide-scroll::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scroll {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .apple-carousel {
+          padding-left: max(1rem, calc((100vw - 1400px) / 2 + 1rem));
+          padding-right: max(1rem, calc((100vw - 1400px) / 2 + 1rem));
+          scroll-padding-left: max(1rem, calc((100vw - 1400px) / 2 + 1rem));
+        }
+        @media (min-width: 640px) {
+          .apple-carousel {
+            padding-left: max(1.5rem, calc((100vw - 1400px) / 2 + 1.5rem));
+            padding-right: max(1.5rem, calc((100vw - 1400px) / 2 + 1.5rem));
+            scroll-padding-left: max(1.5rem, calc((100vw - 1400px) / 2 + 1.5rem));
+          }
+        }
+        @media (min-width: 1024px) {
+          .apple-carousel {
+            padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+            padding-right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+            scroll-padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+          }
+        }
+      `}} />
 
-          {/* ── Header ── */}
-          <div
-            ref={ref}
-            className="text-center mb-12"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(32px)',
-              transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
-            }}
-          >
-            <span className="inline-block text-xs font-bold tracking-widest uppercase text-primary-300 mb-4">
-              Industries
-            </span>
-            <h2
-              className="font-bold text-gray-900 leading-tight max-w-3xl mx-auto mb-4"
-              style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
-            >
-              Built for Every Type of{' '}
-              <span className="text-primary-300">Restaurant Operation</span>
+      {/* ── Header & Controls ── */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          ref={ref}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-6"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+          }}
+        >
+          <div className="max-w-4xl">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
+              <span className="text-slate-900">Industries.</span>{' '}
+              <span className="text-slate-500">Built for every type of restaurant.</span>
             </h2>
-            <p className="text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
-              Whether you run a fine dining room or a fast-moving QSR counter,
-              SlateX adapts to how you work.
-            </p>
-          </div>
-
-          {/* ── Bento Grid ── */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
-            style={{
-              opacity: visible ? 1 : 0,
-              transition: 'opacity 0.9s ease-out 0.15s',
-            }}
-          >
-            {cards.map((card, i) => (
-              <BentoCard key={card.id} card={card} delay={i * 55} />
-            ))}
           </div>
 
 
         </div>
       </div>
+
+      {/* ── Carousel Track ── */}
+      <div className="w-full mt-4 relative group/track">
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto snap-x snap-mandatory hide-scroll pb-12 pt-4 apple-carousel relative z-10"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateX(0)' : 'translateX(150px)',
+            transition: 'opacity 0.9s ease-out 0.15s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+          }}
+        >
+          {cards.map((card, i) => (
+            <CarouselCard key={card.id} card={card} delay={i * 75} />
+          ))}
+        </div>
+
+        {/* Floating Right Arrow (Apple Style) */}
+        <button 
+          onClick={() => scroll('right')}
+          className="absolute right-4 lg:right-12 top-1/2 -translate-y-[60%] z-20 w-16 h-16 rounded-full bg-white/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 hover:bg-white hover:scale-105 flex items-center justify-center text-slate-700 transition-all duration-300 hidden md:flex opacity-0 group-hover/track:opacity-100"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="w-8 h-8 ml-1" />
+        </button>
+      </div>
+
     </section>
   );
 };

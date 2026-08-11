@@ -15,7 +15,7 @@ import Header from "./components/Common/Header";
 import Hero from "./components/Home/Hero";
 import Contact from "./components/Common/CTA";
 import Footer from "./components/Common/Footer";
-import ScrollSection from "./components/Home/ScrollSection";
+import FeatureTabs from "./components/Home/FeatureTabs";
 import IndustriesGrid from "./components/Home/IndustriesGrid";
 import FreeTrial from "./components/Common/BlackSection";
 import Testimonials from "./components/Common/Testimonials";
@@ -54,7 +54,7 @@ const AppContent = () => {
             <div className="overflow-x-hidden" style={{ background: 'linear-gradient(160deg, #fff8f3 0%, #f9f9fb 30%, #f3f0ff 62%, #f9f9fb 82%, #fff8f3 100%)' }}>
               <Header />
               <Hero />
-              <ScrollSection />
+              <FeatureTabs />
               <IndustriesGrid />
               <Hardware />
               <FreeTrial

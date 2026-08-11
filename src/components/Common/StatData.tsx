@@ -54,7 +54,7 @@ const NumberSpeaks: React.FC<NumberSpeaksProps> = ({
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 leading-tight">
             {title}
           </h2>
-          <p className="text-gray-800 text-sm sm:text-base md:text-xl font-medium">
+          <p className="text-slate-500 text-lg lg:text-xl font-medium">
             {subtitle}
           </p>
         </div>

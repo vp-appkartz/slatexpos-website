@@ -146,7 +146,7 @@ const AccordionItem: React.FC<{
         ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
     >
       <div className="overflow-hidden">
-        <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[72px] text-gray-600 text-base leading-relaxed">
+        <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[72px] leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
           {faq.answer}
         </p>
       </div>
@@ -203,7 +203,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
               {title}
             </h2>
-            <p className="text-gray-500 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            <p className="max-w-xl mx-auto leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
               {subtitle}
             </p>
           </div>
@@ -265,7 +265,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
                 </div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Still have questions?</h3>
-                <p className="text-gray-500 text-base leading-relaxed mb-6">
+                <p className="leading-relaxed mb-6 text-slate-500 text-lg lg:text-xl font-medium">
                   Our team is happy to walk you through everything — no pressure, no commitment.
                 </p>
 

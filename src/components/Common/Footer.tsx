@@ -75,7 +75,7 @@ const Footer = () => {
               className="h-8 sm:h-9 lg:h-10 mb-5 w-auto cursor-pointer"
               onClick={() => navigate('/')}
             />
-            <p className="text-gray-500 text-base leading-relaxed mb-8 max-w-sm">
+            <p className="leading-relaxed mb-8 max-w-sm text-slate-500 text-lg lg:text-xl font-medium">
               {description}
             </p>
 
@@ -101,7 +101,7 @@ const Footer = () => {
               ))}
             </div>
 
-            <p className="text-gray-400 text-sm">
+            <p className="text-slate-500 text-lg lg:text-xl font-medium">
               © {new Date().getFullYear()} Slatex, Inc. All rights reserved.
             </p>
           </div>
@@ -156,7 +156,7 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="relative border-t border-indigo-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-gray-400">Built for Canadian restaurants. Powered by SlateX.</p>
+          <p className="text-slate-500 text-lg lg:text-xl font-medium">Built for Canadian restaurants. Powered by SlateX.</p>
           <div className="flex gap-4">
             <Link to="/privacy" className="text-sm text-gray-400 hover:text-gray-600 transition-colors font-medium">Privacy</Link>
           </div>

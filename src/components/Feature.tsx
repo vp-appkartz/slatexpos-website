@@ -41,7 +41,7 @@ const Features: React.FC<FeaturesProps> = ({
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
             {sectionTitle}
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
             {sectionSubtitle}
           </p>
         </div>
@@ -54,7 +54,7 @@ const Features: React.FC<FeaturesProps> = ({
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight mb-6">
                 {title}
               </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                 {description}
               </p>
             </div>

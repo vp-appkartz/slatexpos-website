@@ -104,7 +104,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               {hardwareTitle}
             </h2>
-            <p className="text-gray-500 text-base sm:text-lg lg:text-xl font-medium max-w-xl mx-auto">
+            <p className="max-w-xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
               {hardwareSubtitle}
             </p>
             <div className="w-12 h-0.5 bg-primary-300 rounded-full mx-auto mt-6" />
@@ -144,7 +144,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
                   {item.title}
                 </h3>
                 <div className="w-8 h-0.5 bg-primary-300 rounded-full mb-4" />
-                <p className="text-gray-500 text-base sm:text-lg leading-relaxed">
+                <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                   {item.description}
                 </p>
               </div>
@@ -171,7 +171,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               What's Coming Next
             </h2>
-            <p className="text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
+            <p className="max-w-xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
               SlateX is continuously evolving. Two powerful AI tools are on the way.
             </p>
             <div className="w-12 h-0.5 bg-primary-300 rounded-full mx-auto mt-6" />
@@ -210,7 +210,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-500 text-base sm:text-lg leading-relaxed font-normal">
+                  <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                     {feat.description}
                   </p>
                 </div>
@@ -220,7 +220,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
 
           {/* CTA */}
           <div className="text-center">
-            <p className="text-gray-500 text-base mb-6">
+            <p className="mb-6 text-slate-500 text-lg lg:text-xl font-medium">
               Sign up to get early access.
             </p>
             <button

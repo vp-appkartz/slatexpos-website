@@ -154,8 +154,7 @@ const Contact: React.FC<ContactProps> = ({
                 {displayTitle}
               </h2>
 
-              <p
-                className="text-white/90 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0"
+              <p className="text-white/90 leading-relaxed max-w-md mx-auto lg:mx-0 text-slate-500 text-lg lg:text-xl font-medium"
                 data-aos="fade-up"
                 data-aos-delay="260"
               >
@@ -183,7 +182,7 @@ const Contact: React.FC<ContactProps> = ({
                       </svg>
                     </div>
                     <h3 className="text-2xl font-semibold text-green-700 mb-2 text-center">Thank you!</h3>
-                    <p className="text-center text-gray-700 mb-2">
+                    <p className="text-center mb-2 text-slate-500 text-lg lg:text-xl font-medium">
                       Your demo request has been received.<br />
                       Our team will reach out to you soon.
                     </p>

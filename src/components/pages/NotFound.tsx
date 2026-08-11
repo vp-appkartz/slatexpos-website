@@ -22,7 +22,7 @@ const NotFound: React.FC = () => {
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-4">
               Oops! Page Not Found
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="mb-8 max-w-2xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
               The page you're looking for seems to have wandered off the menu. Let's get you back on track!
             </p>
           </div>

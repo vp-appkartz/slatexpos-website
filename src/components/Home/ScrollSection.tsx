@@ -207,7 +207,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
         }}
       >
         {/* Feature number — decorative */}
-        <p className="text-7xl font-black text-gray-100 leading-none select-none mb-2 -ml-1">
+        <p className="text-7xl font-black leading-none select-none mb-2 -ml-1 text-slate-500 text-lg lg:text-xl font-medium">
           {feature.number}
         </p>
 
@@ -215,7 +215,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
           {feature.title}
         </h2>
 
-        <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-8">
+        <p className="leading-relaxed mb-8 text-slate-500 text-lg lg:text-xl font-medium">
           {feature.description}
         </p>
 
@@ -312,7 +312,7 @@ const ScrollSection: React.FC<{
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight max-w-3xl mx-auto mb-4">
             {title}
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
             {subtitle}
           </p>
         </div>

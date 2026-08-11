@@ -91,7 +91,7 @@ const Privacy: React.FC = () => {
               <h1 className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight leading-none mb-3">
                 Privacy Policy
               </h1>
-              <p className="text-gray-500 text-lg sm:text-xl font-medium max-w-2xl">
+              <p className="max-w-2xl text-slate-500 text-lg lg:text-xl font-medium">
                 How SlateX POS collects, uses, and secures your personal and transactional data.
               </p>
             </div>
@@ -135,7 +135,7 @@ const Privacy: React.FC = () => {
                 <div className="absolute right-0 bottom-0 top-0 w-1/3 opacity-10 pointer-events-none">
                   <Lock className="w-full h-full object-contain translate-y-10 translate-x-10" />
                 </div>
-                <p className="text-lg sm:text-xl font-medium leading-relaxed mb-0 relative z-10">
+                <p className="leading-relaxed mb-0 relative z-10 text-slate-500 text-lg lg:text-xl font-medium">
                   At SlateX POS (&ldquo;SlateX&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), we are committed to protecting the privacy and security of the personal information of our clients (merchants) and their customers. This Privacy Policy outlines how we collect, use, and disclose personal information in compliance with the Alberta Personal Information Protection Act (PIPA) and the Canadian Personal Information Protection and Electronic Documents Act (PIPEDA).
                 </p>
               </div>
@@ -145,31 +145,31 @@ const Privacy: React.FC = () => {
                 
                 {/* 1. Information We Collect */}
                 <PrivacySection id="collect" icon={Database} title="1. Information We Collect">
-                  <p className="mb-4 font-medium text-gray-800">
+                  <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                     We collect information necessary to provide our POS and integrated payment services, including:
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-indigo-50/20 rounded-xl p-5 border border-indigo-50/40">
                       <h4 className="font-bold text-gray-900 mb-2 text-sm uppercase tracking-wider text-primary-300">Merchant Information</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-slate-500 text-lg lg:text-xl font-medium">
                         Name, business address, email, phone number, and banking details required for merchant settlement and registration.
                       </p>
                     </div>
                     <div className="bg-indigo-50/20 rounded-xl p-5 border border-indigo-50/40">
                       <h4 className="font-bold text-gray-900 mb-2 text-sm uppercase tracking-wider text-primary-300">Transaction Data</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-slate-500 text-lg lg:text-xl font-medium">
                         Purchase amounts, item descriptions, and payment method details (securely processed via industry-standard Elavon and PAX hardware protocols).
                       </p>
                     </div>
                     <div className="bg-indigo-50/20 rounded-xl p-5 border border-indigo-50/40">
                       <h4 className="font-bold text-gray-900 mb-2 text-sm uppercase tracking-wider text-primary-300">Customer Information</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-slate-500 text-lg lg:text-xl font-medium">
                         If a merchant opts to use our integrated loyalty or digital receipt features, we may collect customer names, email addresses, or phone numbers.
                       </p>
                     </div>
                     <div className="bg-indigo-50/20 rounded-xl p-5 border border-indigo-50/40">
                       <h4 className="font-bold text-gray-900 mb-2 text-sm uppercase tracking-wider text-primary-300">Technical Data</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-slate-500 text-lg lg:text-xl font-medium">
                         IP addresses, unique device identifiers (including PAX terminal serial numbers), and usage logs for proactive security auditing and performance monitoring.
                       </p>
                     </div>
@@ -178,7 +178,7 @@ const Privacy: React.FC = () => {
 
                 {/* 2. Purpose of Collection */}
                 <PrivacySection id="purpose" icon={Target} title="2. Purpose of Collection">
-                  <p className="mb-4 font-medium text-gray-800">
+                  <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                     We collect and use personal information strictly for the following purposes:
                   </p>
                   <ul className="space-y-3.5">
@@ -200,7 +200,7 @@ const Privacy: React.FC = () => {
 
                 {/* 3. Consent */}
                 <PrivacySection id="consent" icon={UserCheck} title="3. Consent">
-                  <p className="mb-4">
+                  <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                     By using the SlateX platform, mobile applications, or website, you consent to the collection and use of your information as described in this policy.
                   </p>
                   <div className="bg-orange-50/50 border border-orange-100 rounded-2xl p-5 sm:p-6 text-sm text-primary-400">
@@ -211,10 +211,10 @@ const Privacy: React.FC = () => {
 
                 {/* 4. Disclosure and Third-Party Processing */}
                 <PrivacySection id="disclosure" icon={Share2} title="4. Disclosure & Third-Party Processing">
-                  <p className="mb-4 font-semibold text-gray-800">
+                  <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                     We do not sell personal or customer information under any circumstances.
                   </p>
-                  <p className="mb-4">
+                  <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                     We may share specific data with trusted integration partners strictly as necessary for executing service delivery:
                   </p>
                   <div className="space-y-4 mb-4">
@@ -248,7 +248,7 @@ const Privacy: React.FC = () => {
                         <Lock className="w-4 h-4 text-primary-300" />
                         Robust Security Measures
                       </h4>
-                      <p className="text-sm sm:text-base">
+                      <p className="text-slate-500 text-lg lg:text-xl font-medium">
                         We employ strict industry-standard encryption protocols (SSL/TLS in transit, AES-256 at rest) and enforce PAX-certified, PCI-compliant hardware security layers to protect sensitive customer and transaction details at all times.
                       </p>
                     </div>
@@ -264,7 +264,7 @@ const Privacy: React.FC = () => {
 
                 {/* 6. Your Rights */}
                 <PrivacySection id="rights" icon={Scale} title="6. Your Rights">
-                  <p className="mb-4">
+                  <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                     Under Alberta PIPA and Canadian federal law (PIPEDA), you hold explicit legal rights over your information:
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -273,7 +273,7 @@ const Privacy: React.FC = () => {
                         <span className="font-bold text-sm">1</span>
                       </div>
                       <h5 className="font-bold text-gray-900 mb-1 text-[15px]">Right to Access</h5>
-                      <p className="text-xs text-gray-500 leading-relaxed">
+                      <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                         Access and review the exact personal information we securely store and process about you.
                       </p>
                     </div>
@@ -282,7 +282,7 @@ const Privacy: React.FC = () => {
                         <span className="font-bold text-sm">2</span>
                       </div>
                       <h5 className="font-bold text-gray-900 mb-1 text-[15px]">Right to Correct</h5>
-                      <p className="text-xs text-gray-500 leading-relaxed">
+                      <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                         Request immediate updates or corrections of incomplete or inaccurate data.
                       </p>
                     </div>
@@ -291,7 +291,7 @@ const Privacy: React.FC = () => {
                         <span className="font-bold text-sm">3</span>
                       </div>
                       <h5 className="font-bold text-gray-900 mb-1 text-[15px]">Withdraw Consent</h5>
-                      <p className="text-xs text-gray-500 leading-relaxed">
+                      <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                         Withdraw consent for specific non-essential uses of your data, subject to contract restrictions.
                       </p>
                     </div>
@@ -300,7 +300,7 @@ const Privacy: React.FC = () => {
 
                 {/* 7. Contact Our Privacy Team */}
                 <PrivacySection id="contact" icon={Mail} title="7. Contact Our Privacy Team">
-                  <p className="mb-6">
+                  <p className="mb-6 text-slate-500 text-lg lg:text-xl font-medium">
                     If you have questions, concerns, or requests regarding this Privacy Policy or how we handle your personal data, please reach out to our dedicated privacy officers:
                   </p>
                   
@@ -312,10 +312,10 @@ const Privacy: React.FC = () => {
                       <h4 className="text-lg font-black text-gray-900 mb-1">
                         Privacy Team
                       </h4>
-                      <p className="text-primary-300 font-bold text-md mb-2">
+                      <p className="text-primary-300 text-md mb-2 text-slate-500 text-lg lg:text-xl font-medium">
                         SlateX POS
                       </p>
-                      <p className="text-gray-500 text-sm max-w-md">
+                      <p className="max-w-md text-slate-500 text-lg lg:text-xl font-medium">
                         We take your data security seriously. Our compliance team will review and reply to all legal privacy queries within 30 business days.
                       </p>
                     </div>

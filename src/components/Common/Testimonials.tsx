@@ -67,7 +67,7 @@ const TestimonialCard: React.FC<{ t: TestimonialItem }> = ({ t }) => (
     <Stars />
 
     {/* Review text — larger */}
-    <p className="text-gray-700 text-lg leading-relaxed font-normal flex-1">
+    <p className="leading-relaxed flex-1 text-slate-500 text-lg lg:text-xl font-medium">
       "{t.text}"
     </p>
 
@@ -82,9 +82,9 @@ const TestimonialCard: React.FC<{ t: TestimonialItem }> = ({ t }) => (
         {t.name.charAt(0)}
       </div>
       <div className="min-w-0">
-        <p className="text-base font-bold text-gray-900 truncate">{t.name}</p>
-        <p className="text-sm font-semibold text-gray-600 truncate">{t.logo}</p>
-        <p className="flex items-center gap-1 text-xs text-gray-400 font-medium mt-0.5">
+        <p className="truncate text-slate-500 text-lg lg:text-xl font-medium">{t.name}</p>
+        <p className="truncate text-slate-500 text-lg lg:text-xl font-medium">{t.logo}</p>
+        <p className="flex items-center gap-1 mt-0.5 text-slate-500 text-lg lg:text-xl font-medium">
           <MapPin className="w-3 h-3 flex-shrink-0" />
           {t.logoSubtext || t.position}
         </p>
@@ -197,7 +197,7 @@ const Testimonial: React.FC<TestimonialsData> = ({
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 max-w-2xl mx-auto leading-tight">
             {dataTitle}
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg max-w-lg mx-auto mb-8">
+          <p className="max-w-lg mx-auto mb-8 text-slate-500 text-lg lg:text-xl font-medium">
             {dataSubtitle}
           </p>
 

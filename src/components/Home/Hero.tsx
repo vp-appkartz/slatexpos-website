@@ -153,7 +153,7 @@ const Hero = () => {
               </span>
             </h1>
 
-            <p className="font-medium text-gray-500 leading-relaxed mb-8 text-lg sm:text-xl max-w-lg mx-auto lg:mx-0">
+            <p className="leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 text-slate-500 text-lg lg:text-xl font-medium">
               SlateX POS delivers cloud-powered reliability to help run your business smoothly. Choose our custom hardware packages or bring your own with zero proprietary lock-ins, wholesale processing rates, and 24/7 dedicated support.
             </p>
 

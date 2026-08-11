@@ -69,7 +69,7 @@ const BlogCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onC
       <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 line-clamp-2 group-hover:text-primary-300 transition-colors duration-200">
         {post.title}
       </h3>
-      <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+      <p className="leading-relaxed line-clamp-2 mb-4 flex-1 text-slate-500 text-lg lg:text-xl font-medium">
         {post.excerpt}
       </p>
       <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
@@ -112,7 +112,7 @@ const FeaturedCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post,
         <h2 className="font-bold text-gray-900 text-2xl lg:text-3xl leading-tight mb-4 group-hover:text-primary-300 transition-colors duration-200">
           {post.title}
         </h2>
-        <p className="text-gray-500 text-base leading-relaxed mb-6 line-clamp-3">
+        <p className="leading-relaxed mb-6 line-clamp-3 text-slate-500 text-lg lg:text-xl font-medium">
           {post.excerpt}
         </p>
         <div className="flex items-center justify-between">
@@ -232,7 +232,7 @@ const BlogSection = () => {
           >
             POS Insights & Resources
           </h1>
-          <p className="max-w-xl text-gray-500 text-base sm:text-lg leading-relaxed mb-8">
+          <p className="max-w-xl leading-relaxed mb-8 text-slate-500 text-lg lg:text-xl font-medium">
             Industry trends, expert advice, and practical solutions to help your restaurant thrive.
           </p>
 
@@ -290,7 +290,7 @@ const BlogSection = () => {
               <Search className="w-8 h-8 text-gray-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No posts found</h3>
-            <p className="text-gray-500 text-sm">
+            <p className="text-slate-500 text-lg lg:text-xl font-medium">
               {search ? "Try a different search term." : "No posts in this category yet."}
             </p>
           </div>
@@ -306,7 +306,7 @@ const BlogSection = () => {
 
             {/* Results count */}
             <div className="flex items-center justify-between mb-6">
-              <p className="text-sm text-gray-400">
+              <p className="text-slate-500 text-lg lg:text-xl font-medium">
                 Showing{" "}
                 <span className="font-semibold text-gray-700">{filteredBlogs.length}</span>{" "}
                 article{filteredBlogs.length !== 1 ? "s" : ""}

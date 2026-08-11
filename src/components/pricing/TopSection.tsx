@@ -21,7 +21,7 @@ const PricingComponent = () => {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-3 sm:mb-4">
                     {heroSection.title}
                 </h1>
-                <p className="text-gray-600 text-base sm:text-lg md:text-xl lg:text-2xl">
+                <p className="text-slate-500 text-lg lg:text-xl font-medium">
                     {heroSection.subtitle}
                 </p>
             </div>
@@ -42,14 +42,14 @@ const PricingComponent = () => {
                         )}
                         <div className="mb-6">
                             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-2">{plan.name}</h2>
-                            <p className="text-gray-600 text-sm sm:text-base mb-6">{plan.description}</p>
+                            <p className="mb-6 text-slate-500 text-lg lg:text-xl font-medium">{plan.description}</p>
                             <div className="flex items-baseline mb-2">
                                 <span className={`text-4xl sm:text-5xl md:text-6xl font-semibold text-gray-900`}>{plan.price}</span>
                                 {plan.strikePrice && (
                                     <span className="text-lg sm:text-xl text-gray-400 ml-2 line-through">{plan.strikePrice}</span>
                                 )}
                             </div>
-                            <p className="text-sm text-gray-600 mb-6">{plan.priceNote}</p>
+                            <p className="mb-6 text-slate-500 text-lg lg:text-xl font-medium">{plan.priceNote}</p>
                             <button
                                 className={`w-full ${plan.button.style} text-white font-semibold py-3 px-6 rounded-lg transition-colors`}
                             >

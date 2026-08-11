@@ -199,7 +199,7 @@ const BlogDetails = () => {
     <div className="w-full min-h-screen flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <div className="animate-spin rounded-full h-10 w-10 border-2 border-primary-300 border-t-transparent" />
-        <p className="text-gray-400 text-sm">Loading article…</p>
+        <p className="text-slate-500 text-lg lg:text-xl font-medium">Loading article…</p>
       </div>
     </div>
   );
@@ -212,7 +212,7 @@ const BlogDetails = () => {
           <span className="text-3xl">📝</span>
         </div>
         <h1 className="text-2xl font-bold text-gray-900 mb-3">Article not found</h1>
-        <p className="text-gray-500 mb-6">{error || "The blog post you're looking for doesn't exist."}</p>
+        <p className="mb-6 text-slate-500 text-lg lg:text-xl font-medium">{error || "The blog post you're looking for doesn't exist."}</p>
         <button
           onClick={() => navigate("/blog")}
           className="inline-flex items-center gap-2 bg-primary-300 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200"
@@ -282,7 +282,7 @@ const BlogDetails = () => {
           <div className="w-full lg:w-[65%]" ref={contentRef}>
             {/* Pull quote */}
             <blockquote className="border-l-4 border-primary-300 pl-5 py-1 mb-8 bg-orange-50/50 rounded-r-xl pr-4">
-              <p className="text-gray-700 text-lg font-medium leading-relaxed italic">
+              <p className="leading-relaxed italic text-slate-500 text-lg lg:text-xl font-medium">
                 {blog.excerpt}
               </p>
             </blockquote>
@@ -406,15 +406,15 @@ const BlogDetails = () => {
               {/* Newsletter */}
               <div className="bg-gradient-to-br from-orange-50 to-purple-50 rounded-2xl border border-orange-100 p-5">
                 <h3 className="font-bold text-gray-900 text-sm mb-1">Stay in the loop</h3>
-                <p className="text-gray-500 text-xs leading-relaxed mb-4">
+                <p className="leading-relaxed mb-4 text-slate-500 text-lg lg:text-xl font-medium">
                   Get the latest POS insights delivered to your inbox monthly.
                 </p>
 
                 {subscribed ? (
                   <div className="text-center py-3">
                     <span className="text-2xl mb-2 block">🎉</span>
-                    <p className="text-green-600 font-semibold text-sm">You're subscribed!</p>
-                    <p className="text-gray-400 text-xs mt-1">Thanks for joining us.</p>
+                    <p className="text-green-600 text-slate-500 text-lg lg:text-xl font-medium">You're subscribed!</p>
+                    <p className="mt-1 text-slate-500 text-lg lg:text-xl font-medium">Thanks for joining us.</p>
                   </div>
                 ) : (
                   <>
@@ -427,7 +427,7 @@ const BlogDetails = () => {
                       className="w-full border border-gray-200 bg-white rounded-xl py-2.5 px-4 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-300/40 mb-3"
                     />
                     {subError && (
-                      <p className="text-red-500 text-xs mb-2">
+                      <p className="text-red-500 mb-2 text-slate-500 text-lg lg:text-xl font-medium">
                         Something went wrong. Please try again.
                       </p>
                     )}

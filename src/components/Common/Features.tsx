@@ -114,8 +114,7 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
             >
               {title}
             </h1>
-            <p 
-              className="text-gray-800 text-lg font-medium md:text-lg lg:text-lg mt-1 md:mt-2"
+            <p className="mt-1 md:mt-2 text-slate-500 text-lg lg:text-xl font-medium"
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -141,8 +140,7 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
                     >
                       {feature.heading}
                     </h2>
-                    <p 
-                      className="text-lg font-normal text-black mb-3 md:mb-4 lg:mb-6"
+                    <p className="text-black mb-3 md:mb-4 lg:mb-6 text-slate-500 text-lg lg:text-xl font-medium"
                       data-aos="fade-up"
                       data-aos-delay={200 + idx * 120}
                     >

@@ -53,7 +53,7 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             {heading}
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg md:text-xl">
+          <p className="max-w-2xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
             {subheading}
           </p>
         </div>
@@ -78,7 +78,7 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 leading-tight">
                 {item.title}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-sm sm:text-base">
+              <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                 {item.description}
               </p>
             </div>

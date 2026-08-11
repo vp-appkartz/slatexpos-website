@@ -81,8 +81,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
             >
               {data.title}
             </h2>
-            <p
-              className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-md"
+            <p className="leading-relaxed mb-8 max-w-md text-slate-500 text-lg lg:text-xl font-medium"
               data-aos="fade-up" data-aos-delay="260"
             >
               {data.description}

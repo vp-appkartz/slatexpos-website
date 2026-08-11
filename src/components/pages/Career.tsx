@@ -38,7 +38,7 @@ const Career: React.FC = () => {
             Build the Future of <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-orange-500">Restaurant Technology</span>
           </h1>
-          <p className="text-gray-500 text-lg sm:text-xl font-medium max-w-2xl mx-auto mb-10">
+          <p className="max-w-2xl mx-auto mb-10 text-slate-500 text-lg lg:text-xl font-medium">
             We're on a mission to empower restaurants with seamless, robust, and innovative point-of-sale solutions. Come build with us.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -56,7 +56,7 @@ const Career: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 mb-24 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Why Work With Us?</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
               We believe in fostering an environment where innovation thrives, people grow, and great work is rewarded.
             </p>
           </div>
@@ -75,7 +75,7 @@ const Career: React.FC = () => {
                   <perk.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{perk.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{perk.desc}</p>
+                <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">{perk.desc}</p>
               </div>
             ))}
           </div>
@@ -93,7 +93,7 @@ const Career: React.FC = () => {
                   <Mail className="w-10 h-10 text-primary-300" />
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-4">Oops!! no vacancy available at the moment</h2>
-                <p className="text-gray-300 text-lg mb-8 max-w-lg mx-auto">
+                <p className="mb-8 max-w-lg mx-auto text-slate-500 text-lg lg:text-xl font-medium">
                   Join the waitlist! We are always on the lookout for talented individuals. Even if there are no open roles right now, we'd love to hear from you.
                 </p>
                 <a 

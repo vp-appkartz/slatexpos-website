@@ -41,7 +41,7 @@ const ComparePlanComponent = () => {
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-2 lg:mb-4">
                         {compareSection.title}
                     </h1>
-                    <p className="text-gray-600 text-base sm:text-lg md:text-xl">
+                    <p className="text-slate-500 text-lg lg:text-xl font-medium">
                         {compareSection.subtitle}
                     </p>
                 </div>
@@ -53,7 +53,7 @@ const ComparePlanComponent = () => {
                             {/* Plan Header */}
                             <div className="bg-orange-50 p-4 sm:p-6 text-center border-b border-gray-200">
                                 <h3 className="font-semibold text-gray-900 text-xl sm:text-2xl mb-2">{plan.name}</h3>
-                                <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
+                                <p className="mb-4 text-slate-500 text-lg lg:text-xl font-medium">{plan.description}</p>
                                 <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg transition-colors text-sm">
                                     Get Started
                                 </button>
@@ -98,7 +98,7 @@ const ComparePlanComponent = () => {
                         {plans.map((plan) => (
                             <div key={plan.id} className="flex flex-col items-center p-6 h-full">
                                 <h3 className="font-semibold text-gray-900 text-lg sm:text-xl mb-2">{plan.name}</h3>
-                                <p className="text-sm sm:text-base text-gray-600 mb-4 text-center min-h-[40px] flex items-center">
+                                <p className="mb-4 text-center min-h-[40px] flex items-center text-slate-500 text-lg lg:text-xl font-medium">
                                     {plan.description}
                                 </p>
                                 <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm mt-auto">
@@ -153,7 +153,7 @@ const ComparePlanComponent = () => {
                                     {plans.map((plan) => (
                                         <div key={plan.id} className="flex flex-col items-center p-4 sm:p-6 h-full">
                                             <h3 className="font-semibold text-gray-900 text-base sm:text-lg mb-2">{plan.name}</h3>
-                                            <p className="text-xs sm:text-sm text-gray-600 mb-4 text-center min-h-[40px] flex items-center">
+                                            <p className="mb-4 text-center min-h-[40px] flex items-center text-slate-500 text-lg lg:text-xl font-medium">
                                                 {plan.description}
                                             </p>
                                             <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-colors text-xs sm:text-sm mt-auto">
@@ -196,7 +196,7 @@ const ComparePlanComponent = () => {
                             </div>
                         </div>
                         <div className="p-4 bg-gray-50 text-center">
-                            <p className="text-xs text-gray-500">← Scroll horizontally to view all plans →</p>
+                            <p className="text-slate-500 text-lg lg:text-xl font-medium">← Scroll horizontally to view all plans →</p>
                         </div>
                     </div>
                 </div>

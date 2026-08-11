@@ -53,7 +53,7 @@ const Features: React.FC = () => {
               Optimize Your Restaurant
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto text-slate-500 text-lg lg:text-xl font-medium">
             Discover how SlatexPOS empowers your restaurant with essential tools for efficient management, enhanced customer experience, and increased profitability.
           </p>
         </div>
@@ -74,7 +74,7 @@ const Features: React.FC = () => {
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-600 leading-relaxed">
+                <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">
                   {feature.description}
                 </p>
               </div>

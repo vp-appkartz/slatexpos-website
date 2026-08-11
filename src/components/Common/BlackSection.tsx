@@ -25,7 +25,7 @@ const defaultProps: Required<Omit<BlackSectionProps, 'onButtonClick' | 'classNam
   trustIndicators: [
     "Works on Any Android Device",
     "Full Offline Mode",
-    "One Monthly Fee",
+    "Wholesale Processing Rates",
     "Dedicated Local Support"
   ]
 };

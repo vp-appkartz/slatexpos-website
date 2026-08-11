@@ -85,7 +85,6 @@ const TestimonialCard: React.FC<{ t: TestimonialItem }> = ({ t }) => (
         <p className="truncate text-slate-500 text-lg lg:text-xl font-medium">{t.name}</p>
         <p className="truncate text-slate-500 text-lg lg:text-xl font-medium">{t.logo}</p>
         <p className="flex items-center gap-1 mt-0.5 text-slate-500 text-lg lg:text-xl font-medium">
-          <MapPin className="w-3 h-3 flex-shrink-0" />
           {t.logoSubtext || t.position}
         </p>
       </div>

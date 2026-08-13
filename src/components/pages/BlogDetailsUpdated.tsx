@@ -157,7 +157,7 @@ const BlogDetails = () => {
           <div className="w-full lg:w-3/4">
             {/* Hero Image */}
             <div className="mb-8">
-              <img
+              <img loading="lazy"
                 src={blog.imageUrl}
                 alt={blog.title}
                 className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl"

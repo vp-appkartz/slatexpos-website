@@ -186,7 +186,7 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
           <div className="h-[50vh] md:h-[50vh] lg:h-screen lg:sticky lg:top-0 order-1 lg:order-2">
             <div className="flex items-center justify-center">
               <div className="relative overflow-hidden w-full h-full">
-                <img
+                <img loading="lazy"
                   src={imageSrc}
                   alt={imageAlt}
                   className="w-full h-full object-contain transition-all duration-500 ease-in-out opacity-100 scale-110"

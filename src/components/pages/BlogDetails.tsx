@@ -245,7 +245,7 @@ const BlogDetails = () => {
 
       {/* ── Hero image ────────────────────────────────────────────────── */}
       <div className="relative w-full h-[55vh] min-h-[360px] max-h-[560px] overflow-hidden">
-        <img
+        <img loading="lazy"
           src={blog.imageUrl}
           alt={blog.title}
           className="w-full h-full object-cover"

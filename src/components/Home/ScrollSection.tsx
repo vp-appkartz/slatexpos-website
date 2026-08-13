@@ -182,7 +182,7 @@ const FeatureStrip: React.FC<{ feature: Feature; reverse: boolean; onCTA: () => 
             `}</style>
           )}
 
-          <img
+          <img loading="lazy"
             src={feature.imageSrc}
             alt={feature.imageAlt}
             className={`relative w-full h-auto object-contain mix-blend-darken img-float-${index}`}

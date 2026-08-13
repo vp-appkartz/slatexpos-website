@@ -208,6 +208,8 @@ const Hero = () => {
                     <img
                       src={mockup}
                       alt="SlateX Hardware"
+                      loading="eager"
+                      fetchpriority="high"
                       className="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
 

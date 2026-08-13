@@ -68,7 +68,7 @@ const BlackCardSection: React.FC<BlackCardSectionProps> = ({
             >
               {/* Icon */}
               <div className="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center mb-5 flex-shrink-0">
-                <img
+                <img loading="lazy"
                   src={item.image}
                   alt={item.title}
                   className="w-8 h-8 object-contain"

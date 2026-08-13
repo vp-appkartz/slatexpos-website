@@ -102,7 +102,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
           {/* Right — image */}
           <div className="flex justify-center lg:justify-end" data-aos="zoom-in-up" data-aos-delay="200">
             <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-orange-100">
-              <img src={data.imageSrc} alt={data.imageAlt} className="w-full h-auto object-cover" />
+              <img loading="lazy" src={data.imageSrc} alt={data.imageAlt} className="w-full h-auto object-cover" />
             </div>
           </div>
         </div>

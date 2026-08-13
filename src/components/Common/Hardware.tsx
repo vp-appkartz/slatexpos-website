@@ -133,7 +133,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
 
                 {/* Floating device image */}
                 <div className="absolute left-1/2 -top-16 -translate-x-1/2 z-10 w-56 h-44 flex items-end justify-center">
-                  <img
+                  <img loading="lazy"
                     src={item.image}
                     alt={item.title}
                     className="object-contain w-full h-full drop-shadow-2xl

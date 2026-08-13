@@ -181,7 +181,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   transform: "translateY(8px)",
                 }}
               />
-              <img
+              <img loading="lazy"
                 src={mainImage}
                 alt={mainImageAlt}
                 className="relative w-full h-auto object-contain hero-float"

@@ -105,7 +105,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     </div>
                 ) : value ? (
                     <>
-                        <img
+                        <img loading="lazy"
                             src={value}
                             alt="Uploaded"
                             className="w-full h-full object-contain p-2"

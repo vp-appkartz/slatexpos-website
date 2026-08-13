@@ -94,7 +94,7 @@ const Features: React.FC<FeaturesProps> = ({
           {/* Right Image */}
           <div className="relative">
             <div className="relative z-10">
-              <img 
+              <img loading="lazy" 
                 src={image}
                 alt={imageAlt}
                 className="w-full h-auto object-cover rounded-lg shadow-lg"

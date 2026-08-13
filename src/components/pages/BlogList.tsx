@@ -39,7 +39,7 @@ const BlogCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onC
   >
     {/* Image */}
     <div className="relative overflow-hidden h-48">
-      <img
+      <img loading="lazy"
         src={post.imageUrl}
         alt={post.title}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -91,7 +91,7 @@ const FeaturedCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post,
     <div className="grid grid-cols-1 lg:grid-cols-2">
       {/* Image */}
       <div className="relative h-64 lg:h-auto overflow-hidden">
-        <img
+        <img loading="lazy"
           src={post.imageUrl}
           alt={post.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

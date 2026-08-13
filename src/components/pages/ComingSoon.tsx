@@ -168,7 +168,7 @@ const ComingSoon: React.FC = () => {
                                 '0 0 0 1px rgba(255,255,255,0.15), 0 20px 60px rgba(249,110,77,0.25), 0 4px 20px rgba(0,0,0,0.4)',
                         }}
                     >
-                        <img
+                        <img loading="lazy"
                             src="/logo/slatex_logo.png"
                             alt="SlateX POS"
                             className=" w-auto object-contain"

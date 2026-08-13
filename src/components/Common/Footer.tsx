@@ -69,7 +69,7 @@ const Footer = () => {
 
           {/* Brand column */}
           <div className="lg:col-span-4 lg:pr-10">
-            <img
+            <img loading="lazy"
               src="/logo/slatex_logo.png"
               alt="SlateX POS"
               className="h-8 sm:h-9 lg:h-10 mb-5 w-auto cursor-pointer"

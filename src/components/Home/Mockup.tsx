@@ -466,7 +466,7 @@ function TableLayout() {
                 animationDelay: `${index * 150}ms`
               }}
             >
-              <img 
+              <img loading="lazy" 
                 src={table.icon} 
                 alt={`Table ${table.id}`}
                 className="w-full h-full object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"

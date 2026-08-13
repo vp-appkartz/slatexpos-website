@@ -6,7 +6,7 @@ import { useDemoModal } from '../../contexts/DemoModalContext';
 /* ─── SVG icon container — always crisp, never blurry ──────────── */
 const ItemIcon: React.FC<{ image: string; title: string }> = ({ image, title }) => (
   <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 p-2">
-    <img src={image} alt={title} className="w-full h-full object-contain" />
+    <img loading="lazy" src={image} alt={title} className="w-full h-full object-contain" />
   </div>
 );
 
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
 
                 {/* Logo */}
                 <div className="flex items-center flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
-                  <img src="/logo/slatex_logo.png" alt="SlateX POS" className="h-5 sm:h-6 lg:h-8 object-contain w-auto mb-1" />
+                  <img loading="lazy" src="/logo/slatex_logo.png" alt="SlateX POS" className="h-5 sm:h-6 lg:h-8 object-contain w-auto mb-1" />
                 </div>
 
                 {/* Desktop nav */}

@@ -7,7 +7,9 @@ import {
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import LoadingSpinner from './components/Common/LoadingSpinner';
 
 // Public pages
@@ -43,6 +45,10 @@ import { Analytics } from "./components/seo/Analytics";
 
 // ── Route-aware shell ────────────────────────────────────────────────────────
 const AppContent = () => {
+  useEffect(() => {
+    AOS.init({ duration: 900, once: true, offset: 60, easing: "ease-in-out" });
+  }, []);
+
   return (
     <div>
       <SEO />

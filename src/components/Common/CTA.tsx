@@ -33,17 +33,7 @@ const Contact: React.FC<ContactProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
-  useEffect(() => {
-    AOS.init({
-      duration: 900,
-      once: true,
-      offset: 60,
-      easing: "ease-in-out",
-    });
-    return () => {
-      AOS.refresh();
-    };
-  }, []);
+  
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

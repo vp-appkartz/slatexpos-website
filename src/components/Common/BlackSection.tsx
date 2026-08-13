@@ -45,10 +45,7 @@ const BlackSection: React.FC<BlackSectionProps> = ({
   const [data] = useState({ title, description, buttonText, imageSrc, imageAlt, trustIndicators });
   const { openDemoModal } = useDemoModal();
 
-  useEffect(() => {
-    AOS.init({ duration: 900, once: true, offset: 60, easing: "ease-in-out" });
-    return () => { AOS.refresh(); };
-  }, []);
+  
 
   return (
     <section

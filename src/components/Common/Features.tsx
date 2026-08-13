@@ -88,18 +88,7 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
 }) => {
   const points = bulletPoints && bulletPoints.length > 0 ? bulletPoints : defaultBulletPoints;
 
-  useEffect(() => {
-    AOS.init({
-      duration: 900,
-      once: false,
-      offset: 60,
-      easing: "ease-in-out",
-      mirror: true,
-    });
-    return () => {
-      AOS.refresh();
-    };
-  }, []);
+  
 
   return (
     <section className={`relative overflow-hidden ${bgClassName}`}>

@@ -107,7 +107,7 @@ const FeatureTabs: React.FC = () => {
           observer.disconnect(); // Only trigger once
         }
       },
-      { threshold: 0.2 } // Trigger when 20% of the section is visible
+      { threshold: 0, rootMargin: '500px 0px' } // Trigger much earlier, well before it enters viewport
     );
 
     if (sectionRef.current) {

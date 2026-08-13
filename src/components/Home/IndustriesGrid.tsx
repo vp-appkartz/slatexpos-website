@@ -10,7 +10,7 @@ function useReveal(threshold = 0.08) {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
+      { threshold: 0, rootMargin: '500px 0px' }
     );
     obs.observe(el);
     return () => obs.disconnect();

@@ -20,7 +20,7 @@ Integration capabilities of modern POS systems allow seamless connection with ot
 The return on investment for a quality POS system typically pays for itself within 12-18 months through improved efficiency, reduced waste, and increased sales. For QSRs looking to stay competitive and profitable, investing in the right POS technology is no longer optional—it's essential.`,
     category: "QSR",
     author: "SlateX Team",
-    imageUrl: "/blog.png",
+    imageUrl: "/blog.webp",
     featured: true,
     published: true,
     tags: ["POS Systems", "QSR", "Profit Margins", "Restaurant Technology"]
@@ -45,7 +45,7 @@ Fraud detection capabilities help protect restaurants from various types of thef
 The integration of AI with existing restaurant systems creates a seamless ecosystem where decisions are made automatically based on real-time data. This level of automation allows restaurant owners to focus on customer service and business growth rather than daily operational details.`,
     category: "Technology",
     author: "SlateX Team",
-    imageUrl: "/blog.png",
+    imageUrl: "/blog.webp",
     featured: false,
     published: true,
     tags: ["AI", "Technology", "POS Systems", "Automation", "Predictive Analytics"]
@@ -72,7 +72,7 @@ Contactless ordering gained significant importance during the pandemic and remai
 The future of digital ordering includes features like AI-powered recommendations, voice ordering, and predictive ordering based on customer history. Restaurants that embrace these technologies position themselves for continued success in an increasingly digital marketplace.`,
     category: "Customer Experience",
     author: "SlateX Team",
-    imageUrl: "/blog.png",
+    imageUrl: "/blog.webp",
     featured: false,
     published: true,
     tags: ["Digital Ordering", "Customer Experience", "Mobile Apps", "Operational Efficiency"]

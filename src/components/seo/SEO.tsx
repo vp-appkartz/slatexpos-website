@@ -15,7 +15,7 @@ const DEFAULT_SEO = {
   defaultDescription:
     "SlateX POS: Built for speed, performance, and savings. Flexible hardware options, zero lock-ins, wholesale rates, and 24/7 support. Get a free demo!",
   canonicalBase: 'https://slatexpos.com',
-  defaultOgImage: 'https://slatexpos.com/images/og-main.jpg',
+  defaultOgImage: 'https://slatexpos.com/images/og-main.webp',
 };
 
 export const SEO: React.FC<SEOProps> = ({

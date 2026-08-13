@@ -99,7 +99,7 @@ const staticBlogDetails: BlogPost = staticBlogPosts[0] ?? {
   category: "QSR",
   author: "Admin",
   date: "July 5, 2023",
-  imageUrl: "/blog.png",
+  imageUrl: "/blog.webp",
   featured: true,
   published: true,
   createdAt: new Date("2023-07-05"),
@@ -249,7 +249,7 @@ const BlogDetails = () => {
           src={blog.imageUrl}
           alt={blog.title}
           className="w-full h-full object-cover"
-          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.png"; }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.webp"; }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
 

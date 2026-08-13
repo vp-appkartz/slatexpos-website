@@ -114,14 +114,14 @@ export const hardwareData: HardwarePageData = {
     title: "SlateX POS Hardware",
     description: "Discover robust, reliable, and modern hardware solutions designed to power your restaurant's operations. From sleek terminals to kitchen displays, SlateX hardware is built for speed, durability, and seamless integration.",
     buttonText: "Get a Demo",
-    mainImage: "/hardware/hardware-hero.png",
+    mainImage: "/hardware/hardware-hero.webp",
     mainImageAlt: "SlateX POS Hardware",
-    deviceImage: "/hardware/hero-device.png",
+    deviceImage: "/hardware/hero-device.webp",
     deviceImageAlt: "POS Terminal Device",
     deviceTitle: "All-in-One POS Terminal",
     deviceDescription: "Modern, touch-enabled, and built for busy restaurants.",
     backgroundText: "Hardware",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   featuresIntro: {
     title: "Features",
@@ -134,7 +134,7 @@ export const hardwareData: HardwarePageData = {
       subtitle: "SlateX Station",
       description: "Dual Side display terminal streamlines high-volume ordering and promotes upsells right at the counter. Built for restaurants, cafes, and quick-serve chains, it offers rock-solid performance when every second counts.",
       buttonText: "Let's Connect",
-      image: "/hardware/hardware-station.png",
+      image: "/hardware/hardware-station.webp",
       imageAlt: "SlateX Station POS Terminal",
       imageLabel: "SlateX Station",
       alignment: "right",
@@ -148,7 +148,7 @@ export const hardwareData: HardwarePageData = {
       subtitle: "SlateX Tab",
       description: "Lightweight 11\" Android tablet delivers full POS capabilities wherever your guests choose to dine. Ideal for tableside ordering, outdoor seating, or food trucks - bringing the checkout directly to your customers as flexibly as the table.",
       buttonText: "Let's Connect",
-      image: "/hardware/hardware-tab.png",
+      image: "/hardware/hardware-tab.webp",
       imageAlt: "SlateX Tab Tablet POS",
       imageLabel: "SlateX Tab",
       alignment: "right",
@@ -162,7 +162,7 @@ export const hardwareData: HardwarePageData = {
       subtitle: "SlateX Go",
       description: "Compact 6.5\" Android device that empowers staff to take orders and process payments from anywhere on premises, outdoors, or on delivery. It delivers secure, full-featured POS capabilities wherever business happens in a rugged, all-day battery design.",
       buttonText: "Let's Connect",
-      image: "/hardware/hardware-go.png",
+      image: "/hardware/hardware-go.webp",
       imageAlt: "SlateX Go Mobile Device",
       imageLabel: "SlateX Go",
       alignment: "left",
@@ -202,17 +202,17 @@ export const hardwareData: HardwarePageData = {
     subheading: "Why Choose SlateX Hardware?",
     features: [
       {
-        image: "/hardware/hardware-fe-1.png",
+        image: "/hardware/hardware-fe-1.webp",
         title: "Large Screen",
         description: "Empower your staff to navigate menus, place orders, and take payments faster from a 15.6\" POS, 10\" POS, or 6.5\" handheld display."
       },
       {
-        image: "/hardware/hardware-fe-2.png",
+        image: "/hardware/hardware-fe-2.webp",
         title: "Flexible Mounting",
         description: "Put your POS where it works for you. This sleek station pivots so it can be mounted on a bar top, stand or any sturdy surface."
       },
       {
-        image: "/hardware/hardware-fe-3.png",
+        image: "/hardware/hardware-fe-3.webp",
         title: "Customer-Facing Display",
         description: "Enable guests to follow orders, pay, and tip instantly through a 7\" screen with a built-in card and contactless reader."
       }
@@ -257,7 +257,7 @@ export const hardwareData: HardwarePageData = {
     title: "Compact Restaurant POS Hardware", // Simplified for initial data
     description: "The SlateX POS Compact is an all-in-one POS system with a terminal and customer display, designed for efficiency in space-limited environments. Perfect for restaurants, it enables faster order processing and smooth customer interactions, helping to keep lines moving.",
     buttonText: "Signup Now",
-    imageSrc: "/pos-lady.png",
+    imageSrc: "/pos-lady.webp",
     imageAlt: "Woman working with laptop",
     trustIndicators: []
   },

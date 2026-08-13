@@ -169,7 +169,7 @@ const ComingSoon: React.FC = () => {
                         }}
                     >
                         <img loading="lazy"
-                            src="/logo/slatex_logo.png"
+                            src="/logo/slatex_logo.webp"
                             alt="SlateX POS"
                             className=" w-auto object-contain"
                         />

@@ -12,7 +12,7 @@ const PricingComponent = () => {
         <div
             className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 lg:pt-36 pb-8 sm:pb-12"
             style={{
-                backgroundImage: "url('/bg.png')",
+                backgroundImage: "url('/bg.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}

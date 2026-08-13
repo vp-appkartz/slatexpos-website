@@ -20,7 +20,7 @@ const defaultProps: Required<Omit<BlackSectionProps, 'onButtonClick' | 'classNam
   description:
     "Restaurants across Canada are stuck paying for bloated systems that require $3,000 hardware purchases, lock them into iPads, and charge extra for every feature you actually need. SlateX is different — one flat monthly fee, runs on hardware you already own, and never goes down when your internet does.",
   buttonText: "Book a Free Demo",
-  imageSrc: "/pos-lady.png",
+  imageSrc: "/pos-lady.webp",
   imageAlt: "Woman working with laptop in restaurant",
   trustIndicators: [
     "Works on Any Android Device",

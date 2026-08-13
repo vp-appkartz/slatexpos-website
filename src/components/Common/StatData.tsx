@@ -17,10 +17,10 @@ interface NumberSpeaksProps {
 
 // Array of background image URLs (public path assumed)
 const boxBgImages = [
-  '/box-bg-1.png',
-  '/box-bg-2.png',
-  '/box-bg-3.png',
-  '/box-bg-4.png',
+  '/box-bg-1.webp',
+  '/box-bg-2.webp',
+  '/box-bg-3.webp',
+  '/box-bg-4.webp',
 ];
 
 const NumberSpeaks: React.FC<NumberSpeaksProps> = ({

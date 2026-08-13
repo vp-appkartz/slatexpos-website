@@ -112,14 +112,14 @@ export const restaurantPOSData: ProductPageData = {
     title: "Restaurants POS System",
     description: "Manage, Operate orders, payments, and operations with ease, in an all-in-one, intuitive POS system.",
     buttonText: "Let's Connect",
-    mainImage: "/rps-hero.png",
+    mainImage: "/rps-hero.webp",
     mainImageAlt: "Restaurant POS System in action",
-    //   deviceImage: "/cafe-device.png",
+    //   deviceImage: "/cafe-device.webp",
     //   deviceImageAlt: "POS Device",
     //   deviceTitle: "Restaurants POS System",
     //   deviceDescription: "Complete restaurant management solution",
     //   backgroundText: "POS",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Number Speaks",
@@ -155,7 +155,7 @@ export const restaurantPOSData: ProductPageData = {
         bgColor: 'bg-orange-500',
         bgGradient: 'from-orange-400 to-orange-600',
         buttonText: "Let's Connect",
-        imageSrc: '/rps-fe.png',
+        imageSrc: '/rps-fe.webp',
         imageAlt: 'Reliable POS System',
         bulletPoints: [
           { text: 'Customer Display', highlight: true },
@@ -177,7 +177,7 @@ export const restaurantPOSData: ProductPageData = {
         bgColor: 'bg-purple-500',
         bgGradient: 'from-purple-400 to-purple-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/rps/rps-about-2.png',
+        imageSrc: '/products/rps/rps-about-2.webp',
         imageAlt: 'Centralized Menu Management',
         bulletPoints: [
           { text: 'Cloud-Centric', highlight: true },
@@ -196,7 +196,7 @@ export const restaurantPOSData: ProductPageData = {
         bgColor: 'bg-pink-500',
         bgGradient: 'from-pink-400 to-pink-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/rps/rps-about-3.png',
+        imageSrc: '/products/rps/rps-about-3.webp',
         imageAlt: 'Complex Modifier Management',
         bulletPoints: [
           { text: 'Streamlined Modifier Selection', highlight: true },
@@ -215,7 +215,7 @@ export const restaurantPOSData: ProductPageData = {
         bgColor: 'bg-teal-500',
         bgGradient: 'from-teal-400 to-teal-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/rps/rps-about-4.png',
+        imageSrc: '/products/rps/rps-about-4.webp',
         imageAlt: 'POS Security Features',
         bulletPoints: [
           { text: 'Secured Login and Access', highlight: true },
@@ -231,32 +231,32 @@ export const restaurantPOSData: ProductPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/products/rps/kb-rps-1.png",
+        image: "/products/rps/kb-rps-1.webp",
         title: "Simplified Pizza Matrix",
         description: "Make it easy to customize pizza orders with an easy-to-use pizza matrix. With this in mind is some matrices menu items modification able to come directly under half pizza menu build pricing."
       },
       {
-        image: "/products/rps/kb-rps-2.png",
+        image: "/products/rps/kb-rps-2.webp",
         title: "Driver Cashup",
         description: "Ensure order delivery and account collection from drivers. Achieve detailed information on open, close orders, and also total cash with the cashup details."
       },
       {
-        image: "/products/rps/kb-rps-3.png",
+        image: "/products/rps/kb-rps-3.webp",
         title: "QR ID Integration",
         description: "Improve service speed and serve customers better by instantly deploying order information for quick order placement. Enable your customers with enhanced, streamlined convenience."
       },
       {
-        image: "/products/rps/kb-rps-4.png",
+        image: "/products/rps/kb-rps-4.webp",
         title: "Check / Item Splitting",
         description: "Split guest expenses and easily divide the total bill. Make it easy to split a few clicks. Say goodbye to the complexities of handwriting separate checks or manually calculating individual portions."
       },
       {
-        image: "/products/rps/kb-rps-5.png",
+        image: "/products/rps/kb-rps-5.webp",
         title: "Tip Pooling",
         description: "Distribute tips among your team fairly, ensuring clear tip requirements, ensuring fair and efficient allocation, while boosting team morale and satisfaction."
       },
       {
-        image: "/products/rps/kb-rps-6.png",
+        image: "/products/rps/kb-rps-6.webp",
         title: "Label Print",
         description: "Print labels and stick some logo labelling for takeaway orders and modifications. By selecting packaging items, you can improve brand recognition and maintain customer satisfaction."
       }
@@ -305,14 +305,14 @@ export const kitchenDisplayData: ProductPageData = {
     title: "Kitchen Display System",
     description: "Optimize kitchen efficiency with real-time digital order tracking and management.",
     buttonText: "LET'S CONTACT",
-    mainImage: "/kd-hero.png",
+    mainImage: "/kd-hero.webp",
     mainImageAlt: "Kitchen Display System in action",
-    //   deviceImage: "/kitchen-display-device.png",
+    //   deviceImage: "/kitchen-display-device.webp",
     //   deviceImageAlt: "Kitchen Display Device",
     //   deviceTitle: "Kitchen Display",
     //   deviceDescription: "Real-time order management",
     //   backgroundText: "KDS",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Number Speaks",
@@ -348,7 +348,7 @@ export const kitchenDisplayData: ProductPageData = {
         bgColor: 'bg-orange-500',
         bgGradient: 'from-orange-400 to-orange-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/kd/kd-about-1.png',
+        imageSrc: '/products/kd/kd-about-1.webp',
         imageAlt: 'Kitchen Display System for Order Handling',
         bulletPoints: [
           { text: 'Restaurant Grade Hardware Fully Integrated', highlight: true },
@@ -370,7 +370,7 @@ export const kitchenDisplayData: ProductPageData = {
         bgColor: 'bg-purple-500',
         bgGradient: 'from-purple-400 to-purple-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/kd/kd-about-2.png',
+        imageSrc: '/products/kd/kd-about-2.webp',
         imageAlt: 'Intuitive Kitchen Display System',
         bulletPoints: [
           { text: 'All Tickets on One Screen', highlight: true },
@@ -387,32 +387,32 @@ export const kitchenDisplayData: ProductPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/products/kd/kd-fe-1.png",
+        image: "/products/kd/kd-fe-1.webp",
         title: "Item Delay Analysis Report",
         description: "Get real-time insights into delayed orders, identifying bottlenecks and optimizing kitchen workflows for improved efficiency."
       },
       {
-        image: "/products/kd/kd-fe-2.png",
+        image: "/products/kd/kd-fe-2.webp",
         title: "Advanced Item/Order Routing",
         description: "Direct specific food orders to appropriate kitchen stations based on preparation type (fried, grilled, baked)."
       },
       {
-        image: "/products/kd/kd-fe-3.png",
+        image: "/products/kd/kd-fe-3.webp",
         title: "Digital Ordering Integration",
         description: "Display order status on digital signage to improve service efficiency and communication between kitchen and front-of-house."
       },
       {
-        image: "/products/kd/kd-fe-4.png",
+        image: "/products/kd/kd-fe-4.webp",
         title: "Never Lose A Ticket",
         description: "Eco-friendly digital order tickets that enhance team communication and ensure order accuracy."
       },
       {
-        image: "/products/kd/kd-fe-5.png",
+        image: "/products/kd/kd-fe-5.webp",
         title: "Display Orders by Prep Time",
         description: "Optimize operations by displaying ticket times according to item preparation and collection times."
       },
       {
-        image: "/products/kd/kd-fe-6.png",
+        image: "/products/kd/kd-fe-6.webp",
         title: "Recall Tickets",
         description: "Easily recall served or bumped tickets with quick corrections that don't disrupt workflow."
       }
@@ -436,14 +436,14 @@ export const paymentProcessingData: ProductPageData = {
     title: "Payment Processing",
     description: "Accept all major payment types securely with fast and reliable payment solutions.",
     buttonText: "Let's Connect",
-    mainImage: "/payment-hero.png",
+    mainImage: "/payment-hero.webp",
     mainImageAlt: "Payment Processing System",
-    //   deviceImage: "/payment-device.png",
+    //   deviceImage: "/payment-device.webp",
     //   deviceImageAlt: "Payment Processing Device",
     //   deviceTitle: "Payment Processing",
     //   deviceDescription: "Secure and fast transactions",
     backgroundText: "PAYMENT",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Helping Restaurants Save",
@@ -478,7 +478,7 @@ export const paymentProcessingData: ProductPageData = {
     stats: [
     ],
     ctaText: "Let's Connect",
-    imageSrc: "/payment-fe.png",
+    imageSrc: "/payment-fe.webp",
     imageAlt: "Payment processing features"
   },
   scrollSection: {
@@ -496,7 +496,7 @@ export const paymentProcessingData: ProductPageData = {
         bgColor: 'bg-orange-500',
         bgGradient: 'from-orange-400 to-orange-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/payment/payment-about-1.png',
+        imageSrc: '/products/payment/payment-about-1.webp',
         imageAlt: 'Secure Payment',
         bulletPoints: [
           { text: 'Centralized and transparent rates', highlight: true },
@@ -512,32 +512,32 @@ export const paymentProcessingData: ProductPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/products/kd/kd-fe-1.png",
+        image: "/products/kd/kd-fe-1.webp",
         title: "Item Delay Analysis Report",
         description: "Get real-time insights into delayed orders, identifying bottlenecks and optimizing kitchen workflows for improved efficiency."
       },
       {
-        image: "/products/kd/kd-fe-2.png",
+        image: "/products/kd/kd-fe-2.webp",
         title: "Advanced Item/Order Routing",
         description: "Direct specific food orders to appropriate kitchen stations based on preparation type (fried, grilled, baked)."
       },
       {
-        image: "/products/kd/kd-fe-3.png",
+        image: "/products/kd/kd-fe-3.webp",
         title: "Digital Ordering Integration",
         description: "Display order status on digital signage to improve service efficiency and communication between kitchen and front-of-house."
       },
       {
-        image: "/products/kd/kd-fe-4.png",
+        image: "/products/kd/kd-fe-4.webp",
         title: "Never Lose A Ticket",
         description: "Eco-friendly digital order tickets that enhance team communication and ensure order accuracy."
       },
       {
-        image: "/products/kd/kd-fe-5.png",
+        image: "/products/kd/kd-fe-5.webp",
         title: "Display Orders by Prep Time",
         description: "Optimize operations by displaying ticket times according to item preparation and collection times."
       },
       {
-        image: "/products/kd/kd-fe-6.png",
+        image: "/products/kd/kd-fe-6.webp",
         title: "Recall Tickets",
         description: "Easily recall served or bumped tickets with quick corrections that don't disrupt workflow."
       }
@@ -577,14 +577,14 @@ export const reportingAppData: ProductPageData = {
     description:
       "Gain powerful insights into sales and performance with easy-to-understand reports.",
     buttonText: "Let's Connect",
-    mainImage: "/report-hero.png",
+    mainImage: "/report-hero.webp",
     mainImageAlt: "Reporting Dashboard",
-    //   deviceImage: "/images/reporting-device.png",
+    //   deviceImage: "/images/reporting-device.webp",
     //   deviceImageAlt: "Reporting App Device View",
     //   deviceTitle: "Reporting App",
     deviceDescription: "Analyze, Act, and Grow with Smart Reports",
     backgroundText: "Report",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Number Speaks",
@@ -619,7 +619,7 @@ export const reportingAppData: ProductPageData = {
     ],
     stats: [],
     ctaText: "Let's Connect",
-    imageSrc: "/report-fe.png",
+    imageSrc: "/report-fe.webp",
     imageAlt: "POS Reporting Feature"
   },
   keyFeatures: {
@@ -627,37 +627,37 @@ export const reportingAppData: ProductPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/products/report/report-fe-1.png",
+        image: "/products/report/report-fe-1.webp",
         title: "Get Immediate Insights",
         description:
           "Get a clear overview of business metrics like sales summary, location-wise and day-wise orders, labor cost, and more—anytime you need it."
       },
       {
-        image: "/products/report/report-fe-2.png",
+        image: "/products/report/report-fe-2.webp",
         title: "Quickly Toggle Between Locations",
         description:
           "Switch between business locations with real-time comparison of performance. Unified dashboard and custom filters help track trends location-wise."
       },
       {
-        image: "/products/report/report-fe-3.png",
+        image: "/products/report/report-fe-3.webp",
         title: "Payment Summary",
         description:
           "Get breakdowns of all payments received via cash, card, or online. Visualize payment trends to make smarter financial decisions."
       },
       {
-        image: "/products/report/report-fe-4.png",
+        image: "/products/report/report-fe-4.webp",
         title: "Hourly Report",
         description:
           "Analyze order flow by hour to detect peak periods. Use insights to optimize staffing, improve fulfillment speed, and enhance customer experience."
       },
       {
-        image: "/products/report/report-fe-5.png",
+        image: "/products/report/report-fe-5.webp",
         title: "Product Mix",
         description:
           "Understand which items sell best and when. Use that data to run targeted promotions, optimize your menu, and improve inventory planning."
       },
       {
-        image: "/products/report/report-fe-6.png",
+        image: "/products/report/report-fe-6.webp",
         title: "Customized Filters",
         description:
           "Generate specific reports using filters for payment types, time ranges, order types, and more. Identify trends and opportunities fast."
@@ -697,14 +697,14 @@ export const webOrderingData: ProductPageData = {
     title: "Web Ordering System",
     description: "Empower your business with a robust web-based ordering platform tailored for desktop and tablet users.",
     buttonText: "Let's Connect",
-    mainImage: "/web-hero.png",
+    mainImage: "/web-hero.webp",
     mainImageAlt: "Web Ordering System Interface",
-    //   deviceImage: "/assets/images/products/web-ordering-device.png",
+    //   deviceImage: "/assets/images/products/web-ordering-device.webp",
     //   deviceImageAlt: "Web Ordering Device View",
     deviceTitle: "Web Ordering System",
     deviceDescription: "Browser-based ordering solution",
     backgroundText: "WEB",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Why Go Web?",
@@ -739,7 +739,7 @@ export const webOrderingData: ProductPageData = {
     stats: [
     ],
     ctaText: "Let's Connect",
-    imageSrc: "/web-fe.png",
+    imageSrc: "/web-fe.webp",
     imageAlt: "Web Ordering System Features"
   },
   keyFeatures: {
@@ -748,32 +748,32 @@ export const webOrderingData: ProductPageData = {
     maxW: "250px",
     features: [
       {
-        image: "/products/web/web-fe-1.png",
+        image: "/products/web/web-fe-1.webp",
         title: "Coupon Codes",
         description: "Easily create and manage custom coupon codes to offer discounts, boost sales and customer engagement on your online ordering platform. Track and analyze coupon performance to optimize effectiveness. Turn new customers into regulars with this feature."
       },
       {
-        image: "/products/web/web-fe-2.png",
+        image: "/products/web/web-fe-2.webp",
         title: "Banners",
         description: "Effortlessly display striking banners to spotlight promotions and announcements on your online ordering platform. Capture customer attention and drive higher engagement and sales with banners."
       },
       {
-        image: "/products/web/web-fe-3.png",
+        image: "/products/web/web-fe-3.webp",
         title: "Analytics Integration",
         description: "Gain valuable insights into customer behavior and sales trends with the analytics integration on your online ordering website. Make data-driven decisions to enhance user experience and boost revenue."
       },
       {
-        image: "/products/web/web-fe-4.png",
+        image: "/products/web/web-fe-4.webp",
         title: "Easy / Quick Payments",
         description: "Our online ordering solution offers quick and easy, secure payment options, so your customers can complete orders with ease. Accept a variety of payment methods for a seamless and reliable checkout process."
       },
       {
-        image: "/products/web/web-fe-5.png",
+        image: "/products/web/web-fe-5.webp",
         title: "Catering / Express Catering Options",
         description: "With the catering and express catering options, let your customers place orders for regular or event catering with convenient scheduling and timely delivery for any occasion with SlateX POS."
       },
       {
-        image: "/products/web/web-fe-6.png",
+        image: "/products/web/web-fe-6.webp",
         title: "Outstanding Customer Experience",
         description: "Deliver an outstanding customer experience through optimized ordering and support. Simplified navigation, intuitive design, and responsive support ensure your guests enjoy visiting your website into regular food customers."
       }
@@ -792,7 +792,7 @@ export const webOrderingData: ProductPageData = {
         bgColor: 'bg-orange-500',
         bgGradient: 'from-orange-400 to-orange-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/web/web-about-1.png',
+        imageSrc: '/products/web/web-about-1.webp',
         bulletPoints: [
           { text: 'Commission Free', highlight: true },
           { text: 'Future ordering options', highlight: true },
@@ -809,7 +809,7 @@ export const webOrderingData: ProductPageData = {
         bgColor: 'bg-blue-500',
         bgGradient: 'from-blue-400 to-blue-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/web/web-about-2.png',
+        imageSrc: '/products/web/web-about-2.webp',
         bulletPoints: [
           { text: 'Custom Branding', highlight: true },
           { text: 'Professional Design', highlight: true },
@@ -826,7 +826,7 @@ export const webOrderingData: ProductPageData = {
         bgColor: 'bg-green-500',
         bgGradient: 'from-green-400 to-green-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/web/web-about-3.png',
+        imageSrc: '/products/web/web-about-3.webp',
         bulletPoints: [
           { text: 'Secure Gateway', highlight: true },
           { text: 'Mobile Payments', highlight: true },
@@ -854,14 +854,14 @@ export const mobileOrderingData: ProductPageData = {
     title: "Branded Mobile App",
     description: "Order a custom mobile app for convenient ordering, seamless and direct engagement.",
     buttonText: "Let's Connect",
-    mainImage: "/mobile-hero.png",
+    mainImage: "/mobile-hero.webp",
     mainImageAlt: "Branded Mobile App Interface",
-    //   deviceImage: "/assets/images/products/mobile-app-device.png",
+    //   deviceImage: "/assets/images/products/mobile-app-device.webp",
     //   deviceImageAlt: "Mobile App Device View",
     deviceTitle: "Mobile App",
     deviceDescription: "Branded ordering solution",
     backgroundText: "MOBILE",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Reach a wider audience with the branded online ordering app of SlateX POS",
@@ -896,7 +896,7 @@ export const mobileOrderingData: ProductPageData = {
     stats: [
     ],
     ctaText: "Let's Connect",
-    imageSrc: "/mobile-fe.png",
+    imageSrc: "/mobile-fe.webp",
     imageAlt: "Branded Mobile App Features"
   },
   keyFeatures: {
@@ -904,32 +904,32 @@ export const mobileOrderingData: ProductPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/products/mobile/mobile-fe-1.png",
+        image: "/products/mobile/mobile-fe-1.webp",
         title: "Real-Time Order Updates",
         description: "Keep customers informed with instant notifications about their order status. Real-time updates on order preparation, cooking progress, and delivery status enhance the customer experience and reduce inquiry calls."
       },
       {
-        image: "/products/mobile/mobile-fe-2.png",
+        image: "/products/mobile/mobile-fe-2.webp",
         title: "Advanced Customization Options",
         description: "Tailor the app to match your brand identity with custom colors, logos, and layouts. Advanced customization options allow you to create a unique branded experience that reinforces your restaurant's personality."
       },
       {
-        image: "/products/mobile/mobile-fe-3.png",
+        image: "/products/mobile/mobile-fe-3.webp",
         title: "Delivery Tracking",
         description: "Provide customers with live delivery tracking through GPS integration. Real-time location updates, estimated delivery times, and driver contact information create transparency and improve satisfaction."
       },
       {
-        image: "/products/mobile/mobile-fe-4.png",
+        image: "/products/mobile/mobile-fe-4.webp",
         title: "Integrated Loyalty Programs",
         description: "Build customer relationships and encourage repeat business with built-in loyalty programs. Points, rewards, special offers, and tier-based benefits keep customers coming back while increasing average order value."
       },
       {
-        image: "/products/mobile/mobile-fe-5.png",
+        image: "/products/mobile/mobile-fe-5.webp",
         title: "Remote Menu Updates",
         description: "Manage your menu remotely with instant updates across all customer apps. Add new items, modify prices, update availability, and showcase daily specials without requiring app updates from customers."
       },
       {
-        image: "/products/mobile/mobile-fe-6.png",
+        image: "/products/mobile/mobile-fe-6.webp",
         title: "Order Scheduling",
         description: "Allow customers the flexibility to schedule orders for future delivery or pickup. Advanced scheduling options help customers plan ahead while helping you manage kitchen workflow and capacity during peak hours."
       }
@@ -948,7 +948,7 @@ export const mobileOrderingData: ProductPageData = {
         bgColor: 'bg-purple-500',
         bgGradient: 'from-purple-400 to-purple-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/mobile/mobile-about-1.png',
+        imageSrc: '/products/mobile/mobile-about-1.webp',
         bulletPoints: [
           { text: 'Custom Branding', highlight: true },
           { text: 'iOS & Android Support', highlight: true },
@@ -965,7 +965,7 @@ export const mobileOrderingData: ProductPageData = {
         bgColor: 'bg-blue-500',
         bgGradient: 'from-blue-400 to-blue-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/mobile/mobile-about-2.png',
+        imageSrc: '/products/mobile/mobile-about-2.webp',
         bulletPoints: [
           { text: 'Order Status Updates', highlight: true },
           { text: 'Promotional Alerts', highlight: true },
@@ -982,7 +982,7 @@ export const mobileOrderingData: ProductPageData = {
         bgColor: 'bg-green-500',
         bgGradient: 'from-green-400 to-green-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/mobile/mobile-about-3.png',
+        imageSrc: '/products/mobile/mobile-about-3.webp',
         bulletPoints: [
           { text: 'Future Ordering', highlight: true },
           { text: 'Workflow Management', highlight: true },
@@ -1035,14 +1035,14 @@ export const loyaltyPromotionData: ProductPageData = {
     title: "Loyalty & Promotion",
     description: "Drive repeat business with tailored loyalty programs and automated promotions.",
     buttonText: "Let's Connect",
-    mainImage: "/loyalty-hero.png",
+    mainImage: "/loyalty-hero.webp",
     mainImageAlt: "Loyalty & Promotion Interface",
-    //   deviceImage: "/assets/images/products/loyalty-device.png",
+    //   deviceImage: "/assets/images/products/loyalty-device.webp",
     //   deviceImageAlt: "Loyalty Program Device View",
     deviceTitle: "Loyalty & Promotion",
     deviceDescription: "Customer retention solution",
     backgroundText: "Loyalty",
-    backgroundImage: "/bg.png"
+    backgroundImage: "/bg.webp"
   },
   numberSpeaks: {
     title: "Helping Restaurants Increase",
@@ -1081,7 +1081,7 @@ export const loyaltyPromotionData: ProductPageData = {
     ],
 
     ctaText: "Let's Connect",
-    imageSrc: "/loyalty-fe.png",
+    imageSrc: "/loyalty-fe.webp",
     imageAlt: "Repeat Customers"
   },
   keyFeatures: {
@@ -1089,32 +1089,32 @@ export const loyaltyPromotionData: ProductPageData = {
     subheading: "Our Standout Features",
     features: [
       {
-        image: "/products/promotion/promotion-fe-1.png",
+        image: "/products/promotion/promotion-fe-1.webp",
         title: "One Loyalty works Everywhere",
         description: "Our loyalty program is fully integrated with the POS, kiosk, online ordering, and mobile app. Customers can earn and redeem points across all channels, making it easy to use and benefit from them."
       },
       {
-        image: "/products/promotion/promotion-fe-2.png",
+        image: "/products/promotion/promotion-fe-2.webp",
         title: "Easy Points / Rewards",
         description: "Make it simple for customers by offering easy points and rewards. Luck of birthday or anniversary Element. customers can easily understand and collect loyalty points bringing long-term customer retention from one month."
       },
       {
-        image: "/products/promotion/promotion-fe-3.png",
+        image: "/products/promotion/promotion-fe-3.webp",
         title: "White Label App / Custom Portal",
         description: "Provide a seamless experience to customers through a branded loyalty app. Include customer account management and other targeted rewards."
       },
       {
-        image: "/products/promotion/promotion-fe-4.png",
+        image: "/products/promotion/promotion-fe-4.webp",
         title: "Special Day Rewards",
         description: "Let your customers celebrate their special days by offering special points and enjoy special offers on birthdays and anniversaries to make them happy."
       },
       {
-        image: "/products/promotion/promotion-fe-5.png",
+        image: "/products/promotion/promotion-fe-5.webp",
         title: "Extensive Analytics",
         description: "Unleash the power of data. Gain deep insights into customer behavior to optimize your menus, pricing, and promotional campaigns, with detailed analytics."
       },
       {
-        image: "/products/promotion/promotion-fe-6.png",
+        image: "/products/promotion/promotion-fe-6.webp",
         title: "Segmented Campaigns",
         description: "Create highly effective loyalty campaigns based on customer preferences, spending habits, days visited and menu preferences. Increase order reach and with rewards and give them a quality experience."
       }
@@ -1133,7 +1133,7 @@ export const loyaltyPromotionData: ProductPageData = {
         bgColor: 'bg-orange-500',
         bgGradient: 'from-orange-400 to-orange-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/promotion/promotion-about-1.png',
+        imageSrc: '/products/promotion/promotion-about-1.webp',
         bulletPoints: [
           { text: 'Cross-platform Sync', highlight: true },
           { text: 'Real-time Balancing', highlight: true },
@@ -1150,7 +1150,7 @@ export const loyaltyPromotionData: ProductPageData = {
         bgColor: 'bg-blue-500',
         bgGradient: 'from-blue-400 to-blue-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/promotion/promotion-about-2.png',
+        imageSrc: '/products/promotion/promotion-about-2.webp',
         bulletPoints: [
           { text: 'Customer Spending Habits', highlight: true },
           { text: 'Campaign Performance', highlight: true },
@@ -1167,7 +1167,7 @@ export const loyaltyPromotionData: ProductPageData = {
         bgColor: 'bg-red-500',
         bgGradient: 'from-red-400 to-red-600',
         buttonText: "Let's Connect",
-        imageSrc: '/products/promotion/promotion-about-3.png',
+        imageSrc: '/products/promotion/promotion-about-3.webp',
         bulletPoints: [
           { text: 'Behavior-based Targeting', highlight: true },
           { text: 'Custom Offers', highlight: true },
@@ -1202,10 +1202,10 @@ export const giftCardData: ProductPageData = {
     title: "Gift Cards That Drive Revenue",
     description: "Launch branded digital and physical gift cards in minutes. Customers can buy, redeem, and balance-check across every channel — with zero extra hardware.",
     buttonText: "Let's Connect",
-    mainImage: "/loyalty-hero.png",
+    mainImage: "/loyalty-hero.webp",
     mainImageAlt: "SlateX Gift Card Management",
     backgroundText: "GiftCard",
-    backgroundImage: "/bg.png",
+    backgroundImage: "/bg.webp",
   },
   numberSpeaks: {
     title: "Gift Cards That Pay Off",
@@ -1222,32 +1222,32 @@ export const giftCardData: ProductPageData = {
     subheading: "One platform. Zero complexity.",
     features: [
       {
-        image: "/products/promotion/promotion-fe-1.png",
+        image: "/products/promotion/promotion-fe-1.webp",
         title: "Instant Digital Delivery",
         description: "Customers purchase gift cards online or in-store and receive them instantly via email or SMS — no physical card required.",
       },
       {
-        image: "/products/promotion/promotion-fe-2.png",
+        image: "/products/promotion/promotion-fe-2.webp",
         title: "Physical Cards Support",
         description: "Print and sell branded physical gift cards. Activate at the POS, track balances in real time, and reload without any extra hardware.",
       },
       {
-        image: "/products/promotion/promotion-fe-3.png",
+        image: "/products/promotion/promotion-fe-3.webp",
         title: "Multi-Channel Redemption",
         description: "Redeem gift cards at the POS terminal, through your website, or on the branded mobile app. Balance syncs instantly across all channels.",
       },
       {
-        image: "/products/promotion/promotion-fe-4.png",
+        image: "/products/promotion/promotion-fe-4.webp",
         title: "Custom Branding",
         description: "Add your logo and brand colours to digital and physical cards. Give customers a premium experience that feels native to your restaurant.",
       },
       {
-        image: "/products/promotion/promotion-fe-5.png",
+        image: "/products/promotion/promotion-fe-5.webp",
         title: "Balance Management",
         description: "Customers can check their remaining balance online, in the app, or at the counter. Staff can reload or void cards with a single tap.",
       },
       {
-        image: "/products/promotion/promotion-fe-6.png",
+        image: "/products/promotion/promotion-fe-6.webp",
         title: "Sales & Liability Reporting",
         description: "Track outstanding gift card liability, redemption rates, and revenue in your SlateX dashboard. Full audit trail, zero guesswork.",
       },

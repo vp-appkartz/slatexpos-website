@@ -31,7 +31,7 @@ const defaultFeatures: Feature[] = [
       'Drag & Drop Floor Management',
       'Dynamic Invoice & KOT Layout',
     ],
-    imageSrc: '/homescreen2.png',
+    imageSrc: '/homescreen2.webp',
     imageAlt: 'SlateX POS running on Android tablet',
   },
   {
@@ -261,7 +261,7 @@ const ScrollSection: React.FC<{
         title:       s.title    || '',
         description: s.description || '',
         bullets:     (s.bulletPoints || []).map((b: any) => typeof b === 'string' ? b : b.text),
-        imageSrc:    s.imageSrc || `/home-about-${(i % 5) + 1}.png`,
+        imageSrc:    s.imageSrc || `/home-about-${(i % 5) + 1}.webp`,
         imageAlt:    s.imageAlt || s.title || '',
       }))
     : defaultFeatures;

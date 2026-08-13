@@ -37,7 +37,7 @@ export const SchemaScript: React.FC<SchemaProps> = ({ type, data = {} }) => {
       '@type': 'Organization',
       'name': 'SlateX POS',
       'url': 'https://slatexpos.com',
-      'logo': 'https://slatexpos.com/images/logo.png',
+      'logo': 'https://slatexpos.com/images/logo.webp',
       'sameAs': [
         'https://www.facebook.com/slatexpos',
         'https://www.linkedin.com/company/slatexpos',

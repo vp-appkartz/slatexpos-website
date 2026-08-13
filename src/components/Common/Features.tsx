@@ -81,7 +81,7 @@ const IndustrySection: React.FC<IndustrySectionProps> = ({
   stats,
   ctaText,
   onCtaClick,
-  imageSrc = "/table-pos.png",
+  imageSrc = "/table-pos.webp",
   imageAlt = "POS System Interface",
   bgClassName = "bg-white",
   bulletPoints,

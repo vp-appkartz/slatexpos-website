@@ -7,8 +7,8 @@ import { CheckCircle2, Star } from "lucide-react";
 // Use transparent hardware mockup PNGs here.
 // They will automatically inherit the 3D perspective and depth-of-field blur.
 const MOCKUPS = [
-  "/Slate-Hero-1.png", 
-  "/Slate-Hero-2.png"
+  "/Slate-Hero-1.webp", 
+  "/Slate-Hero-2.webp"
 ];
 
 const Hero = () => {

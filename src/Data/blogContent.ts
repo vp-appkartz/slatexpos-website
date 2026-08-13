@@ -17,7 +17,7 @@ export const blogContent: BlogContent = {
   title: "Boosting Profit Margins: The Strategic Role of POS Systems in Quick Service Restaurants",
   date: "July 4, 2025",
   category: "QSR",
-  heroImage: "/blog-hero.png", // Tablet with pizza delivery app
+  heroImage: "/blog-hero.webp", // Tablet with pizza delivery app
   sections: [
     {
       heading: "Simple guidance to demystify your finances",
@@ -51,7 +51,7 @@ export const additionalBlogPosts: BlogContent[] = [
     title: "The Future of Restaurant Technology: AI-Powered POS Systems",
     date: "July 3, 2025",
     category: "Technology",
-    heroImage: "/blog-ai-pos.png",
+    heroImage: "/blog-ai-pos.webp",
     sections: [
       {
         heading: "Understanding AI in Restaurant Operations",
@@ -66,7 +66,7 @@ export const additionalBlogPosts: BlogContent[] = [
     title: "Maximizing Customer Satisfaction Through Digital Ordering",
     date: "July 2, 2025",
     category: "Customer Experience",
-    heroImage: "/blog-digital-ordering.png",
+    heroImage: "/blog-digital-ordering.webp",
     sections: [
       {
         heading: "The Digital Transformation of Food Service",

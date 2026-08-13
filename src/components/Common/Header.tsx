@@ -124,7 +124,7 @@ const Header: React.FC = () => {
 
                 {/* Logo */}
                 <div className="flex items-center flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
-                  <img loading="lazy" src="/logo/slatex_logo.png" alt="SlateX POS" className="h-5 sm:h-6 lg:h-8 object-contain w-auto mb-1" />
+                  <img loading="lazy" src="/logo/slatex_logo.webp" alt="SlateX POS" className="h-5 sm:h-6 lg:h-8 object-contain w-auto mb-1" />
                 </div>
 
                 {/* Desktop nav */}

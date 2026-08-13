@@ -43,7 +43,7 @@ const BlogCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onC
         src={post.imageUrl}
         alt={post.title}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.png"; }}
+        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.webp"; }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
       {post.featured && (
@@ -95,7 +95,7 @@ const FeaturedCard: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post,
           src={post.imageUrl}
           alt={post.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.png"; }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/blog.webp"; }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 lg:from-transparent lg:to-white" />
       </div>

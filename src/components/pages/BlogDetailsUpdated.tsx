@@ -113,7 +113,7 @@ const BlogDetails = () => {
           <div
             className="bg-white p-6 sm:p-8 mb-8 rounded-2xl relative overflow-hidden"
             style={{
-              backgroundImage: "url('/bg.png')",
+              backgroundImage: "url('/bg.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -162,7 +162,7 @@ const BlogDetails = () => {
                 alt={blog.title}
                 className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl"
                 onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = "/blog.png";
+                  (e.currentTarget as HTMLImageElement).src = "/blog.webp";
                 }}
               />
             </div>

@@ -37,7 +37,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
       title: 'SlateX Pulse',
       description:
         'A fully powered handheld terminal that lets you take orders and process payments from anywhere — tableside, curbside, or on delivery. Secure, encrypted transactions and an all‑day battery design.',
-      image: '/SlateX Pulse.png',
+      image: '/SlateX Pulse.webp',
       colorClass: 'text-orange-600',
     },
   ];

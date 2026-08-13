@@ -21,7 +21,7 @@ const cards: Card[] = [
     tag: 'Full-Service Restaurant POS',
     description: 'Multi-course table pacing, custom floor plan management, and sleek mobile payments designed for high-end dining experiences.',
     features: ['Drag & Drop Floor Designer', 'Course-by-Course Pacing'],
-    image: '/Industries/fine dining-1.png',
+    image: '/Industries/fine dining-1.webp',
     colorClass: 'text-rose-500',
   },
   {
@@ -30,7 +30,7 @@ const cards: Card[] = [
     tag: 'QSR POS System',
     description: 'Lightning-fast order entry, dual-screen kitchen display sync, and offline processing mode built for high-volume rushes.',
     features: ['Offline Mode', 'Cash Management'],
-    image: '/Industries/QSR.png',
+    image: '/Industries/QSR.webp',
     colorClass: 'text-blue-500',
   },
   {
@@ -39,7 +39,7 @@ const cards: Card[] = [
     tag: 'Casual Dining POS Software',
     description: 'Flexible hybrid workflows that balance tableside ordering, rapid bill splitting, and fast counter checkout in one platform.',
     features: ['Multi-Device Sync', 'Caller ID'],
-    image: '/Industries/casualdining.png',
+    image: '/Industries/casualdining.webp',
     colorClass: 'text-amber-500',
   },
   {
@@ -48,7 +48,7 @@ const cards: Card[] = [
     tag: 'Coffee Shop POS System',
     description: 'Complex modifier mapping, rapid drink customization, line-busting handhelds, and built-in repeat customer loyalty.',
     features: ['Multi-Level Modifiers', 'Gift Cards'],
-    image: '/Industries/cafe.png',
+    image: '/Industries/cafe.webp',
     colorClass: 'text-emerald-500',
   },
   {
@@ -57,7 +57,7 @@ const cards: Card[] = [
     tag: 'Bakery POS Software',
     description: 'Item-by-weight scale integration, custom matrix pricing, fast barcode scanning, and instant batch order tracking.',
     features: ['Quick Item Entry', 'Open Items'],
-    image: '/Industries/Sweets shop.png',
+    image: '/Industries/Sweets shop.webp',
     colorClass: 'text-purple-500',
   },
   {
@@ -66,7 +66,7 @@ const cards: Card[] = [
     tag: 'Pizzeria POS System',
     description: 'Deep pizza modifier building (halves/quarters), caller ID phone integration, and zero-commission online delivery dispatch.',
     features: ['Zero-Commission Online Orders', 'Custom Modifiers'],
-    image: '/Industries/Pizzashop.png',
+    image: '/Industries/Pizzashop.webp',
     colorClass: 'text-orange-500',
   },
   {
@@ -75,7 +75,7 @@ const cards: Card[] = [
     tag: 'Food Truck POS System',
     description: 'Portable handheld checkout, cellular and offline payment reliability, line-busting speed, and instant digital receipt texting.',
     features: ['Portable Handhelds', 'Offline Reliability'],
-    image: '/Industries/foodtruck.png',
+    image: '/Industries/foodtruck.webp',
     colorClass: 'text-pink-500',
   },
 ];

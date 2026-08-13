@@ -2,22 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, Bot } from 'lucide-react';
 import { useDemoModal } from '../../contexts/DemoModalContext';
 
-/* ─── Scroll reveal ────────────────────────────────────────────── */
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return { ref, visible };
-}
+/* ─── Scroll reveal removed for stability ────────────────────────────────────────────── */
 
 interface HardwareProps {
   title?: string;
@@ -27,9 +12,7 @@ interface HardwareProps {
 
 const Hardware: React.FC<HardwareProps> = (props) => {
   const { openDemoModal } = useDemoModal();
-  const { ref: headerRef, visible: headerVisible } = useReveal(0.2);
-  const { ref: cardsRef,  visible: cardsVisible  } = useReveal(0.1);
-  const { ref: csRef,     visible: csVisible     } = useReveal(0.1);
+  // useReveal removed
 
   /* ── Hardware data ── */
   const defaultHardwareItems = [
@@ -93,13 +76,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
         <div>
           {/* Header */}
           <div
-            ref={headerRef}
             className="text-center mb-20"
-            style={{
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? 'translateY(0)' : 'translateY(28px)',
-              transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
-            }}
           >
             <span className="inline-block text-xs font-bold tracking-widest uppercase text-primary-300 mb-4">
               Hardware
@@ -114,19 +91,13 @@ const Hardware: React.FC<HardwareProps> = (props) => {
           </div>
 
           {/* Cards */}
-          <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {hardwareItems.map((item, idx) => (
               <div
                 key={item.id}
                 className="group relative bg-white rounded-3xl border border-gray-100
                   shadow-sm hover:shadow-2xl transition-all duration-500
                   pt-4 pb-8 px-8 text-left overflow-visible mt-16"
-                style={{
-                  opacity: cardsVisible ? 1 : 0,
-                  transform: cardsVisible ? 'translateY(0)' : 'translateY(48px)',
-                  transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
-                  transitionDelay: cardsVisible ? `${idx * 120}ms` : '0ms',
-                }}
               >
                 {/* Orange top accent line on hover */}
                 <div className="absolute top-0 left-8 right-8 h-[3px] bg-primary-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -158,14 +129,7 @@ const Hardware: React.FC<HardwareProps> = (props) => {
         {/* ══════════════════════════════════════════
             COMING SOON
         ══════════════════════════════════════════ */}
-        <div
-          ref={csRef}
-          style={{
-            opacity: csVisible ? 1 : 0,
-            transform: csVisible ? 'translateY(0)' : 'translateY(32px)',
-            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
-          }}
-        >
+        <div>
           {/* Header */}
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-bold tracking-widest uppercase text-primary-300 mb-4">
@@ -189,12 +153,6 @@ const Hardware: React.FC<HardwareProps> = (props) => {
                   key={feat.id}
                   className="bg-gray-50 border border-gray-100 rounded-3xl p-8 sm:p-10
                     hover:shadow-lg hover:border-gray-200 transition-all duration-300"
-                  style={{
-                    opacity: csVisible ? 1 : 0,
-                    transform: csVisible ? 'translateY(0)' : 'translateY(24px)',
-                    transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
-                    transitionDelay: csVisible ? `${idx * 120}ms` : '0ms',
-                  }}
                 >
                   {/* Icon + badge row */}
                   <div className="flex items-center gap-3 mb-5">

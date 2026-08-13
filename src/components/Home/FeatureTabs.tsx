@@ -56,39 +56,10 @@ const FEATURES = {
   ]
 };
 
-// Helper component to create the "writing" effect on card titles
-const TypewriterTitle: React.FC<{ text: string, startTyping: boolean }> = ({ text, startTyping }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isDone, setIsDone] = useState(false);
-
-  useEffect(() => {
-    if (!startTyping) return; // Wait until the section is visible
-
-    let i = 0;
-    let active = true;
-    setDisplayedText('');
-    setIsDone(false);
-
-    const interval = setInterval(() => {
-      if (!active) return clearInterval(interval);
-      setDisplayedText(text.slice(0, i + 1));
-      i++;
-      if (i >= text.length) {
-        setIsDone(true);
-        clearInterval(interval);
-      }
-    }, 40); // typing speed
-
-    return () => {
-      active = false;
-      clearInterval(interval);
-    };
-  }, [text, startTyping]);
-
+const TypewriterTitle: React.FC<{ text: string }> = ({ text }) => {
   return (
     <span>
-      {displayedText}
-      {!isDone && startTyping && <span className="inline-block w-1.5 h-4 bg-primary-400 ml-[2px] align-middle animate-blink" />}
+      {text}
     </span>
   );
 };
@@ -96,26 +67,7 @@ const TypewriterTitle: React.FC<{ text: string, startTyping: boolean }> = ({ tex
 const FeatureTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(PILLARS[0].id);
   const { openDemoModal } = useDemoModal();
-  const [hasScrolledIntoView, setHasScrolledIntoView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setHasScrolledIntoView(true);
-          observer.disconnect(); // Only trigger once
-        }
-      },
-      { threshold: 0, rootMargin: '500px 0px' } // Trigger much earlier, well before it enters viewport
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
   
   return (
     <section ref={sectionRef} className="relative py-24 overflow-hidden bg-transparent z-20">
@@ -208,15 +160,14 @@ const FeatureTabs: React.FC = () => {
               {FEATURES[activeTab as keyof typeof FEATURES].map((feature, idx) => (
                 <div 
                   key={`${activeTab}-${idx}`}
-                  className="animate-slate-card bg-white rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,1)] hover:border-primary-300 hover:shadow-[0_15px_50px_-10px_rgba(99,102,241,0.2)] hover:-translate-y-1 transition-all duration-300 group"
-                  style={{ animationDelay: `${idx * 150}ms` }}
+                  className="bg-white rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,1)] hover:border-primary-300 hover:shadow-[0_15px_50px_-10px_rgba(99,102,241,0.2)] hover:-translate-y-1 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-4 mb-5">
                     <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-primary-500 border border-slate-200 group-hover:scale-110 group-hover:bg-primary-50 group-hover:border-primary-200 transition-all duration-300 shadow-sm">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 leading-tight">
-                      <TypewriterTitle text={feature.title} startTyping={hasScrolledIntoView} />
+                      <TypewriterTitle text={feature.title} />
                     </h3>
                   </div>
                   <p className="leading-relaxed text-slate-500 text-lg lg:text-xl font-medium">

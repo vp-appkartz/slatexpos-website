@@ -1,22 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-/* ─── Scroll reveal ────────────────────────────────────────────── */
-function useReveal(threshold = 0.08) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0, rootMargin: '500px 0px' }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
+/* ─── Scroll reveal removed for stability ────────────────────────────────────────────── */
 
 /* ─── Data ─────────────────────────────────────────────────────── */
 interface Card {
@@ -135,7 +120,6 @@ const CarouselCard: React.FC<{ card: Card; delay: number }> = ({ card, delay }) 
 
 /* ─── Main section ──────────────────────────────────────────────── */
 const IndustriesGrid: React.FC = () => {
-  const { ref, visible } = useReveal();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -181,13 +165,7 @@ const IndustriesGrid: React.FC = () => {
       {/* ── Header & Controls ── */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          ref={ref}
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-6"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(24px)',
-            transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
-          }}
         >
           <div className="max-w-4xl">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
@@ -205,11 +183,6 @@ const IndustriesGrid: React.FC = () => {
         <div
           ref={scrollContainerRef}
           className="flex overflow-x-auto snap-x snap-mandatory hide-scroll pb-12 pt-4 apple-carousel relative z-10"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateX(0)' : 'translateX(150px)',
-            transition: 'opacity 0.9s ease-out 0.15s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
-          }}
         >
           {cards.map((card, i) => (
             <CarouselCard key={card.id} card={card} delay={i * 75} />

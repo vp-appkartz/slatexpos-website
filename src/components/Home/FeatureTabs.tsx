@@ -153,10 +153,10 @@ const FeatureTabs: React.FC = () => {
           </div>
 
           {/* Right Column: The Canvas */}
-          <div className="lg:w-2/3 xl:w-3/4 p-6 sm:p-10 lg:p-12 relative z-10 flex flex-col min-h-[500px]">
+          <div className="lg:w-2/3 xl:w-3/4 relative z-10 flex flex-col min-h-[500px]">
             
             {/* Feature Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-24">
+            <div className="p-6 sm:p-10 lg:p-12 grid grid-cols-1 md:grid-cols-2 gap-6">
               {FEATURES[activeTab as keyof typeof FEATURES].map((feature, idx) => (
                 <div 
                   key={`${activeTab}-${idx}`}
@@ -177,22 +177,20 @@ const FeatureTabs: React.FC = () => {
               ))}
             </div>
 
-          </div>
-
-          {/* Bottom Command Prompt CTA */}
-          <div className="absolute bottom-0 left-0 right-0 lg:left-1/3 xl:left-1/4 bg-white/95 backdrop-blur-xl border-t border-slate-200 p-4 sm:p-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-6 z-30">
-            <div className="text-slate-800 font-bold text-lg sm:text-xl flex-1">
-              Need a specific integration?
+            {/* Bottom Command Prompt CTA */}
+            <div className="mt-auto bg-white/95 backdrop-blur-xl border-t border-slate-200 p-4 sm:p-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-6 z-30">
+              <div className="text-slate-800 font-bold text-lg sm:text-xl flex-1 text-center sm:text-left">
+                Need a specific integration?
+              </div>
+              <button
+                onClick={openDemoModal}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+              >
+                Book a Free Custom Demo
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
-            <button
-              onClick={openDemoModal}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#3782fd] hover:bg-blue-600 text-white font-semibold rounded-xl px-6 py-3 text-sm sm:text-base border border-[#3782fd] hover:border-blue-600 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
-            >
-              Book a Free Custom Demo
-              <ChevronRight className="w-4 h-4" />
-            </button>
           </div>
-
         </div>
       </div>
     </section>

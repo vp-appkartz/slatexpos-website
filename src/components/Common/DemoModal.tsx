@@ -145,7 +145,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     >
       <div
         ref={modalRef}
-        className={`relative w-full max-w-lg mx-4 sm:mx-0 bg-[#f7efe7] rounded-2xl shadow-xl p-8 sm:p-10 transition-transform duration-500 ${isOpen ? 'translate-y-0' : '-translate-y-20'} border border-gray-200`}
+        className={`relative w-full max-w-lg mx-4 sm:mx-0 bg-[#f7efe7] rounded-2xl shadow-xl p-6 sm:p-10 transition-transform duration-500 ${isOpen ? 'translate-y-0' : '-translate-y-20'} border border-gray-200 max-h-[90vh] overflow-y-auto`}
         style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
       >
         {/* Close button */}
@@ -246,7 +246,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 {submitting ? 'Submitting...' : 'Schedule my demo'}
               </button>
             </form>
-            <p className="text-center mt-6 text-slate-500 text-lg lg:text-xl font-medium">
+            <p className="text-center mt-6 text-slate-500 text-sm sm:text-lg font-medium">
               We’ll tailor your demo to your immediate needs and answer all your questions. Get ready to see how it works!
             </p>
           </>
